@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Ứng dụng Quản lý sự cố đường bộ — ghi nhận hiện trường, ảnh minh chứng, báo cáo Word/Excel, đồng bộ cloud và offline 24 giờ."
+    />
+    <title>Quản lý sự cố đường bộ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="Ho so dang CH play/ic_launcher_play_store_512.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">
+          <img
+            data-app-icon
+            src="Ho so dang CH play/ic_launcher_play_store_512.png"
+            alt=""
+            width="44"
+            height="44"
+          />
+          <span id="app-name">Quản lý sự cố đường bộ</span>
+        </a>
+
+        <nav class="nav" id="site-nav" aria-label="Menu chính">
+          <a href="#tinh-nang-noi-bat">Tính năng</a>
+          <a href="#anh-app">Ảnh app</a>
+          <a href="#video">Hướng dẫn</a>
+          <a href="#lien-he">Liên hệ</a>
+        </nav>
+
+        <div class="header-cta">
+          <button
+            type="button"
+            class="nav-toggle"
+            id="nav-toggle"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            aria-label="Mở menu"
+          >
+            <span></span><span></span><span></span>
+          </button>
+          <a
+            class="btn btn-zalo btn-header"
+            data-zalo-link
+            href="#lien-he"
+            title="Nhắn Zalo"
+            >Zalo</a
+          >
+          <a
+            class="btn btn-secondary btn-header"
+            data-play-store
+            href="#"
+            target="_blank"
+            rel="noopener"
+            >CH Play</a
+          >
+          <a class="btn btn-primary btn-header" href="#dang-ky">Đăng ký</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-layout">
+          <div class="hero-content">
+            <span class="eyebrow">Ứng dụng Android · Đường bộ</span>
+            <h1 id="app-name-hero">Quản lý sự cố đường bộ</h1>
+            <p class="hero-lead" id="hero-tagline">
+              Ghi nhận sự cố hiện trường, ảnh minh chứng, báo cáo Word/Excel và đồng bộ cloud.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary btn-lg" href="#dang-ky">Đăng ký dùng thử</a>
+              <a
+                class="btn btn-secondary btn-lg"
+                data-play-store
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Tải CH Play</a
+              >
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-banner-wrap hero-banner-wrap--illus">
+              <img
+                id="hero-banner-img"
+                src="Ho so dang CH play/banner2.png"
+                alt="Minh họa quản lý sự cố đường bộ"
+                width="800"
+                height="400"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tinh-nang-noi-bat" class="highlights-section" aria-labelledby="highlights-title">
+        <div class="container">
+          <header class="highlights-header">
+            <span class="eyebrow">Điểm nổi bật</span>
+            <h2 id="highlights-title" class="highlights-title">Tính năng chính của ứng dụng</h2>
+          </header>
+
+          <ul class="highlights-top" role="list">
+            <li class="highlight-top-item">
+              <span class="highlight-top-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12.55a11 11 0 0114.08 0" />
+                  <path d="M1.42 9.16a16 16 0 0121.16 0" />
+                  <path d="M8.53 16.11a6 6 0 016.95 0" />
+                  <line x1="2" y1="2" x2="22" y2="22" />
+                </svg>
+              </span>
+              <span class="highlight-top-text highlight-top-text--stack">
+                <strong>Không mạng vẫn dùng được</strong>
+                <small>Ghi sự cố ngay cả khi mất sóng · không cần 4G liên tục</small>
+              </span>
+            </li>
+            <li class="highlight-top-item">
+              <span class="highlight-top-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 16a4 4 0 01-.88-7.9A5 5 0 1115.9 6L16 6a5 5 0 011 9.9" />
+                  <path d="M12 12v9M8 17l4 4 4-4" />
+                </svg>
+              </span>
+              <span class="highlight-top-text highlight-top-text--stack">
+                <strong>Đồng bộ cloud — không lo mất dữ liệu</strong>
+                <small
+                  >Dữ liệu lưu trên cloud. Máy hỏng hoặc mất máy vẫn tải lại được. Đăng nhập cùng tài
+                  khoản trên nhiều điện thoại.</small
+                >
+              </span>
+            </li>
+            <li class="highlight-top-item">
+              <span class="highlight-top-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <path d="M14 2v6h6M8 13h2M8 17h8M12 9h4" />
+                </svg>
+              </span>
+              <span class="highlight-top-text highlight-top-text--stack">
+                <strong>Báo cáo Excel &amp; Word — chỉ trên điện thoại</strong>
+                <small
+                  >Excel: thống kê số liệu sự cố nhanh gọn. Word: tự ghép ảnh trước &amp; sau thi công vào
+                  file, thao tác đơn giản.</small
+                >
+              </span>
+            </li>
+          </ul>
+
+          <div class="highlights-panel">
+            <ul class="highlights-grid" role="list">
+              <li class="highlight-card highlight-card--blue">
+                <span class="highlight-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+                    <circle cx="12" cy="13" r="4" />
+                  </svg>
+                </span>
+                <p class="highlight-card-title">Ghi nhận hiện trường</p>
+                <p class="highlight-card-desc">Chụp ảnh trước / sau, gắn vị trí lý trình</p>
+              </li>
+              <li class="highlight-card highlight-card--green">
+                <span class="highlight-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+                <p class="highlight-card-title">Quản lý theo tuyến đường</p>
+                <p class="highlight-card-desc">Tuyến, km, phía đường — thống nhất dữ liệu</p>
+              </li>
+              <li class="highlight-card highlight-card--orange">
+                <span class="highlight-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 20V10M12 20V4M6 20v-6" />
+                  </svg>
+                </span>
+                <p class="highlight-card-title">Excel — số liệu nhanh</p>
+                <p class="highlight-card-desc">
+                  Xuất bảng thống kê sự cố theo bộ lọc, nhanh gọn phục vụ báo cáo
+                </p>
+              </li>
+              <li class="highlight-card highlight-card--purple">
+                <span class="highlight-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                  </svg>
+                </span>
+                <p class="highlight-card-title">Word — ảnh trước / sau</p>
+                <p class="highlight-card-desc">
+                  Ghép ảnh trước và sau thi công vào file Word, vài thao tác trên điện thoại
+                </p>
+              </li>
+              <li class="highlight-card highlight-card--cyan">
+                <span class="highlight-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 16a4 4 0 01-.88-7.9A5 5 0 1115.9 6L16 6a5 5 0 011 9.9" />
+                    <path d="M12 12v9M8 17l4 4 4-4" />
+                  </svg>
+                </span>
+                <p class="highlight-card-title">Cloud an toàn</p>
+                <p class="highlight-card-desc">
+                  Không lo mất dữ liệu khi hỏng máy — tải lại và dùng trên nhiều thiết bị
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="tinh-nang" class="section section-alt">
+        <div class="container">
+          <header class="section-header">
+            <span class="eyebrow">Tính năng</span>
+            <h2 class="section-title">Chi tiết cho công tác BDTX, KPLB</h2>
+            <p class="section-sub">
+              Thiết kế cho đơn vị quản lý bảo trì đường bộ, hạt trưởng, tuần đường.
+            </p>
+          </header>
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">📋</div>
+              <h3>Ghi nhận sự cố</h3>
+              <p>Tuyến, nhóm, loại, lý trình km, phía đường, kích thước và khối lượng.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">📷</div>
+              <h3>Ảnh minh chứng</h3>
+              <p>Ảnh trước và sau xử lý gắn với từng vị trí — ghép ảnh file Word đơn giản trên điện thoại.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">📊</div>
+              <h3>Báo cáo chuẩn</h3>
+              <p>Xuất báo cáo Excel và ghép ảnh Word (trước khi thi công và sau khi thi công) lưu hồ sơ.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">☁️</div>
+              <h3>Đồng bộ &amp; offline</h3>
+              <p>Đồng bộ khi có mạng; sau xác thực online dùng app trong 24 giờ không cần sóng liên tục.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">🔍</div>
+              <h3>Tra cứu nhanh</h3>
+              <p>Lọc theo ngày, tuyến, loại; Tìm theo km và loại sự cố; Cập nhật sự cố bổ sung ảnh sau thi công dễ dàng</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">🎤</div>
+              <h3>Tiện ích hiện trường</h3>
+              <p>Thời tiết khu vực, nhập liệu bằng nhập giọng nói, nhập liệu theo form nhanh gọn tiện lợi.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="anh-app" class="section screenshots-showcase">
+        <div class="container container-wide">
+          <header class="section-header">
+            <span class="eyebrow">Giao diện app</span>
+            <h2 class="section-title">Hình ảnh thực tế</h2>
+            <p class="section-sub">
+              Luồng app: màn chính → thêm sự cố → danh sách → <strong>chi tiết sự cố</strong> → thống
+              kê. Bấm ảnh để phóng to xem rõ.
+            </p>
+          </header>
+          <div id="screenshot-grid" class="screenshot-grid"></div>
+        </div>
+      </section>
+
+      <div id="shot-lightbox" class="shot-lightbox" hidden aria-hidden="true">
+        <button type="button" class="shot-lightbox-close" aria-label="Đóng">×</button>
+        <figure class="shot-lightbox-inner">
+          <img id="shot-lightbox-img" src="" alt="" />
+          <figcaption id="shot-lightbox-caption"></figcaption>
+        </figure>
+      </div>
+
+      <section id="video" class="section section-alt">
+        <div class="container">
+          <header class="section-header">
+            <span class="eyebrow">Video</span>
+            <h2 class="section-title">4 video hướng dẫn</h2>
+            <p class="section-sub">
+              Video quay dọc màn hình điện thoại — cài đặt, ghi sự cố, tra cứu và xuất báo cáo.
+            </p>
+          </header>
+          <div id="videos-grid" class="videos-grid"></div>
+        </div>
+      </section>
+
+      <section id="dang-ky" class="section section-dark">
+        <div class="container register-layout">
+          <div class="register-intro">
+            <span class="eyebrow">Đăng ký</span>
+            <h2>Để lại thông tin — nhận tư vấn &amp; kích hoạt</h2>
+            <p>
+              Điền form bên cạnh. Sau khi gửi, hệ thống ghi vào bảng tính và chuyển bạn sang trang
+              xác nhận để dùng thử app.
+            </p>
+            <ol class="register-steps">
+              <li>
+                <span class="step-num">1</span>
+                <span>Điền họ tên, SĐT, Gmail và địa chỉ</span>
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                <span>Nhận xác nhận &amp; cài app CH Play để dùng thử</span>
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <span>Ổn định rồi liên hệ Zalo — hướng dẫn kích hoạt &amp; thanh toán sau</span>
+              </li>
+            </ol>
+            <div class="contact-chips">
+              <a class="contact-chip" data-zalo-link data-zalo-label href="#lien-he">💬 Zalo</a>
+              <a
+                class="contact-chip"
+                data-play-store
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                >📱 CH Play</a
+              >
+              <a class="contact-chip" id="support-email" href="mailto:">✉️ Email</a>
+            </div>
+          </div>
+
+          <div class="register-form-card">
+            <h3>Form đăng ký</h3>
+            <p class="form-hint">Các mục có dấu * là bắt buộc. Thông tin được bảo mật.</p>
+            <form id="register-form" novalidate>
+              <div class="form-group">
+                <label for="fullName">Họ và tên *</label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  placeholder="Nguyễn Văn A"
+                />
+                <span class="form-error" data-error-for="fullName"></span>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Số điện thoại *</label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    autocomplete="tel"
+                    required
+                    placeholder="09xx xxx xxx"
+                  />
+                  <span class="form-error" data-error-for="phone"></span>
+                </div>
+                <div class="form-group">
+                  <label for="email">Gmail / Email *</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                    placeholder="ten@gmail.com"
+                  />
+                  <span class="form-error" data-error-for="email"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="address">Địa chỉ *</label>
+                <textarea
+                  id="address"
+                  name="address"
+                  rows="3"
+                  required
+                  placeholder="Số nhà, phường/xã, tỉnh/thành"
+                ></textarea>
+                <span class="form-error" data-error-for="address"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">
+                Gửi đăng ký → Xác nhận
+              </button>
+              <p id="form-status" class="form-status" role="status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="lien-he" class="contact-strip">
+        <div class="container">
+          <div class="contact-strip-inner">
+            <div class="contact-strip-text">
+              <h2>Liên hệ hỗ trợ</h2>
+              <p>
+                Zalo: <strong class="zalo-phone-display" data-zalo-phone>—</strong> — tư vấn cài đặt,
+                báo giá và kích hoạt tài khoản.
+              </p>
+            </div>
+            <div class="contact-strip-actions">
+              <a class="btn btn-zalo btn-lg" data-zalo-link data-zalo-label href="#lien-he"
+                >Nhắn Zalo ngay</a
+              >
+              <a class="btn btn-secondary btn-lg" href="#dang-ky">Điền form đăng ký</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <a
+      id="zalo-float"
+      class="zalo-float"
+      data-zalo-link
+      href="#lien-he"
+      hidden
+      aria-label="Chat Zalo"
+    >
+      <span class="zalo-float-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" fill="#fff" />
+          <text
+            x="24"
+            y="30"
+            text-anchor="middle"
+            fill="#0068FF"
+            font-size="15"
+            font-weight="700"
+            font-family="Be Vietnam Pro,sans-serif"
+          >
+            Z
+          </text>
+        </svg>
+      </span>
+      <span class="zalo-float-text">Zalo</span>
+    </a>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img
+              data-app-icon
+              src="Ho so dang CH play/ic_launcher_play_store_512.png"
+              alt=""
+              width="52"
+              height="52"
+            />
+            <strong id="app-name-footer">Quản lý sự cố đường bộ</strong>
+            <p>
+              Ứng dụng ghi nhận, quản lý và báo cáo sự cố trên tuyến đường — phù hợp đội hiện
+              trường và đơn vị quản lý đường bộ.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Liên kết</h4>
+            <a href="#tinh-nang-noi-bat">Tính năng</a>
+            <a href="#anh-app">Ảnh app</a>
+            <a href="#video">Video hướng dẫn</a>
+            <a href="#dang-ky">Đăng ký</a>
+          </div>
+          <div class="footer-col">
+            <h4>Hỗ trợ</h4>
+            <a data-zalo-link href="#lien-he">Chat Zalo</a>
+            <a data-play-store href="#" target="_blank" rel="noopener">Google Play</a>
+            <a href="../docs/PRIVACY_POLICY.html" target="_blank" rel="noopener"
+              >Chính sách quyền riêng tư</a
+            >
+          </div>
+        </div>
+        <p class="footer-bottom">
+          © <span id="year"></span> Quản lý sự cố đường bộ · com.tuanduong.quanlysuco
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

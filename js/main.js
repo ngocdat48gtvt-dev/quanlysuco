@@ -1,0 +1,525 @@
+(function () {
+  const cfg = window.SITE_CONFIG || {};
+
+  function assetPath(file) {
+    if (!file) return "";
+    var base = (cfg.assetsFolder || "").trim();
+    if (!base) return file;
+    return base.replace(/\/$/, "") + "/" + file.replace(/^\//, "");
+  }
+
+  function $(sel, root) {
+    return (root || document).querySelector(sel);
+  }
+
+  function setText(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
+  function initMeta() {
+    document.title = cfg.appName + " — Đăng ký dùng thử";
+    setText("app-name", cfg.appName);
+    setText("app-name-hero", cfg.appName);
+    setText("app-name-footer", cfg.appName);
+    setText("hero-tagline", cfg.tagline);
+
+    const playLinks = document.querySelectorAll("[data-play-store]");
+    playLinks.forEach((a) => {
+      a.href = cfg.playStoreUrl;
+    });
+
+    const mail = document.getElementById("support-email");
+    if (mail && cfg.supportEmail && !cfg.supportEmail.includes("[")) {
+      mail.href = "mailto:" + cfg.supportEmail;
+      mail.textContent = "✉️ " + cfg.supportEmail;
+    }
+
+    initBrandImages();
+    initHeroBanner();
+    initZaloContact();
+  }
+
+  function normalizeZaloPhone(phone) {
+    var d = String(phone || "").replace(/\D/g, "");
+    if (!d || d.length < 9) return "";
+    if (d.indexOf("84") === 0) return d;
+    if (d.charAt(0) === "0") return "84" + d.slice(1);
+    return "84" + d;
+  }
+
+  function getZaloUrl() {
+    var z = cfg.zalo || {};
+    var digits = normalizeZaloPhone(z.phone || cfg.supportPhone);
+    if (!digits) return "";
+    var url = "https://zalo.me/" + digits;
+    if (z.defaultMessage) {
+      url += "?message=" + encodeURIComponent(z.defaultMessage);
+    }
+    return url;
+  }
+
+  window.getZaloUrl = getZaloUrl;
+
+  function initZaloContact() {
+    var url = getZaloUrl();
+    var z = cfg.zalo || {};
+    var phoneDisplay = (z.phone || cfg.supportPhone || "").trim();
+    var label = z.displayName
+      ? "Nhắn Zalo — " + z.displayName
+      : "Nhắn Zalo ngay";
+
+    document.querySelectorAll("[data-zalo-link]").forEach(function (a) {
+      if (url) {
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.classList.remove("is-disabled");
+        a.removeAttribute("aria-disabled");
+      } else {
+        a.href = "#lien-he";
+        a.classList.add("is-disabled");
+        a.setAttribute("aria-disabled", "true");
+        a.title = "Thêm số Zalo trong website/js/config.js → zalo.phone";
+      }
+      if (a.hasAttribute("data-zalo-label") && url) {
+        a.textContent = label;
+      }
+    });
+
+    var phoneText = phoneDisplay || "— (thêm số trong config.js → zalo.phone)";
+    document.querySelectorAll("[data-zalo-phone]").forEach(function (el) {
+      el.textContent = phoneText;
+    });
+
+    var float = document.getElementById("zalo-float");
+    if (float) float.hidden = !url;
+  }
+
+  function initBrandImages() {
+    const icon = assetPath(cfg.icon);
+    if (!icon) return;
+
+    document.querySelectorAll("[data-app-icon]").forEach(function (img) {
+      img.src = icon;
+    });
+
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (favicon) favicon.href = icon;
+  }
+
+  function initHeroBanner() {
+    const bannerImg = document.getElementById("hero-banner-img");
+    if (bannerImg && cfg.banner) {
+      bannerImg.src = assetPath(cfg.banner);
+      bannerImg.alt = cfg.appName + " — minh họa ứng dụng";
+    }
+
+  }
+
+  function initScreenshotLightbox() {
+    var lb = document.getElementById("shot-lightbox");
+    var lbImg = document.getElementById("shot-lightbox-img");
+    var lbCap = document.getElementById("shot-lightbox-caption");
+    var closeBtn = lb && lb.querySelector(".shot-lightbox-close");
+    if (!lb || !lbImg) return;
+
+    function open(src, caption) {
+      lbImg.src = src;
+      lbImg.alt = caption;
+      if (lbCap) lbCap.textContent = caption;
+      lb.hidden = false;
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      lb.hidden = true;
+      lb.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      lbImg.src = "";
+    }
+
+    if (closeBtn) closeBtn.addEventListener("click", close);
+    lb.addEventListener("click", function (e) {
+      if (e.target === lb) close();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !lb.hidden) close();
+    });
+
+    return open;
+  }
+
+  function initScreenshots() {
+    const grid = document.getElementById("screenshot-grid");
+    if (!grid || !cfg.screenshots) return;
+
+    const openLightbox = initScreenshotLightbox();
+
+    grid.innerHTML = "";
+    cfg.screenshots.forEach((shot, index) => {
+      const card = document.createElement("article");
+      card.className = "shot-card";
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "shot-zoom";
+      btn.setAttribute("aria-label", "Phóng to: " + shot.caption);
+
+      const phone = document.createElement("div");
+      phone.className = "phone-frame";
+
+      const frame = document.createElement("div");
+      frame.className = "shot-frame";
+
+      const img = document.createElement("img");
+      const src = assetPath(shot.file);
+      img.src = src;
+      img.alt = shot.caption;
+      img.loading = index < 2 ? "eager" : "lazy";
+      img.decoding = "async";
+      if (index < 2) img.setAttribute("fetchpriority", "high");
+
+      const placeholder = document.createElement("div");
+      placeholder.className = "shot-placeholder";
+      placeholder.hidden = true;
+      placeholder.innerHTML =
+        "<strong>Ảnh " +
+        (index + 1) +
+        "</strong><br/>Thiếu file<br/><code>" +
+        src +
+        "</code>";
+
+      img.onerror = function () {
+        img.style.display = "none";
+        placeholder.hidden = false;
+      };
+
+      img.onload = function () {
+        if (img.naturalWidth) {
+          img.sizes = "(max-width: 700px) 96vw, 48vw";
+        }
+      };
+
+      frame.appendChild(img);
+      frame.appendChild(placeholder);
+      phone.appendChild(frame);
+
+      const hint = document.createElement("span");
+      hint.className = "shot-zoom-hint";
+      hint.textContent = "Bấm để phóng to";
+
+      btn.appendChild(phone);
+      btn.appendChild(hint);
+
+      if (openLightbox) {
+        btn.addEventListener("click", function () {
+          openLightbox(src, shot.caption);
+        });
+      }
+
+      const cap = document.createElement("p");
+      cap.className = "shot-caption";
+      cap.textContent = shot.caption;
+
+      card.appendChild(btn);
+      card.appendChild(cap);
+      grid.appendChild(card);
+    });
+  }
+
+  function shouldShowVideos() {
+    if (cfg.showVideos === false) return false;
+    if (cfg.showVideos === true) return true;
+    if (!cfg.videos || !cfg.videos.length) return false;
+    return cfg.videos.some(function (v) {
+      var id = String(v.youtubeId || "").trim();
+      return id && !id.startsWith("VIDEO_ID");
+    });
+  }
+
+  function initVideoSection() {
+    var show = shouldShowVideos();
+    var section = document.getElementById("video");
+    if (section) section.hidden = !show;
+
+    document.querySelectorAll('a[href="#video"]').forEach(function (a) {
+      a.hidden = !show;
+    });
+  }
+
+  function initVideos() {
+    initVideoSection();
+    if (!shouldShowVideos()) return;
+
+    const grid = document.getElementById("videos-grid");
+    if (!grid || !cfg.videos) return;
+
+    grid.innerHTML = "";
+    cfg.videos.forEach((video) => {
+      const card = document.createElement("article");
+      card.className = "video-card";
+      card.id = "video-" + video.id;
+
+      const title = document.createElement("h3");
+      title.textContent = video.title;
+
+      const desc = document.createElement("p");
+      desc.textContent = video.description;
+
+      const embed = document.createElement("div");
+      embed.className = "video-embed";
+
+      const id = (video.youtubeId || "").trim();
+      const valid = id && !id.startsWith("VIDEO_ID");
+
+      if (valid) {
+        const iframe = document.createElement("iframe");
+        iframe.src =
+          "https://www.youtube.com/embed/" +
+          encodeURIComponent(id) +
+          "?rel=0&modestbranding=1";
+        iframe.title = video.title;
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        embed.appendChild(iframe);
+      } else {
+        const ph = document.createElement("div");
+        ph.className = "video-placeholder";
+        ph.innerHTML =
+          "<p><strong>Video " +
+          video.id +
+          "</strong></p><p>Thêm <code>youtubeId</code> trong <code>js/config.js</code></p>";
+        embed.appendChild(ph);
+      }
+
+      const body = document.createElement("div");
+      body.className = "video-body";
+      body.appendChild(title);
+      body.appendChild(desc);
+
+      card.appendChild(embed);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+  }
+
+  function showError(inputId, message) {
+    const input = document.getElementById(inputId);
+    const err = document.querySelector('[data-error-for="' + inputId + '"]');
+    if (input) input.setAttribute("aria-invalid", "true");
+    if (err) {
+      err.textContent = message;
+      err.classList.add("visible");
+    }
+    return false;
+  }
+
+  function clearErrors() {
+    document.querySelectorAll(".form-error").forEach((el) => {
+      el.classList.remove("visible");
+      el.textContent = "";
+    });
+    document.querySelectorAll("[aria-invalid]").forEach((el) => {
+      el.removeAttribute("aria-invalid");
+    });
+  }
+
+  function validateForm(data) {
+    clearErrors();
+    let ok = true;
+
+    if (!data.fullName || data.fullName.length < 2) {
+      showError("fullName", "Vui lòng nhập họ tên (ít nhất 2 ký tự).");
+      ok = false;
+    }
+    if (!/^[\d\s+().-]{9,15}$/.test(data.phone.replace(/\s/g, ""))) {
+      showError("phone", "Số điện thoại không hợp lệ.");
+      ok = false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      showError("email", "Vui lòng nhập đúng địa chỉ Gmail / email.");
+      ok = false;
+    }
+    if (!data.address || data.address.length < 5) {
+      showError("address", "Vui lòng nhập địa chỉ (ít nhất 5 ký tự).");
+      ok = false;
+    }
+    return ok;
+  }
+
+  function parseScriptResponse(text) {
+    var raw = (text || "").trim();
+    if (!raw) {
+      throw new Error("Script không trả về dữ liệu. Deploy lại Web app (phiên bản Mới).");
+    }
+    if (raw.charAt(0) === "{") {
+      return JSON.parse(raw);
+    }
+    if (raw.indexOf("<html") !== -1 || raw.indexOf("<!DOCTYPE") !== -1) {
+      throw new Error(
+        "Script trả về HTML — kiểm tra deploy: Thực thi = Tôi, Truy cập = Bất kỳ ai."
+      );
+    }
+    if (raw.indexOf("fullName=") === 0 || raw.indexOf("phone=") === 0) {
+      throw new Error(
+        "Script chưa chạy doPost (trả về form thô). Dán lại Code.gs và Triển khai → Phiên bản Mới."
+      );
+    }
+    throw new Error("Phản hồi lạ: " + raw.slice(0, 120));
+  }
+
+  async function submitLead(payload) {
+    const url = (cfg.googleScriptUrl || "").trim();
+    if (!url) {
+      return { ok: true, demo: true };
+    }
+
+    if (!url.endsWith("/exec")) {
+      throw new Error("googleScriptUrl phải kết thúc bằng /exec (không dùng /dev).");
+    }
+
+    const res = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      redirect: "follow",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        fullName: payload.fullName,
+        phone: payload.phone,
+        email: payload.email,
+        address: payload.address,
+        source: payload.source || "website",
+        pageUrl: payload.pageUrl || window.location.href,
+      }),
+    });
+
+    const json = parseScriptResponse(await res.text());
+
+    if (!json.ok) {
+      var errMsg = json.error || "Gửi thất bại";
+      if (errMsg.indexOf("SPREADSHEET_ID") !== -1) {
+        throw new Error(
+          "Script Google chưa đúng code. Dán file COPY_VAO_GOOGLE.txt → Deploy phiên bản MỚI. Chi tiết: " +
+            errMsg
+        );
+      }
+      throw new Error(errMsg);
+    }
+    return json;
+  }
+
+  async function submitLeadNoCors(payload) {
+    const url = (cfg.googleScriptUrl || "").trim();
+    const body = new URLSearchParams({
+      fullName: payload.fullName,
+      phone: payload.phone,
+      email: payload.email,
+      address: payload.address,
+      source: payload.source || "website",
+      pageUrl: payload.pageUrl || "",
+    });
+    await fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+      body: body.toString(),
+    });
+    return { ok: true, noCors: true };
+  }
+
+  function initForm() {
+    const form = document.getElementById("register-form");
+    if (!form) return;
+
+    const status = document.getElementById("form-status");
+    const btn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      clearErrors();
+
+      const payload = {
+        fullName: form.fullName.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        address: form.address.value.trim(),
+        source: "website",
+        pageUrl: window.location.href,
+      };
+
+      if (!validateForm(payload)) return;
+
+      if (status) {
+        status.className = "form-status";
+        status.textContent = "Đang gửi thông tin…";
+      }
+      if (btn) btn.disabled = true;
+
+      try {
+        let result;
+        try {
+          result = await submitLead(payload);
+        } catch (firstErr) {
+          var msg = String(firstErr.message || "");
+          if (
+            msg.indexOf("SPREADSHEET_ID") !== -1 ||
+            msg.indexOf("Illegal spreadsheet") !== -1 ||
+            msg.indexOf("Script Google") !== -1
+          ) {
+            throw firstErr;
+          }
+          result = await submitLeadNoCors(payload);
+          if (status) {
+            status.textContent = "Đã gửi (chế độ dự phòng) — kiểm tra Sheet…";
+          }
+        }
+
+        sessionStorage.setItem("quanlysuco_lead", JSON.stringify(payload));
+
+        if (result.demo && status) {
+          status.className = "form-status";
+          status.textContent =
+            "Chế độ demo: chưa cấu hình Google Sheet — vẫn chuyển trang kế toán.";
+        }
+
+        const target = cfg.accountingPageUrl || "ke-toan.html";
+        window.location.href = target;
+      } catch (err) {
+        if (status) {
+          status.className = "form-status error";
+          status.textContent = (err.message || "Lỗi gửi form") + " — xem COPY_VAO_GOOGLE.txt";
+        }
+        if (btn) btn.disabled = false;
+      }
+    });
+  }
+
+  function initMobileNav() {
+    var toggle = document.getElementById("nav-toggle");
+    var nav = document.getElementById("site-nav");
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initMeta();
+    initScreenshots();
+    initVideos();
+    initForm();
+    initMobileNav();
+  });
+})();

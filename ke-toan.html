@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Xác nhận đăng ký</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="Ho so dang CH play/ic_launcher_play_store_512.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="page-accounting">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">
+          <img
+            data-app-icon
+            src="Ho so dang CH play/ic_launcher_play_store_512.png"
+            alt=""
+            width="44"
+            height="44"
+          />
+          <span>Quản lý sự cố đường bộ</span>
+        </a>
+        <div class="header-cta">
+          <a class="btn btn-zalo btn-header" data-zalo-link href="#lien-he" title="Nhắn Zalo">Zalo</a>
+          <a class="btn btn-outline btn-secondary" href="index.html">← Trang chủ</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="accounting-main">
+      <div class="container">
+        <article class="accounting-card">
+          <span class="eyebrow" style="background: var(--teal-soft); color: var(--teal)"
+            >Đăng ký thành công</span
+          >
+          <h1>Đã nhận thông tin</h1>
+          <p style="color: var(--text-secondary); margin: 0 0 1.25rem">
+            Cảm ơn bạn. Hiện đang trong giai đoạn <strong>dùng thử</strong> — bạn có thể cài app và
+            trải nghiệm ngay. Khi ổn định, chúng tôi sẽ liên hệ qua Zalo để hướng dẫn kích hoạt và
+            thanh toán (nếu có).
+          </p>
+
+          <div
+            id="trial-notice"
+            class="bank-box"
+            style="border-style: solid; border-color: var(--blue); background: var(--blue-soft, #eef4ff)"
+          >
+            <p style="margin: 0">
+              <strong>Giai đoạn dùng thử:</strong> chưa cần chuyển khoản. Cần hỗ trợ hoặc muốn kích
+              hoạt chính thức, nhắn Zalo bên dưới.
+            </p>
+          </div>
+
+          <h2 style="font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--navy)">
+            Thông tin đã gửi
+          </h2>
+          <dl id="lead-summary" class="lead-summary"></dl>
+
+          <div id="payment-section" hidden>
+            <h2 style="font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--navy)">
+              Thanh toán (nếu áp dụng)
+            </h2>
+            <div class="bank-box">
+              <p><strong>Chủ TK:</strong> <span id="bank-account-name">[TÊN_CHỦ_TÀI_KHOẢN]</span></p>
+              <p><strong>Ngân hàng:</strong> <span id="bank-name">[TÊN_NGÂN_HÀNG]</span></p>
+              <p><strong>Số TK:</strong> <span id="bank-account-number">[SỐ_TÀI_KHOẢN]</span></p>
+              <p><strong>Nội dung CK:</strong> <span id="bank-note">QLSC [SĐT_KHÁCH]</span></p>
+            </div>
+          </div>
+
+          <div
+            class="contact-strip-inner"
+            style="margin-top: 1.5rem; padding: 1.25rem; flex-direction: column; text-align: center"
+          >
+            <p style="margin: 0 0 0.75rem; color: var(--text-secondary)">
+              Hỗ trợ nhanh — Zalo <strong data-zalo-phone>—</strong>
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center">
+              <a class="btn btn-zalo" data-zalo-link data-zalo-label href="#lien-he">Nhắn Zalo</a>
+              <a class="btn btn-primary" data-play-store href="#" target="_blank" rel="noopener"
+                >Cài CH Play</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <a
+      id="zalo-float"
+      class="zalo-float"
+      data-zalo-link
+      href="#"
+      hidden
+      aria-label="Chat Zalo"
+    >
+      <span class="zalo-float-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="22" fill="#fff" />
+          <text
+            x="24"
+            y="30"
+            text-anchor="middle"
+            fill="#0068FF"
+            font-size="15"
+            font-weight="700"
+            font-family="Be Vietnam Pro,sans-serif"
+          >
+            Z
+          </text>
+        </svg>
+      </span>
+      <span class="zalo-float-text">Zalo</span>
+    </a>
+
+    <footer class="site-footer">
+      <div class="container footer-bottom" style="border: none; padding-top: 0">
+        <p style="margin: 0">
+          <a href="index.html" style="color: rgba(255,255,255,0.85)">Về trang chủ</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ke-toan.js"></script>
+  </body>
+</html>
