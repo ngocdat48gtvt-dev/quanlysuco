@@ -1,6 +1,29 @@
 (function () {
   const cfg = window.SITE_CONFIG || {};
 
+  function homePage() {
+    return cfg.homePage || "san-pham.html";
+  }
+
+  function registerPageUrl(productId) {
+    var page = cfg.registerPage || "dang-ky.html";
+    if (productId) {
+      return page + "?product=" + encodeURIComponent(productId);
+    }
+    return page;
+  }
+
+  function getProductLabel(productId) {
+    var p = findProduct(productId);
+    if (!p) return productId || "";
+    return p.registerLabel || p.shortName || p.name || productId;
+  }
+
+  function publicAssetPath(file) {
+    if (!file) return "";
+    return String(file).replace(/^\//, "");
+  }
+
   function assetPath(file) {
     if (!file) return "";
     var base = (cfg.assetsFolder || "").trim();
@@ -22,7 +45,7 @@
     var tagline = cfg.siteTagline || cfg.tagline || "";
     var productId = document.body.getAttribute("data-product-id");
     var product = productId ? findProduct(productId) : null;
-    var isHome = document.body.getAttribute("data-page") === "home";
+    var pageType = document.body.getAttribute("data-page");
 
     if (product) {
       document.title = product.name + " — " + brand;
@@ -30,14 +53,15 @@
       setText("product-page-tagline", product.tagline);
       var metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc && product.tagline) metaDesc.setAttribute("content", product.tagline);
-    } else if (document.body.getAttribute("data-page") === "catalog") {
+      setText("register-cta-title", "Đăng ký — " + (product.shortName || product.name));
+      setText(
+        "register-cta-desc",
+        "Nhận tư vấn, báo giá và hướng dẫn cài đặt " + (product.shortName || product.name) + "."
+      );
+    } else if (pageType === "catalog") {
       document.title = "Phần mềm — " + brand;
-    } else if (isHome) {
-      document.title = brand + " — Đăng ký tư vấn";
-      setText("site-brand-hero", brand);
-      setText("site-tagline", tagline);
-      var metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc && tagline) metaDesc.setAttribute("content", tagline);
+    } else if (pageType === "register") {
+      document.title = "Đăng ký — " + brand;
     }
 
     setText("app-name", brand);
@@ -148,7 +172,12 @@
     }
 
     var buyBtn = document.getElementById("product-btn-buy");
-    if (buyBtn) buyBtn.href = "#dang-ky";
+    var regUrl = registerPageUrl(product.id);
+    if (buyBtn) buyBtn.href = regUrl;
+
+    document.querySelectorAll(".btn-shop-trial, [data-register-href]").forEach(function (a) {
+      if (product.id) a.href = regUrl;
+    });
 
     var trustList = document.getElementById("product-trust-list");
     if (trustList && Array.isArray(cfg.productTrust)) {
@@ -180,8 +209,9 @@
     nav.className = "breadcrumb breadcrumb--inset";
     nav.setAttribute("aria-label", "Breadcrumb");
     nav.innerHTML =
-      '<a href="index.html">Trang chủ</a><span aria-hidden="true">/</span>' +
-      '<a href="san-pham.html">Phần mềm</a><span aria-hidden="true">/</span>' +
+      '<a href="' +
+      escapeHtml(homePage()) +
+      '">Phần mềm</a><span aria-hidden="true">/</span>' +
       '<span aria-current="page">' +
       escapeHtml(product.shortName || product.name) +
       "</span>";
@@ -247,7 +277,7 @@
   }
 
   function productPageHref(p) {
-    var page = p.page || "index.html";
+    var page = p.page || homePage();
     if (page.indexOf(".") === -1) return page + ".html";
     return page;
   }
@@ -256,13 +286,16 @@
     if (!product) return;
     var wrap = document.getElementById("product-select-wrap");
     var select = document.getElementById("product");
-    var hidden = document.querySelector('input[type="hidden"][name="product"]');
-    if (wrap) wrap.hidden = true;
+    var locked = document.getElementById("product-locked-display");
     if (select && select.tagName === "SELECT") {
-      select.required = false;
       select.value = product.id;
     }
-    if (hidden) hidden.value = product.id;
+    if (locked) {
+      locked.hidden = false;
+      locked.textContent = "Loại phần mềm: " + (product.registerLabel || product.name);
+    }
+    if (wrap) wrap.hidden = true;
+    if (select) select.required = false;
   }
 
   function getProducts() {
@@ -411,7 +444,7 @@
 
     if (select) {
       var current = select.value;
-      select.innerHTML = '<option value="">— Chọn sản phẩm —</option>';
+      select.innerHTML = '<option value="">Loại phần mềm *</option>';
       products.forEach(function (p) {
         var opt = document.createElement("option");
         opt.value = p.id;
@@ -449,7 +482,12 @@
     if (!select || select.tagName !== "SELECT") return;
     var params = new URLSearchParams(window.location.search);
     var id = params.get("product");
-    if (id && findProduct(id)) select.value = id;
+    if (id && findProduct(id)) {
+      select.value = id;
+      if (document.body.getAttribute("data-page") === "register") {
+        lockProductForm(findProduct(id));
+      }
+    }
   }
 
   function normalizeZaloPhone(phone) {
@@ -483,10 +521,24 @@
     return url;
   }
 
-  var ZALO_ICON_SVG =
-    '<svg class="zalo-float-btn-logo" viewBox="0 0 48 48" width="36" height="36" aria-hidden="true">' +
-    '<circle cx="24" cy="24" r="22" fill="#0068FF"/>' +
-    '<text x="24" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="Be Vietnam Pro,sans-serif">Z</text></svg>';
+  function getZaloIconHtml() {
+    var z = cfg.zalo || {};
+    var src = publicAssetPath(z.icon || "assets/zalo-logo.svg");
+    return (
+      '<img class="zalo-float-btn-logo" src="' +
+      escapeHtml(src) +
+      '" alt="" width="40" height="40" loading="lazy" decoding="async">'
+    );
+  }
+
+  function getZaloFloatButton() {
+    var z = cfg.zalo || {};
+    if (z.floatButton) return z.floatButton;
+    if (Array.isArray(z.floatButtons) && z.floatButtons.length) {
+      return z.floatButtons[0];
+    }
+    return { label: "Chat Zalo", variant: "blue" };
+  }
 
   function initZaloFloatStack() {
     var stack =
@@ -506,31 +558,24 @@
     }
 
     var phoneShow = formatPhoneDisplay(z.phone || cfg.supportPhone);
-    var buttons = Array.isArray(z.floatButtons) ? z.floatButtons : [];
+    var btn = getZaloFloatButton();
+    var href = getZaloUrl(btn.message || z.defaultMessage);
+    var variant = btn.variant || "blue";
 
-    if (!buttons.length) {
-      buttons = [{ label: "Chat Zalo", variant: "blue", message: z.defaultMessage }];
-    }
-
-    stack.innerHTML = buttons
-      .map(function (btn) {
-        var href = getZaloUrl(btn.message || z.defaultMessage);
-        var variant = btn.variant || "blue";
-        return (
-          '<a class="zalo-float-btn zalo-float-btn--' +
-          escapeHtml(variant) +
-          '" href="' +
-          escapeHtml(href) +
-          '" target="_blank" rel="noopener noreferrer">' +
-          ZALO_ICON_SVG +
-          '<span class="zalo-float-btn-text"><strong>' +
-          escapeHtml(btn.label) +
-          "</strong><span>" +
-          escapeHtml(phoneShow) +
-          "</span></span></a>"
-        );
-      })
-      .join("");
+    stack.innerHTML =
+      '<a class="zalo-float-btn zalo-float-btn--' +
+      escapeHtml(variant) +
+      '" href="' +
+      escapeHtml(href) +
+      '" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo ' +
+      escapeHtml(phoneShow) +
+      '">' +
+      getZaloIconHtml() +
+      '<span class="zalo-float-btn-text"><strong>' +
+      escapeHtml(btn.label || "Chat Zalo") +
+      "</strong><span>" +
+      escapeHtml(phoneShow) +
+      "</span></span></a>";
   }
 
   window.getZaloUrl = getZaloUrl;
@@ -821,7 +866,7 @@
       ok = false;
     }
     if (!data.productId) {
-      showError("product", "Vui lòng chọn sản phẩm quan tâm.");
+      showError("product", "Vui lòng chọn loại phần mềm.");
       ok = false;
     }
     return ok;
@@ -837,7 +882,8 @@
       name: payload.name,
       phone: payload.phone,
       email: payload.email.toLowerCase(),
-      company: payload.company || "",
+      company: payload.productLabel || payload.company || "",
+      productId: payload.productId || "",
       province: payload.province,
       note: payload.note || "",
       status: "new",
@@ -889,7 +935,7 @@
     form.querySelectorAll("input, textarea, button").forEach(function (el) {
       el.disabled = true;
     });
-    var card = form.closest(".register-form-card");
+    var card = form.closest(".register-page-card") || form.closest(".register-form-card");
     if (card) card.classList.add("is-submitted");
   }
 
@@ -906,13 +952,15 @@
 
       const productEl = form.product;
       const productId = productEl ? productEl.value.trim() : "";
+      const productLabel = getProductLabel(productId);
       const payload = {
         name: form.fullName.value.trim(),
         phone: form.phone.value.trim(),
         email: form.email.value.trim(),
         productId: productId,
-        product: (findProduct(productId) || {}).registerLabel || productId,
-        company: (findProduct(productId) || {}).registerLabel || productId,
+        product: productLabel,
+        company: productLabel,
+        productLabel: productLabel,
         province: form.address.value.trim(),
         note: "Trang: " + window.location.href,
       };

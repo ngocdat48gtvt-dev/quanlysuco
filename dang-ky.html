@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Đăng ký tư vấn và dùng thử phần mềm đường bộ — App Android, công cụ AutoCAD từ Excel." />
+    <title>Đăng ký — Giải pháp phần mềm đường bộ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" href="Ho so dang CH play/ic_launcher_play_store_512.png" type="image/png" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="register">
+    <header class="site-header site-header--minimal">
+      <div class="container header-inner">
+        <a class="brand" href="san-pham.html" data-brand-link>
+          <img data-app-icon src="Ho so dang CH play/ic_launcher_play_store_512.png" alt="" width="44" height="44" />
+          <span id="app-name">Giải pháp phần mềm đường bộ</span>
+        </a>
+        <nav class="nav" id="site-nav" aria-label="Menu chính"></nav>
+        <div class="header-cta">
+          <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Mở menu">
+            <span></span><span></span><span></span>
+          </button>
+          <a class="btn btn-zalo btn-header" data-zalo-link href="#lien-he">Zalo</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="register-page">
+      <div class="register-page-card">
+        <h1 class="register-page-title">Đăng ký</h1>
+        <p class="register-page-sub">Điền thông tin — chúng tôi liên hệ tư vấn qua Zalo hoặc điện thoại.</p>
+
+        <div id="product-locked-display" class="register-locked-product" hidden></div>
+
+        <form id="register-form" class="register-page-form" novalidate>
+          <div class="form-group" id="product-select-wrap">
+            <label class="visually-hidden" for="product">Loại phần mềm</label>
+            <select id="product" name="product" required>
+              <option value="">Loại phần mềm *</option>
+            </select>
+            <span class="form-error" data-error-for="product"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="visually-hidden" for="fullName">Họ và tên</label>
+            <input id="fullName" name="fullName" type="text" autocomplete="name" required placeholder="Họ và tên *" />
+            <span class="form-error" data-error-for="fullName"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="visually-hidden" for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="Email *" />
+            <span class="form-error" data-error-for="email"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="visually-hidden" for="phone">Điện thoại</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="Điện thoại *" />
+            <span class="form-error" data-error-for="phone"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="visually-hidden" for="address">Địa chỉ</label>
+            <textarea id="address" name="address" rows="2" required placeholder="Địa chỉ *"></textarea>
+            <span class="form-error" data-error-for="address"></span>
+          </div>
+
+          <button type="submit" class="btn btn-register-submit btn-block">Đăng ký</button>
+          <p id="form-status" class="form-status" role="status"></p>
+        </form>
+
+        <p class="register-page-foot">
+          <a href="san-pham.html">← Xem danh mục phần mềm</a>
+          ·
+          <a data-zalo-link href="#lien-he">Chat Zalo</a>
+        </p>
+      </div>
+    </main>
+
+    <section id="lien-he" class="register-page-contact" hidden>
+      <p>Zalo: <strong data-zalo-phone>—</strong></p>
+    </section>
+
+    <div id="zalo-float-stack" class="zalo-float-stack" hidden aria-label="Liên hệ Zalo"></div>
+
+    <footer class="site-footer site-footer--minimal">
+      <div class="container">
+        <p class="footer-bottom">© <span id="year"></span> Giải pháp phần mềm đường bộ</p>
+      </div>
+    </footer>
+
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/main.js?v=11"></script>
+  </body>
+</html>

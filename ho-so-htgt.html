@@ -72,42 +72,13 @@
         </div>
       </section>
 
-      <section id="dang-ky" class="section section-dark">
-        <div class="container register-layout">
-          <div class="register-intro">
+      <section id="dang-ky" class="register-cta-section">
+        <div class="container">
+          <div class="register-cta-card">
             <span class="eyebrow">Đăng ký</span>
-            <h2>Tư vấn tool Hồ sơ HTGT</h2>
-            <p>Nhận demo, báo giá và hướng dẫn cài đặt trên AutoCAD.</p>
-          </div>
-          <div class="register-form-card">
-            <h3>Form đăng ký</h3>
-            <form id="register-form" novalidate>
-              <input type="hidden" id="product" name="product" value="tool-ho-so-htgt" />
-              <div class="form-group">
-                <label for="fullName">Họ và tên *</label>
-                <input id="fullName" name="fullName" type="text" required />
-                <span class="form-error" data-error-for="fullName"></span>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="phone">Số điện thoại *</label>
-                  <input id="phone" name="phone" type="tel" required />
-                  <span class="form-error" data-error-for="phone"></span>
-                </div>
-                <div class="form-group">
-                  <label for="email">Email *</label>
-                  <input id="email" name="email" type="email" required />
-                  <span class="form-error" data-error-for="email"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="address">Địa chỉ *</label>
-                <textarea id="address" name="address" rows="3" required></textarea>
-                <span class="form-error" data-error-for="address"></span>
-              </div>
-              <button type="submit" class="btn btn-primary btn-lg btn-block">Gửi đăng ký</button>
-              <p id="form-status" class="form-status" role="status"></p>
-            </form>
+            <h2 id="register-cta-title">Tư vấn tool Hồ sơ HTGT</h2>
+            <p id="register-cta-desc">Nhận demo, báo giá và hướng dẫn cài đặt trên AutoCAD.</p>
+            <a class="btn btn-primary btn-lg" data-register-href href="dang-ky.html">Đăng ký ngay</a>
           </div>
         </div>
       </section>
@@ -135,11 +106,8 @@
     </footer>
 
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
     <script src="js/config.js"></script>
-    <script src="js/firebase-config.js"></script>
     <script src="js/layout.js"></script>
-    <script src="js/main.js?v=9"></script>
+    <script src="js/main.js?v=11"></script>
   </body>
 </html>

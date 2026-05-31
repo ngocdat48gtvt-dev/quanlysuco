@@ -1319,9 +1319,9 @@ a:hover {
 }
 
 .zalo-float-btn--blue {
-  border-color: #1565c0;
+  border-color: #0068ff;
   background: linear-gradient(180deg, #f5f9ff 0%, #e8f1fc 100%);
-  color: #1565c0;
+  color: #0068ff;
 }
 
 .zalo-float-btn--orange {
@@ -1333,6 +1333,10 @@ a:hover {
 .zalo-float-btn-logo {
   flex-shrink: 0;
   display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .zalo-float-btn-text {
@@ -2439,4 +2443,183 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 0.75rem;
   }
+}
+
+/* —— Trang đăng ký riêng (form gọn) —— */
+.register-page {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 3rem) 1rem;
+  background: #eef1f5;
+}
+
+.register-page-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 8px;
+  padding: clamp(1.75rem, 4vw, 2.25rem);
+  box-shadow: 0 2px 16px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.register-page-title {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.5rem, 4vw, 1.85rem);
+  font-weight: 800;
+  text-align: center;
+  color: var(--navy);
+}
+
+.register-page-sub {
+  margin: 0 0 1.5rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.register-locked-product {
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.register-page-form .form-group {
+  margin-bottom: 0.85rem;
+}
+
+.register-page-form .form-group input,
+.register-page-form .form-group textarea,
+.register-page-form .form-group select {
+  width: 100%;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.register-page-form .form-group input::placeholder,
+.register-page-form .form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+.register-page-form .form-group input:focus,
+.register-page-form .form-group textarea:focus,
+.register-page-form .form-group select:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.12);
+}
+
+.register-page-form .form-group select {
+  color: #6b7280;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.95rem center;
+  padding-right: 2.25rem;
+}
+
+.register-page-form .form-group select:valid {
+  color: var(--text);
+}
+
+.btn-register-submit {
+  margin-top: 0.35rem;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #2e7d32;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-register-submit:hover {
+  background: #1b5e20;
+  color: #fff;
+}
+
+.btn-register-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.register-page-foot {
+  margin: 1.25rem 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.register-page-foot a {
+  color: var(--blue);
+  font-weight: 500;
+}
+
+.site-header--minimal {
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.site-footer--minimal {
+  padding: 1rem 0;
+  background: transparent;
+}
+
+.site-footer--minimal .footer-bottom {
+  margin: 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.register-page-card.is-submitted {
+  text-align: center;
+}
+
+/* CTA đăng ký trên trang sản phẩm / catalog */
+.register-cta-section {
+  padding: clamp(2rem, 5vw, 3rem) 0;
+  background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+}
+
+.register-cta-section--inline {
+  padding-top: 0;
+}
+
+.register-cta-card {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: clamp(1.5rem, 4vw, 2rem);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.register-cta-card h2 {
+  margin: 0.5rem 0 0.65rem;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: var(--navy);
+}
+
+.register-cta-card p {
+  margin: 0 0 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
 }

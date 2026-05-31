@@ -14,7 +14,7 @@ function formatMessage(data) {
     `<b>Email:</b> ${escapeHtml(data.email)}`,
   ];
   const productLabel = String(data.product || data.company || "").trim();
-  if (productLabel) lines.push(`<b>Sản phẩm:</b> ${escapeHtml(productLabel)}`);
+  if (productLabel) lines.push(`<b>Loại phần mềm:</b> ${escapeHtml(productLabel)}`);
   lines.push(`<b>Địa chỉ:</b> ${escapeHtml(data.province)}`);
   if (data.note) lines.push(`<b>Ghi chú:</b> ${escapeHtml(data.note)}`);
   return lines.join("\n");

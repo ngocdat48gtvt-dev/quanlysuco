@@ -15,25 +15,23 @@ window.SITE_CONFIG = {
   supportEmail: "[EMAIL_HỖ_TRỢ]",
   supportPhone: "",
 
+  /** Trang mặc định khi vào website */
+  homePage: "san-pham.html",
+  /** Trang đăng ký riêng */
+  registerPage: "dang-ky.html",
+
   /** Zalo liên hệ */
   zalo: {
     phone: "0968549116",
     phoneDisplay: "0968.549.116",
     displayName: "Dương Ngọc Đạt",
+    icon: "assets/zalo-logo.svg",
     defaultMessage:
       "Xin chào, tôi muốn tư vấn phần mềm / công cụ đường bộ (App Android hoặc AutoCAD).",
-    floatButtons: [
-      {
-        label: "Tư vấn phần mềm",
-        variant: "blue",
-        message: "Xin chào, tôi muốn tư vấn phần mềm / công cụ đường bộ.",
-      },
-      {
-        label: "Hỗ trợ kỹ thuật",
-        variant: "orange",
-        message: "Xin chào, tôi cần hỗ trợ kỹ thuật phần mềm.",
-      },
-    ],
+    floatButton: {
+      label: "Tư vấn & hỗ trợ",
+      variant: "blue",
+    },
   },
 
   /** Giá mặc định hiển thị trang chi tiết & catalog (VNĐ) */

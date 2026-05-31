@@ -9,6 +9,14 @@
       .replace(/"/g, "&quot;");
   }
 
+  function homePage() {
+    return cfg.homePage || "san-pham.html";
+  }
+
+  function registerPage() {
+    return cfg.registerPage || "dang-ky.html";
+  }
+
   function products() {
     return Array.isArray(cfg.products) ? cfg.products : [];
   }
@@ -16,7 +24,7 @@
   function currentPageFile() {
     var path = window.location.pathname || "";
     var file = path.split("/").pop() || "";
-    if (!file || file === "") return "index.html";
+    if (!file || file === "") return homePage();
     if (file.indexOf(".") === -1) return file + ".html";
     return file;
   }
@@ -30,18 +38,18 @@
   }
 
   function productHref(p) {
-    var page = p.page || "index.html";
+    var page = p.page || homePage();
     if (page.indexOf(".") === -1) return page + ".html";
     return page;
   }
 
-  function isHomePage() {
-    var f = currentPageFile();
-    return f === "index.html" || f === "";
+  function isCatalogPage() {
+    var f = normalizePage(currentPageFile());
+    return f === "san-pham" || f === "index";
   }
 
-  function isCatalogPage() {
-    return normalizePage(currentPageFile()) === "san-pham";
+  function isRegisterPage() {
+    return normalizePage(currentPageFile()) === normalizePage(registerPage());
   }
 
   function isProductPage() {
@@ -50,25 +58,39 @@
     });
   }
 
+  function registerHref(productId) {
+    var base = registerPage();
+    if (productId) {
+      return base + "?product=" + encodeURIComponent(productId);
+    }
+    return base;
+  }
+
+  function contactHref() {
+    if (isRegisterPage()) return "#lien-he";
+    if (isCatalogPage() || isProductPage()) return "#lien-he";
+    return homePage() + "#lien-he";
+  }
+
   function initSiteNav() {
     var nav = document.getElementById("site-nav");
     if (!nav) return;
 
     var items = [
       {
-        href: "san-pham.html",
+        href: homePage(),
         label: "Phần mềm",
         match: isCatalogPage() || isProductPage(),
       },
       {
-        href: isHomePage() ? "#lien-he" : "index.html#lien-he",
+        href: contactHref(),
         label: "Liên hệ",
         match: false,
       },
       {
-        href: isHomePage() ? "#dang-ky" : "index.html#dang-ky",
+        href: registerHref(),
         label: "Đăng ký",
-        match: false,
+        match: isRegisterPage(),
       },
     ];
 
@@ -91,22 +113,28 @@
     var col = document.getElementById("footer-products");
     if (!col) return;
 
-    col.innerHTML = products()
-      .map(function (p) {
-        return (
-          '<a href="' +
-          escapeHtml(productHref(p)) +
-          '">' +
-          escapeHtml(p.shortName || p.name) +
-          "</a>"
-        );
-      })
-      .join("") + '<a href="san-pham.html">Tất cả phần mềm</a><a href="index.html#dang-ky">Đăng ký tư vấn</a>';
+    col.innerHTML =
+      products()
+        .map(function (p) {
+          return (
+            '<a href="' +
+            escapeHtml(productHref(p)) +
+            '">' +
+            escapeHtml(p.shortName || p.name) +
+            "</a>"
+          );
+        })
+        .join("") +
+      '<a href="' +
+      escapeHtml(homePage()) +
+      '">Tất cả phần mềm</a><a href="' +
+      escapeHtml(registerHref()) +
+      '">Đăng ký tư vấn</a>';
   }
 
   function initBrandLink() {
     document.querySelectorAll("[data-brand-link]").forEach(function (a) {
-      a.href = "index.html";
+      a.href = homePage();
     });
   }
 
@@ -122,18 +150,19 @@
     }
 
     document.querySelectorAll("[data-register-href]").forEach(function (a) {
-      if (productId) {
-        a.href = "#dang-ky";
-      } else {
-        a.href = "index.html#dang-ky";
-      }
+      a.href = registerHref(productId || "");
     });
   }
 
   window.SiteLayout = {
     currentPageFile: currentPageFile,
-    isHomePage: isHomePage,
+    homePage: homePage,
+    registerPage: registerPage,
+    registerHref: registerHref,
+    isCatalogPage: isCatalogPage,
+    isRegisterPage: isRegisterPage,
     productHref: productHref,
+    contactHref: contactHref,
     init: function () {
       initBrandLink();
       initSiteNav();

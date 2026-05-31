@@ -14,7 +14,7 @@
   <body data-page="catalog">
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html" data-brand-link>
+        <a class="brand" href="san-pham.html" data-brand-link>
           <img data-app-icon src="Ho so dang CH play/ic_launcher_play_store_512.png" alt="" width="44" height="44" />
           <span id="app-name">Giải pháp phần mềm đường bộ</span>
         </a>
@@ -23,8 +23,8 @@
           <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Mở menu">
             <span></span><span></span><span></span>
           </button>
-          <a class="btn btn-zalo btn-header" data-zalo-link href="index.html#lien-he">Zalo</a>
-          <a class="btn btn-primary btn-header" href="index.html#dang-ky" data-register-href>Đăng ký</a>
+          <a class="btn btn-zalo btn-header" data-zalo-link href="#lien-he">Zalo</a>
+          <a class="btn btn-primary btn-header" href="dang-ky.html" data-register-href>Đăng ký</a>
         </div>
       </div>
     </header>
@@ -32,15 +32,10 @@
     <main id="top">
       <section class="catalog-page-header">
         <div class="container">
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="index.html">Trang chủ</a>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">Phần mềm</span>
-          </nav>
-          <h1 class="catalog-page-title">Top phần mềm — Tiện ích</h1>
+          <h1 class="catalog-page-title">Phần mềm &amp; công cụ đường bộ</h1>
           <p class="catalog-page-sub">
-            Tổng hợp app Android và công cụ AutoCAD hỗ trợ công tác BDTX, KPLB và lập hồ sơ hạ tầng giao thông.
-            Bấm vào sản phẩm để xem chi tiết.
+            App Android và công cụ AutoCAD hỗ trợ công tác BDTX, KPLB và lập hồ sơ hạ tầng giao thông.
+            Bấm vào sản phẩm để xem chi tiết, tính năng và đăng ký dùng thử.
           </p>
         </div>
       </section>
@@ -49,6 +44,31 @@
         <div class="container">
           <h2 id="catalog-grid-title" class="visually-hidden">Danh sách sản phẩm</h2>
           <div id="products-catalog-grid" class="products-catalog-grid"></div>
+        </div>
+      </section>
+
+      <section class="register-cta-section register-cta-section--inline">
+        <div class="container">
+          <div class="register-cta-card">
+            <h2>Đăng ký tư vấn &amp; dùng thử</h2>
+            <p>Chọn phần mềm phù hợp ở trên, hoặc điền form đăng ký chung.</p>
+            <a class="btn btn-primary btn-lg" data-register-href href="dang-ky.html">Đăng ký ngay</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="lien-he" class="contact-strip">
+        <div class="container">
+          <div class="contact-strip-inner">
+            <div class="contact-strip-text">
+              <h2>Liên hệ hỗ trợ</h2>
+              <p>Zalo: <strong class="zalo-phone-display" data-zalo-phone>—</strong> — tư vấn cài đặt, báo giá và kích hoạt.</p>
+            </div>
+            <div class="contact-strip-actions">
+              <a class="btn btn-zalo btn-lg" data-zalo-link data-zalo-label href="#lien-he">Nhắn Zalo ngay</a>
+              <a class="btn btn-secondary btn-lg" href="dang-ky.html" data-register-href>Điền form đăng ký</a>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -61,21 +81,23 @@
           <div class="footer-brand">
             <img data-app-icon src="Ho so dang CH play/ic_launcher_play_store_512.png" alt="" width="52" height="52" />
             <strong id="app-name-footer">Giải pháp phần mềm đường bộ</strong>
+            <p>App Android và công cụ AutoCAD từ Excel — phục vụ BDTX, KPLB và hồ sơ HTGT.</p>
           </div>
           <div class="footer-col"><h4>Sản phẩm</h4><div id="footer-products"></div></div>
           <div class="footer-col">
             <h4>Hỗ trợ</h4>
-            <a data-zalo-link href="index.html#lien-he">Chat Zalo</a>
-            <a href="index.html#dang-ky">Đăng ký tư vấn</a>
+            <a data-zalo-link href="#lien-he">Chat Zalo</a>
+            <a href="dang-ky.html" data-register-href>Đăng ký tư vấn</a>
+            <a href="../docs/PRIVACY_POLICY.html" target="_blank" rel="noopener">Chính sách quyền riêng tư</a>
           </div>
         </div>
-        <p class="footer-bottom">© <span id="year"></span> Tuấn Dương</p>
+        <p class="footer-bottom">© <span id="year"></span> Giải pháp phần mềm đường bộ · Tuấn Dương</p>
       </div>
     </footer>
 
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
     <script src="js/config.js"></script>
     <script src="js/layout.js"></script>
-    <script src="js/main.js?v=8"></script>
+    <script src="js/main.js?v=11"></script>
   </body>
 </html>

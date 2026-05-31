@@ -15,7 +15,7 @@
 
     if (!data) {
       box.innerHTML =
-        "<p>Không có thông tin đăng ký trong phiên này. Vui lòng <a href=\"index.html#dang-ky\">đăng ký lại</a>.</p>";
+        "<p>Không có thông tin đăng ký trong phiên này. Vui lòng <a href=\"dang-ky.html\">đăng ký lại</a>.</p>";
       return;
     }
 

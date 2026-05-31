@@ -148,46 +148,13 @@
         </div>
       </section>
 
-      <section id="dang-ky" class="section section-dark">
-        <div class="container register-layout">
-          <div class="register-intro">
+      <section id="dang-ky" class="register-cta-section">
+        <div class="container">
+          <div class="register-cta-card">
             <span class="eyebrow">Đăng ký</span>
-            <h2>Dùng thử app Quản lý sự cố đường bộ</h2>
-            <p>Điền form — chúng tôi liên hệ kích hoạt tài khoản và hướng dẫn cài CH Play.</p>
-            <div class="contact-chips">
-              <a class="contact-chip" data-zalo-link data-zalo-label href="#lien-he">💬 Zalo</a>
-              <a class="contact-chip" data-play-store href="#" target="_blank" rel="noopener">📱 CH Play</a>
-            </div>
-          </div>
-          <div class="register-form-card">
-            <h3>Form đăng ký</h3>
-            <form id="register-form" novalidate>
-              <input type="hidden" id="product" name="product" value="app-quan-ly-su-co" />
-              <div class="form-group">
-                <label for="fullName">Họ và tên *</label>
-                <input id="fullName" name="fullName" type="text" required placeholder="Nguyễn Văn A" />
-                <span class="form-error" data-error-for="fullName"></span>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="phone">Số điện thoại *</label>
-                  <input id="phone" name="phone" type="tel" required placeholder="09xx xxx xxx" />
-                  <span class="form-error" data-error-for="phone"></span>
-                </div>
-                <div class="form-group">
-                  <label for="email">Email *</label>
-                  <input id="email" name="email" type="email" required placeholder="ten@gmail.com" />
-                  <span class="form-error" data-error-for="email"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="address">Địa chỉ *</label>
-                <textarea id="address" name="address" rows="3" required placeholder="Số nhà, tỉnh/thành"></textarea>
-                <span class="form-error" data-error-for="address"></span>
-              </div>
-              <button type="submit" class="btn btn-primary btn-lg btn-block">Gửi đăng ký</button>
-              <p id="form-status" class="form-status" role="status"></p>
-            </form>
+            <h2 id="register-cta-title">Dùng thử app Quản lý sự cố đường bộ</h2>
+            <p id="register-cta-desc">Điền form — chúng tôi liên hệ kích hoạt tài khoản và hướng dẫn cài CH Play.</p>
+            <a class="btn btn-primary btn-lg" data-register-href href="dang-ky.html">Đăng ký ngay</a>
           </div>
         </div>
       </section>
@@ -223,11 +190,8 @@
     </footer>
 
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
     <script src="js/config.js"></script>
-    <script src="js/firebase-config.js"></script>
     <script src="js/layout.js"></script>
-    <script src="js/main.js?v=8"></script>
+    <script src="js/main.js?v=11"></script>
   </body>
 </html>
