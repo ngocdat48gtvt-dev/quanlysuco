@@ -79,33 +79,18 @@
     var nav = document.getElementById("site-nav");
     if (!nav) return;
 
-    var items;
-    if (isLandingPage()) {
-      items = [
-        { href: "#san-pham", label: "Sản phẩm", match: false },
-        { href: "#giai-phap", label: "Giải pháp", match: false },
-        { href: "#hieu-qua", label: "Hiệu quả", match: false },
-        { href: "#faq", label: "FAQ", match: false },
-      ];
-    } else {
-      items = [
-        {
-          href: homePage(),
-          label: "Trang chủ",
-          match: isLandingPage(),
-        },
-        {
-          href: catalogPage(),
-          label: "Sản phẩm",
-          match: isCatalogPage() || isProductPage(),
-        },
-        {
-          href: registerHref(),
-          label: "Đăng ký",
-          match: isRegisterPage(),
-        },
-      ];
-    }
+    var items = [
+      {
+        href: homePage(),
+        label: "Phần mềm",
+        match: isCatalogPage() || isProductPage(),
+      },
+      {
+        href: registerHref(),
+        label: "Đăng ký",
+        match: isRegisterPage(),
+      },
+    ];
 
     nav.innerHTML = items
       .map(function (item) {

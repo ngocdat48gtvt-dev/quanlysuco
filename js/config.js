@@ -15,9 +15,8 @@ window.SITE_CONFIG = {
   supportEmail: "[EMAIL_HỖ_TRỢ]",
   supportPhone: "",
 
-  /** Trang mặc định khi vào website (landing) */
-  homePage: "index.html",
-  /** Danh mục sản phẩm chi tiết */
+  /** Trang mặc định — danh mục 4 sản phẩm */
+  homePage: "san-pham.html",
   catalogPage: "san-pham.html",
   /** Trang đăng ký riêng */
   registerPage: "dang-ky.html",

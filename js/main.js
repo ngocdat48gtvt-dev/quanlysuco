@@ -127,14 +127,11 @@
         if (metaDesc && product.tagline) metaDesc.setAttribute("content", product.tagline);
       }
     } else if (pageType === "catalog") {
-      document.title = "Sản phẩm phần mềm quản lý đường bộ | App sự cố & Tool AutoCAD";
+      document.title = "Phần mềm — " + brand;
     } else if (pageType === "register") {
       document.title = "Đăng ký — " + brand;
     } else if (pageType === "purchase") {
       document.title = "Mua phần mềm — " + brand;
-    } else if (pageType === "landing") {
-      var seo = cfg.seo || {};
-      if (seo.title) document.title = seo.title;
     }
 
     setText("app-name", brand);
@@ -491,11 +488,9 @@
     var pills = document.getElementById("hero-pills");
     var stack = document.getElementById("hero-product-stack");
     var catalogGrid = document.getElementById("products-catalog-grid");
-    var landingGrid = document.getElementById("lp-products-grid");
     var select = document.getElementById("product");
 
     renderProductCatalogGrid(catalogGrid, false);
-    renderProductCatalogGrid(landingGrid, false);
 
     if (pills) {
       pills.innerHTML = "";
