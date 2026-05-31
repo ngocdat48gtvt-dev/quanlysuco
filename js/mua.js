@@ -28,10 +28,17 @@
 
   function getProductPrice(productId) {
     var p = findProduct(productId);
+    if (p && (p.isFree || p.price === 0)) return 0;
     var base = cfg.productPricing || {};
     if (p && p.price != null) return Number(p.price);
     if (base.price != null) return Number(base.price);
     return 0;
+  }
+
+  function formatPriceLabel(productId) {
+    var p = findProduct(productId);
+    if (p && (p.isFree || p.price === 0)) return p.priceLabel || "Miễn phí";
+    return formatVnd(getProductPrice(productId));
   }
 
   function formatVnd(amount) {
@@ -59,7 +66,7 @@
 
     var amount = getProductPrice(id);
     line.hidden = false;
-    display.textContent = formatVnd(amount);
+    display.textContent = formatPriceLabel(id);
   }
 
   function initTrialLink() {

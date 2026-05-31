@@ -37,8 +37,8 @@ window.SITE_CONFIG = {
     },
   },
 
-  /** Hiển thị giá trên danh mục & trang chi tiết (false = liên hệ / thương lượng) */
-  showProductPrice: false,
+  /** Hiển thị giá trên danh mục (false = ẩn — giá chỉ ở trang chi tiết) */
+  showCatalogPrice: false,
 
   /** Giá mặc định — dùng trang mua (mua.html) khi cần QR thanh toán */
   productPricing: {
@@ -280,7 +280,10 @@ window.SITE_CONFIG = {
       page: "in-an-qlcl.html",
       registerLabel: "Tool in ấn hồ sơ QLCL hàng loạt",
       accent: "purple",
-      cardBadge: "New",
+      cardBadge: "Miễn phí",
+      isFree: true,
+      price: 0,
+      priceLabel: "Miễn phí",
       cardImage: "",
       cardSummary:
         "In hàng loạt hồ sơ QLCL theo điều kiện — 1 lệnh in, tự sắp xếp biên bản & phụ lục.",
@@ -381,7 +384,9 @@ window.SITE_CONFIG = {
   /** Ảnh minh họa hero (không chữ) — tính năng hiển thị ở section HTML bên dưới */
   banner: "banner2.png",
   bannerFeatureGraphic: "921d2d07-8356-43ca-94cc-602a4c63dbe1.png",
-  /** Logo thương hiệu website (header, favicon) */
+  /** Logo header — false = chỉ hiện chữ thương hiệu */
+  showSiteLogo: false,
+  /** Favicon trình duyệt (vẫn dùng khi showSiteLogo: false) */
   siteLogo: "assets/logo-qld.png",
   /** Icon app CH Play — dùng trang chi tiết app nếu cần */
   icon: "ic_launcher_play_store_512.png",

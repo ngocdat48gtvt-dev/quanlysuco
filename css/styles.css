@@ -108,6 +108,7 @@ a:hover {
 
 .brand span {
   white-space: nowrap;
+  font-size: 0.95rem;
 }
 
 .brand:hover {
@@ -121,6 +122,10 @@ a:hover {
   border-radius: 12px;
   box-shadow: var(--shadow-sm);
   flex-shrink: 0;
+}
+
+.brand img[hidden] {
+  display: none;
 }
 
 .nav {
@@ -2220,6 +2225,9 @@ a:hover {
 .product-catalog-badge--new {
   background: #c62828;
 }
+.product-catalog-badge--free {
+  background: #2e7d32;
+}
 
 .product-catalog-body {
   padding: 1rem 1.05rem 1.15rem;
@@ -2366,6 +2374,10 @@ a:hover {
   font-size: 1.45rem;
   font-weight: 800;
   color: #c62828;
+}
+
+.product-price-free {
+  color: #2e7d32;
 }
 
 .product-shop-cta {

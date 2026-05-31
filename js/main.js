@@ -167,10 +167,41 @@
 
   function getProductPricing(p) {
     var base = cfg.productPricing || {};
+    if (p && (p.isFree || p.price === 0)) {
+      return { price: 0, priceOriginal: null, isFree: true, label: p.priceLabel || "Miễn phí" };
+    }
     return {
       price: p.price != null ? p.price : base.price,
       priceOriginal: p.priceOriginal != null ? p.priceOriginal : base.priceOriginal,
+      isFree: false,
+      label: null,
     };
+  }
+
+  function renderProductDetailPricing(product) {
+    var pricingEl = document.getElementById("product-shop-pricing");
+    if (!pricingEl || !product) return;
+
+    pricingEl.hidden = false;
+    var pricing = getProductPricing(product);
+
+    if (pricing.isFree) {
+      pricingEl.innerHTML =
+        '<span class="product-price-current product-price-free">' +
+        escapeHtml(pricing.label || "Miễn phí") +
+        "</span>";
+      return;
+    }
+
+    var html = "";
+    if (pricing.priceOriginal && pricing.priceOriginal > pricing.price) {
+      html +=
+        '<span class="product-price-old">' +
+        escapeHtml(formatVnd(pricing.priceOriginal).replace(" vnđ", "")) +
+        "</span> ";
+    }
+    html += '<span class="product-price-current">' + escapeHtml(formatVnd(pricing.price)) + "</span>";
+    pricingEl.innerHTML = html;
   }
 
   function getProductDownloadUrl(p) {
@@ -196,20 +227,7 @@
 
     var pricingEl = document.getElementById("product-shop-pricing");
     if (pricingEl) {
-      if (cfg.showProductPrice === false) {
-        pricingEl.hidden = true;
-      } else {
-        var pricing = getProductPricing(product);
-        var html = "";
-        if (pricing.priceOriginal && pricing.priceOriginal > pricing.price) {
-          html +=
-            '<span class="product-price-old">' +
-            escapeHtml(formatVnd(pricing.priceOriginal).replace(" vnđ", "")) +
-            "</span> ";
-        }
-        html += '<span class="product-price-current">' + escapeHtml(formatVnd(pricing.price)) + "</span>";
-        pricingEl.innerHTML = html;
-      }
+      renderProductDetailPricing(product);
     }
 
     var media = document.getElementById("product-shop-media");
@@ -254,8 +272,12 @@
 
     var buyBtn = document.getElementById("product-btn-buy");
     if (buyBtn) {
-      buyBtn.href = buyPageUrl(product.id);
-      buyBtn.hidden = false;
+      if (product.isFree || product.price === 0) {
+        buyBtn.hidden = true;
+      } else {
+        buyBtn.href = buyPageUrl(product.id);
+        buyBtn.hidden = false;
+      }
     }
 
     var trustList = document.getElementById("product-trust-list");
@@ -351,9 +373,14 @@
 
       var mediaHtml = productCatalogMediaHtml(p);
 
+      var badgeVariant = p.isFree
+        ? "free"
+        : String(p.cardBadge || "")
+            .toLowerCase()
+            .replace(/\s+/g, "-");
       var badgeHtml = p.cardBadge
         ? '<span class="product-catalog-badge product-catalog-badge--' +
-          escapeHtml(String(p.cardBadge).toLowerCase()) +
+          escapeHtml(badgeVariant) +
           '">' +
           escapeHtml(p.cardBadge) +
           "</span>"
@@ -371,9 +398,11 @@
         '<p class="product-catalog-summary">' +
         escapeHtml(p.cardSummary || p.tagline || "") +
         "</p>" +
-        (cfg.showProductPrice !== false
+        (cfg.showCatalogPrice === true
           ? '<p class="product-catalog-price">' +
-            escapeHtml(formatVnd(getProductPricing(p).price)) +
+            (p.isFree || p.price === 0
+              ? escapeHtml(p.priceLabel || "Miễn phí")
+              : escapeHtml(formatVnd(getProductPricing(p).price))) +
             "</p>"
           : "") +
         "</div>";
@@ -735,15 +764,21 @@
 
   function initBrandImages() {
     var logo = brandLogoPath();
-    if (!logo) return;
 
     document.querySelectorAll("[data-app-icon]").forEach(function (img) {
+      if (cfg.showSiteLogo === false || !logo) {
+        img.hidden = true;
+        return;
+      }
+      img.hidden = false;
       img.src = logo;
       img.alt = cfg.siteBrand || cfg.appName || "Logo";
     });
 
-    const favicon = document.querySelector('link[rel="icon"]');
-    if (favicon) favicon.href = logo;
+    if (logo) {
+      var favicon = document.querySelector('link[rel="icon"]');
+      if (favicon) favicon.href = logo;
+    }
   }
 
   function initHeroBanner() {
