@@ -292,8 +292,43 @@
   }
 
   function productCardImage(p) {
+    if (p.cardUseIcon) return "";
     if (p.cardImage) return assetPath(p.cardImage);
     return "";
+  }
+
+  function productCatalogMediaHtml(p) {
+    var altText = (p.seo && p.seo.title) || p.name;
+
+    if (p.cardUseIcon) {
+      var iconSrc = assetPath(cfg.icon);
+      return (
+        '<div class="product-catalog-placeholder product-catalog-placeholder--app">' +
+        '<img class="product-catalog-app-icon" src="' +
+        escapeHtml(iconSrc) +
+        '" alt="' +
+        escapeHtml(altText) +
+        '" loading="lazy" width="88" height="88" />' +
+        "</div>"
+      );
+    }
+
+    var imgSrc = productCardImage(p);
+    if (imgSrc) {
+      return (
+        '<img src="' +
+        escapeHtml(imgSrc) +
+        '" alt="' +
+        escapeHtml(altText) +
+        '" loading="lazy" />'
+      );
+    }
+
+    return (
+      '<div class="product-catalog-placeholder"><span>' +
+      escapeHtml(p.platform || "AutoCAD") +
+      "</span></div>"
+    );
   }
 
   function renderProductCatalogGrid(container, compact) {
@@ -304,27 +339,13 @@
 
     products.forEach(function (p) {
       var href = productPageHref(p);
-      var imgSrc = productCardImage(p);
       var card = document.createElement("a");
-      var cardClass =
+      card.className =
         "product-catalog-card product-catalog-card--" + (p.accent || "blue");
-      if (p.featured || String(p.cardBadge).toLowerCase() === "hot") {
-        cardClass += " product-catalog-card--featured";
-      }
-      card.className = cardClass;
       card.href = href;
       card.setAttribute("aria-label", "Xem chi tiết: " + p.name);
 
-      var altText = (p.seo && p.seo.title) || p.name;
-      var mediaHtml = imgSrc
-        ? '<img src="' +
-          escapeHtml(imgSrc) +
-          '" alt="' +
-          escapeHtml(altText) +
-          '" loading="lazy" />'
-        : '<div class="product-catalog-placeholder"><span>' +
-          escapeHtml(p.platform || "AutoCAD") +
-          "</span></div>";
+      var mediaHtml = productCatalogMediaHtml(p);
 
       var badgeHtml = p.cardBadge
         ? '<span class="product-catalog-badge product-catalog-badge--' +

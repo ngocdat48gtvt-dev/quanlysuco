@@ -66,8 +66,7 @@ window.SITE_CONFIG = {
       registerLabel: "App Quản lý sự cố đường bộ (Android)",
       accent: "blue",
       cardBadge: "Hot",
-      featured: true,
-      cardImage: "banner2.png",
+      cardUseIcon: true,
       cardSummary:
         "Ghi nhận hiện trường, GPS, ảnh minh chứng, theo dõi xử lý và báo cáo Word/Excel trên Android.",
       seo: {
