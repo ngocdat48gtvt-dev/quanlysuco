@@ -22,12 +22,32 @@ function formatMessage(data) {
 function telegramHint(apiText) {
   const t = String(apiText || "");
   if (t.includes("chat not found")) {
-    return "Chat ID sai hoặc chưa bấm Start bot — lấy ID từ @userinfobot (chat riêng với bot, không phải trong nhóm bot).";
+    return "Chat ID sai hoặc chưa bấm Start bot — lấy ID từ @userinfobot.";
   }
   if (t.includes("Unauthorized")) {
     return "Bot Token sai — tạo lại token từ @BotFather.";
   }
   return t.slice(0, 200);
+}
+
+function parseBody(req) {
+  let body = req.body;
+  if (body == null) return {};
+  if (Buffer.isBuffer(body)) {
+    try {
+      return JSON.parse(body.toString("utf8"));
+    } catch {
+      return {};
+    }
+  }
+  if (typeof body === "string") {
+    try {
+      return JSON.parse(body);
+    } catch {
+      return {};
+    }
+  }
+  return body;
 }
 
 module.exports = async function handler(req, res) {
@@ -36,7 +56,7 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       ok,
       message: ok
-        ? "API sẵn sàng — gửi form landing page để nhận tin (bot không trả lời /start)."
+        ? "API sẵn sàng — gửi form landing page để nhận tin."
         : "Thiếu TELEGRAM_BOT_TOKEN hoặc TELEGRAM_CHAT_ID trên Vercel → Redeploy.",
     });
   }
@@ -50,18 +70,21 @@ module.exports = async function handler(req, res) {
 
   if (!token || !chatId) {
     return res.status(503).json({
-      error: "Telegram chưa cấu hình trên Vercel — thêm biến môi trường rồi Redeploy.",
+      error: "Telegram chưa cấu hình trên Vercel",
     });
   }
 
-  const body = req.body || {};
+  const body = parseBody(req);
   const name = String(body.name || "").trim();
   const phone = String(body.phone || "").trim();
   const email = String(body.email || "").trim();
   const province = String(body.province || "").trim();
 
   if (name.length < 2 || phone.length < 9 || email.length < 5 || province.length < 2) {
-    return res.status(400).json({ error: "Dữ liệu không hợp lệ" });
+    return res.status(400).json({
+      error: "Dữ liệu không hợp lệ",
+      received: { name: !!name, phone: !!phone, email: !!email, province: !!province },
+    });
   }
 
   const payload = {

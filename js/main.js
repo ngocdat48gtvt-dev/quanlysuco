@@ -371,17 +371,34 @@
     return { ok: true };
   }
 
+  function telegramApiUrl() {
+    return window.location.origin + "/api/telegram-lead";
+  }
+
   async function notifyTelegram(payload) {
-    const res = await fetch("/api/telegram-lead", {
+    var url = telegramApiUrl();
+    var res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
+      keepalive: true,
     });
     if (!res.ok) {
-      const data = await res.json().catch(function () {
+      var data = await res.json().catch(function () {
         return {};
       });
-      console.warn("[Telegram]", data.error || res.status, data.hint || "");
+      throw new Error(data.hint || data.error || "Telegram lỗi " + res.status);
+    }
+    return true;
+  }
+
+  function notifyTelegramBeacon(payload) {
+    if (!navigator.sendBeacon) return false;
+    try {
+      var blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+      return navigator.sendBeacon(telegramApiUrl(), blob);
+    } catch {
+      return false;
     }
   }
 
@@ -428,13 +445,24 @@
       if (btn) btn.disabled = true;
 
       try {
-        const results = await Promise.allSettled([
-          submitLeadToFirestore(payload),
-          notifyTelegram(payload),
-        ]);
-        if (results[0].status === "rejected") {
-          throw results[0].reason;
+        var telegramOk = false;
+        try {
+          await notifyTelegram(payload);
+          telegramOk = true;
+        } catch (tgErr) {
+          console.warn("[Telegram]", tgErr);
+          notifyTelegramBeacon(payload);
         }
+
+        try {
+          await submitLeadToFirestore(payload);
+        } catch (fsErr) {
+          if (!telegramOk) {
+            throw fsErr;
+          }
+          console.warn("[Firestore]", fsErr);
+        }
+
         sessionStorage.setItem("quanlysuco_lead", JSON.stringify(payload));
         showFormSuccess(form, status);
       } catch (err) {
