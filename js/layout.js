@@ -10,7 +10,11 @@
   }
 
   function homePage() {
-    return cfg.homePage || "san-pham.html";
+    return cfg.homePage || "index.html";
+  }
+
+  function catalogPage() {
+    return cfg.catalogPage || "san-pham.html";
   }
 
   function registerPage() {
@@ -43,9 +47,14 @@
     return page;
   }
 
+  function isLandingPage() {
+    var f = normalizePage(currentPageFile());
+    return f === "index";
+  }
+
   function isCatalogPage() {
     var f = normalizePage(currentPageFile());
-    return f === "san-pham" || f === "index";
+    return f === normalizePage(catalogPage());
   }
 
   function isRegisterPage() {
@@ -70,18 +79,33 @@
     var nav = document.getElementById("site-nav");
     if (!nav) return;
 
-    var items = [
-      {
-        href: homePage(),
-        label: "Phần mềm",
-        match: isCatalogPage() || isProductPage(),
-      },
-      {
-        href: registerHref(),
-        label: "Đăng ký",
-        match: isRegisterPage(),
-      },
-    ];
+    var items;
+    if (isLandingPage()) {
+      items = [
+        { href: "#giai-phap", label: "Giải pháp", match: false },
+        { href: "#hieu-qua", label: "Hiệu quả", match: false },
+        { href: "#faq", label: "FAQ", match: false },
+        { href: catalogPage(), label: "Sản phẩm", match: false },
+      ];
+    } else {
+      items = [
+        {
+          href: homePage(),
+          label: "Trang chủ",
+          match: isLandingPage(),
+        },
+        {
+          href: catalogPage(),
+          label: "Sản phẩm",
+          match: isCatalogPage() || isProductPage(),
+        },
+        {
+          href: registerHref(),
+          label: "Đăng ký",
+          match: isRegisterPage(),
+        },
+      ];
+    }
 
     nav.innerHTML = items
       .map(function (item) {
@@ -150,8 +174,10 @@
   window.SiteLayout = {
     currentPageFile: currentPageFile,
     homePage: homePage,
+    catalogPage: catalogPage,
     registerPage: registerPage,
     registerHref: registerHref,
+    isLandingPage: isLandingPage,
     isCatalogPage: isCatalogPage,
     isRegisterPage: isRegisterPage,
     productHref: productHref,

@@ -7,18 +7,26 @@ function escapeHtml(text) {
 
 function formatMessage(data) {
   const isPurchase = data.leadType === "purchase";
+  const isConsultation = data.leadType === "consultation";
   const lines = [
     isPurchase
       ? "🛒 <b>Khách MUA phần mềm — chờ chuyển khoản</b>"
-      : "🆕 <b>Khách đăng ký mới — Landing Page</b>",
+      : isConsultation
+        ? "📋 <b>Đăng ký tư vấn — Landing Page</b>"
+        : "🆕 <b>Khách đăng ký mới — Landing Page</b>",
     "",
     `<b>Họ tên:</b> ${escapeHtml(data.name)}`,
     `<b>SĐT:</b> ${escapeHtml(data.phone)}`,
-    `<b>Email:</b> ${escapeHtml(data.email)}`,
   ];
+  if (data.email) lines.push(`<b>Email:</b> ${escapeHtml(data.email)}`);
   const productLabel = String(data.product || data.company || "").trim();
   if (productLabel) lines.push(`<b>Loại phần mềm:</b> ${escapeHtml(productLabel)}`);
-  lines.push(`<b>Địa chỉ:</b> ${escapeHtml(data.province)}`);
+  if (data.company && isConsultation) {
+    lines.push(`<b>Đơn vị:</b> ${escapeHtml(data.company)}`);
+  }
+  if (data.province && !isConsultation) {
+    lines.push(`<b>Địa chỉ:</b> ${escapeHtml(data.province)}`);
+  }
   if (isPurchase && data.transferNote) {
     lines.push(`<b>Nội dung CK:</b> ${escapeHtml(data.transferNote)}`);
   }
@@ -88,9 +96,17 @@ module.exports = async function handler(req, res) {
   const name = String(body.name || "").trim();
   const phone = String(body.phone || "").trim();
   const email = String(body.email || "").trim();
-  const province = String(body.province || "").trim();
+  const province = String(body.province || body.company || "").trim();
+  const leadType = String(body.leadType || "trial").trim();
 
-  if (name.length < 2 || phone.length < 9 || email.length < 5 || province.length < 2) {
+  if (name.length < 2 || phone.length < 9) {
+    return res.status(400).json({
+      error: "Dữ liệu không hợp lệ",
+      received: { name: !!name, phone: !!phone },
+    });
+  }
+
+  if (leadType !== "consultation" && (email.length < 5 || province.length < 2)) {
     return res.status(400).json({
       error: "Dữ liệu không hợp lệ",
       received: { name: !!name, phone: !!phone, email: !!email, province: !!province },
@@ -108,6 +124,7 @@ module.exports = async function handler(req, res) {
     leadType: String(body.leadType || "trial").trim(),
     transferNote: String(body.transferNote || "").trim(),
     amount: body.amount != null ? Number(body.amount) : null,
+    needs: String(body.needs || "").trim(),
   };
 
   try {

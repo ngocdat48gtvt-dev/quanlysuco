@@ -2,7 +2,11 @@
   const cfg = window.SITE_CONFIG || {};
 
   function homePage() {
-    return cfg.homePage || "san-pham.html";
+    return cfg.homePage || "index.html";
+  }
+
+  function catalogPage() {
+    return cfg.catalogPage || "san-pham.html";
   }
 
   function registerPageUrl(productId) {
@@ -62,11 +66,14 @@
       var metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc && product.tagline) metaDesc.setAttribute("content", product.tagline);
     } else if (pageType === "catalog") {
-      document.title = "Phần mềm — " + brand;
+      document.title = "Sản phẩm phần mềm quản lý đường bộ | Giải pháp AutoCAD";
     } else if (pageType === "register") {
       document.title = "Đăng ký — " + brand;
     } else if (pageType === "purchase") {
       document.title = "Mua phần mềm — " + brand;
+    } else if (pageType === "landing") {
+      var seo = cfg.seo || {};
+      if (seo.title) document.title = seo.title;
     }
 
     setText("app-name", brand);
@@ -168,6 +175,13 @@
       if (product.hasPlayStore) {
         downloadBtn.target = "_blank";
         downloadBtn.rel = "noopener noreferrer";
+        downloadBtn.innerHTML =
+          '<span class="btn-shop-icon" aria-hidden="true">▶</span> CH Play';
+        downloadBtn.setAttribute("aria-label", "Tải app trên CH Play");
+      } else {
+        downloadBtn.innerHTML =
+          '<span class="btn-shop-icon" aria-hidden="true">⬇</span> Tải xuống';
+        downloadBtn.removeAttribute("aria-label");
       }
     }
 
@@ -208,7 +222,7 @@
     nav.setAttribute("aria-label", "Breadcrumb");
     nav.innerHTML =
       '<a href="' +
-      escapeHtml(homePage()) +
+      escapeHtml(catalogPage()) +
       '">Phần mềm</a><span aria-hidden="true">/</span>' +
       '<span aria-current="page">' +
       escapeHtml(product.shortName || product.name) +

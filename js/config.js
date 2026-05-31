@@ -15,8 +15,10 @@ window.SITE_CONFIG = {
   supportEmail: "[EMAIL_HỖ_TRỢ]",
   supportPhone: "",
 
-  /** Trang mặc định khi vào website */
-  homePage: "san-pham.html",
+  /** Trang mặc định khi vào website (landing) */
+  homePage: "index.html",
+  /** Danh mục sản phẩm chi tiết */
+  catalogPage: "san-pham.html",
   /** Trang đăng ký riêng */
   registerPage: "dang-ky.html",
   /** Trang mua / thanh toán chuyển khoản */
@@ -408,5 +410,143 @@ window.SITE_CONFIG = {
     branch: "Agribank - Chi nhánh H. Phù Yên - Sơn La",
     qrTemplate: "compact2",
     transferNoteHint: "Họ và tên - Loại phần mềm (không dấu, viết hoa tên)",
+  },
+
+  /** SEO — canonical, Open Graph, sitemap (đổi siteUrl khi có domain riêng) */
+  seo: {
+    siteUrl: "https://quanlysuco-road.vercel.app",
+    title:
+      "Tự động hóa hồ sơ quản lý đường bộ trên AutoCAD | Giải pháp phần mềm đường bộ",
+    description:
+      "Giảm 70–90% thời gian lập hồ sơ quản lý đường, bình đồ tuyến và cập nhật lý trình trên AutoCAD. Tool chuyên ngành cho hạt quản lý đường bộ, bảo trì và tư vấn giao thông.",
+    keywords:
+      "phần mềm quản lý đường bộ, tool AutoCAD đường bộ, bình đồ tuyến AutoCAD, hồ sơ quản lý đường, cập nhật lý trình, app quản lý sự cố đường bộ, Excel sang AutoCAD, in hồ sơ QLCL",
+    ogImage: "Ho so dang CH play/banner2.png",
+    locale: "vi_VN",
+    author: "Giải pháp phần mềm đường bộ",
+  },
+
+  /** Nội dung landing page chính */
+  landing: {
+    hero: {
+      title: "Tự động hóa hồ sơ quản lý đường bộ trên AutoCAD",
+      subtitle:
+        "Giảm tới 70–90% thời gian lập hồ sơ quản lý đường, bình đồ tuyến và cập nhật lý trình. Hạn chế sai sót, tăng năng suất và chuẩn hóa dữ liệu.",
+      bullets: [
+        "Tiết kiệm hàng trăm giờ công mỗi năm",
+        "Tự động hóa công việc lặp lại",
+        "Dễ triển khai trên AutoCAD",
+      ],
+      ctaVideo: "Xem video demo",
+      ctaRegister: "Đăng ký tư vấn",
+    },
+    pains: {
+      title: "Bạn đang gặp những vấn đề này?",
+      items: [
+        {
+          icon: "⏱",
+          title: "Vẽ bình đồ mất quá nhiều thời gian",
+          desc: "Nhập dữ liệu thủ công và chỉnh sửa liên tục khi thay đổi lý trình.",
+        },
+        {
+          icon: "📋",
+          title: "Cập nhật hồ sơ quản lý đường phức tạp",
+          desc: "Mỗi thay đổi nhỏ phải chỉnh sửa nhiều bản vẽ khác nhau.",
+        },
+        {
+          icon: "🗂",
+          title: "Dữ liệu phân tán",
+          desc: "Thông tin nằm rải rác trong AutoCAD, Excel và hồ sơ giấy.",
+        },
+        {
+          icon: "⚠",
+          title: "Sai sót khi tổng hợp",
+          desc: "Dễ nhầm lẫn lý trình, biển báo và công trình trên tuyến.",
+        },
+      ],
+    },
+    solutions: {
+      title: "Bộ công cụ dành riêng cho ngành quản lý đường bộ",
+      items: [
+        {
+          productId: "tool-bao-lu",
+          title: "Tool Vẽ Bình Đồ Tự Động",
+          desc: "Tạo bình đồ tuyến nhanh chóng từ dữ liệu đầu vào.",
+        },
+        {
+          productId: "tool-ho-so-htgt",
+          title: "Tool Hồ Sơ Quản Lý Đường",
+          desc: "Tự động cập nhật lý trình, cọc H, biển báo và công trình trên tuyến.",
+        },
+        {
+          productId: "tool-in-an-qlcl",
+          title: "Tool In Ấn Hồ Sơ",
+          desc: "Xuất bản vẽ và hồ sơ hàng loạt nhanh chóng, đồng bộ.",
+        },
+        {
+          productId: "app-quan-ly-su-co",
+          title: "App Quản Lý Sự Cố Đường Bộ",
+          desc: "Ghi nhận hiện trường, lưu ảnh và quản lý sự cố tập trung.",
+        },
+      ],
+    },
+    stats: {
+      title: "Kết quả đạt được",
+      items: [
+        { value: "90%", label: "Giảm thời gian thao tác AutoCAD" },
+        { value: "10x", label: "Tăng tốc độ xử lý hồ sơ" },
+        { value: "100%", label: "Chuẩn hóa dữ liệu" },
+        { value: "24/7", label: "Dễ dàng tra cứu và quản lý" },
+      ],
+    },
+    demoVideo: {
+      title: "Xem phần mềm hoạt động thực tế",
+      subtitle:
+        "Video ngắn trình bày quy trình từ dữ liệu đầu vào đến hồ sơ hoàn chỉnh.",
+      youtubeId: "VIDEO_ID_DEMO",
+    },
+    audiences: {
+      title: "Phù hợp với",
+      items: [
+        "Hạt quản lý đường bộ",
+        "Đơn vị bảo trì đường bộ",
+        "Tư vấn giao thông",
+        "Ban quản lý dự án",
+        "Kỹ sư hạ tầng giao thông",
+        "Doanh nghiệp khảo sát thiết kế",
+      ],
+    },
+    register: {
+      title: "Nhận tư vấn và dùng thử",
+      subtitle: "Điền form — chúng tôi liên hệ trong 24 giờ qua Zalo hoặc điện thoại.",
+      submitLabel: "Đăng ký tư vấn",
+    },
+    faq: {
+      title: "Câu hỏi thường gặp",
+      items: [
+        {
+          q: "Có cần biết lập trình không?",
+          a: "Không. Chỉ cần sử dụng AutoCAD như bình thường.",
+        },
+        {
+          q: "Có hỗ trợ cài đặt không?",
+          a: "Có. Hỗ trợ từ xa qua AnyDesk hoặc TeamViewer.",
+        },
+        {
+          q: "Có dùng thử được không?",
+          a: "Có. Liên hệ để nhận bản dùng thử.",
+        },
+        {
+          q: "Có hỗ trợ cập nhật không?",
+          a: "Có. Hỗ trợ nâng cấp theo phiên bản mới.",
+        },
+      ],
+    },
+    ctaFinal: {
+      title: "Đừng để công việc lặp lại làm mất thời gian của kỹ sư",
+      subtitle:
+        "Hãy để phần mềm xử lý các thao tác thủ công để bạn tập trung vào chuyên môn.",
+      button: "Đăng ký tư vấn ngay",
+    },
   },
 };
