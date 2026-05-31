@@ -305,7 +305,7 @@
     var altText = (p.seo && p.seo.title) || p.name;
 
     if (p.cardUseIcon) {
-      var iconSrc = brandLogoPath();
+      var iconSrc = assetPath(cfg.icon);
       return (
         '<div class="product-catalog-placeholder product-catalog-placeholder--app">' +
         '<img class="product-catalog-app-icon" src="' +
