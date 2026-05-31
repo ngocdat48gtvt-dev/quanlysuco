@@ -157,7 +157,9 @@
           escapeHtml(product.accent || "blue") +
           '"><span>' +
           escapeHtml(product.shortName || product.name) +
-          "</span><small>Excel → AutoCAD</small></div>";
+          "</span><small>" +
+          escapeHtml(product.placeholderSub || product.badge || product.platform || "") +
+          "</small></div>";
       }
     }
 
@@ -522,12 +524,13 @@
   }
 
   function getZaloIconHtml() {
-    var z = cfg.zalo || {};
-    var src = publicAssetPath(z.icon || "assets/zalo-logo.svg");
     return (
-      '<img class="zalo-float-btn-logo" src="' +
-      escapeHtml(src) +
-      '" alt="" width="40" height="40" loading="lazy" decoding="async">'
+      '<span class="zalo-float-btn-icon" aria-hidden="true">' +
+      '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" focusable="false">' +
+      '<circle cx="24" cy="24" r="24" fill="#0068FF"/>' +
+      '<path fill="#fff" d="M13.5 16.5c0-2.76 2.24-5 5-5h11c2.76 0 5 2.24 5 5v7.5c0 2.76-2.24 5-5 5h-4.5L19 32v-3h-4.5c-2.76 0-5-2.24-5-5v-7.5z"/>' +
+      '<text x="24" y="26.5" text-anchor="middle" fill="#0068FF" font-size="9.5" font-weight="700" font-family="Arial,Helvetica,sans-serif">Zalo</text>' +
+      "</svg></span>"
     );
   }
 
@@ -571,9 +574,10 @@
       escapeHtml(phoneShow) +
       '">' +
       getZaloIconHtml() +
-      '<span class="zalo-float-btn-text"><strong>' +
+      '<span class="zalo-float-btn-body">' +
+      '<span class="zalo-float-btn-label">' +
       escapeHtml(btn.label || "Chat Zalo") +
-      "</strong><span>" +
+      '</span><span class="zalo-float-btn-phone">' +
       escapeHtml(phoneShow) +
       "</span></span></a>";
   }

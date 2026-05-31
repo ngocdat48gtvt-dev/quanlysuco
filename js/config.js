@@ -29,8 +29,8 @@ window.SITE_CONFIG = {
     defaultMessage:
       "Xin chào, tôi muốn tư vấn phần mềm / công cụ đường bộ (App Android hoặc AutoCAD).",
     floatButton: {
-      label: "Tư vấn & hỗ trợ",
-      variant: "blue",
+      label: "Chat Zalo",
+      variant: "zalo",
     },
   },
 
@@ -235,6 +235,90 @@ window.SITE_CONFIG = {
         description:
           "Quy trình import Excel và vẽ bình đồ các điểm sự cố bão lũ trên AutoCAD.",
         youtubeId: "VIDEO_ID_BAO_LU",
+      },
+    },
+    {
+      id: "tool-in-an-qlcl",
+      name: "In ấn hồ sơ QLCL hàng loạt",
+      shortName: "In QLCL hàng loạt",
+      platform: "Windows · Tool in ấn",
+      badge: "In hàng loạt · QLCL",
+      tagline:
+        "In toàn bộ hồ sơ quản lý chất lượng theo điều kiện lọc — một lệnh in, tự động sắp xếp biên bản, phụ lục và các loại tài liệu khác nhau.",
+      page: "in-an-qlcl.html",
+      registerLabel: "Tool in ấn hồ sơ QLCL hàng loạt",
+      accent: "purple",
+      cardBadge: "New",
+      cardImage: "",
+      cardSummary:
+        "In hàng loạt hồ sơ QLCL theo điều kiện — 1 lệnh in, tự sắp xếp biên bản & phụ lục.",
+      placeholderSub: "In hàng loạt · QLCL",
+      perks: [
+        "Lọc theo điều kiện",
+        "In 1 lệnh toàn bộ hồ sơ",
+        "Tự sắp xếp biên bản",
+        "Gom phụ lục đúng thứ tự",
+      ],
+      featuresSection: {
+        eyebrow: "Tính năng",
+        title: "In hồ sơ QLCL hàng loạt — tự động & có thứ tự",
+        subtitle:
+          "Dành cho đơn vị thi công, giám sát và QLCL cần in bộ hồ sơ đầy đủ theo gói thầu, hạng mục hoặc kỳ nghiệm thu.",
+      },
+      featureHighlights: [
+        {
+          icon: "🎯",
+          title: "In theo điều kiện lọc",
+          desc: "Chọn theo công trình, hạng mục, kỳ, loại biên bản — chỉ in đúng hồ sơ cần thiết.",
+        },
+        {
+          icon: "🖨️",
+          title: "Một lệnh — in toàn bộ",
+          desc: "Không mở từng file — chạy một lệnh để in trọn bộ hồ sơ QLCL đã chọn.",
+        },
+        {
+          icon: "📑",
+          title: "Tự sắp xếp tài liệu",
+          desc: "Biên bản, phụ lục, checklist… được xếp đúng thứ tự chuẩn trước khi gửi máy in.",
+        },
+      ],
+      features: [
+        {
+          icon: "🔍",
+          title: "Bộ lọc linh hoạt",
+          desc: "Lọc theo tuyến, gói thầu, nhà thầu, thời gian, loại hồ sơ hoặc trạng thái nghiệm thu.",
+        },
+        {
+          icon: "📋",
+          title: "Nhiều loại biên bản",
+          desc: "Hỗ trợ in đồng thời nhiều mẫu biên bản QLCL khác nhau trong cùng một đợt.",
+        },
+        {
+          icon: "📎",
+          title: "Phụ lục tự gom",
+          desc: "Tự động gắn và sắp xếp phụ lục đi kèm từng biên bản — không bị thiếu hoặc lộn trang.",
+        },
+        {
+          icon: "🗂️",
+          title: "Thứ tự in chuẩn",
+          desc: "Sắp xếp trang bìa, mục lục, biên bản chính, phụ lục theo quy trình hồ sơ QLCL.",
+        },
+        {
+          icon: "⚡",
+          title: "Tiết kiệm thời gian",
+          desc: "Thay cho việc mở và in thủ công từng file — rút ngắn thời gian in hồ sơ hàng trăm trang.",
+        },
+        {
+          icon: "✅",
+          title: "Kiểm soát trước khi in",
+          desc: "Xem trước danh sách tài liệu và số trang trước khi gửi lệnh in hàng loạt.",
+        },
+      ],
+      introVideo: {
+        title: "Video giới thiệu tool In QLCL hàng loạt",
+        description:
+          "Quy trình lọc điều kiện, chọn hồ sơ và in toàn bộ biên bản — phụ lục tự động sắp xếp.",
+        youtubeId: "VIDEO_ID_IN_QLCL",
       },
     },
   ],

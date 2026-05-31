@@ -464,6 +464,11 @@ a:hover {
   box-shadow: 0 8px 24px rgba(230, 81, 0, 0.22);
 }
 
+.highlight-top-item--purple {
+  background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
+  box-shadow: 0 8px 24px rgba(123, 31, 162, 0.22);
+}
+
 .highlight-top-icon--emoji {
   font-size: 1.35rem;
   line-height: 1;
@@ -1289,61 +1294,83 @@ a:hover {
 /* —— Zalo float (nút cố định góc phải) —— */
 .zalo-float-stack {
   position: fixed;
-  right: clamp(0.65rem, 2vw, 1.15rem);
-  bottom: clamp(0.65rem, 2vw, 1.15rem);
+  right: clamp(0.75rem, 2vw, 1.25rem);
+  bottom: clamp(0.75rem, 2vw, 1.25rem);
   z-index: 200;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.55rem;
-  max-width: min(280px, calc(100vw - 1.25rem));
 }
 
 .zalo-float-btn {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.45rem 0.9rem 0.45rem 0.45rem;
+  gap: 0.65rem;
+  padding: 0.35rem 1rem 0.35rem 0.35rem;
   border-radius: 999px;
-  border: 1.5px solid transparent;
+  border: none;
   text-decoration: none;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.12);
-  transition: transform 0.15s, box-shadow 0.2s;
   background: #fff;
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, 0.08),
+    0 8px 24px rgba(0, 104, 255, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .zalo-float-btn:hover {
-  transform: translateX(-2px) translateY(-1px);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.1),
+    0 12px 32px rgba(0, 104, 255, 0.22);
   text-decoration: none;
 }
 
+.zalo-float-btn--zalo,
 .zalo-float-btn--blue {
-  border-color: #0068ff;
-  background: linear-gradient(180deg, #f5f9ff 0%, #e8f1fc 100%);
-  color: #0068ff;
+  color: inherit;
 }
 
-.zalo-float-btn--orange {
-  border-color: #e65100;
-  background: linear-gradient(180deg, #fffaf5 0%, #fff3e8 100%);
-  color: #e65100;
-}
-
-.zalo-float-btn-logo {
+.zalo-float-btn-icon {
   flex-shrink: 0;
-  display: block;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+  display: flex;
+  width: 46px;
+  height: 46px;
+  line-height: 0;
 }
 
-.zalo-float-btn-text {
+.zalo-float-btn-icon svg {
+  width: 46px;
+  height: 46px;
+  display: block;
+}
+
+.zalo-float-btn-body {
   display: flex;
   flex-direction: column;
-  line-height: 1.25;
+  gap: 0.1rem;
+  padding-right: 0.15rem;
   min-width: 0;
+}
+
+.zalo-float-btn-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.zalo-float-btn-phone {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0068ff;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* legacy classes */
+.zalo-float-btn--orange {
+  border: 1.5px solid #e65100;
+  background: linear-gradient(180deg, #fffaf5 0%, #fff3e8 100%);
 }
 
 .zalo-float-btn-text strong {
@@ -1355,8 +1382,15 @@ a:hover {
 .zalo-float-btn-text span {
   font-size: 0.78rem;
   font-weight: 600;
-  opacity: 0.95;
-  letter-spacing: 0.02em;
+}
+
+.zalo-float-btn-logo {
+  flex-shrink: 0;
+  display: block;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* legacy single float — ẩn nếu còn class cũ */
@@ -1690,13 +1724,23 @@ a:hover {
     display: none;
   }
 
-  .zalo-float-btn-text strong {
-    font-size: 0.76rem;
+  .zalo-float-btn-label {
+    font-size: 0.72rem;
+  }
+
+  .zalo-float-btn-phone {
+    font-size: 0.85rem;
+  }
+
+  .zalo-float-btn-icon,
+  .zalo-float-btn-icon svg {
+    width: 42px;
+    height: 42px;
   }
 
   .zalo-float-stack {
-    bottom: 0.65rem;
-    right: 0.5rem;
+    bottom: 0.75rem;
+    right: 0.65rem;
   }
 }
 
@@ -2306,6 +2350,9 @@ a:hover {
 }
 .product-shop-placeholder--orange {
   background: linear-gradient(145deg, #fff3e8, #ffe0b2);
+}
+.product-shop-placeholder--purple {
+  background: linear-gradient(145deg, #f3e5f5, #e1bee7);
 }
 
 .product-shop-info h1 {
