@@ -18,10 +18,17 @@ window.SITE_CONFIG = {
       "Xin chào, tôi muốn tư vấn / đăng ký app Quản lý sự cố đường bộ.",
   },
 
-  /** URL Web App sau khi triển khai Google Apps Script (xem google-apps-script/README.md) */
-  googleScriptUrl: "https://script.google.com/macros/s/AKfycbxu5Ha8WjZBCNpNV3sdbD-6mmm6PiX4OV7JxXwO4ICPaMwvd6Fl7GqZq7L2TOWUxAxHjg/exec",
+  /** Firebase Firestore — cùng project quanlysuco-6797e */
+  firebase: {
+    apiKey: "AIzaSyBgLClpTtYEc-PwZSCfKFWc8HkoJbFPbj8",
+    authDomain: "quanlysuco-6797e.firebaseapp.com",
+    projectId: "quanlysuco-6797e",
+    storageBucket: "quanlysuco-6797e.firebasestorage.app",
+    messagingSenderId: "958751424697",
+    appId: "1:958751424697:web:landing-quanlysuco",
+  },
 
-  /** Trang kế toán / xác nhận sau khi gửi form */
+  /** Trang kế toán / xác nhận (tùy chọn, sau khi gửi form) */
   accountingPageUrl: "ke-toan.html",
 
   /** Thư mục ảnh CH Play (đã copy vào website) */

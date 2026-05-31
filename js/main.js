@@ -331,7 +331,7 @@
     clearErrors();
     let ok = true;
 
-    if (!data.fullName || data.fullName.length < 2) {
+    if (!data.name || data.name.length < 2) {
       showError("fullName", "Vui lòng nhập họ tên (ít nhất 2 ký tự).");
       ok = false;
     }
@@ -343,91 +343,46 @@
       showError("email", "Vui lòng nhập đúng địa chỉ Gmail / email.");
       ok = false;
     }
-    if (!data.address || data.address.length < 5) {
+    if (!data.province || data.province.length < 5) {
       showError("address", "Vui lòng nhập địa chỉ (ít nhất 5 ký tự).");
       ok = false;
     }
     return ok;
   }
 
-  function parseScriptResponse(text) {
-    var raw = (text || "").trim();
-    if (!raw) {
-      throw new Error("Script không trả về dữ liệu. Deploy lại Web app (phiên bản Mới).");
-    }
-    if (raw.charAt(0) === "{") {
-      return JSON.parse(raw);
-    }
-    if (raw.indexOf("<html") !== -1 || raw.indexOf("<!DOCTYPE") !== -1) {
-      throw new Error(
-        "Script trả về HTML — kiểm tra deploy: Thực thi = Tôi, Truy cập = Bất kỳ ai."
-      );
-    }
-    if (raw.indexOf("fullName=") === 0 || raw.indexOf("phone=") === 0) {
-      throw new Error(
-        "Script chưa chạy doPost (trả về form thô). Dán lại Code.gs và Triển khai → Phiên bản Mới."
-      );
-    }
-    throw new Error("Phản hồi lạ: " + raw.slice(0, 120));
-  }
-
-  async function submitLead(payload) {
-    const url = (cfg.googleScriptUrl || "").trim();
-    if (!url) {
-      return { ok: true, demo: true };
+  async function submitLeadToFirestore(payload) {
+    var db = window.firebaseDb;
+    if (!db) {
+      throw new Error("Chưa kết nối Firebase — kiểm tra js/config.js và firebase SDK.");
     }
 
-    if (!url.endsWith("/exec")) {
-      throw new Error("googleScriptUrl phải kết thúc bằng /exec (không dùng /dev).");
-    }
-
-    const res = await fetch(url, {
-      method: "POST",
-      mode: "cors",
-      redirect: "follow",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({
-        fullName: payload.fullName,
-        phone: payload.phone,
-        email: payload.email,
-        address: payload.address,
-        source: payload.source || "website",
-        pageUrl: payload.pageUrl || window.location.href,
-      }),
-    });
-
-    const json = parseScriptResponse(await res.text());
-
-    if (!json.ok) {
-      var errMsg = json.error || "Gửi thất bại";
-      if (errMsg.indexOf("SPREADSHEET_ID") !== -1) {
-        throw new Error(
-          "Script Google chưa đúng code. Dán file COPY_VAO_GOOGLE.txt → Deploy phiên bản MỚI. Chi tiết: " +
-            errMsg
-        );
-      }
-      throw new Error(errMsg);
-    }
-    return json;
-  }
-
-  async function submitLeadNoCors(payload) {
-    const url = (cfg.googleScriptUrl || "").trim();
-    const body = new URLSearchParams({
-      fullName: payload.fullName,
+    await db.collection("leads").add({
+      name: payload.name,
       phone: payload.phone,
-      email: payload.email,
-      address: payload.address,
-      source: payload.source || "website",
-      pageUrl: payload.pageUrl || "",
+      email: payload.email.toLowerCase(),
+      company: payload.company || "",
+      province: payload.province,
+      note: payload.note || "",
+      status: "new",
+      source: "landing_page",
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    await fetch(url, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-      body: body.toString(),
+
+    return { ok: true };
+  }
+
+  function showFormSuccess(form, status) {
+    if (status) {
+      status.className = "form-status success";
+      status.textContent =
+        "Cảm ơn bạn đã đăng ký. Chúng tôi sẽ liên hệ trong thời gian sớm nhất.";
+    }
+    form.reset();
+    form.querySelectorAll("input, textarea, button").forEach(function (el) {
+      el.disabled = true;
     });
-    return { ok: true, noCors: true };
+    var card = form.closest(".register-form-card");
+    if (card) card.classList.add("is-submitted");
   }
 
   function initForm() {
@@ -442,12 +397,12 @@
       clearErrors();
 
       const payload = {
-        fullName: form.fullName.value.trim(),
+        name: form.fullName.value.trim(),
         phone: form.phone.value.trim(),
         email: form.email.value.trim(),
-        address: form.address.value.trim(),
-        source: "website",
-        pageUrl: window.location.href,
+        company: (form.company && form.company.value.trim()) || "",
+        province: form.address.value.trim(),
+        note: "Trang: " + window.location.href,
       };
 
       if (!validateForm(payload)) return;
@@ -459,38 +414,15 @@
       if (btn) btn.disabled = true;
 
       try {
-        let result;
-        try {
-          result = await submitLead(payload);
-        } catch (firstErr) {
-          var msg = String(firstErr.message || "");
-          if (
-            msg.indexOf("SPREADSHEET_ID") !== -1 ||
-            msg.indexOf("Illegal spreadsheet") !== -1 ||
-            msg.indexOf("Script Google") !== -1
-          ) {
-            throw firstErr;
-          }
-          result = await submitLeadNoCors(payload);
-          if (status) {
-            status.textContent = "Đã gửi (chế độ dự phòng) — kiểm tra Sheet…";
-          }
-        }
-
+        await submitLeadToFirestore(payload);
         sessionStorage.setItem("quanlysuco_lead", JSON.stringify(payload));
-
-        if (result.demo && status) {
-          status.className = "form-status";
-          status.textContent =
-            "Chế độ demo: chưa cấu hình Google Sheet — vẫn chuyển trang kế toán.";
-        }
-
-        const target = cfg.accountingPageUrl || "ke-toan.html";
-        window.location.href = target;
+        showFormSuccess(form, status);
       } catch (err) {
         if (status) {
           status.className = "form-status error";
-          status.textContent = (err.message || "Lỗi gửi form") + " — xem COPY_VAO_GOOGLE.txt";
+          status.textContent =
+            (err.message || "Lỗi gửi form") +
+            " — kiểm tra Firestore rules đã Publish chưa.";
         }
         if (btn) btn.disabled = false;
       }

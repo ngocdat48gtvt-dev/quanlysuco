@@ -1200,6 +1200,16 @@ a:hover {
   color: #dc2626;
 }
 
+.form-status.success {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.register-form-card.is-submitted {
+  border-color: rgba(22, 163, 74, 0.35);
+  background: rgba(22, 163, 74, 0.04);
+}
+
 /* —— Contact strip —— */
 .contact-strip {
   padding: var(--section-y) 0;
