@@ -62,6 +62,8 @@
     lockProductForm(product);
     initProductBreadcrumb(product);
     initProductShopHero(product);
+    initProductFeatures(product);
+    initProductIntroVideo(product);
   }
 
   function formatVnd(amount) {
@@ -273,16 +275,110 @@
     });
   }
 
+  function initProductFeatures(product) {
+    if (!product) return;
+    var root = document.getElementById("product-features-root");
+    if (!root) return;
+
+    var section = document.getElementById("product-features-section");
+    var fs = product.featuresSection || {};
+    var accent = product.accent || "blue";
+
+    if (section) {
+      section.classList.add("product-features-section--" + accent);
+    }
+
+    setText("product-features-eyebrow", fs.eyebrow || "Tính năng");
+    setText("product-features-title", fs.title || "Tính năng sản phẩm");
+    setText("product-features-sub", fs.subtitle || "");
+
+    var highlights = Array.isArray(product.featureHighlights)
+      ? product.featureHighlights
+      : [];
+    var features = Array.isArray(product.features) ? product.features : [];
+
+    var html = "";
+
+    if (highlights.length) {
+      html +=
+        '<ul class="highlights-top product-feature-highlights" role="list">' +
+        highlights
+          .map(function (item) {
+            return (
+              '<li class="highlight-top-item highlight-top-item--' +
+              escapeHtml(accent) +
+              '"><span class="highlight-top-icon highlight-top-icon--emoji" aria-hidden="true">' +
+              escapeHtml(item.icon || "✓") +
+              '</span><span class="highlight-top-text highlight-top-text--stack"><strong>' +
+              escapeHtml(item.title) +
+              "</strong><small>" +
+              escapeHtml(item.desc || "") +
+              "</small></span></li>"
+            );
+          })
+          .join("") +
+        "</ul>";
+    }
+
+    if (features.length) {
+      html += '<div class="highlights-panel"><div class="features-grid product-features-grid">';
+      features.forEach(function (item) {
+        html +=
+          '<article class="feature-card"><div class="feature-icon" aria-hidden="true">' +
+          escapeHtml(item.icon || "✓") +
+          "</div><h3>" +
+          escapeHtml(item.title) +
+          "</h3><p>" +
+          escapeHtml(item.desc || "") +
+          "</p></article>";
+      });
+      html += "</div></div>";
+    }
+
+    root.innerHTML = html;
+  }
+
+  function initProductIntroVideo(product) {
+    var section = document.getElementById("product-intro-video-section");
+    var root = document.getElementById("product-intro-video");
+    if (!root || !product || !product.introVideo) {
+      if (section) section.hidden = true;
+      return;
+    }
+
+    var v = product.introVideo;
+    setText("product-video-title", v.title || "Video giới thiệu sản phẩm");
+    setText("product-video-sub", v.description || "");
+
+    var id = String(v.youtubeId || "").trim();
+    var valid = id && !id.startsWith("VIDEO_ID");
+
+    var embedHtml = '<div class="video-embed video-embed--landscape">';
+    if (valid) {
+      embedHtml +=
+        '<iframe src="https://www.youtube.com/embed/' +
+        encodeURIComponent(id) +
+        '?rel=0&modestbranding=1" title="' +
+        escapeHtml(v.title || "Video giới thiệu") +
+        '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    } else {
+      embedHtml +=
+        '<div class="video-placeholder"><p><strong>Video giới thiệu</strong></p><p>Thêm <code>introVideo.youtubeId</code> trong <code>js/config.js</code></p></div>';
+    }
+    embedHtml += "</div>";
+
+    root.innerHTML = embedHtml;
+    if (section) section.hidden = false;
+  }
+
   function initProducts() {
     var products = getProducts();
     var pills = document.getElementById("hero-pills");
     var stack = document.getElementById("hero-product-stack");
     var catalogGrid = document.getElementById("products-catalog-grid");
-    var showcase = document.getElementById("products-showcase");
     var select = document.getElementById("product");
 
     renderProductCatalogGrid(catalogGrid, false);
-    renderProductCatalogGrid(showcase, true);
 
     if (pills) {
       pills.innerHTML = "";
@@ -364,15 +460,77 @@
     return "84" + d;
   }
 
-  function getZaloUrl() {
+  function formatPhoneDisplay(phone) {
+    var z = cfg.zalo || {};
+    if (z.phoneDisplay) return z.phoneDisplay;
+    var d = String(phone || "").replace(/\D/g, "");
+    if (d.indexOf("84") === 0 && d.length >= 11) d = "0" + d.slice(2);
+    if (d.length === 10) {
+      return d.slice(0, 4) + "." + d.slice(4, 7) + "." + d.slice(7);
+    }
+    return phone || "";
+  }
+
+  function getZaloUrl(customMessage) {
     var z = cfg.zalo || {};
     var digits = normalizeZaloPhone(z.phone || cfg.supportPhone);
     if (!digits) return "";
     var url = "https://zalo.me/" + digits;
-    if (z.defaultMessage) {
-      url += "?message=" + encodeURIComponent(z.defaultMessage);
+    var msg = customMessage || z.defaultMessage;
+    if (msg) {
+      url += "?message=" + encodeURIComponent(msg);
     }
     return url;
+  }
+
+  var ZALO_ICON_SVG =
+    '<svg class="zalo-float-btn-logo" viewBox="0 0 48 48" width="36" height="36" aria-hidden="true">' +
+    '<circle cx="24" cy="24" r="22" fill="#0068FF"/>' +
+    '<text x="24" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="Be Vietnam Pro,sans-serif">Z</text></svg>';
+
+  function initZaloFloatStack() {
+    var stack =
+      document.getElementById("zalo-float-stack") ||
+      document.getElementById("zalo-float");
+    if (!stack) return;
+
+    stack.id = "zalo-float-stack";
+    stack.className = "zalo-float-stack";
+    stack.removeAttribute("hidden");
+
+    var z = cfg.zalo || {};
+    var digits = normalizeZaloPhone(z.phone || cfg.supportPhone);
+    if (!digits) {
+      stack.hidden = true;
+      return;
+    }
+
+    var phoneShow = formatPhoneDisplay(z.phone || cfg.supportPhone);
+    var buttons = Array.isArray(z.floatButtons) ? z.floatButtons : [];
+
+    if (!buttons.length) {
+      buttons = [{ label: "Chat Zalo", variant: "blue", message: z.defaultMessage }];
+    }
+
+    stack.innerHTML = buttons
+      .map(function (btn) {
+        var href = getZaloUrl(btn.message || z.defaultMessage);
+        var variant = btn.variant || "blue";
+        return (
+          '<a class="zalo-float-btn zalo-float-btn--' +
+          escapeHtml(variant) +
+          '" href="' +
+          escapeHtml(href) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          ZALO_ICON_SVG +
+          '<span class="zalo-float-btn-text"><strong>' +
+          escapeHtml(btn.label) +
+          "</strong><span>" +
+          escapeHtml(phoneShow) +
+          "</span></span></a>"
+        );
+      })
+      .join("");
   }
 
   window.getZaloUrl = getZaloUrl;
@@ -380,7 +538,7 @@
   function initZaloContact() {
     var url = getZaloUrl();
     var z = cfg.zalo || {};
-    var phoneDisplay = (z.phone || cfg.supportPhone || "").trim();
+    var phoneDisplay = formatPhoneDisplay(z.phone || cfg.supportPhone);
     var label = z.displayName
       ? "Nhắn Zalo — " + z.displayName
       : "Nhắn Zalo ngay";
@@ -408,8 +566,7 @@
       el.textContent = phoneText;
     });
 
-    var float = document.getElementById("zalo-float");
-    if (float) float.hidden = !url;
+    initZaloFloatStack();
   }
 
   function initBrandImages() {

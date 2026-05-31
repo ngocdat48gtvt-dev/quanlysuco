@@ -15,12 +15,25 @@ window.SITE_CONFIG = {
   supportEmail: "[EMAIL_HỖ_TRỢ]",
   supportPhone: "",
 
-  /** Zalo liên hệ — điền SĐT đăng ký Zalo (vd: 0912345678) */
+  /** Zalo liên hệ */
   zalo: {
     phone: "0968549116",
+    phoneDisplay: "0968.549.116",
     displayName: "Dương Ngọc Đạt",
     defaultMessage:
       "Xin chào, tôi muốn tư vấn phần mềm / công cụ đường bộ (App Android hoặc AutoCAD).",
+    floatButtons: [
+      {
+        label: "Tư vấn phần mềm",
+        variant: "blue",
+        message: "Xin chào, tôi muốn tư vấn phần mềm / công cụ đường bộ.",
+      },
+      {
+        label: "Hỗ trợ kỹ thuật",
+        variant: "orange",
+        message: "Xin chào, tôi cần hỗ trợ kỹ thuật phần mềm.",
+      },
+    ],
   },
 
   /** Giá mặc định hiển thị trang chi tiết & catalog (VNĐ) */
@@ -82,6 +95,67 @@ window.SITE_CONFIG = {
         "Chuẩn hồ sơ quản lý HTGT",
         "Giảm nhập liệu thủ công",
       ],
+      featuresSection: {
+        eyebrow: "Tính năng",
+        title: "Vẽ hồ sơ HTGT tự động từ Excel",
+        subtitle:
+          "Phù hợp đơn vị quản lý đường bộ, tư vấn thiết kế và lập hồ sơ quản lý kết cấu hạ tầng giao thông.",
+      },
+      featureHighlights: [
+        {
+          icon: "📥",
+          title: "Import Excel một lần",
+          desc: "Đọc danh mục lý trình, kết cấu và thông số kỹ thuật từ file Excel chuẩn.",
+        },
+        {
+          icon: "⚙️",
+          title: "Vẽ tự động trên AutoCAD",
+          desc: "Tạo profile, mặt cắt và chi tiết kết cấu — không cần vẽ tay từng điểm.",
+        },
+        {
+          icon: "📐",
+          title: "Chuẩn hóa hồ sơ HTGT",
+          desc: "Thống nhất layer, ký hiệu và bố cục theo quy trình hồ sơ quản lý kết cấu.",
+        },
+      ],
+      features: [
+        {
+          icon: "📊",
+          title: "Đọc bảng Excel",
+          desc: "Import lý trình, loại kết cấu, kích thước và ghi chú từ sheet chuẩn.",
+        },
+        {
+          icon: "🛣️",
+          title: "Profile & mặt cắt",
+          desc: "Vẽ profile tuyến và mặt cắt kết cấu mặt đường tự động trên AutoCAD.",
+        },
+        {
+          icon: "🗂️",
+          title: "Layer & ký hiệu",
+          desc: "Áp dụng layer, text style và ký hiệu thống nhất cho toàn bộ hồ sơ.",
+        },
+        {
+          icon: "⏱️",
+          title: "Tiết kiệm thời gian",
+          desc: "Giảm nhập tay hàng trăm điểm — chỉ cần cập nhật Excel rồi chạy lại tool.",
+        },
+        {
+          icon: "🔄",
+          title: "Cập nhật nhanh",
+          desc: "Sửa số liệu Excel và vẽ lại bản vẽ khi có thay đổi thiết kế hoặc khảo sát.",
+        },
+        {
+          icon: "📁",
+          title: "Xuất bản vẽ DWG",
+          desc: "File AutoCAD sẵn sàng in ấn, nộp hồ sơ và lưu trữ theo tuyến.",
+        },
+      ],
+      introVideo: {
+        title: "Video giới thiệu tool Hồ sơ HTGT",
+        description:
+          "Quy trình import Excel và vẽ tự động hồ sơ quản lý kết cấu hạ tầng giao thông trên AutoCAD.",
+        youtubeId: "VIDEO_ID_HTGT",
+      },
     },
     {
       id: "tool-bao-lu",
@@ -103,6 +177,67 @@ window.SITE_CONFIG = {
         "Bản vẽ bình đồ nhanh",
         "Phục vụ báo cáo khẩn cấp",
       ],
+      featuresSection: {
+        eyebrow: "Tính năng",
+        title: "Bình đồ sự cố bão lũ tự động từ Excel",
+        subtitle:
+          "Gắn điểm sự cố đúng vị trí trên bản vẽ — thống nhất ký hiệu, xuất nhanh phục vụ báo cáo khẩn cấp.",
+      },
+      featureHighlights: [
+        {
+          icon: "📋",
+          title: "Danh sách từ Excel",
+          desc: "Đọc bảng điểm sự cố: lý trình, tọa độ, mức độ và ghi chú hiện trường.",
+        },
+        {
+          icon: "📍",
+          title: "Gắn đúng vị trí",
+          desc: "Đặt điểm sự cố chính xác trên bản đồ / mặt bằng tuyến trong AutoCAD.",
+        },
+        {
+          icon: "🗺️",
+          title: "Bình đồ thống nhất",
+          desc: "Ký hiệu, màu sắc và chú thích đồng bộ — sẵn sàng báo cáo và lưu hồ sơ.",
+        },
+      ],
+      features: [
+        {
+          icon: "📊",
+          title: "Import Excel",
+          desc: "Nhập danh sách điểm sự cố bão lũ từ file Excel theo mẫu quy định.",
+        },
+        {
+          icon: "🧭",
+          title: "Tọa độ & lý trình",
+          desc: "Gắn điểm theo km, tọa độ hoặc hệ quy chiếu tuyến đường.",
+        },
+        {
+          icon: "⚠️",
+          title: "Ký hiệu chuẩn",
+          desc: "Biểu tượng sự cố bão lũ thống nhất trên toàn bộ bình đồ.",
+        },
+        {
+          icon: "⚡",
+          title: "Vẽ nhanh",
+          desc: "Tạo bản vẽ hàng chục — hàng trăm điểm trong vài phút thay vì vẽ tay.",
+        },
+        {
+          icon: "📝",
+          title: "Chú thích tự động",
+          desc: "Gắn nhãn lý trình, mức độ và mô tả ngắn cho từng điểm sự cố.",
+        },
+        {
+          icon: "🖨️",
+          title: "Xuất DWG / in ấn",
+          desc: "File AutoCAD phục vụ báo cáo khẩn, họp chỉ đạo và lưu trữ hồ sơ.",
+        },
+      ],
+      introVideo: {
+        title: "Video giới thiệu tool Bình đồ bão lũ",
+        description:
+          "Quy trình import Excel và vẽ bình đồ các điểm sự cố bão lũ trên AutoCAD.",
+        youtubeId: "VIDEO_ID_BAO_LU",
+      },
     },
   ],
 

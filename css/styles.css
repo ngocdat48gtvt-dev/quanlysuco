@@ -454,6 +454,21 @@ a:hover {
   box-shadow: 0 8px 24px rgba(21, 101, 192, 0.22);
 }
 
+.highlight-top-item--teal {
+  background: linear-gradient(135deg, #00897b 0%, #00695c 100%);
+  box-shadow: 0 8px 24px rgba(0, 137, 123, 0.22);
+}
+
+.highlight-top-item--orange {
+  background: linear-gradient(135deg, #ef6c00 0%, #e65100 100%);
+  box-shadow: 0 8px 24px rgba(230, 81, 0, 0.22);
+}
+
+.highlight-top-icon--emoji {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
 .highlight-top-icon {
   display: flex;
   width: 44px;
@@ -1271,35 +1286,78 @@ a:hover {
   color: var(--navy);
 }
 
-/* —— Zalo float —— */
-.zalo-float {
+/* —— Zalo float (nút cố định góc phải) —— */
+.zalo-float-stack {
   position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
+  right: clamp(0.65rem, 2vw, 1.15rem);
+  bottom: clamp(0.65rem, 2vw, 1.15rem);
   z-index: 200;
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.1rem 0.7rem 0.85rem;
-  background: var(--zalo);
-  color: #fff;
-  border-radius: 999px;
-  box-shadow: 0 8px 28px rgba(0, 104, 255, 0.45);
-  font-weight: 700;
-  font-size: 0.92rem;
-  text-decoration: none;
-  transition: transform 0.15s;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+  max-width: min(280px, calc(100vw - 1.25rem));
 }
 
-.zalo-float:hover {
-  transform: translateY(-2px) scale(1.02);
-  color: #fff;
-  text-decoration: none;
-}
-
-.zalo-float-icon {
+.zalo-float-btn {
   display: flex;
-  line-height: 0;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.9rem 0.45rem 0.45rem;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.12);
+  transition: transform 0.15s, box-shadow 0.2s;
+  background: #fff;
+}
+
+.zalo-float-btn:hover {
+  transform: translateX(-2px) translateY(-1px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+  text-decoration: none;
+}
+
+.zalo-float-btn--blue {
+  border-color: #1565c0;
+  background: linear-gradient(180deg, #f5f9ff 0%, #e8f1fc 100%);
+  color: #1565c0;
+}
+
+.zalo-float-btn--orange {
+  border-color: #e65100;
+  background: linear-gradient(180deg, #fffaf5 0%, #fff3e8 100%);
+  color: #e65100;
+}
+
+.zalo-float-btn-logo {
+  flex-shrink: 0;
+  display: block;
+}
+
+.zalo-float-btn-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+.zalo-float-btn-text strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.zalo-float-btn-text span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  opacity: 0.95;
+  letter-spacing: 0.02em;
+}
+
+/* legacy single float — ẩn nếu còn class cũ */
+.zalo-float:not(.zalo-float-stack) {
+  display: none;
 }
 
 /* —— Footer —— */
@@ -1628,13 +1686,13 @@ a:hover {
     display: none;
   }
 
-  .zalo-float-text {
-    display: none;
+  .zalo-float-btn-text strong {
+    font-size: 0.76rem;
   }
 
-  .zalo-float {
-    padding: 0.8rem;
-    border-radius: 50%;
+  .zalo-float-stack {
+    bottom: 0.65rem;
+    right: 0.5rem;
   }
 }
 
@@ -1927,6 +1985,55 @@ a:hover {
   display: block;
   margin-bottom: 0.2rem;
   color: var(--navy);
+}
+
+/* —— Tool product: features + video ngang —— */
+.product-features-section .highlights-header .section-sub {
+  margin: 0.75rem auto 0;
+  max-width: 640px;
+}
+
+.product-features-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.product-intro-video {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.product-intro-video .video-embed--landscape {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  background: #0f172a;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.product-intro-video .video-embed--landscape iframe,
+.product-intro-video .video-embed--landscape .video-placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .product-features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .product-features-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 768px) {

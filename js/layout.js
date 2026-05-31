@@ -55,7 +55,6 @@
     if (!nav) return;
 
     var items = [
-      { href: "index.html", label: "Trang chủ", match: isHomePage() },
       {
         href: "san-pham.html",
         label: "Phần mềm",

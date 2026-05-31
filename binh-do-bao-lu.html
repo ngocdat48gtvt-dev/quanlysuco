@@ -50,19 +50,25 @@
         </div>
       </section>
 
-      <section class="section">
+      <section id="product-features-section" class="highlights-section product-features-section" aria-labelledby="product-features-title">
+        <div class="container">
+          <header class="highlights-header">
+            <span class="eyebrow" id="product-features-eyebrow">Tính năng</span>
+            <h2 id="product-features-title" class="highlights-title">Bình đồ sự cố bão lũ tự động</h2>
+            <p class="section-sub" id="product-features-sub"></p>
+          </header>
+          <div id="product-features-root"></div>
+        </div>
+      </section>
+
+      <section id="product-intro-video-section" class="section section-alt">
         <div class="container">
           <header class="section-header section-header--center">
-            <span class="eyebrow">Tính năng</span>
-            <h2 class="section-title">Bình đồ sự cố bão lũ tự động</h2>
-            <p class="section-sub">Gắn điểm sự cố đúng vị trí trên bản vẽ — thống nhất ký hiệu, xuất nhanh phục vụ báo cáo.</p>
+            <span class="eyebrow">Video</span>
+            <h2 class="section-title" id="product-video-title">Video giới thiệu sản phẩm</h2>
+            <p class="section-sub" id="product-video-sub"></p>
           </header>
-          <ul class="tool-perks" role="list">
-            <li><strong>Bảng Excel</strong> — danh sách điểm sự cố, lý trình, mức độ, ghi chú</li>
-            <li><strong>Gắn tọa độ</strong> — đặt điểm đúng vị trí trên bản đồ / mặt bằng tuyến</li>
-            <li><strong>Ký hiệu chuẩn</strong> — thống nhất biểu tượng sự cố bão lũ trên bình đồ</li>
-            <li><strong>Xuất nhanh</strong> — bản vẽ AutoCAD phục vụ báo cáo và lưu hồ sơ</li>
-          </ul>
+          <div id="product-intro-video" class="product-intro-video"></div>
         </div>
       </section>
 
@@ -116,7 +122,7 @@
       </section>
     </main>
 
-    <a id="zalo-float" class="zalo-float" data-zalo-link href="#lien-he" hidden aria-label="Chat Zalo"><span class="zalo-float-text">Zalo</span></a>
+    <div id="zalo-float-stack" class="zalo-float-stack" hidden aria-label="Liên hệ Zalo"></div>
 
     <footer class="site-footer">
       <div class="container">
@@ -134,6 +140,6 @@
     <script src="js/config.js"></script>
     <script src="js/firebase-config.js"></script>
     <script src="js/layout.js"></script>
-    <script src="js/main.js?v=7"></script>
+    <script src="js/main.js?v=9"></script>
   </body>
 </html>
