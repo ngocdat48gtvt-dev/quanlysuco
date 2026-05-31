@@ -52,6 +52,64 @@
     if (el) el.textContent = text;
   }
 
+  function siteBaseUrl() {
+    var seo = cfg.seo || {};
+    return String(seo.siteUrl || "").replace(/\/$/, "");
+  }
+
+  function upsertMeta(name, content) {
+    if (!content) return;
+    var el = document.querySelector('meta[name="' + name + '"]');
+    if (!el) {
+      el = document.createElement("meta");
+      el.setAttribute("name", name);
+      document.head.appendChild(el);
+    }
+    el.setAttribute("content", content);
+  }
+
+  function upsertOg(property, content) {
+    if (!content) return;
+    var el = document.querySelector('meta[property="' + property + '"]');
+    if (!el) {
+      el = document.createElement("meta");
+      el.setAttribute("property", property);
+      document.head.appendChild(el);
+    }
+    el.setAttribute("content", content);
+  }
+
+  function upsertCanonical(href) {
+    if (!href) return;
+    var el = document.querySelector('link[rel="canonical"]');
+    if (!el) {
+      el = document.createElement("link");
+      el.setAttribute("rel", "canonical");
+      document.head.appendChild(el);
+    }
+    el.setAttribute("href", href);
+  }
+
+  function initProductSeo(product) {
+    if (!product || !product.seo) return;
+    var seo = product.seo;
+    var base = siteBaseUrl();
+    var slug = seo.slug || String(product.page || "").replace(/\.html$/i, "");
+    var canonical = base && slug ? base + "/" + slug : "";
+
+    if (seo.title) document.title = seo.title;
+    upsertMeta("description", seo.description);
+    upsertMeta("keywords", seo.keywords);
+    upsertCanonical(canonical);
+    upsertOg("og:title", seo.title || product.name);
+    upsertOg("og:description", seo.description || product.tagline);
+    if (canonical) upsertOg("og:url", canonical);
+
+    var h1 = document.getElementById("product-page-title");
+    if (h1 && product.name) h1.textContent = product.name;
+    setText("product-page-tagline", product.tagline);
+  }
+
   function initMeta() {
     var brand = cfg.siteBrand || cfg.appName || "Phần mềm đường bộ";
     var tagline = cfg.siteTagline || cfg.tagline || "";
@@ -60,13 +118,16 @@
     var pageType = document.body.getAttribute("data-page");
 
     if (product) {
-      document.title = product.name + " — " + brand;
-      setText("product-page-title", product.name);
-      setText("product-page-tagline", product.tagline);
-      var metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc && product.tagline) metaDesc.setAttribute("content", product.tagline);
+      initProductSeo(product);
+      if (!product.seo) {
+        document.title = product.name + " — " + brand;
+        setText("product-page-title", product.name);
+        setText("product-page-tagline", product.tagline);
+        var metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && product.tagline) metaDesc.setAttribute("content", product.tagline);
+      }
     } else if (pageType === "catalog") {
-      document.title = "Sản phẩm phần mềm quản lý đường bộ | Giải pháp AutoCAD";
+      document.title = "Sản phẩm phần mềm quản lý đường bộ | App sự cố & Tool AutoCAD";
     } else if (pageType === "register") {
       document.title = "Đăng ký — " + brand;
     } else if (pageType === "purchase") {
@@ -248,16 +309,25 @@
       var href = productPageHref(p);
       var imgSrc = productCardImage(p);
       var card = document.createElement("a");
-      card.className =
+      var cardClass =
         "product-catalog-card product-catalog-card--" + (p.accent || "blue");
+      if (p.featured || String(p.cardBadge).toLowerCase() === "hot") {
+        cardClass += " product-catalog-card--featured";
+      }
+      card.className = cardClass;
       card.href = href;
       card.setAttribute("aria-label", "Xem chi tiết: " + p.name);
 
+      var altText = (p.seo && p.seo.title) || p.name;
       var mediaHtml = imgSrc
         ? '<img src="' +
           escapeHtml(imgSrc) +
-          '" alt="" loading="lazy" />'
-        : '<div class="product-catalog-placeholder"><span>Excel → AutoCAD</span></div>';
+          '" alt="' +
+          escapeHtml(altText) +
+          '" loading="lazy" />'
+        : '<div class="product-catalog-placeholder"><span>' +
+          escapeHtml(p.platform || "AutoCAD") +
+          "</span></div>";
 
       var badgeHtml = p.cardBadge
         ? '<span class="product-catalog-badge product-catalog-badge--' +
@@ -421,9 +491,11 @@
     var pills = document.getElementById("hero-pills");
     var stack = document.getElementById("hero-product-stack");
     var catalogGrid = document.getElementById("products-catalog-grid");
+    var landingGrid = document.getElementById("lp-products-grid");
     var select = document.getElementById("product");
 
     renderProductCatalogGrid(catalogGrid, false);
+    renderProductCatalogGrid(landingGrid, false);
 
     if (pills) {
       pills.innerHTML = "";

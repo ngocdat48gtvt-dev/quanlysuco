@@ -2146,6 +2146,49 @@ a:hover {
   color: var(--text);
 }
 
+.product-catalog-card--featured {
+  grid-column: 1 / -1;
+  border-color: var(--blue);
+  box-shadow: 0 8px 32px rgba(21, 101, 192, 0.15);
+}
+
+@media (min-width: 768px) {
+  .lp-products-grid .product-catalog-card--featured {
+    display: grid;
+    grid-template-columns: minmax(200px, 42%) 1fr;
+    grid-template-rows: auto;
+  }
+
+  .lp-products-grid .product-catalog-card--featured .product-catalog-media {
+    aspect-ratio: auto;
+    min-height: 200px;
+  }
+
+  .lp-products-grid .product-catalog-card--featured .product-catalog-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem 1.65rem;
+  }
+}
+
+.products-catalog-grid .product-catalog-card--featured {
+  grid-column: span 1;
+}
+
+@media (min-width: 900px) {
+  .products-catalog-grid:not(.lp-products-grid) .product-catalog-card--featured:first-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(220px, 38%) 1fr;
+  }
+
+  .products-catalog-grid:not(.lp-products-grid) .product-catalog-card--featured:first-child .product-catalog-media {
+    aspect-ratio: auto;
+    min-height: 180px;
+  }
+}
+
 .product-catalog-media {
   position: relative;
   aspect-ratio: 16 / 10;

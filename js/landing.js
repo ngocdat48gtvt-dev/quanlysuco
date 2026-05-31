@@ -37,10 +37,14 @@
       .map(function (item) {
         var p = findProduct(item.productId);
         var href = p ? productHref(p) : "san-pham.html";
+        var featured = item.featured || (p && p.featured);
         return (
-          '<a class="lp-solution-card reveal" href="' +
+          '<a class="lp-solution-card reveal' +
+          (featured ? " lp-solution-card--featured" : "") +
+          '" href="' +
           escapeHtml(href) +
           '">' +
+          (featured ? '<span class="lp-solution-hot">Hot</span>' : "") +
           "<h3>" +
           escapeHtml(item.title) +
           "</h3>" +

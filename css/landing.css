@@ -250,6 +250,44 @@
   color: inherit;
 }
 
+.lp-solution-card--featured {
+  border-color: var(--blue);
+  background: linear-gradient(135deg, #f0f6ff 0%, #fff 100%);
+  box-shadow: 0 8px 28px rgba(21, 101, 192, 0.12);
+}
+
+.lp-solution-hot {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: #e53935;
+  border-radius: 4px;
+}
+
+/* Products grid on landing */
+.lp-products {
+  background: #fff;
+}
+
+.lp-products-grid {
+  margin-top: 0.5rem;
+}
+
+.lp-products-more {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.lp-products-more a {
+  font-weight: 700;
+}
+
 .lp-solution-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.12rem;

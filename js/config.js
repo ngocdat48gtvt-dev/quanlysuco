@@ -67,8 +67,19 @@ window.SITE_CONFIG = {
       registerLabel: "App Quản lý sự cố đường bộ (Android)",
       accent: "blue",
       cardBadge: "Hot",
+      featured: true,
       cardImage: "banner2.png",
-      cardSummary: "Ghi sự cố hiện trường, cloud, báo cáo Word/Excel trên Android.",
+      cardSummary:
+        "Ghi nhận hiện trường, GPS, ảnh minh chứng, theo dõi xử lý và báo cáo Word/Excel trên Android.",
+      seo: {
+        title:
+          "Phần mềm Quản Lý Sự Cố Đường Bộ | Ghi Nhận Hiện Trường & Theo Dõi Xử Lý Sự Cố",
+        description:
+          "Phần mềm quản lý sự cố đường bộ giúp ghi nhận hiện trường, lưu ảnh, định vị GPS, theo dõi tiến độ xử lý và tổng hợp báo cáo nhanh chóng cho đơn vị quản lý, bảo trì đường bộ.",
+        keywords:
+          "phần mềm quản lý sự cố đường bộ, app sự cố đường bộ, ghi nhận hiện trường, GPS sự cố, báo cáo sự cố đường bộ, app Android đường bộ",
+        slug: "app-quan-ly-su-co",
+      },
       hasPlayStore: true,
       perks: [
         "Không mạng vẫn ghi được",
@@ -91,6 +102,14 @@ window.SITE_CONFIG = {
       cardBadge: "New",
       cardImage: "",
       cardSummary: "Vẽ hồ sơ quản lý kết cấu HTGT tự động từ Excel sang AutoCAD.",
+      seo: {
+        title: "Tool Hồ Sơ Quản Lý HTGT | Excel sang AutoCAD Tự Động",
+        description:
+          "Tự động vẽ hồ sơ quản lý kết cấu hạ tầng giao thông từ Excel sang AutoCAD — giảm nhập liệu, chuẩn hóa layer, profile và mặt cắt tuyến.",
+        keywords:
+          "hồ sơ HTGT AutoCAD, tool Excel AutoCAD, quản lý kết cấu đường bộ, vẽ profile tuyến",
+        slug: "ho-so-htgt",
+      },
       perks: [
         "Import Excel một lần",
         "Vẽ profile / kết cấu tự động",
@@ -173,6 +192,14 @@ window.SITE_CONFIG = {
       cardBadge: "New",
       cardImage: "",
       cardSummary: "Vẽ bình đồ điểm sự cố bão lũ tự động từ Excel sang AutoCAD.",
+      seo: {
+        title: "Tool Vẽ Bình Đồ Sự Cố Bão Lũ | Excel sang AutoCAD",
+        description:
+          "Tự động vẽ bình đồ các điểm sự cố bão lũ từ Excel (tọa độ, lý trình) sang AutoCAD — nhanh, thống nhất ký hiệu, phục vụ báo cáo khẩn.",
+        keywords:
+          "bình đồ bão lũ AutoCAD, bình đồ tuyến đường bộ, điểm sự cố Excel AutoCAD",
+        slug: "binh-do-bao-lu",
+      },
       perks: [
         "Gắn tọa độ từ Excel",
         "Ký hiệu điểm sự cố chuẩn",
@@ -256,6 +283,14 @@ window.SITE_CONFIG = {
       cardImage: "",
       cardSummary:
         "In hàng loạt hồ sơ QLCL theo điều kiện — 1 lệnh in, tự sắp xếp biên bản & phụ lục.",
+      seo: {
+        title: "Tool In Hồ Sơ QLCL Hàng Loạt | In Biên Bản Tự Động",
+        description:
+          "In toàn bộ hồ sơ quản lý chất lượng theo điều kiện lọc — một lệnh in, tự động sắp xếp biên bản, phụ lục và tài liệu QLCL.",
+        keywords:
+          "in hồ sơ QLCL hàng loạt, in biên bản tự động, tool in ấn QLCL, in hồ sơ thi công",
+        slug: "in-an-qlcl",
+      },
       placeholderSub: "In hàng loạt · QLCL",
       perks: [
         "Lọc theo điều kiện",
@@ -420,7 +455,7 @@ window.SITE_CONFIG = {
     description:
       "Giảm 70–90% thời gian lập hồ sơ quản lý đường, bình đồ tuyến và cập nhật lý trình trên AutoCAD. Tool chuyên ngành cho hạt quản lý đường bộ, bảo trì và tư vấn giao thông.",
     keywords:
-      "phần mềm quản lý đường bộ, tool AutoCAD đường bộ, bình đồ tuyến AutoCAD, hồ sơ quản lý đường, cập nhật lý trình, app quản lý sự cố đường bộ, Excel sang AutoCAD, in hồ sơ QLCL",
+      "phần mềm quản lý sự cố đường bộ, app sự cố đường bộ, phần mềm quản lý đường bộ, tool AutoCAD đường bộ, bình đồ tuyến AutoCAD, hồ sơ quản lý đường, Excel sang AutoCAD, in hồ sơ QLCL",
     ogImage: "Ho so dang CH play/banner2.png",
     locale: "vi_VN",
     author: "Giải pháp phần mềm đường bộ",
@@ -469,6 +504,12 @@ window.SITE_CONFIG = {
       title: "Bộ công cụ dành riêng cho ngành quản lý đường bộ",
       items: [
         {
+          productId: "app-quan-ly-su-co",
+          title: "App Quản Lý Sự Cố Đường Bộ",
+          desc: "Ghi nhận hiện trường, GPS, lưu ảnh và quản lý sự cố tập trung — sản phẩm Hot.",
+          featured: true,
+        },
+        {
           productId: "tool-bao-lu",
           title: "Tool Vẽ Bình Đồ Tự Động",
           desc: "Tạo bình đồ tuyến nhanh chóng từ dữ liệu đầu vào.",
@@ -482,11 +523,6 @@ window.SITE_CONFIG = {
           productId: "tool-in-an-qlcl",
           title: "Tool In Ấn Hồ Sơ",
           desc: "Xuất bản vẽ và hồ sơ hàng loạt nhanh chóng, đồng bộ.",
-        },
-        {
-          productId: "app-quan-ly-su-co",
-          title: "App Quản Lý Sự Cố Đường Bộ",
-          desc: "Ghi nhận hiện trường, lưu ảnh và quản lý sự cố tập trung.",
         },
       ],
     },

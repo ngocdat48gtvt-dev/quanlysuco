@@ -82,10 +82,10 @@
     var items;
     if (isLandingPage()) {
       items = [
+        { href: "#san-pham", label: "Sản phẩm", match: false },
         { href: "#giai-phap", label: "Giải pháp", match: false },
         { href: "#hieu-qua", label: "Hiệu quả", match: false },
         { href: "#faq", label: "FAQ", match: false },
-        { href: catalogPage(), label: "Sản phẩm", match: false },
       ];
     } else {
       items = [
