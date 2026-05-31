@@ -37,7 +37,10 @@ window.SITE_CONFIG = {
     },
   },
 
-  /** Giá mặc định hiển thị trang chi tiết & catalog (VNĐ) */
+  /** Hiển thị giá trên danh mục & trang chi tiết (false = liên hệ / thương lượng) */
+  showProductPrice: false,
+
+  /** Giá mặc định — dùng trang mua (mua.html) khi cần QR thanh toán */
   productPricing: {
     price: 500000,
     priceOriginal: 1000000,
@@ -378,6 +381,9 @@ window.SITE_CONFIG = {
   /** Ảnh minh họa hero (không chữ) — tính năng hiển thị ở section HTML bên dưới */
   banner: "banner2.png",
   bannerFeatureGraphic: "921d2d07-8356-43ca-94cc-602a4c63dbe1.png",
+  /** Logo thương hiệu website (header, favicon) */
+  siteLogo: "assets/logo-qld.png",
+  /** Icon app CH Play — dùng trang chi tiết app nếu cần */
   icon: "ic_launcher_play_store_512.png",
 
   /**

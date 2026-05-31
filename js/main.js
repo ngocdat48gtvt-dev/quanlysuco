@@ -194,18 +194,22 @@
     setText("product-page-title", product.name);
     setText("product-page-tagline", product.tagline);
 
-    var pricing = getProductPricing(product);
     var pricingEl = document.getElementById("product-shop-pricing");
     if (pricingEl) {
-      var html = "";
-      if (pricing.priceOriginal && pricing.priceOriginal > pricing.price) {
-        html +=
-          '<span class="product-price-old">' +
-          escapeHtml(formatVnd(pricing.priceOriginal).replace(" vnđ", "")) +
-          "</span> ";
+      if (cfg.showProductPrice === false) {
+        pricingEl.hidden = true;
+      } else {
+        var pricing = getProductPricing(product);
+        var html = "";
+        if (pricing.priceOriginal && pricing.priceOriginal > pricing.price) {
+          html +=
+            '<span class="product-price-old">' +
+            escapeHtml(formatVnd(pricing.priceOriginal).replace(" vnđ", "")) +
+            "</span> ";
+        }
+        html += '<span class="product-price-current">' + escapeHtml(formatVnd(pricing.price)) + "</span>";
+        pricingEl.innerHTML = html;
       }
-      html += '<span class="product-price-current">' + escapeHtml(formatVnd(pricing.price)) + "</span>";
-      pricingEl.innerHTML = html;
     }
 
     var media = document.getElementById("product-shop-media");
@@ -301,7 +305,7 @@
     var altText = (p.seo && p.seo.title) || p.name;
 
     if (p.cardUseIcon) {
-      var iconSrc = assetPath(cfg.icon);
+      var iconSrc = brandLogoPath();
       return (
         '<div class="product-catalog-placeholder product-catalog-placeholder--app">' +
         '<img class="product-catalog-app-icon" src="' +
@@ -367,9 +371,11 @@
         '<p class="product-catalog-summary">' +
         escapeHtml(p.cardSummary || p.tagline || "") +
         "</p>" +
-        '<p class="product-catalog-price">' +
-        escapeHtml(formatVnd(getProductPricing(p).price)) +
-        "</p>" +
+        (cfg.showProductPrice !== false
+          ? '<p class="product-catalog-price">' +
+            escapeHtml(formatVnd(getProductPricing(p).price)) +
+            "</p>"
+          : "") +
         "</div>";
 
       container.appendChild(card);
@@ -722,16 +728,22 @@
     initZaloFloatStack();
   }
 
+  function brandLogoPath() {
+    if (cfg.siteLogo) return publicAssetPath(cfg.siteLogo);
+    return assetPath(cfg.icon);
+  }
+
   function initBrandImages() {
-    const icon = assetPath(cfg.icon);
-    if (!icon) return;
+    var logo = brandLogoPath();
+    if (!logo) return;
 
     document.querySelectorAll("[data-app-icon]").forEach(function (img) {
-      img.src = icon;
+      img.src = logo;
+      img.alt = cfg.siteBrand || cfg.appName || "Logo";
     });
 
     const favicon = document.querySelector('link[rel="icon"]');
-    if (favicon) favicon.href = icon;
+    if (favicon) favicon.href = logo;
   }
 
   function initHeroBanner() {
