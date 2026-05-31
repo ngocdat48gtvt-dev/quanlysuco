@@ -26,6 +26,11 @@
     return p.registerLabel || p.shortName || p.name || productId;
   }
 
+  function getPriceUnit() {
+    var u = (cfg.productPricing || {}).priceUnit;
+    return u != null && u !== "" ? u : "/năm";
+  }
+
   function getProductPrice(productId) {
     var p = findProduct(productId);
     if (p && (p.isFree || p.price === 0)) return 0;
@@ -35,15 +40,53 @@
     return 0;
   }
 
-  function formatPriceLabel(productId) {
-    var p = findProduct(productId);
-    if (p && (p.isFree || p.price === 0)) return p.priceLabel || "Miễn phí";
-    return formatVnd(getProductPrice(productId));
-  }
-
   function formatVnd(amount) {
     if (pay.formatVnd) return pay.formatVnd(amount);
     return Number(amount).toLocaleString("vi-VN") + " vnđ";
+  }
+
+  function formatPriceLabel(productId) {
+    var p = findProduct(productId);
+    if (p && (p.isFree || p.price === 0)) return p.priceLabel || "Miễn phí";
+    return formatVnd(getProductPrice(productId)) + getPriceUnit();
+  }
+
+  function getUrlProductId() {
+    return new URLSearchParams(window.location.search).get("product") || "";
+  }
+
+  function isPaymentStepUrl() {
+    return new URLSearchParams(window.location.search).get("step") === "pay";
+  }
+
+  function getSavedPurchase() {
+    try {
+      var raw = sessionStorage.getItem("quanlysuco_purchase");
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  }
+
+  function clearPurchaseSession() {
+    sessionStorage.removeItem("quanlysuco_purchase");
+  }
+
+  function setFormUrl(productId) {
+    var path = window.location.pathname || "mua.html";
+    var params = new URLSearchParams();
+    if (productId) params.set("product", productId);
+    var qs = params.toString();
+    history.replaceState(null, "", qs ? path + "?" + qs : path);
+  }
+
+  function setPaymentUrl(productId) {
+    var path = window.location.pathname || "mua.html";
+    var params = new URLSearchParams();
+    if (productId) params.set("product", productId);
+    params.set("step", "pay");
+    history.replaceState(null, "", path + "?" + params.toString());
   }
 
   function trialLinkForProduct(productId) {
@@ -64,7 +107,6 @@
       return;
     }
 
-    var amount = getProductPrice(id);
     line.hidden = false;
     display.textContent = formatPriceLabel(id);
   }
@@ -73,10 +115,25 @@
     document.querySelectorAll("[data-trial-link]").forEach(function (a) {
       var select = $("product");
       var id = select && select.value ? select.value : "";
-      var params = new URLSearchParams(window.location.search);
-      if (!id) id = params.get("product") || "";
+      if (!id) id = getUrlProductId();
       a.href = trialLinkForProduct(id);
     });
+  }
+
+  function showFormPanel(productId) {
+    var formPanel = $("purchase-form-panel");
+    var payPanel = $("purchase-payment-panel");
+    var card = $("purchase-card");
+    if (formPanel) formPanel.hidden = false;
+    if (payPanel) payPanel.hidden = true;
+    if (card) card.classList.remove("is-payment-shown");
+
+    var select = $("product");
+    if (productId && select) select.value = productId;
+
+    document.title = "Mua phần mềm — " + (cfg.siteBrand || cfg.appName || "Phần mềm");
+    updatePriceDisplay();
+    initTrialLink();
   }
 
   function showPaymentPanel(data) {
@@ -90,6 +147,7 @@
     var bank = pay.getBankConfig ? pay.getBankConfig() : cfg.bankTransfer || {};
     var transferNote = data.transferNote;
     var amount = data.amount;
+    var amountText = formatVnd(amount) + getPriceUnit();
     var qrUrl = pay.buildVietQrImageUrl
       ? pay.buildVietQrImageUrl({
           amount: amount,
@@ -101,14 +159,14 @@
     var qrImg = $("payment-qr-img");
     if (qrImg && qrUrl) {
       qrImg.src = qrUrl;
-      qrImg.alt = "QR chuyển khoản " + formatVnd(amount);
+      qrImg.alt = "QR chuyển khoản " + amountText;
     }
 
     setText("payment-account-name", bank.accountName);
     setText("payment-bank-name", bank.bankName);
     setText("payment-account-number", bank.accountNumber);
-    setText("payment-amount-text", formatVnd(amount));
-    setText("payment-amount-box", formatVnd(amount));
+    setText("payment-amount-text", amountText);
+    setText("payment-amount-box", amountText);
     setText("payment-transfer-note", transferNote);
 
     var summary = $("purchase-summary");
@@ -135,6 +193,38 @@
   function setText(id, text) {
     var el = $(id);
     if (el && text) el.textContent = text;
+  }
+
+  function resetToNewPurchase(productId) {
+    clearPurchaseSession();
+    setFormUrl(productId || "");
+    showFormPanel(productId || "");
+  }
+
+  function initPurchasePageState() {
+    var urlProductId = getUrlProductId();
+    var saved = getSavedPurchase();
+    var onPayStep = isPaymentStepUrl();
+
+    if (urlProductId && saved && saved.productId !== urlProductId) {
+      clearPurchaseSession();
+      saved = null;
+    }
+
+    if (urlProductId && !onPayStep) {
+      clearPurchaseSession();
+      showFormPanel(urlProductId);
+      return;
+    }
+
+    if (onPayStep && saved && saved.transferNote && saved.name) {
+      if (!urlProductId || saved.productId === urlProductId) {
+        showPaymentPanel(saved);
+        return;
+      }
+    }
+
+    showFormPanel(urlProductId);
   }
 
   async function copyText(text, statusEl, okMsg) {
@@ -171,6 +261,13 @@
         copyText(bank.accountNumber || "", status, "Đã sao chép số tài khoản.");
       });
     }
+
+    var resetBtn = $("purchase-reset-btn");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        resetToNewPurchase("");
+      });
+    }
   }
 
   function initPurchaseForm() {
@@ -183,8 +280,14 @@
 
     if (select) {
       select.addEventListener("change", function () {
+        var id = select.value;
+        if (isPaymentStepUrl()) {
+          resetToNewPurchase(id);
+          return;
+        }
         updatePriceDisplay();
         initTrialLink();
+        if (id) setFormUrl(id);
       });
     }
 
@@ -236,20 +339,19 @@
           await window.submitPurchaseLead(leadPayload);
         }
 
-        sessionStorage.setItem(
-          "quanlysuco_purchase",
-          JSON.stringify({
-            name: leadPayload.name,
-            phone: leadPayload.phone,
-            email: leadPayload.email,
-            address: leadPayload.province,
-            productId: productId,
-            productLabel: productLabel,
-            amount: amount,
-            transferNote: transferNote,
-          })
-        );
+        var saved = {
+          name: leadPayload.name,
+          phone: leadPayload.phone,
+          email: leadPayload.email,
+          address: leadPayload.province,
+          productId: productId,
+          productLabel: productLabel,
+          amount: amount,
+          transferNote: transferNote,
+        };
 
+        sessionStorage.setItem("quanlysuco_purchase", JSON.stringify(saved));
+        setPaymentUrl(productId);
         showPaymentPanel(leadPayload);
       } catch (err) {
         if (status) {
@@ -261,24 +363,9 @@
     });
   }
 
-  function restorePaymentFromSession() {
-    try {
-      var raw = sessionStorage.getItem("quanlysuco_purchase");
-      if (!raw) return;
-      var data = JSON.parse(raw);
-      if (data && data.transferNote && data.name) {
-        showPaymentPanel(data);
-      }
-    } catch (_) {
-      /* ignore */
-    }
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
-    updatePriceDisplay();
-    initTrialLink();
-    initCopyButtons();
     initPurchaseForm();
-    restorePaymentFromSession();
+    initCopyButtons();
+    initPurchasePageState();
   });
 })();

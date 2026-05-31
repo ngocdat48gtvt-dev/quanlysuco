@@ -42,8 +42,9 @@ window.SITE_CONFIG = {
 
   /** Giá mặc định — dùng trang mua (mua.html) khi cần QR thanh toán */
   productPricing: {
-    price: 500000,
-    priceOriginal: 1000000,
+    price: 499000,
+    priceOriginal: 999000,
+    priceUnit: "/năm",
   },
 
   /** Lợi ích cột phải trang chi tiết sản phẩm */
