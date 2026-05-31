@@ -6,8 +6,11 @@ function escapeHtml(text) {
 }
 
 function formatMessage(data) {
+  const isPurchase = data.leadType === "purchase";
   const lines = [
-    "🆕 <b>Khách đăng ký mới — Landing Page</b>",
+    isPurchase
+      ? "🛒 <b>Khách MUA phần mềm — chờ chuyển khoản</b>"
+      : "🆕 <b>Khách đăng ký mới — Landing Page</b>",
     "",
     `<b>Họ tên:</b> ${escapeHtml(data.name)}`,
     `<b>SĐT:</b> ${escapeHtml(data.phone)}`,
@@ -16,6 +19,12 @@ function formatMessage(data) {
   const productLabel = String(data.product || data.company || "").trim();
   if (productLabel) lines.push(`<b>Loại phần mềm:</b> ${escapeHtml(productLabel)}`);
   lines.push(`<b>Địa chỉ:</b> ${escapeHtml(data.province)}`);
+  if (isPurchase && data.transferNote) {
+    lines.push(`<b>Nội dung CK:</b> ${escapeHtml(data.transferNote)}`);
+  }
+  if (isPurchase && data.amount != null) {
+    lines.push(`<b>Số tiền:</b> ${escapeHtml(String(data.amount))} VNĐ`);
+  }
   if (data.note) lines.push(`<b>Ghi chú:</b> ${escapeHtml(data.note)}`);
   return lines.join("\n");
 }
@@ -96,6 +105,9 @@ module.exports = async function handler(req, res) {
     product: String(body.product || body.company || "").trim(),
     province,
     note: String(body.note || "").trim(),
+    leadType: String(body.leadType || "trial").trim(),
+    transferNote: String(body.transferNote || "").trim(),
+    amount: body.amount != null ? Number(body.amount) : null,
   };
 
   try {

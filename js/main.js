@@ -460,6 +460,22 @@
     });
 
     applyProductFromUrl();
+    initBuyLinks();
+  }
+
+  function initBuyLinks() {
+    var productId = document.body.getAttribute("data-product-id") || "";
+    var select = document.getElementById("product");
+    if (!productId && select && select.value) {
+      productId = select.value;
+    }
+    if (!productId) {
+      var params = new URLSearchParams(window.location.search);
+      productId = params.get("product") || "";
+    }
+    document.querySelectorAll("[data-buy-link]").forEach(function (a) {
+      a.href = buyPageUrl(productId);
+    });
   }
 
   function escapeHtml(text) {

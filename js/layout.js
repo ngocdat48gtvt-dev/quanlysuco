@@ -135,6 +135,16 @@
     document.querySelectorAll("[data-register-href]").forEach(function (a) {
       a.href = registerHref(productId || "");
     });
+
+    document.querySelectorAll("[data-buy-link]").forEach(function (a) {
+      var id = productId || "";
+      if (!id) {
+        var params = new URLSearchParams(window.location.search);
+        id = params.get("product") || "";
+      }
+      var page = cfg.purchasePage || "mua.html";
+      a.href = id ? page + "?product=" + encodeURIComponent(id) : page;
+    });
   }
 
   window.SiteLayout = {
