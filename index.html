@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Ứng dụng Quản lý sự cố đường bộ — ghi nhận hiện trường, ảnh minh chứng, báo cáo Word/Excel, đồng bộ cloud và offline 24 giờ."
+      content="App Android quản lý sự cố đường bộ và công cụ AutoCAD tự động từ Excel — hồ sơ HTGT, bình đồ bão lũ. Đăng ký tư vấn và dùng thử."
     />
-    <title>Quản lý sự cố đường bộ</title>
+    <title>Phần mềm &amp; công cụ đường bộ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,12 +32,13 @@
             width="44"
             height="44"
           />
-          <span id="app-name">Quản lý sự cố đường bộ</span>
+          <span id="app-name">Giải pháp phần mềm đường bộ</span>
         </a>
 
         <nav class="nav" id="site-nav" aria-label="Menu chính">
-          <a href="#tinh-nang-noi-bat">Tính năng</a>
-          <a href="#anh-app">Ảnh app</a>
+          <a href="#san-pham">Sản phẩm</a>
+          <a href="#app-quan-ly-su-co">App Android</a>
+          <a href="#tool-autocad">AutoCAD</a>
           <a href="#video">Hướng dẫn</a>
           <a href="#lien-he">Liên hệ</a>
         </nav>
@@ -77,34 +78,58 @@
       <section class="hero">
         <div class="container hero-layout">
           <div class="hero-content">
-            <span class="eyebrow">Ứng dụng Android · Đường bộ</span>
-            <h1 id="app-name-hero">Quản lý sự cố đường bộ</h1>
-            <p class="hero-lead" id="hero-tagline">
-              Ghi nhận sự cố hiện trường, ảnh minh chứng, báo cáo Word/Excel và đồng bộ cloud.
+            <span class="eyebrow">App Android · AutoCAD · Excel</span>
+            <h1 id="site-brand-hero">Giải pháp phần mềm đường bộ</h1>
+            <p class="hero-lead" id="site-tagline">
+              App quản lý sự cố hiện trường và công cụ vẽ tự động từ Excel sang AutoCAD — phục vụ BDTX, KPLB và hồ sơ hạ tầng giao thông.
             </p>
+            <div id="hero-pills" class="hero-pills" aria-label="Danh sách sản phẩm"></div>
             <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="#dang-ky">Đăng ký dùng thử</a>
-              <a
-                class="btn btn-secondary btn-lg"
-                data-play-store
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Tải CH Play</a
-              >
+              <a class="btn btn-primary btn-lg" href="#dang-ky">Đăng ký tư vấn</a>
+              <a class="btn btn-secondary btn-lg" href="#san-pham">Xem sản phẩm</a>
             </div>
           </div>
 
           <div class="hero-visual">
-            <div class="hero-banner-wrap hero-banner-wrap--illus">
-              <img
-                id="hero-banner-img"
-                src="Ho so dang CH play/banner2.png"
-                alt="Minh họa quản lý sự cố đường bộ"
-                width="800"
-                height="400"
-              />
+            <div id="hero-product-stack" class="hero-product-stack" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="san-pham" class="products-section" aria-labelledby="products-title">
+        <div class="container">
+          <header class="section-header section-header--center">
+            <span class="eyebrow">Sản phẩm</span>
+            <h2 id="products-title" class="section-title">Chọn giải pháp phù hợp</h2>
+            <p class="section-sub">
+              Một cổng tư vấn cho app Android và công cụ AutoCAD — đăng ký một lần, chúng tôi hướng dẫn cài đặt và kích hoạt.
+            </p>
+          </header>
+          <div id="products-showcase" class="products-showcase"></div>
+        </div>
+      </section>
+
+      <section id="app-quan-ly-su-co" class="product-detail product-detail--blue">
+        <div class="container">
+          <header class="product-band">
+            <div class="product-band-text">
+              <span class="product-band-badge">App di động · Android</span>
+              <h2 id="app-name-hero">Quản lý sự cố đường bộ</h2>
+              <p id="hero-tagline">Ghi nhận sự cố hiện trường, ảnh minh chứng, báo cáo Word/Excel và đồng bộ cloud.</p>
             </div>
+            <div class="product-band-actions">
+              <a class="btn btn-primary" href="#dang-ky" data-register-product="app-quan-ly-su-co">Đăng ký dùng thử</a>
+              <a class="btn btn-secondary" data-play-store href="#" target="_blank" rel="noopener noreferrer">Tải CH Play</a>
+            </div>
+          </header>
+          <div class="hero-banner-wrap hero-banner-wrap--illus product-banner-img">
+            <img
+              id="hero-banner-img"
+              src="Ho so dang CH play/banner2.png"
+              alt="Minh họa app Quản lý sự cố đường bộ"
+              width="800"
+              height="400"
+            />
           </div>
         </div>
       </section>
@@ -225,7 +250,74 @@
         </div>
       </section>
 
-      <section id="tinh-nang" class="section section-alt">
+      <section id="tool-autocad" class="section section-alt">
+        <div class="container">
+          <header class="section-header section-header--center">
+            <span class="eyebrow">Công cụ AutoCAD</span>
+            <h2 class="section-title">Excel → AutoCAD tự động</h2>
+            <p class="section-sub">
+              Nhập liệu trên Excel quen thuộc — công cụ vẽ bản vẽ AutoCAD theo chuẩn hồ sơ, giảm thao tác lặp và sai sót.
+            </p>
+          </header>
+          <div class="excel-flow" aria-hidden="true">
+            <span class="excel-flow-step">📊 Excel</span>
+            <span class="excel-flow-arrow">→</span>
+            <span class="excel-flow-step excel-flow-step--tool">⚙️ Tool</span>
+            <span class="excel-flow-arrow">→</span>
+            <span class="excel-flow-step">📐 AutoCAD</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="tool-ho-so-htgt" class="product-detail product-detail--teal">
+        <div class="container">
+          <header class="product-band">
+            <div class="product-band-text">
+              <span class="product-band-badge">Excel → AutoCAD</span>
+              <h2>Hồ sơ quản lý kết cấu hạ tầng giao thông</h2>
+              <p>
+                Tự động vẽ hồ sơ quản lý kết cấu HTGT từ bảng Excel — profile, lớp kết cấu, lý trình theo đúng quy trình hồ sơ quản lý.
+              </p>
+            </div>
+            <div class="product-band-actions">
+              <a class="btn btn-primary" href="#dang-ky" data-register-product="tool-ho-so-htgt">Đăng ký tư vấn</a>
+              <a class="btn btn-zalo" data-zalo-link href="#lien-he">Hỏi qua Zalo</a>
+            </div>
+          </header>
+          <ul class="tool-perks" role="list">
+            <li><strong>Import Excel</strong> — danh mục lý trình, kết cấu, thông số kỹ thuật</li>
+            <li><strong>Vẽ tự động</strong> — profile / mặt cắt / chi tiết kết cấu trên AutoCAD</li>
+            <li><strong>Chuẩn hóa</strong> — thống nhất layer, ký hiệu, bố cục hồ sơ HTGT</li>
+            <li><strong>Tiết kiệm thời gian</strong> — giảm nhập tay từng điểm trên bản vẽ</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="tool-bao-lu" class="product-detail product-detail--orange">
+        <div class="container">
+          <header class="product-band">
+            <div class="product-band-text">
+              <span class="product-band-badge">Excel → AutoCAD</span>
+              <h2>Bình đồ các điểm sự cố bão lũ</h2>
+              <p>
+                Tự động vẽ bình đồ các điểm sự cố bão lũ từ Excel (tọa độ, km, mô tả) sang AutoCAD — phục vụ báo cáo khẩn và hồ sơ khắc phục.
+              </p>
+            </div>
+            <div class="product-band-actions">
+              <a class="btn btn-primary" href="#dang-ky" data-register-product="tool-bao-lu">Đăng ký tư vấn</a>
+              <a class="btn btn-zalo" data-zalo-link href="#lien-he">Hỏi qua Zalo</a>
+            </div>
+          </header>
+          <ul class="tool-perks" role="list">
+            <li><strong>Bảng Excel</strong> — danh sách điểm sự cố, lý trình, mức độ, ghi chú</li>
+            <li><strong>Gắn tọa độ</strong> — đặt điểm đúng vị trí trên bản đồ / mặt bằng tuyến</li>
+            <li><strong>Ký hiệu chuẩn</strong> — thống nhất biểu tượng sự cố bão lũ trên bình đồ</li>
+            <li><strong>Xuất nhanh</strong> — bản vẽ AutoCAD phục vụ báo cáo và lưu hồ sơ</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="tinh-nang" class="section">
         <div class="container">
           <header class="section-header">
             <span class="eyebrow">Tính năng</span>
@@ -310,20 +402,20 @@
             <span class="eyebrow">Đăng ký</span>
             <h2>Để lại thông tin — nhận tư vấn &amp; kích hoạt</h2>
             <p>
-              Điền form bên cạnh. Sau khi gửi, thông tin được lưu an toàn — chúng tôi sẽ liên hệ trong thời gian sớm nhất.
+              Điền form bên cạnh — chọn sản phẩm bạn quan tâm. Sau khi gửi, chúng tôi gọi / nhắn Zalo tư vấn và hướng dẫn cài đặt.
             </p>
             <ol class="register-steps">
               <li>
                 <span class="step-num">1</span>
-                <span>Điền họ tên, SĐT, Gmail và địa chỉ</span>
+                <span>Chọn sản phẩm (App Android hoặc tool AutoCAD) và điền thông tin</span>
               </li>
               <li>
                 <span class="step-num">2</span>
-                <span>Chúng tôi gọi / nhắn Zalo tư vấn và kích hoạt tài khoản</span>
+                <span>Chúng tôi gọi / nhắn Zalo tư vấn, báo giá và demo</span>
               </li>
               <li>
                 <span class="step-num">3</span>
-                <span>Cài app CH Play và bắt đầu dùng thử</span>
+                <span>Nhận file cài / kích hoạt và bắt đầu sử dụng</span>
               </li>
             </ol>
             <div class="contact-chips">
@@ -344,6 +436,13 @@
             <h3>Form đăng ký</h3>
             <p class="form-hint">Các mục có dấu * là bắt buộc. Thông tin được bảo mật.</p>
             <form id="register-form" novalidate>
+              <div class="form-group">
+                <label for="product">Sản phẩm quan tâm *</label>
+                <select id="product" name="product" required>
+                  <option value="">— Chọn sản phẩm —</option>
+                </select>
+                <span class="form-error" data-error-for="product"></span>
+              </div>
               <div class="form-group">
                 <label for="fullName">Họ và tên *</label>
                 <input
@@ -461,18 +560,23 @@
               width="52"
               height="52"
             />
-            <strong id="app-name-footer">Quản lý sự cố đường bộ</strong>
+            <strong id="app-name-footer">Giải pháp phần mềm đường bộ</strong>
             <p>
-              Ứng dụng ghi nhận, quản lý và báo cáo sự cố trên tuyến đường — phù hợp đội hiện
-              trường và đơn vị quản lý đường bộ.
+              App Android quản lý sự cố đường bộ và công cụ AutoCAD từ Excel — phục vụ đội hiện trường, BDTX và lập hồ sơ HTGT.
             </p>
           </div>
           <div class="footer-col">
+            <h4>Sản phẩm</h4>
+            <a href="#app-quan-ly-su-co">App Quản lý sự cố</a>
+            <a href="#tool-ho-so-htgt">Hồ sơ HTGT — AutoCAD</a>
+            <a href="#tool-bao-lu">Bình đồ bão lũ — AutoCAD</a>
+            <a href="#dang-ky">Đăng ký tư vấn</a>
+          </div>
+          <div class="footer-col">
             <h4>Liên kết</h4>
-            <a href="#tinh-nang-noi-bat">Tính năng</a>
-            <a href="#anh-app">Ảnh app</a>
+            <a href="#san-pham">Tất cả sản phẩm</a>
+            <a href="#anh-app">Ảnh app Android</a>
             <a href="#video">Video hướng dẫn</a>
-            <a href="#dang-ky">Đăng ký</a>
           </div>
           <div class="footer-col">
             <h4>Hỗ trợ</h4>
@@ -484,7 +588,7 @@
           </div>
         </div>
         <p class="footer-bottom">
-          © <span id="year"></span> Quản lý sự cố đường bộ · com.tuanduong.quanlysuco
+          © <span id="year"></span> Giải pháp phần mềm đường bộ · Tuấn Dương
         </p>
       </div>
     </footer>
@@ -496,6 +600,6 @@
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
     <script src="js/config.js"></script>
     <script src="js/firebase-config.js"></script>
-    <script src="js/main.js?v=3"></script>
+    <script src="js/main.js?v=4"></script>
   </body>
 </html>

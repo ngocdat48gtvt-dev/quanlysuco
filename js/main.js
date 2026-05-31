@@ -18,11 +18,19 @@
   }
 
   function initMeta() {
-    document.title = cfg.appName + " — Đăng ký dùng thử";
-    setText("app-name", cfg.appName);
-    setText("app-name-hero", cfg.appName);
-    setText("app-name-footer", cfg.appName);
-    setText("hero-tagline", cfg.tagline);
+    var brand = cfg.siteBrand || cfg.appName || "Phần mềm đường bộ";
+    var tagline = cfg.siteTagline || cfg.tagline || "";
+
+    document.title = brand + " — Đăng ký tư vấn";
+    setText("app-name", brand);
+    setText("site-brand-hero", brand);
+    setText("site-tagline", tagline);
+    setText("app-name-footer", brand);
+    setText("app-name-hero", cfg.appName || brand);
+    setText("hero-tagline", cfg.tagline || tagline);
+
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && tagline) metaDesc.setAttribute("content", tagline);
 
     const playLinks = document.querySelectorAll("[data-play-store]");
     playLinks.forEach((a) => {
@@ -38,6 +46,142 @@
     initBrandImages();
     initHeroBanner();
     initZaloContact();
+    initProducts();
+  }
+
+  function getProducts() {
+    return Array.isArray(cfg.products) ? cfg.products : [];
+  }
+
+  function findProduct(id) {
+    return getProducts().find(function (p) {
+      return p.id === id;
+    });
+  }
+
+  function initProducts() {
+    var products = getProducts();
+    var pills = document.getElementById("hero-pills");
+    var stack = document.getElementById("hero-product-stack");
+    var showcase = document.getElementById("products-showcase");
+    var select = document.getElementById("product");
+
+    if (pills) {
+      pills.innerHTML = "";
+      products.forEach(function (p) {
+        var a = document.createElement("a");
+        a.className = "pill";
+        a.href = p.anchor || "#san-pham";
+        a.textContent = p.shortName || p.name;
+        pills.appendChild(a);
+      });
+    }
+
+    if (stack) {
+      stack.innerHTML = "";
+      products.forEach(function (p, i) {
+        var card = document.createElement("a");
+        card.className = "hero-product-card hero-product-card--" + (p.accent || "blue");
+        card.href = p.anchor || "#san-pham";
+        card.style.setProperty("--stack-i", String(i));
+        card.innerHTML =
+          '<span class="hero-product-card-badge">' +
+          escapeHtml(p.badge || p.platform || "") +
+          "</span>" +
+          "<strong>" +
+          escapeHtml(p.shortName || p.name) +
+          "</strong>" +
+          "<span>" +
+          escapeHtml(p.platform || "") +
+          "</span>";
+        stack.appendChild(card);
+      });
+    }
+
+    if (showcase) {
+      showcase.innerHTML = "";
+      products.forEach(function (p) {
+        var article = document.createElement("article");
+        article.className = "product-showcase-card product-showcase-card--" + (p.accent || "blue");
+        article.id = "product-card-" + p.id;
+
+        var perksHtml = (p.perks || [])
+          .map(function (perk) {
+            return "<li>" + escapeHtml(perk) + "</li>";
+          })
+          .join("");
+
+        article.innerHTML =
+          '<div class="product-showcase-body">' +
+          '<span class="product-showcase-badge">' +
+          escapeHtml(p.badge || "") +
+          "</span>" +
+          "<h3>" +
+          escapeHtml(p.name) +
+          "</h3>" +
+          '<p class="product-showcase-platform">' +
+          escapeHtml(p.platform || "") +
+          "</p>" +
+          '<p class="product-showcase-tagline">' +
+          escapeHtml(p.tagline || "") +
+          "</p>" +
+          (perksHtml ? '<ul class="product-showcase-perks">' + perksHtml + "</ul>" : "") +
+          '<div class="product-showcase-actions">' +
+          '<a class="btn btn-primary" href="' +
+          escapeHtml(p.anchor || "#san-pham") +
+          '">Xem chi tiết</a>' +
+          '<a class="btn btn-secondary" href="#dang-ky" data-register-product="' +
+          escapeHtml(p.id) +
+          '">Đăng ký</a>' +
+          (p.hasPlayStore
+            ? '<a class="btn btn-secondary" data-play-store href="#" target="_blank" rel="noopener noreferrer">CH Play</a>'
+            : "") +
+          "</div></div>";
+
+        showcase.appendChild(article);
+      });
+
+      showcase.querySelectorAll("[data-play-store]").forEach(function (a) {
+        a.href = cfg.playStoreUrl;
+      });
+    }
+
+    if (select) {
+      var current = select.value;
+      select.innerHTML = '<option value="">— Chọn sản phẩm —</option>';
+      products.forEach(function (p) {
+        var opt = document.createElement("option");
+        opt.value = p.id;
+        opt.textContent = p.registerLabel || p.name;
+        select.appendChild(opt);
+      });
+      if (current) select.value = current;
+    }
+
+    document.querySelectorAll("[data-register-product]").forEach(function (a) {
+      a.addEventListener("click", function () {
+        var id = a.getAttribute("data-register-product");
+        if (select && id) select.value = id;
+      });
+    });
+
+    applyProductFromUrl();
+  }
+
+  function escapeHtml(text) {
+    return String(text ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function applyProductFromUrl() {
+    var select = document.getElementById("product");
+    if (!select) return;
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get("product") || (window.location.hash || "").replace(/^#product-/, "");
+    if (id && findProduct(id)) select.value = id;
   }
 
   function normalizeZaloPhone(phone) {
@@ -347,6 +491,10 @@
       showError("address", "Vui lòng nhập địa chỉ (ít nhất 5 ký tự).");
       ok = false;
     }
+    if (!data.productId) {
+      showError("product", "Vui lòng chọn sản phẩm quan tâm.");
+      ok = false;
+    }
     return ok;
   }
 
@@ -431,7 +579,9 @@
         name: form.fullName.value.trim(),
         phone: form.phone.value.trim(),
         email: form.email.value.trim(),
-        company: (form.company && form.company.value.trim()) || "",
+        productId: form.product.value.trim(),
+        product: (findProduct(form.product.value) || {}).registerLabel || form.product.value.trim(),
+        company: (findProduct(form.product.value) || {}).registerLabel || form.product.value.trim(),
         province: form.address.value.trim(),
         note: "Trang: " + window.location.href,
       };

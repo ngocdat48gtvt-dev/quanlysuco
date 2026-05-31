@@ -2,6 +2,11 @@
  * Cấu hình trang web — chỉnh file này trước khi đăng lên host.
  */
 window.SITE_CONFIG = {
+  /** Tên thương hiệu / cổng sản phẩm (hiển thị header & hero) */
+  siteBrand: "Giải pháp phần mềm đường bộ",
+  siteTagline:
+    "App Android quản lý sự cố hiện trường và công cụ AutoCAD tự động từ Excel — phục vụ BDTX, KPLB và hồ sơ hạ tầng giao thông.",
+
   appName: "Quản lý sự cố đường bộ",
   tagline:
     "Ghi sự cố trên điện thoại, đồng bộ cloud an toàn, xuất Excel thống kê và Word ghép ảnh trước/sau thi công.",
@@ -15,8 +20,67 @@ window.SITE_CONFIG = {
     phone: "0968549116",
     displayName: "Dương Ngọc Đạt",
     defaultMessage:
-      "Xin chào, tôi muốn tư vấn / đăng ký app Quản lý sự cố đường bộ.",
+      "Xin chào, tôi muốn tư vấn phần mềm / công cụ đường bộ (App Android hoặc AutoCAD).",
   },
+
+  /** Danh sách sản phẩm — thêm/sửa tại đây khi có tool mới */
+  products: [
+    {
+      id: "app-quan-ly-su-co",
+      name: "Quản lý sự cố đường bộ",
+      shortName: "App sự cố",
+      platform: "Android · CH Play",
+      badge: "App di động",
+      tagline:
+        "Ghi nhận sự cố hiện trường, ảnh minh chứng, báo cáo Word/Excel và đồng bộ cloud — offline 24 giờ.",
+      anchor: "#app-quan-ly-su-co",
+      registerLabel: "App Quản lý sự cố đường bộ (Android)",
+      accent: "blue",
+      hasPlayStore: true,
+      perks: [
+        "Không mạng vẫn ghi được",
+        "Đồng bộ cloud an toàn",
+        "Xuất Excel & Word",
+        "Ảnh trước / sau thi công",
+      ],
+    },
+    {
+      id: "tool-ho-so-htgt",
+      name: "Hồ sơ quản lý kết cấu hạ tầng giao thông",
+      shortName: "Hồ sơ HTGT",
+      platform: "AutoCAD · Plugin/Tool",
+      badge: "Excel → AutoCAD",
+      tagline:
+        "Tự động vẽ hồ sơ quản lý kết cấu hạ tầng giao thông từ bảng Excel sang bản vẽ AutoCAD — tiết kiệm thời gian, đúng chuẩn hồ sơ.",
+      anchor: "#tool-ho-so-htgt",
+      registerLabel: "Tool Excel→AutoCAD — Hồ sơ HTGT",
+      accent: "teal",
+      perks: [
+        "Import Excel một lần",
+        "Vẽ profile / kết cấu tự động",
+        "Chuẩn hồ sơ quản lý HTGT",
+        "Giảm nhập liệu thủ công",
+      ],
+    },
+    {
+      id: "tool-bao-lu",
+      name: "Bình đồ điểm sự cố bão lũ",
+      shortName: "Bình đồ bão lũ",
+      platform: "AutoCAD · Plugin/Tool",
+      badge: "Excel → AutoCAD",
+      tagline:
+        "Tự động vẽ bình đồ các điểm sự cố bão lũ từ Excel (tọa độ, lý trình) sang AutoCAD — nhanh, thống nhất ký hiệu.",
+      anchor: "#tool-bao-lu",
+      registerLabel: "Tool Excel→AutoCAD — Bình đồ bão lũ",
+      accent: "orange",
+      perks: [
+        "Gắn tọa độ từ Excel",
+        "Ký hiệu điểm sự cố chuẩn",
+        "Bản vẽ bình đồ nhanh",
+        "Phục vụ báo cáo khẩn cấp",
+      ],
+    },
+  ],
 
   /** Firebase Firestore — cùng project quanlysuco-6797e */
   firebase: {

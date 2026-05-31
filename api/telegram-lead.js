@@ -13,7 +13,8 @@ function formatMessage(data) {
     `<b>SĐT:</b> ${escapeHtml(data.phone)}`,
     `<b>Email:</b> ${escapeHtml(data.email)}`,
   ];
-  if (data.company) lines.push(`<b>Công ty:</b> ${escapeHtml(data.company)}`);
+  const productLabel = String(data.product || data.company || "").trim();
+  if (productLabel) lines.push(`<b>Sản phẩm:</b> ${escapeHtml(productLabel)}`);
   lines.push(`<b>Địa chỉ:</b> ${escapeHtml(data.province)}`);
   if (data.note) lines.push(`<b>Ghi chú:</b> ${escapeHtml(data.note)}`);
   return lines.join("\n");
@@ -91,7 +92,8 @@ module.exports = async function handler(req, res) {
     name,
     phone,
     email,
-    company: String(body.company || "").trim(),
+    company: String(body.company || body.product || "").trim(),
+    product: String(body.product || body.company || "").trim(),
     province,
     note: String(body.note || "").trim(),
   };
