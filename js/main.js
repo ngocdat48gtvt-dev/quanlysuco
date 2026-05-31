@@ -372,14 +372,16 @@
   }
 
   async function notifyTelegram(payload) {
-    try {
-      await fetch("/api/telegram-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+    const res = await fetch("/api/telegram-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(function () {
+        return {};
       });
-    } catch (err) {
-      console.warn("[Telegram] Không gửi được thông báo:", err);
+      console.warn("[Telegram]", data.error || res.status, data.hint || "");
     }
   }
 
@@ -426,8 +428,13 @@
       if (btn) btn.disabled = true;
 
       try {
-        await submitLeadToFirestore(payload);
-        notifyTelegram(payload);
+        const results = await Promise.allSettled([
+          submitLeadToFirestore(payload),
+          notifyTelegram(payload),
+        ]);
+        if (results[0].status === "rejected") {
+          throw results[0].reason;
+        }
         sessionStorage.setItem("quanlysuco_lead", JSON.stringify(payload));
         showFormSuccess(form, status);
       } catch (err) {

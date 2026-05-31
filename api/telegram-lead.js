@@ -19,16 +19,39 @@ function formatMessage(data) {
   return lines.join("\n");
 }
 
+function telegramHint(apiText) {
+  const t = String(apiText || "");
+  if (t.includes("chat not found")) {
+    return "Chat ID sai hoặc chưa bấm Start bot — lấy ID từ @userinfobot (chat riêng với bot, không phải trong nhóm bot).";
+  }
+  if (t.includes("Unauthorized")) {
+    return "Bot Token sai — tạo lại token từ @BotFather.";
+  }
+  return t.slice(0, 200);
+}
+
 module.exports = async function handler(req, res) {
+  if (req.method === "GET") {
+    const ok = !!(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
+    return res.status(200).json({
+      ok,
+      message: ok
+        ? "API sẵn sàng — gửi form landing page để nhận tin (bot không trả lời /start)."
+        : "Thiếu TELEGRAM_BOT_TOKEN hoặc TELEGRAM_CHAT_ID trên Vercel → Redeploy.",
+    });
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const token = String(process.env.TELEGRAM_BOT_TOKEN || "").trim();
+  const chatId = String(process.env.TELEGRAM_CHAT_ID || "").trim();
 
   if (!token || !chatId) {
-    return res.status(503).json({ error: "Telegram chưa cấu hình trên Vercel" });
+    return res.status(503).json({
+      error: "Telegram chưa cấu hình trên Vercel — thêm biến môi trường rồi Redeploy.",
+    });
   }
 
   const body = req.body || {};
@@ -62,10 +85,13 @@ module.exports = async function handler(req, res) {
       }),
     });
 
+    const tgText = await tgRes.text();
     if (!tgRes.ok) {
-      const detail = await tgRes.text();
-      console.error("Telegram API error:", detail);
-      return res.status(502).json({ error: "Gửi Telegram thất bại" });
+      console.error("Telegram API:", tgText);
+      return res.status(502).json({
+        error: "Gửi Telegram thất bại",
+        hint: telegramHint(tgText),
+      });
     }
 
     return res.status(200).json({ ok: true });
