@@ -155,6 +155,22 @@ a:hover {
   background: var(--blue-light);
 }
 
+.nav a.is-active {
+  color: var(--navy);
+  background: var(--blue-light);
+  box-shadow: inset 0 0 0 1px rgba(21, 101, 192, 0.15);
+}
+
+.product-page-hero {
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.product-page-hero .product-band h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  color: var(--navy);
+}
+
 .header-cta {
   display: flex;
   align-items: center;
@@ -1917,6 +1933,191 @@ a:hover {
   .products-showcase {
     grid-template-columns: 1fr;
   }
+}
+
+/* —— Catalog grid (menu sản phẩm) —— */
+.catalog-page-header {
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0 0.5rem;
+  background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+}
+
+.catalog-page-title {
+  margin: 0.75rem 0 0.5rem;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 800;
+  color: var(--orange);
+}
+
+.catalog-page-sub {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-secondary);
+}
+
+.catalog-section {
+  padding: var(--section-y) 0;
+}
+
+.catalog-more-wrap {
+  margin: 2rem 0 0;
+  text-align: center;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb a {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-wrap {
+  padding-top: 1rem;
+}
+
+.breadcrumb-wrap .breadcrumb {
+  padding: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.products-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.products-catalog-grid--compact {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.product-catalog-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.product-catalog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-strong);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.product-catalog-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.product-catalog-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-catalog-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--navy-mid);
+}
+
+.product-catalog-card--blue .product-catalog-placeholder {
+  background: linear-gradient(135deg, #e8f1fc, #dbeafe);
+}
+.product-catalog-card--teal .product-catalog-placeholder {
+  background: linear-gradient(135deg, #e0f2f1, #b2dfdb);
+}
+.product-catalog-card--orange .product-catalog-placeholder {
+  background: linear-gradient(135deg, #fff3e8, #ffe0b2);
+}
+
+.product-catalog-badge {
+  position: absolute;
+  top: 0.65rem;
+  left: 0.65rem;
+  z-index: 1;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.product-catalog-badge--hot {
+  background: #e65100;
+}
+.product-catalog-badge--new {
+  background: #c62828;
+}
+
+.product-catalog-body {
+  padding: 1rem 1.05rem 1.15rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-catalog-body h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--navy);
+}
+
+.product-catalog-summary {
+  margin: 0;
+  flex: 1;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-catalog-price {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--orange);
 }
 
 @media (max-width: 900px) {

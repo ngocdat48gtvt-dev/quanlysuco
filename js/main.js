@@ -20,21 +20,33 @@
   function initMeta() {
     var brand = cfg.siteBrand || cfg.appName || "Phần mềm đường bộ";
     var tagline = cfg.siteTagline || cfg.tagline || "";
+    var productId = document.body.getAttribute("data-product-id");
+    var product = productId ? findProduct(productId) : null;
+    var isHome = document.body.getAttribute("data-page") === "home";
 
-    document.title = brand + " — Đăng ký tư vấn";
+    if (product) {
+      document.title = product.name + " — " + brand;
+      setText("product-page-title", product.name);
+      setText("product-page-tagline", product.tagline);
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && product.tagline) metaDesc.setAttribute("content", product.tagline);
+    } else if (document.body.getAttribute("data-page") === "catalog") {
+      document.title = "Phần mềm — " + brand;
+    } else if (isHome) {
+      document.title = brand + " — Đăng ký tư vấn";
+      setText("site-brand-hero", brand);
+      setText("site-tagline", tagline);
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && tagline) metaDesc.setAttribute("content", tagline);
+    }
+
     setText("app-name", brand);
-    setText("site-brand-hero", brand);
-    setText("site-tagline", tagline);
     setText("app-name-footer", brand);
-    setText("app-name-hero", cfg.appName || brand);
-    setText("hero-tagline", cfg.tagline || tagline);
-
-    var metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc && tagline) metaDesc.setAttribute("content", tagline);
 
     const playLinks = document.querySelectorAll("[data-play-store]");
     playLinks.forEach((a) => {
       a.href = cfg.playStoreUrl;
+      if (product && !product.hasPlayStore) a.hidden = true;
     });
 
     const mail = document.getElementById("support-email");
@@ -47,6 +59,101 @@
     initHeroBanner();
     initZaloContact();
     initProducts();
+    lockProductForm(product);
+    initProductBreadcrumb(product);
+  }
+
+  function initProductBreadcrumb(product) {
+    if (!product) return;
+    var main = document.querySelector("main");
+    if (!main || main.querySelector(".breadcrumb")) return;
+    var nav = document.createElement("nav");
+    nav.className = "breadcrumb breadcrumb--inset";
+    nav.setAttribute("aria-label", "Breadcrumb");
+    nav.innerHTML =
+      '<a href="index.html">Trang chủ</a><span aria-hidden="true">/</span>' +
+      '<a href="san-pham.html">Phần mềm</a><span aria-hidden="true">/</span>' +
+      '<span aria-current="page">' +
+      escapeHtml(product.shortName || product.name) +
+      "</span>";
+    var wrap = document.createElement("div");
+    wrap.className = "container breadcrumb-wrap";
+    wrap.appendChild(nav);
+    main.insertBefore(wrap, main.firstChild);
+  }
+
+  function productCardImage(p) {
+    if (p.cardImage) return assetPath(p.cardImage);
+    return "";
+  }
+
+  function renderProductCatalogGrid(container, compact) {
+    if (!container) return;
+    var products = getProducts();
+    container.innerHTML = "";
+    container.classList.toggle("products-catalog-grid--compact", !!compact);
+
+    products.forEach(function (p) {
+      var href = productPageHref(p);
+      var imgSrc = productCardImage(p);
+      var card = document.createElement("a");
+      card.className =
+        "product-catalog-card product-catalog-card--" + (p.accent || "blue");
+      card.href = href;
+      card.setAttribute("aria-label", "Xem chi tiết: " + p.name);
+
+      var mediaHtml = imgSrc
+        ? '<img src="' +
+          escapeHtml(imgSrc) +
+          '" alt="" loading="lazy" />'
+        : '<div class="product-catalog-placeholder"><span>Excel → AutoCAD</span></div>';
+
+      var badgeHtml = p.cardBadge
+        ? '<span class="product-catalog-badge product-catalog-badge--' +
+          escapeHtml(String(p.cardBadge).toLowerCase()) +
+          '">' +
+          escapeHtml(p.cardBadge) +
+          "</span>"
+        : "";
+
+      card.innerHTML =
+        '<div class="product-catalog-media">' +
+        badgeHtml +
+        mediaHtml +
+        "</div>" +
+        '<div class="product-catalog-body">' +
+        "<h3>" +
+        escapeHtml(p.name) +
+        "</h3>" +
+        '<p class="product-catalog-summary">' +
+        escapeHtml(p.cardSummary || p.tagline || "") +
+        "</p>" +
+        '<p class="product-catalog-price">' +
+        escapeHtml(p.priceLabel || "Liên hệ") +
+        "</p>" +
+        "</div>";
+
+      container.appendChild(card);
+    });
+  }
+
+  function productPageHref(p) {
+    var page = p.page || "index.html";
+    if (page.indexOf(".") === -1) return page + ".html";
+    return page;
+  }
+
+  function lockProductForm(product) {
+    if (!product) return;
+    var wrap = document.getElementById("product-select-wrap");
+    var select = document.getElementById("product");
+    var hidden = document.querySelector('input[type="hidden"][name="product"]');
+    if (wrap) wrap.hidden = true;
+    if (select && select.tagName === "SELECT") {
+      select.required = false;
+      select.value = product.id;
+    }
+    if (hidden) hidden.value = product.id;
   }
 
   function getProducts() {
@@ -63,15 +170,19 @@
     var products = getProducts();
     var pills = document.getElementById("hero-pills");
     var stack = document.getElementById("hero-product-stack");
+    var catalogGrid = document.getElementById("products-catalog-grid");
     var showcase = document.getElementById("products-showcase");
     var select = document.getElementById("product");
+
+    renderProductCatalogGrid(catalogGrid, false);
+    renderProductCatalogGrid(showcase, true);
 
     if (pills) {
       pills.innerHTML = "";
       products.forEach(function (p) {
         var a = document.createElement("a");
         a.className = "pill";
-        a.href = p.anchor || "#san-pham";
+        a.href = productPageHref(p);
         a.textContent = p.shortName || p.name;
         pills.appendChild(a);
       });
@@ -79,70 +190,19 @@
 
     if (stack) {
       stack.innerHTML = "";
-      products.forEach(function (p, i) {
+      products.forEach(function (p) {
         var card = document.createElement("a");
         card.className = "hero-product-card hero-product-card--" + (p.accent || "blue");
-        card.href = p.anchor || "#san-pham";
-        card.style.setProperty("--stack-i", String(i));
+        card.href = productPageHref(p);
         card.innerHTML =
           '<span class="hero-product-card-badge">' +
           escapeHtml(p.badge || p.platform || "") +
-          "</span>" +
-          "<strong>" +
+          "</span><strong>" +
           escapeHtml(p.shortName || p.name) +
-          "</strong>" +
-          "<span>" +
+          "</strong><span>" +
           escapeHtml(p.platform || "") +
           "</span>";
         stack.appendChild(card);
-      });
-    }
-
-    if (showcase) {
-      showcase.innerHTML = "";
-      products.forEach(function (p) {
-        var article = document.createElement("article");
-        article.className = "product-showcase-card product-showcase-card--" + (p.accent || "blue");
-        article.id = "product-card-" + p.id;
-
-        var perksHtml = (p.perks || [])
-          .map(function (perk) {
-            return "<li>" + escapeHtml(perk) + "</li>";
-          })
-          .join("");
-
-        article.innerHTML =
-          '<div class="product-showcase-body">' +
-          '<span class="product-showcase-badge">' +
-          escapeHtml(p.badge || "") +
-          "</span>" +
-          "<h3>" +
-          escapeHtml(p.name) +
-          "</h3>" +
-          '<p class="product-showcase-platform">' +
-          escapeHtml(p.platform || "") +
-          "</p>" +
-          '<p class="product-showcase-tagline">' +
-          escapeHtml(p.tagline || "") +
-          "</p>" +
-          (perksHtml ? '<ul class="product-showcase-perks">' + perksHtml + "</ul>" : "") +
-          '<div class="product-showcase-actions">' +
-          '<a class="btn btn-primary" href="' +
-          escapeHtml(p.anchor || "#san-pham") +
-          '">Xem chi tiết</a>' +
-          '<a class="btn btn-secondary" href="#dang-ky" data-register-product="' +
-          escapeHtml(p.id) +
-          '">Đăng ký</a>' +
-          (p.hasPlayStore
-            ? '<a class="btn btn-secondary" data-play-store href="#" target="_blank" rel="noopener noreferrer">CH Play</a>'
-            : "") +
-          "</div></div>";
-
-        showcase.appendChild(article);
-      });
-
-      showcase.querySelectorAll("[data-play-store]").forEach(function (a) {
-        a.href = cfg.playStoreUrl;
       });
     }
 
@@ -178,9 +238,14 @@
 
   function applyProductFromUrl() {
     var select = document.getElementById("product");
-    if (!select) return;
+    var bodyProduct = document.body.getAttribute("data-product-id");
+    if (bodyProduct && findProduct(bodyProduct)) {
+      lockProductForm(findProduct(bodyProduct));
+      return;
+    }
+    if (!select || select.tagName !== "SELECT") return;
     var params = new URLSearchParams(window.location.search);
-    var id = params.get("product") || (window.location.hash || "").replace(/^#product-/, "");
+    var id = params.get("product");
     if (id && findProduct(id)) select.value = id;
   }
 
@@ -575,13 +640,15 @@
       e.preventDefault();
       clearErrors();
 
+      const productEl = form.product;
+      const productId = productEl ? productEl.value.trim() : "";
       const payload = {
         name: form.fullName.value.trim(),
         phone: form.phone.value.trim(),
         email: form.email.value.trim(),
-        productId: form.product.value.trim(),
-        product: (findProduct(form.product.value) || {}).registerLabel || form.product.value.trim(),
-        company: (findProduct(form.product.value) || {}).registerLabel || form.product.value.trim(),
+        productId: productId,
+        product: (findProduct(productId) || {}).registerLabel || productId,
+        company: (findProduct(productId) || {}).registerLabel || productId,
         province: form.address.value.trim(),
         note: "Trang: " + window.location.href,
       };

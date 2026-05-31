@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Tool AutoCAD vẽ bình đồ các điểm sự cố bão lũ tự động từ Excel — nhanh, chuẩn ký hiệu, phục vụ báo cáo khẩn." />
+    <title>Bình đồ bão lũ — Excel sang AutoCAD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" href="Ho so dang CH play/ic_launcher_play_store_512.png" type="image/png" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="product" data-product-id="tool-bao-lu">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" data-brand-link>
+          <img data-app-icon src="Ho so dang CH play/ic_launcher_play_store_512.png" alt="" width="44" height="44" />
+          <span id="app-name">Giải pháp phần mềm đường bộ</span>
+        </a>
+        <nav class="nav" id="site-nav" aria-label="Menu chính"></nav>
+        <div class="header-cta">
+          <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Mở menu"><span></span><span></span><span></span></button>
+          <a class="btn btn-zalo btn-header" data-zalo-link href="#lien-he">Zalo</a>
+          <a class="btn btn-primary btn-header" href="#dang-ky" data-register-href>Đăng ký</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="product-detail product-detail--orange product-page-hero">
+        <div class="container">
+          <header class="product-band">
+            <div class="product-band-text">
+              <span class="product-band-badge">Excel → AutoCAD</span>
+              <h1 id="product-page-title">Bình đồ các điểm sự cố bão lũ</h1>
+              <p id="product-page-tagline">Tự động vẽ bình đồ điểm sự cố bão lũ từ Excel (tọa độ, km, mô tả) sang AutoCAD — phục vụ báo cáo khẩn và hồ sơ khắc phục.</p>
+            </div>
+            <div class="product-band-actions">
+              <a class="btn btn-primary" href="#dang-ky">Đăng ký tư vấn</a>
+              <a class="btn btn-zalo" data-zalo-link href="#lien-he">Hỏi qua Zalo</a>
+            </div>
+          </header>
+          <div class="excel-flow">
+            <span class="excel-flow-step">📊 Excel</span>
+            <span class="excel-flow-arrow">→</span>
+            <span class="excel-flow-step excel-flow-step--tool">⚙️ Tool bão lũ</span>
+            <span class="excel-flow-arrow">→</span>
+            <span class="excel-flow-step">📐 AutoCAD</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <header class="section-header section-header--center">
+            <span class="eyebrow">Tính năng</span>
+            <h2 class="section-title">Bình đồ sự cố bão lũ tự động</h2>
+            <p class="section-sub">Gắn điểm sự cố đúng vị trí trên bản vẽ — thống nhất ký hiệu, xuất nhanh phục vụ báo cáo.</p>
+          </header>
+          <ul class="tool-perks" role="list">
+            <li><strong>Bảng Excel</strong> — danh sách điểm sự cố, lý trình, mức độ, ghi chú</li>
+            <li><strong>Gắn tọa độ</strong> — đặt điểm đúng vị trí trên bản đồ / mặt bằng tuyến</li>
+            <li><strong>Ký hiệu chuẩn</strong> — thống nhất biểu tượng sự cố bão lũ trên bình đồ</li>
+            <li><strong>Xuất nhanh</strong> — bản vẽ AutoCAD phục vụ báo cáo và lưu hồ sơ</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="dang-ky" class="section section-dark">
+        <div class="container register-layout">
+          <div class="register-intro">
+            <span class="eyebrow">Đăng ký</span>
+            <h2>Tư vấn tool Bình đồ bão lũ</h2>
+            <p>Nhận demo, báo giá và hướng dẫn cài đặt trên AutoCAD.</p>
+          </div>
+          <div class="register-form-card">
+            <h3>Form đăng ký</h3>
+            <form id="register-form" novalidate>
+              <input type="hidden" id="product" name="product" value="tool-bao-lu" />
+              <div class="form-group">
+                <label for="fullName">Họ và tên *</label>
+                <input id="fullName" name="fullName" type="text" required />
+                <span class="form-error" data-error-for="fullName"></span>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Số điện thoại *</label>
+                  <input id="phone" name="phone" type="tel" required />
+                  <span class="form-error" data-error-for="phone"></span>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input id="email" name="email" type="email" required />
+                  <span class="form-error" data-error-for="email"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="address">Địa chỉ *</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+                <span class="form-error" data-error-for="address"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Gửi đăng ký</button>
+              <p id="form-status" class="form-status" role="status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="lien-he" class="contact-strip">
+        <div class="container">
+          <div class="contact-strip-inner">
+            <div class="contact-strip-text"><h2>Liên hệ</h2><p>Zalo: <strong data-zalo-phone>—</strong></p></div>
+            <div class="contact-strip-actions"><a class="btn btn-zalo btn-lg" data-zalo-link href="#lien-he">Nhắn Zalo</a></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <a id="zalo-float" class="zalo-float" data-zalo-link href="#lien-he" hidden aria-label="Chat Zalo"><span class="zalo-float-text">Zalo</span></a>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand"><strong id="app-name-footer">Giải pháp phần mềm đường bộ</strong></div>
+          <div class="footer-col"><h4>Sản phẩm</h4><div id="footer-products"></div></div>
+        </div>
+        <p class="footer-bottom">© <span id="year"></span> Tuấn Dương</p>
+      </div>
+    </footer>
+
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/main.js?v=6"></script>
+  </body>
+</html>

@@ -33,9 +33,13 @@ window.SITE_CONFIG = {
       badge: "App di động",
       tagline:
         "Ghi nhận sự cố hiện trường, ảnh minh chứng, báo cáo Word/Excel và đồng bộ cloud — offline 24 giờ.",
-      anchor: "#app-quan-ly-su-co",
+      page: "app-quan-ly-su-co.html",
       registerLabel: "App Quản lý sự cố đường bộ (Android)",
       accent: "blue",
+      cardBadge: "Hot",
+      cardImage: "banner2.png",
+      priceLabel: "Liên hệ",
+      cardSummary: "Ghi sự cố hiện trường, cloud, báo cáo Word/Excel trên Android.",
       hasPlayStore: true,
       perks: [
         "Không mạng vẫn ghi được",
@@ -52,9 +56,13 @@ window.SITE_CONFIG = {
       badge: "Excel → AutoCAD",
       tagline:
         "Tự động vẽ hồ sơ quản lý kết cấu hạ tầng giao thông từ bảng Excel sang bản vẽ AutoCAD — tiết kiệm thời gian, đúng chuẩn hồ sơ.",
-      anchor: "#tool-ho-so-htgt",
+      page: "ho-so-htgt.html",
       registerLabel: "Tool Excel→AutoCAD — Hồ sơ HTGT",
       accent: "teal",
+      cardBadge: "New",
+      cardImage: "",
+      priceLabel: "Liên hệ",
+      cardSummary: "Vẽ hồ sơ quản lý kết cấu HTGT tự động từ Excel sang AutoCAD.",
       perks: [
         "Import Excel một lần",
         "Vẽ profile / kết cấu tự động",
@@ -70,9 +78,13 @@ window.SITE_CONFIG = {
       badge: "Excel → AutoCAD",
       tagline:
         "Tự động vẽ bình đồ các điểm sự cố bão lũ từ Excel (tọa độ, lý trình) sang AutoCAD — nhanh, thống nhất ký hiệu.",
-      anchor: "#tool-bao-lu",
+      page: "binh-do-bao-lu.html",
       registerLabel: "Tool Excel→AutoCAD — Bình đồ bão lũ",
       accent: "orange",
+      cardBadge: "New",
+      cardImage: "",
+      priceLabel: "Liên hệ",
+      cardSummary: "Vẽ bình đồ điểm sự cố bão lũ tự động từ Excel sang AutoCAD.",
       perks: [
         "Gắn tọa độ từ Excel",
         "Ký hiệu điểm sự cố chuẩn",
