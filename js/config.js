@@ -19,6 +19,8 @@ window.SITE_CONFIG = {
   homePage: "san-pham.html",
   /** Trang đăng ký riêng */
   registerPage: "dang-ky.html",
+  /** Trang mua / thanh toán chuyển khoản */
+  purchasePage: "mua.html",
 
   /** Zalo liên hệ */
   zalo: {
@@ -394,13 +396,17 @@ window.SITE_CONFIG = {
     ],
   },
 
-  /** false = ẩn hộp chuyển khoản trên trang xác nhận (giai đoạn dùng thử) */
+  /** false = ẩn hộp chuyển khoản trên trang xác nhận dùng thử */
   showPayment: false,
 
   bankTransfer: {
-    accountName: "[TÊN_CHỦ_TÀI_KHOẢN]",
-    bankName: "[TÊN_NGÂN_HÀNG]",
-    accountNumber: "[SỐ_TÀI_KHOẢN]",
-    transferNote: "QLSC [SĐT_KHÁCH]",
+    accountName: "DUONG NGOC DAT",
+    bankName: "Agribank",
+    bankShortName: "Agribank",
+    accountNumber: "7909205066584",
+    bankId: "970405",
+    branch: "Agribank - Chi nhánh H. Phù Yên - Sơn La",
+    qrTemplate: "compact2",
+    transferNoteHint: "Họ và tên - Loại phần mềm (không dấu, viết hoa tên)",
   },
 };

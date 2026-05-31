@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Mua phần mềm — quét mã QR chuyển khoản Agribank." />
+    <title>Mua phần mềm — Giải pháp phần mềm đường bộ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" href="Ho so dang CH play/ic_launcher_play_store_512.png" type="image/png" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="purchase">
+    <header class="site-header site-header--minimal">
+      <div class="container header-inner">
+        <a class="brand" href="san-pham.html" data-brand-link>
+          <img data-app-icon src="Ho so dang CH play/ic_launcher_play_store_512.png" alt="" width="44" height="44" />
+          <span id="app-name">Giải pháp phần mềm đường bộ</span>
+        </a>
+        <nav class="nav" id="site-nav" aria-label="Menu chính"></nav>
+        <div class="header-cta">
+          <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Mở menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="register-page">
+      <div class="register-page-card purchase-card" id="purchase-card">
+        <div id="purchase-form-panel">
+          <h1 class="register-page-title">Mua phần mềm</h1>
+          <p class="register-page-sub">
+            Điền thông tin — quét mã QR chuyển khoản. Nội dung CK ghi <strong>Họ tên - Loại phần mềm</strong> để chúng tôi kích hoạt tài khoản.
+          </p>
+
+          <div id="product-locked-display" class="register-locked-product" hidden></div>
+
+          <p class="purchase-price-line" id="purchase-price-line" hidden>
+            Số tiền: <strong id="purchase-price-display">—</strong>
+          </p>
+
+          <form id="purchase-form" class="register-page-form" novalidate>
+            <div class="form-group" id="product-select-wrap">
+              <label class="visually-hidden" for="product">Loại phần mềm</label>
+              <select id="product" name="product" required>
+                <option value="">Loại phần mềm *</option>
+              </select>
+              <span class="form-error" data-error-for="product"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="visually-hidden" for="fullName">Họ và tên</label>
+              <input id="fullName" name="fullName" type="text" autocomplete="name" required placeholder="Họ và tên *" />
+              <span class="form-error" data-error-for="fullName"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="visually-hidden" for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="Email *" />
+              <span class="form-error" data-error-for="email"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="visually-hidden" for="phone">Điện thoại</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="Điện thoại *" />
+              <span class="form-error" data-error-for="phone"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="visually-hidden" for="address">Địa chỉ</label>
+              <textarea id="address" name="address" rows="2" required placeholder="Địa chỉ *"></textarea>
+              <span class="form-error" data-error-for="address"></span>
+            </div>
+
+            <button type="submit" class="btn btn-register-submit btn-block btn-purchase-submit">Tiếp tục — quét mã QR</button>
+            <p id="purchase-form-status" class="form-status" role="status"></p>
+          </form>
+
+          <p class="register-page-foot">
+            Chưa chắc? <a href="dang-ky.html" data-trial-link>Đăng ký dùng thử</a> ·
+            <a href="san-pham.html">← Danh mục phần mềm</a>
+          </p>
+        </div>
+
+        <div id="purchase-payment-panel" class="purchase-payment-panel" hidden>
+          <span class="eyebrow purchase-eyebrow">Bước 2 — Thanh toán</span>
+          <h1 class="register-page-title">Quét mã chuyển khoản</h1>
+          <p class="register-page-sub">
+            Chuyển đúng <strong id="payment-amount-text">—</strong> với nội dung bên dưới. Sau khi nhận tiền, chúng tôi kích hoạt tài khoản và liên hệ bạn qua Zalo.
+          </p>
+
+          <div class="payment-qr-wrap">
+            <img id="payment-qr-img" class="payment-qr-img" src="" alt="Mã QR chuyển khoản VietQR" width="280" height="280" />
+          </div>
+
+          <div class="bank-box bank-box--payment">
+            <p><strong>Chủ TK:</strong> <span id="payment-account-name">—</span></p>
+            <p><strong>Ngân hàng:</strong> <span id="payment-bank-name">—</span></p>
+            <p><strong>Số TK:</strong> <span id="payment-account-number" class="payment-account-number">—</span></p>
+            <p><strong>Số tiền:</strong> <span id="payment-amount-box">—</span></p>
+            <p class="payment-note-row">
+              <strong>Nội dung CK:</strong>
+              <code id="payment-transfer-note" class="payment-transfer-note">—</code>
+            </p>
+          </div>
+
+          <div class="payment-actions">
+            <button type="button" class="btn btn-primary btn-block" id="copy-transfer-note">Sao chép nội dung CK</button>
+            <button type="button" class="btn btn-outline btn-secondary btn-block" id="copy-account-number">Sao chép số TK</button>
+          </div>
+
+          <p id="payment-copy-status" class="form-status" role="status"></p>
+
+          <dl id="purchase-summary" class="lead-summary purchase-summary"></dl>
+
+          <p class="register-page-foot">
+            <a href="san-pham.html">← Về danh mục phần mềm</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <div id="zalo-float-stack" class="zalo-float-stack" hidden aria-label="Liên hệ Zalo"></div>
+
+    <footer class="site-footer site-footer--minimal">
+      <div class="container">
+        <p class="footer-bottom">© <span id="year"></span> Giải pháp phần mềm đường bộ</p>
+      </div>
+    </footer>
+
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/main.js?v=14"></script>
+    <script src="js/mua.js"></script>
+  </body>
+</html>

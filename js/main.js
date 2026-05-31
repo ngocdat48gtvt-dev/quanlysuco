@@ -13,6 +13,14 @@
     return page;
   }
 
+  function buyPageUrl(productId) {
+    var page = cfg.purchasePage || "mua.html";
+    if (productId) {
+      return page + "?product=" + encodeURIComponent(productId);
+    }
+    return page;
+  }
+
   function getProductLabel(productId) {
     var p = findProduct(productId);
     if (!p) return productId || "";
@@ -57,6 +65,8 @@
       document.title = "Phần mềm — " + brand;
     } else if (pageType === "register") {
       document.title = "Đăng ký — " + brand;
+    } else if (pageType === "purchase") {
+      document.title = "Mua phần mềm — " + brand;
     }
 
     setText("app-name", brand);
@@ -167,7 +177,10 @@
     });
 
     var buyBtn = document.getElementById("product-btn-buy");
-    if (buyBtn) buyBtn.hidden = true;
+    if (buyBtn) {
+      buyBtn.href = buyPageUrl(product.id);
+      buyBtn.hidden = false;
+    }
 
     var trustList = document.getElementById("product-trust-list");
     if (trustList && Array.isArray(cfg.productTrust)) {
@@ -469,7 +482,8 @@
     var id = params.get("product");
     if (id && findProduct(id)) {
       select.value = id;
-      if (document.body.getAttribute("data-page") === "register") {
+      var pageType = document.body.getAttribute("data-page");
+      if (pageType === "register" || pageType === "purchase") {
         lockProductForm(findProduct(id));
       }
     }
@@ -848,13 +862,39 @@
     return ok;
   }
 
+  window.validateRegisterForm = validateForm;
+
+  async function submitPurchaseLead(payload) {
+    var telegramOk = false;
+    try {
+      await notifyTelegram(payload);
+      telegramOk = true;
+    } catch (tgErr) {
+      console.warn("[Telegram]", tgErr);
+      notifyTelegramBeacon(payload);
+    }
+
+    try {
+      await submitLeadToFirestore(payload);
+    } catch (fsErr) {
+      if (!telegramOk) {
+        throw fsErr;
+      }
+      console.warn("[Firestore]", fsErr);
+    }
+
+    return { ok: true };
+  }
+
+  window.submitPurchaseLead = submitPurchaseLead;
+
   async function submitLeadToFirestore(payload) {
     var db = window.firebaseDb;
     if (!db) {
       throw new Error("Chưa kết nối Firebase — kiểm tra js/config.js và firebase SDK.");
     }
 
-    await db.collection("leads").add({
+    var doc = {
       name: payload.name,
       phone: payload.phone,
       email: payload.email.toLowerCase(),
@@ -862,10 +902,18 @@
       productId: payload.productId || "",
       province: payload.province,
       note: payload.note || "",
-      status: "new",
+      status: payload.leadType === "purchase" ? "pending_payment" : "new",
+      leadType: payload.leadType || "trial",
       source: "landing_page",
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+    };
+
+    if (payload.leadType === "purchase") {
+      doc.amount = payload.amount != null ? Number(payload.amount) : null;
+      doc.transferNote = payload.transferNote || "";
+    }
+
+    await db.collection("leads").add(doc);
 
     return { ok: true };
   }
@@ -939,6 +987,7 @@
         productLabel: productLabel,
         province: form.address.value.trim(),
         note: "Trang: " + window.location.href,
+        leadType: "trial",
       };
 
       if (!validateForm(payload)) return;
