@@ -14,15 +14,14 @@
   <body data-page="product" data-product-id="tool-bao-lu">
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html" data-brand-link>
+        <a class="brand" href="san-pham.html" data-brand-link>
           <img data-app-icon src="Ho so dang CH play/ic_launcher_play_store_512.png" alt="" width="44" height="44" />
           <span id="app-name">Giải pháp phần mềm đường bộ</span>
         </a>
         <nav class="nav" id="site-nav" aria-label="Menu chính"></nav>
         <div class="header-cta">
           <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Mở menu"><span></span><span></span><span></span></button>
-          <a class="btn btn-zalo btn-header" data-zalo-link href="#lien-he">Zalo</a>
-          <a class="btn btn-primary btn-header" href="#dang-ky" data-register-href>Đăng ký</a>
+          <a class="btn btn-primary btn-header" href="dang-ky.html" data-register-href>Đăng ký</a>
         </div>
       </div>
     </header>
@@ -40,10 +39,7 @@
               <a class="btn btn-shop btn-shop-download" id="product-btn-download" href="#">
                 <span class="btn-shop-icon" aria-hidden="true">⬇</span> Tải xuống
               </a>
-              <a class="btn btn-shop btn-shop-buy" id="product-btn-buy" href="#dang-ky">
-                <span class="btn-shop-icon" aria-hidden="true">✓</span> Mua ngay
-              </a>
-              <a class="btn btn-shop btn-shop-trial" href="#dang-ky">Đăng ký dùng thử</a>
+              <a class="btn btn-shop btn-shop-trial" href="dang-ky.html" data-register-href>Đăng ký dùng thử</a>
             </div>
           </div>
           <ul class="product-trust-list" id="product-trust-list"></ul>
@@ -71,43 +67,23 @@
           <div id="product-intro-video" class="product-intro-video"></div>
         </div>
       </section>
-
-      <section id="dang-ky" class="register-cta-section">
-        <div class="container">
-          <div class="register-cta-card">
-            <span class="eyebrow">Đăng ký</span>
-            <h2 id="register-cta-title">Tư vấn tool Bình đồ bão lũ</h2>
-            <p id="register-cta-desc">Nhận demo, báo giá và hướng dẫn cài đặt trên AutoCAD.</p>
-            <a class="btn btn-primary btn-lg" data-register-href href="dang-ky.html">Đăng ký ngay</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="lien-he" class="contact-strip">
-        <div class="container">
-          <div class="contact-strip-inner">
-            <div class="contact-strip-text"><h2>Liên hệ</h2><p>Zalo: <strong data-zalo-phone>—</strong></p></div>
-            <div class="contact-strip-actions"><a class="btn btn-zalo btn-lg" data-zalo-link href="#lien-he">Nhắn Zalo</a></div>
-          </div>
-        </div>
-      </section>
     </main>
 
     <div id="zalo-float-stack" class="zalo-float-stack" hidden aria-label="Liên hệ Zalo"></div>
 
-    <footer class="site-footer">
+    <footer class="site-footer site-footer--compact">
       <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand"><strong id="app-name-footer">Giải pháp phần mềm đường bộ</strong></div>
-          <div class="footer-col"><h4>Sản phẩm</h4><div id="footer-products"></div></div>
+        <div class="footer-compact">
+          <a href="san-pham.html" data-brand-link><strong id="app-name-footer">Giải pháp phần mềm đường bộ</strong></a>
+          <nav class="footer-compact-links" id="footer-products" aria-label="Sản phẩm"></nav>
         </div>
-        <p class="footer-bottom">© <span id="year"></span> Tuấn Dương</p>
+        <p class="footer-bottom">© <span id="year"></span> Giải pháp phần mềm đường bộ</p>
       </div>
     </footer>
 
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
     <script src="js/config.js"></script>
     <script src="js/layout.js"></script>
-    <script src="js/main.js?v=12"></script>
+    <script src="js/main.js?v=13"></script>
   </body>
 </html>

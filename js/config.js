@@ -25,7 +25,7 @@ window.SITE_CONFIG = {
     phone: "0968549116",
     phoneDisplay: "0968.549.116",
     displayName: "Dương Ngọc Đạt",
-    icon: "assets/zalo-logo.svg",
+    icon: "assets/zalo-mark.svg",
     defaultMessage:
       "Xin chào, tôi muốn tư vấn phần mềm / công cụ đường bộ (App Android hoặc AutoCAD).",
     floatButton: {

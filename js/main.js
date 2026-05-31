@@ -53,11 +53,6 @@
       setText("product-page-tagline", product.tagline);
       var metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc && product.tagline) metaDesc.setAttribute("content", product.tagline);
-      setText("register-cta-title", "Đăng ký — " + (product.shortName || product.name));
-      setText(
-        "register-cta-desc",
-        "Nhận tư vấn, báo giá và hướng dẫn cài đặt " + (product.shortName || product.name) + "."
-      );
     } else if (pageType === "catalog") {
       document.title = "Phần mềm — " + brand;
     } else if (pageType === "register") {
@@ -107,15 +102,8 @@
     if (p.hasPlayStore && cfg.playStoreUrl) {
       return cfg.playStoreUrl;
     }
-    var z = cfg.zalo || {};
     var msg = "Xin chào, tôi muốn tải / demo: " + (p.name || "");
-    if (z.phone) {
-      var digits = String(z.phone).replace(/\D/g, "");
-      if (digits.charAt(0) === "0") digits = "84" + digits.slice(1);
-      else if (digits.indexOf("84") !== 0) digits = "84" + digits;
-      return "https://zalo.me/" + digits + "?message=" + encodeURIComponent(msg);
-    }
-    return "#dang-ky";
+    return getZaloUrl(msg) || registerPageUrl(p.id);
   }
 
   function initProductShopHero(product) {
@@ -173,29 +161,24 @@
       }
     }
 
-    var buyBtn = document.getElementById("product-btn-buy");
     var regUrl = registerPageUrl(product.id);
-    if (buyBtn) buyBtn.href = regUrl;
-
     document.querySelectorAll(".btn-shop-trial, [data-register-href]").forEach(function (a) {
-      if (product.id) a.href = regUrl;
+      a.href = regUrl;
     });
+
+    var buyBtn = document.getElementById("product-btn-buy");
+    if (buyBtn) buyBtn.hidden = true;
 
     var trustList = document.getElementById("product-trust-list");
     if (trustList && Array.isArray(cfg.productTrust)) {
-      var phone = (cfg.zalo && cfg.zalo.phone) || cfg.supportPhone || "";
       trustList.innerHTML = cfg.productTrust
-        .map(function (item, i) {
-          var desc = item.desc || "";
-          if (i === cfg.productTrust.length - 1 && phone) {
-            desc = "Hotline — Zalo: " + phone;
-          }
+        .map(function (item) {
           return (
             "<li><span class=\"product-trust-icon\" aria-hidden=\"true\">✓</span>" +
             "<div><strong>" +
             escapeHtml(item.title) +
             "</strong><span>" +
-            escapeHtml(desc) +
+            escapeHtml(item.desc || "") +
             "</span></div></li>"
           );
         })
@@ -524,13 +507,12 @@
   }
 
   function getZaloIconHtml() {
+    var z = cfg.zalo || {};
+    var src = publicAssetPath(z.icon || "assets/zalo-mark.svg");
     return (
-      '<span class="zalo-float-btn-icon" aria-hidden="true">' +
-      '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" focusable="false">' +
-      '<circle cx="24" cy="24" r="24" fill="#0068FF"/>' +
-      '<path fill="#fff" d="M13.5 16.5c0-2.76 2.24-5 5-5h11c2.76 0 5 2.24 5 5v7.5c0 2.76-2.24 5-5 5h-4.5L19 32v-3h-4.5c-2.76 0-5-2.24-5-5v-7.5z"/>' +
-      '<text x="24" y="26.5" text-anchor="middle" fill="#0068FF" font-size="9.5" font-weight="700" font-family="Arial,Helvetica,sans-serif">Zalo</text>' +
-      "</svg></span>"
+      '<img class="zalo-float-btn-icon" src="' +
+      escapeHtml(src) +
+      '" alt="" width="48" height="48" loading="lazy" decoding="async">'
     );
   }
 
@@ -586,11 +568,7 @@
 
   function initZaloContact() {
     var url = getZaloUrl();
-    var z = cfg.zalo || {};
-    var phoneDisplay = formatPhoneDisplay(z.phone || cfg.supportPhone);
-    var label = z.displayName
-      ? "Nhắn Zalo — " + z.displayName
-      : "Nhắn Zalo ngay";
+    var phoneDisplay = formatPhoneDisplay((cfg.zalo || {}).phone || cfg.supportPhone);
 
     document.querySelectorAll("[data-zalo-link]").forEach(function (a) {
       if (url) {
@@ -600,17 +578,11 @@
         a.classList.remove("is-disabled");
         a.removeAttribute("aria-disabled");
       } else {
-        a.href = "#lien-he";
-        a.classList.add("is-disabled");
-        a.setAttribute("aria-disabled", "true");
-        a.title = "Thêm số Zalo trong website/js/config.js → zalo.phone";
-      }
-      if (a.hasAttribute("data-zalo-label") && url) {
-        a.textContent = label;
+        a.hidden = true;
       }
     });
 
-    var phoneText = phoneDisplay || "— (thêm số trong config.js → zalo.phone)";
+    var phoneText = phoneDisplay || "";
     document.querySelectorAll("[data-zalo-phone]").forEach(function (el) {
       el.textContent = phoneText;
     });

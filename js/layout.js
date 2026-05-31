@@ -66,12 +66,6 @@
     return base;
   }
 
-  function contactHref() {
-    if (isRegisterPage()) return "#lien-he";
-    if (isCatalogPage() || isProductPage()) return "#lien-he";
-    return homePage() + "#lien-he";
-  }
-
   function initSiteNav() {
     var nav = document.getElementById("site-nav");
     if (!nav) return;
@@ -81,11 +75,6 @@
         href: homePage(),
         label: "Phần mềm",
         match: isCatalogPage() || isProductPage(),
-      },
-      {
-        href: contactHref(),
-        label: "Liên hệ",
-        match: false,
       },
       {
         href: registerHref(),
@@ -113,23 +102,17 @@
     var col = document.getElementById("footer-products");
     if (!col) return;
 
-    col.innerHTML =
-      products()
-        .map(function (p) {
-          return (
-            '<a href="' +
-            escapeHtml(productHref(p)) +
-            '">' +
-            escapeHtml(p.shortName || p.name) +
-            "</a>"
-          );
-        })
-        .join("") +
-      '<a href="' +
-      escapeHtml(homePage()) +
-      '">Tất cả phần mềm</a><a href="' +
-      escapeHtml(registerHref()) +
-      '">Đăng ký tư vấn</a>';
+    col.innerHTML = products()
+      .map(function (p) {
+        return (
+          '<a href="' +
+          escapeHtml(productHref(p)) +
+          '">' +
+          escapeHtml(p.shortName || p.name) +
+          "</a>"
+        );
+      })
+      .join("");
   }
 
   function initBrandLink() {
@@ -162,7 +145,6 @@
     isCatalogPage: isCatalogPage,
     isRegisterPage: isRegisterPage,
     productHref: productHref,
-    contactHref: contactHref,
     init: function () {
       initBrandLink();
       initSiteNav();
