@@ -3,7 +3,7 @@
  */
 window.SITE_CONFIG = {
   /** Tên thương hiệu / cổng sản phẩm (hiển thị header & hero) */
-  siteBrand: "Giải pháp phần mềm đường bộ",
+  siteBrand: "Chuyển đổi số công tác quản lý và bảo trì đường bộ",
   siteTagline:
     "App Android quản lý sự cố hiện trường và công cụ AutoCAD tự động từ Excel — phục vụ BDTX, KPLB và hồ sơ hạ tầng giao thông.",
 
@@ -461,14 +461,14 @@ window.SITE_CONFIG = {
   seo: {
     siteUrl: "https://quanlysuco-road.vercel.app",
     title:
-      "Tự động hóa hồ sơ quản lý đường bộ trên AutoCAD | Giải pháp phần mềm đường bộ",
+      "Tự động hóa hồ sơ quản lý đường bộ trên AutoCAD | Chuyển đổi số quản lý và bảo trì đường bộ",
     description:
       "Giảm 70–90% thời gian lập hồ sơ quản lý đường, bình đồ tuyến và cập nhật lý trình trên AutoCAD. Tool chuyên ngành cho hạt quản lý đường bộ, bảo trì và tư vấn giao thông.",
     keywords:
       "phần mềm quản lý sự cố đường bộ, app sự cố đường bộ, phần mềm quản lý đường bộ, tool AutoCAD đường bộ, bình đồ tuyến AutoCAD, hồ sơ quản lý đường, Excel sang AutoCAD, in hồ sơ QLCL",
     ogImage: "Ho so dang CH play/banner2.png",
     locale: "vi_VN",
-    author: "Giải pháp phần mềm đường bộ",
+    author: "Chuyển đổi số công tác quản lý và bảo trì đường bộ",
   },
 
   /** Nội dung landing page chính */

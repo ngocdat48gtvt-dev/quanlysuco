@@ -136,6 +136,7 @@
 
     setText("app-name", brand);
     setText("app-name-footer", brand);
+    setText("footer-brand", brand);
 
     const playLinks = document.querySelectorAll("[data-play-store]");
     playLinks.forEach((a) => {
