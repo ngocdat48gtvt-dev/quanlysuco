@@ -61,6 +61,113 @@
     initProducts();
     lockProductForm(product);
     initProductBreadcrumb(product);
+    initProductShopHero(product);
+  }
+
+  function formatVnd(amount) {
+    if (amount == null || amount === "" || isNaN(Number(amount))) return "Liên hệ";
+    return Number(amount).toLocaleString("vi-VN") + " vnđ";
+  }
+
+  function getProductPricing(p) {
+    var base = cfg.productPricing || {};
+    return {
+      price: p.price != null ? p.price : base.price,
+      priceOriginal: p.priceOriginal != null ? p.priceOriginal : base.priceOriginal,
+    };
+  }
+
+  function getProductDownloadUrl(p) {
+    if (p.hasPlayStore && cfg.playStoreUrl) {
+      return cfg.playStoreUrl;
+    }
+    var z = cfg.zalo || {};
+    var msg = "Xin chào, tôi muốn tải / demo: " + (p.name || "");
+    if (z.phone) {
+      var digits = String(z.phone).replace(/\D/g, "");
+      if (digits.charAt(0) === "0") digits = "84" + digits.slice(1);
+      else if (digits.indexOf("84") !== 0) digits = "84" + digits;
+      return "https://zalo.me/" + digits + "?message=" + encodeURIComponent(msg);
+    }
+    return "#dang-ky";
+  }
+
+  function initProductShopHero(product) {
+    if (!product) return;
+    var hero = document.getElementById("product-shop-hero");
+    if (!hero) return;
+
+    hero.classList.add("product-shop-hero--" + (product.accent || "blue"));
+
+    var badge = document.getElementById("product-detail-badge");
+    if (badge) badge.textContent = product.badge || product.platform || "";
+
+    setText("product-page-title", product.name);
+    setText("product-page-tagline", product.tagline);
+
+    var pricing = getProductPricing(product);
+    var pricingEl = document.getElementById("product-shop-pricing");
+    if (pricingEl) {
+      var html = "";
+      if (pricing.priceOriginal && pricing.priceOriginal > pricing.price) {
+        html +=
+          '<span class="product-price-old">' +
+          escapeHtml(formatVnd(pricing.priceOriginal).replace(" vnđ", "")) +
+          "</span> ";
+      }
+      html += '<span class="product-price-current">' + escapeHtml(formatVnd(pricing.price)) + "</span>";
+      pricingEl.innerHTML = html;
+    }
+
+    var media = document.getElementById("product-shop-media");
+    if (media) {
+      var imgSrc = productCardImage(product);
+      if (imgSrc) {
+        media.innerHTML =
+          '<img src="' + escapeHtml(imgSrc) + '" alt="' + escapeHtml(product.name) + '" />';
+      } else {
+        media.innerHTML =
+          '<div class="product-shop-placeholder product-shop-placeholder--' +
+          escapeHtml(product.accent || "blue") +
+          '"><span>' +
+          escapeHtml(product.shortName || product.name) +
+          "</span><small>Excel → AutoCAD</small></div>";
+      }
+    }
+
+    var downloadBtn = document.getElementById("product-btn-download");
+    if (downloadBtn) {
+      var dl = getProductDownloadUrl(product);
+      downloadBtn.href = dl;
+      if (product.hasPlayStore) {
+        downloadBtn.target = "_blank";
+        downloadBtn.rel = "noopener noreferrer";
+      }
+    }
+
+    var buyBtn = document.getElementById("product-btn-buy");
+    if (buyBtn) buyBtn.href = "#dang-ky";
+
+    var trustList = document.getElementById("product-trust-list");
+    if (trustList && Array.isArray(cfg.productTrust)) {
+      var phone = (cfg.zalo && cfg.zalo.phone) || cfg.supportPhone || "";
+      trustList.innerHTML = cfg.productTrust
+        .map(function (item, i) {
+          var desc = item.desc || "";
+          if (i === cfg.productTrust.length - 1 && phone) {
+            desc = "Hotline — Zalo: " + phone;
+          }
+          return (
+            "<li><span class=\"product-trust-icon\" aria-hidden=\"true\">✓</span>" +
+            "<div><strong>" +
+            escapeHtml(item.title) +
+            "</strong><span>" +
+            escapeHtml(desc) +
+            "</span></div></li>"
+          );
+        })
+        .join("");
+    }
   }
 
   function initProductBreadcrumb(product) {
@@ -129,7 +236,7 @@
         escapeHtml(p.cardSummary || p.tagline || "") +
         "</p>" +
         '<p class="product-catalog-price">' +
-        escapeHtml(p.priceLabel || "Liên hệ") +
+        escapeHtml(formatVnd(getProductPricing(p).price)) +
         "</p>" +
         "</div>";
 

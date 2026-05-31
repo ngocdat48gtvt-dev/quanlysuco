@@ -23,6 +23,21 @@ window.SITE_CONFIG = {
       "Xin chào, tôi muốn tư vấn phần mềm / công cụ đường bộ (App Android hoặc AutoCAD).",
   },
 
+  /** Giá mặc định hiển thị trang chi tiết & catalog (VNĐ) */
+  productPricing: {
+    price: 500000,
+    priceOriginal: 1000000,
+  },
+
+  /** Lợi ích cột phải trang chi tiết sản phẩm */
+  productTrust: [
+    { title: "Cập nhật miễn phí", desc: "Liên tục cập nhật tính năng mới" },
+    { title: "Tiết kiệm chi phí", desc: "Tối ưu chi phí sử dụng phần mềm" },
+    { title: "Phần mềm bản quyền", desc: "100% được cấp phép sử dụng" },
+    { title: "An toàn & uy tín", desc: "Cam kết không mã độc hại" },
+    { title: "Hỗ trợ tốt nhất", desc: "Hotline — Zalo tư vấn nhanh" },
+  ],
+
   /** Danh sách sản phẩm — thêm/sửa tại đây khi có tool mới */
   products: [
     {
@@ -38,7 +53,6 @@ window.SITE_CONFIG = {
       accent: "blue",
       cardBadge: "Hot",
       cardImage: "banner2.png",
-      priceLabel: "Liên hệ",
       cardSummary: "Ghi sự cố hiện trường, cloud, báo cáo Word/Excel trên Android.",
       hasPlayStore: true,
       perks: [
@@ -61,7 +75,6 @@ window.SITE_CONFIG = {
       accent: "teal",
       cardBadge: "New",
       cardImage: "",
-      priceLabel: "Liên hệ",
       cardSummary: "Vẽ hồ sơ quản lý kết cấu HTGT tự động từ Excel sang AutoCAD.",
       perks: [
         "Import Excel một lần",
@@ -83,7 +96,6 @@ window.SITE_CONFIG = {
       accent: "orange",
       cardBadge: "New",
       cardImage: "",
-      priceLabel: "Liên hệ",
       cardSummary: "Vẽ bình đồ điểm sự cố bão lũ tự động từ Excel sang AutoCAD.",
       perks: [
         "Gắn tọa độ từ Excel",
