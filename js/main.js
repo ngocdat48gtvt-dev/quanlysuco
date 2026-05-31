@@ -371,6 +371,18 @@
     return { ok: true };
   }
 
+  async function notifyTelegram(payload) {
+    try {
+      await fetch("/api/telegram-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.warn("[Telegram] Không gửi được thông báo:", err);
+    }
+  }
+
   function showFormSuccess(form, status) {
     if (status) {
       status.className = "form-status success";
@@ -415,6 +427,7 @@
 
       try {
         await submitLeadToFirestore(payload);
+        notifyTelegram(payload);
         sessionStorage.setItem("quanlysuco_lead", JSON.stringify(payload));
         showFormSuccess(form, status);
       } catch (err) {
