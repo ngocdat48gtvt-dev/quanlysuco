@@ -2466,6 +2466,16 @@ a:hover {
   color: #fff;
 }
 
+.btn-shop-dispatch {
+  background: linear-gradient(135deg, #0f766e, #0d9488);
+  color: #fff;
+  border-color: transparent;
+}
+
+.btn-shop-dispatch:hover {
+  filter: brightness(1.06);
+}
+
 .btn-shop-trial {
   background: #fff;
   color: var(--navy);

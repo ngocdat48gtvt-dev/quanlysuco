@@ -15,6 +15,14 @@ window.SITE_CONFIG = {
   supportEmail: "[EMAIL_HỖ_TRỢ]",
   supportPhone: "",
 
+  /** Web điều hành sự cố (React, build vào thư mục /dieu-hanh/) */
+  dispatchPortal: {
+    /** Đường dẫn trên cùng domain Vercel */
+    path: "/dieu-hanh/",
+    navLabel: "Điều hành",
+    loginLabel: "Đăng nhập điều hành",
+  },
+
   /** Trang mặc định — danh mục 4 sản phẩm */
   homePage: "san-pham.html",
   catalogPage: "san-pham.html",
@@ -88,7 +96,9 @@ window.SITE_CONFIG = {
         "Đồng bộ cloud an toàn",
         "Xuất Excel & Word",
         "Ảnh trước / sau thi công",
+        "Web điều hành cho lãnh đạo",
       ],
+      hasDispatchPortal: true,
     },
     {
       id: "tool-ho-so-htgt",

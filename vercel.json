@@ -7,5 +7,27 @@
       "destination": "/san-pham",
       "permanent": false
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/dieu-hanh",
+      "destination": "/dieu-hanh/index.html"
+    },
+    {
+      "source": "/dieu-hanh/",
+      "destination": "/dieu-hanh/index.html"
+    },
+    {
+      "source": "/dieu-hanh/login",
+      "destination": "/dieu-hanh/index.html"
+    },
+    {
+      "source": "/dieu-hanh/operations",
+      "destination": "/dieu-hanh/index.html"
+    },
+    {
+      "source": "/dieu-hanh/catalog",
+      "destination": "/dieu-hanh/index.html"
+    }
   ]
 }

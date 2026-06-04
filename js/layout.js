@@ -61,6 +61,16 @@
     return normalizePage(currentPageFile()) === normalizePage(registerPage());
   }
 
+  function dispatchPortalPath() {
+    var p = cfg.dispatchPortal && cfg.dispatchPortal.path;
+    return p || "/dieu-hanh/";
+  }
+
+  function isDispatchPortalPage() {
+    var path = window.location.pathname || "";
+    return path.indexOf("/dieu-hanh") !== -1;
+  }
+
   function isProductPage() {
     return products().some(function (p) {
       return isSamePage(currentPageFile(), productHref(p));
@@ -84,6 +94,12 @@
         href: homePage(),
         label: "Phần mềm",
         match: isCatalogPage() || isProductPage(),
+      },
+      {
+        href: dispatchPortalPath(),
+        label: (cfg.dispatchPortal && cfg.dispatchPortal.navLabel) || "Điều hành",
+        match: isDispatchPortalPage(),
+        external: false,
       },
       {
         href: registerHref(),

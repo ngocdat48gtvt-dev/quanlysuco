@@ -294,6 +294,18 @@
       }
     }
 
+    var dispatchPath =
+      (cfg.dispatchPortal && cfg.dispatchPortal.path) || "/dieu-hanh/";
+    document.querySelectorAll("[data-dispatch-href]").forEach(function (a) {
+      a.hidden = !product.hasDispatchPortal;
+      if (product.hasDispatchPortal) {
+        a.href = dispatchPath;
+        var label =
+          (cfg.dispatchPortal && cfg.dispatchPortal.loginLabel) || "Điều hành web";
+        a.textContent = label;
+      }
+    });
+
     var trustList = document.getElementById("product-trust-list");
     if (trustList && Array.isArray(cfg.productTrust)) {
       trustList.innerHTML = cfg.productTrust
