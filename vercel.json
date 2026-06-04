@@ -8,6 +8,23 @@
       "permanent": false
     },
     {
+      "source": "/dashboard",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-forwarded-proto",
+          "value": "https"
+        }
+      ],
+      "destination": "/dashboard/",
+      "permanent": false
+    },
+    {
+      "source": "/dieu-hanh",
+      "destination": "/dieu-hanh/",
+      "permanent": false
+    },
+    {
       "source": "/dispatch",
       "destination": "/dashboard",
       "permanent": false
