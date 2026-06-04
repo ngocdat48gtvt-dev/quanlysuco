@@ -1067,13 +1067,20 @@
       notifyTelegramBeacon(payload);
     }
 
+    var firestoreOk = false;
     try {
       await submitLeadToFirestore(payload);
+      firestoreOk = true;
     } catch (fsErr) {
+      console.error("[Firestore] Ghi leads thất bại:", fsErr);
       if (!telegramOk) {
         throw fsErr;
       }
-      console.warn("[Firestore]", fsErr);
+    }
+    if (telegramOk && !firestoreOk) {
+      throw new Error(
+        "Đã gửi Telegram nhưng chưa lưu License Admin (Firestore). Liên hệ kỹ thuật hoặc thử lại sau."
+      );
     }
 
     return { ok: true };
@@ -1102,7 +1109,7 @@
     };
 
     if (payload.leadType === "purchase") {
-      doc.amount = payload.amount != null ? Number(payload.amount) : null;
+      doc.amount = Number(payload.amount) || 0;
       doc.transferNote = payload.transferNote || "";
     }
 
@@ -1201,13 +1208,22 @@
           notifyTelegramBeacon(payload);
         }
 
+        var firestoreOk = false;
         try {
           await submitLeadToFirestore(payload);
+          firestoreOk = true;
         } catch (fsErr) {
+          console.error("[Firestore] Ghi leads thất bại:", fsErr);
           if (!telegramOk) {
             throw fsErr;
           }
-          console.warn("[Firestore]", fsErr);
+        }
+        if (telegramOk && !firestoreOk && status) {
+          status.className = "form-status error";
+          status.textContent =
+            "Đã gửi Telegram nhưng chưa lưu License Admin (Firestore). Liên hệ kỹ thuật hoặc thử lại sau.";
+          if (btn) btn.disabled = false;
+          return;
         }
 
         sessionStorage.setItem("quanlysuco_lead", JSON.stringify(payload));
