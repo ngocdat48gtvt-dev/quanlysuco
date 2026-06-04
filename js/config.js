@@ -17,7 +17,7 @@ window.SITE_CONFIG = {
 
   /** Web điều hành sự cố (React, build vào thư mục /dieu-hanh/) */
   dispatchPortal: {
-    /** Đường dẫn trên cùng domain Vercel */
+    /** Cổng điều hành (React). /dashboard và /dispatch tự chuyển về đây */
     path: "/dieu-hanh/",
     navLabel: "Điều hành",
     loginLabel: "Đăng nhập điều hành",
