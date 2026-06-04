@@ -9,13 +9,6 @@
     },
     {
       "source": "/dashboard",
-      "has": [
-        {
-          "type": "header",
-          "key": "x-forwarded-proto",
-          "value": "https"
-        }
-      ],
       "destination": "/dashboard/",
       "permanent": false
     },
