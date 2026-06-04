@@ -18,15 +18,7 @@
       "destination": "/dieu-hanh/index.html"
     },
     {
-      "source": "/dieu-hanh/login",
-      "destination": "/dieu-hanh/index.html"
-    },
-    {
-      "source": "/dieu-hanh/operations",
-      "destination": "/dieu-hanh/index.html"
-    },
-    {
-      "source": "/dieu-hanh/catalog",
+      "source": "/dieu-hanh/:path*",
       "destination": "/dieu-hanh/index.html"
     }
   ]
