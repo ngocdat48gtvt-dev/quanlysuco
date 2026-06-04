@@ -295,7 +295,9 @@
     }
 
     var dispatchPath =
-      (cfg.dispatchPortal && cfg.dispatchPortal.path) || "/dieu-hanh/";
+      (cfg.dispatchPortal && cfg.dispatchPortal.path) ||
+      (cfg.dispatchPortal && cfg.dispatchPortal.altPath) ||
+      "/dashboard/";
     document.querySelectorAll("[data-dispatch-href]").forEach(function (a) {
       a.hidden = !product.hasDispatchPortal;
       if (product.hasDispatchPortal) {

@@ -17,8 +17,9 @@ window.SITE_CONFIG = {
 
   /** Web điều hành sự cố (React, build vào thư mục /dieu-hanh/) */
   dispatchPortal: {
-    /** Cổng điều hành (React). /dashboard và /dispatch tự chuyển về đây */
-    path: "/dieu-hanh/",
+    /** Cổng điều hành (React) — /dashboard và /dieu-hanh cùng một app */
+    path: "/dashboard/",
+    altPath: "/dieu-hanh/",
     navLabel: "Điều hành",
     loginLabel: "Đăng nhập điều hành",
   },

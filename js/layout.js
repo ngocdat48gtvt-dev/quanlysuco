@@ -62,13 +62,13 @@
   }
 
   function dispatchPortalPath() {
-    var p = cfg.dispatchPortal && cfg.dispatchPortal.path;
-    return p || "/dieu-hanh/";
+    var portal = cfg.dispatchPortal || {};
+    return portal.path || portal.altPath || "/dashboard/";
   }
 
   function isDispatchPortalPage() {
     var path = window.location.pathname || "";
-    return path.indexOf("/dieu-hanh") !== -1;
+    return path.indexOf("/dashboard") !== -1 || path.indexOf("/dieu-hanh") !== -1;
   }
 
   function isProductPage() {

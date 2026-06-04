@@ -3,9 +3,10 @@
 Trang marketing (`san-pham.html`, `app-quan-ly-su-co.html`…) và **cổng điều hành** dùng chung domain Vercel, ví dụ:
 
 - `https://quanlysuco-road.vercel.app/san-pham` — giới thiệu & quảng cáo sản phẩm
-- `https://quanlysuco-road.vercel.app/dieu-hanh/` — lãnh đạo / hạt trưởng đăng nhập xem sự cố
+- `https://quanlysuco-road.vercel.app/dashboard/` — **chính** (bookmark cũ)
+- `https://quanlysuco-road.vercel.app/dieu-hanh/` — cùng app (bản copy)
 
-**Không** dùng `/dashboard` trực tiếp (trang trắng) — URL cũ `/dashboard` sẽ tự chuyển sang `/dieu-hanh/`.
+Sau khi load, URL có dạng `.../dashboard/#/login`.
 
 `license-admin` vẫn riêng — chỉ bạn quản lý license.
 

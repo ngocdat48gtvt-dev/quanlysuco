@@ -4,18 +4,11 @@ setlocal
 
 set "WEBSITE_DIR=%~dp0"
 set "APP_DIR=%WEBSITE_DIR%..\dieu-hanh-web"
-set "OUT_DIR=%WEBSITE_DIR%dieu-hanh"
+set "OUT_DH=%WEBSITE_DIR%dieu-hanh"
+set "OUT_DB=%WEBSITE_DIR%dashboard"
 
 if not exist "%APP_DIR%\package.json" (
-  echo [LOI] Khong tim thay dieu-hanh-web tai:
-  echo   %APP_DIR%
-  pause
-  exit /b 1
-)
-
-if not exist "%APP_DIR%\.env" (
-  echo [LOI] Thieu file %APP_DIR%\.env
-  echo Copy tu license-admin\.env hoac dieu-hanh-web\.env.example
+  echo [LOI] Khong tim thay dieu-hanh-web
   pause
   exit /b 1
 )
@@ -28,14 +21,18 @@ call npm run build
 if errorlevel 1 goto :fail
 popd
 
-if exist "%OUT_DIR%" rmdir /s /q "%OUT_DIR%"
-mkdir "%OUT_DIR%"
-xcopy /e /i /y "%APP_DIR%\dist\*" "%OUT_DIR%\" >nul
+for %%D in ("%OUT_DH%" "%OUT_DB%") do (
+  if exist "%%~fD" rmdir /s /q "%%~fD"
+  mkdir "%%~fD"
+  xcopy /e /i /y "%APP_DIR%\dist\*" "%%~fD\" >nul
+)
 
 echo.
-echo Da copy build vao: %OUT_DIR%
-echo Commit thu muc dieu-hanh va push len Git / Vercel.
+echo Da copy vao:
+echo   %OUT_DH%
+echo   %OUT_DB%
 echo.
+echo Commit ca hai thu muc + push len Vercel.
 pause
 exit /b 0
 

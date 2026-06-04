@@ -8,38 +8,20 @@
       "permanent": false
     },
     {
-      "source": "/dashboard",
-      "destination": "/dieu-hanh/",
-      "permanent": false
-    },
-    {
-      "source": "/dashboard/:path*",
-      "destination": "/dieu-hanh/:path*",
-      "permanent": false
-    },
-    {
       "source": "/dispatch",
-      "destination": "/dieu-hanh/",
+      "destination": "/dashboard",
       "permanent": false
     },
     {
       "source": "/dispatch/:path*",
-      "destination": "/dieu-hanh/:path*",
+      "destination": "/dashboard/:path*",
       "permanent": false
     }
   ],
   "rewrites": [
-    {
-      "source": "/dieu-hanh",
-      "destination": "/dieu-hanh/index.html"
-    },
-    {
-      "source": "/dieu-hanh/",
-      "destination": "/dieu-hanh/index.html"
-    },
-    {
-      "source": "/dieu-hanh/:path*",
-      "destination": "/dieu-hanh/index.html"
-    }
+    { "source": "/dieu-hanh", "destination": "/dieu-hanh/index.html" },
+    { "source": "/dieu-hanh/:path*", "destination": "/dieu-hanh/index.html" },
+    { "source": "/dashboard", "destination": "/dashboard/index.html" },
+    { "source": "/dashboard/:path*", "destination": "/dashboard/index.html" }
   ]
 }
