@@ -8,16 +8,6 @@
       "permanent": false
     },
     {
-      "source": "/dashboard",
-      "destination": "/dashboard/",
-      "permanent": false
-    },
-    {
-      "source": "/dieu-hanh",
-      "destination": "/dieu-hanh/",
-      "permanent": false
-    },
-    {
       "source": "/dispatch",
       "destination": "/dashboard",
       "permanent": false
@@ -29,9 +19,13 @@
     }
   ],
   "rewrites": [
-    { "source": "/dieu-hanh", "destination": "/dieu-hanh/index.html" },
-    { "source": "/dieu-hanh/:path*", "destination": "/dieu-hanh/index.html" },
-    { "source": "/dashboard", "destination": "/dashboard/index.html" },
-    { "source": "/dashboard/:path*", "destination": "/dashboard/index.html" }
+    {
+      "source": "/dieu-hanh",
+      "destination": "/dieu-hanh/index.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/dashboard/index.html"
+    }
   ]
 }
