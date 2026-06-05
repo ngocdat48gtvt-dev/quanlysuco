@@ -222,6 +222,9 @@
     if (p.hasPlayStore && cfg.playStoreUrl) {
       return cfg.playStoreUrl;
     }
+    if (p.downloadUrl) {
+      return publicAssetPath(p.downloadUrl);
+    }
     var msg = "Xin chào, tôi muốn tải / demo: " + (p.name || "");
     return getZaloUrl(msg) || registerPageUrl(p.id);
   }
@@ -247,10 +250,12 @@
     var media = document.getElementById("product-shop-media");
     if (media) {
       var imgSrc = productCardImage(product);
+      media.className = "product-shop-media" + productCardImageFitClass(product);
       if (imgSrc) {
         media.innerHTML =
           '<img src="' + escapeHtml(imgSrc) + '" alt="' + escapeHtml(product.name) + '" />';
       } else {
+        media.className = "product-shop-media";
         media.innerHTML =
           '<div class="product-shop-placeholder product-shop-placeholder--' +
           escapeHtml(product.accent || "blue") +
@@ -269,10 +274,27 @@
       if (product.hasPlayStore) {
         downloadBtn.target = "_blank";
         downloadBtn.rel = "noopener noreferrer";
+        downloadBtn.removeAttribute("download");
         downloadBtn.innerHTML =
           '<span class="btn-shop-icon" aria-hidden="true">▶</span> CH Play';
         downloadBtn.setAttribute("aria-label", "Tải app trên CH Play");
+      } else if (product.downloadUrl) {
+        downloadBtn.removeAttribute("target");
+        downloadBtn.removeAttribute("rel");
+        downloadBtn.setAttribute(
+          "download",
+          product.downloadFileName || product.downloadUrl.split("/").pop() || "",
+        );
+        downloadBtn.innerHTML =
+          '<span class="btn-shop-icon" aria-hidden="true">⬇</span> Tải xuống';
+        downloadBtn.setAttribute(
+          "aria-label",
+          "Tải " + (product.downloadFileName || "phần mềm"),
+        );
       } else {
+        downloadBtn.removeAttribute("download");
+        downloadBtn.removeAttribute("target");
+        downloadBtn.removeAttribute("rel");
         downloadBtn.innerHTML =
           '<span class="btn-shop-icon" aria-hidden="true">⬇</span> Tải xuống';
         downloadBtn.removeAttribute("aria-label");
@@ -347,8 +369,18 @@
 
   function productCardImage(p) {
     if (p.cardUseIcon) return "";
-    if (p.cardImage) return assetPath(p.cardImage);
+    if (p.cardImage) {
+      var img = String(p.cardImage);
+      if (img.indexOf("assets/") === 0 || img.indexOf("downloads/") === 0) {
+        return publicAssetPath(img);
+      }
+      return assetPath(img);
+    }
     return "";
+  }
+
+  function productCardImageFitClass(p) {
+    return p.cardImageFit === "contain" ? " product-media--contain" : "";
   }
 
   function productCatalogMediaHtml(p) {
@@ -415,7 +447,9 @@
         : "";
 
       card.innerHTML =
-        '<div class="product-catalog-media">' +
+        '<div class="product-catalog-media' +
+        productCardImageFitClass(p) +
+        '">' +
         badgeHtml +
         mediaHtml +
         "</div>" +

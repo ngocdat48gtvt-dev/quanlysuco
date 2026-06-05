@@ -2311,6 +2311,17 @@ a:hover {
   object-fit: cover;
 }
 
+.product-shop-media.product-media--contain,
+.product-catalog-media.product-media--contain {
+  background: #fff;
+}
+
+.product-shop-media.product-media--contain img,
+.product-catalog-media.product-media--contain img {
+  object-fit: contain;
+  padding: 0.5rem;
+}
+
 .product-shop-placeholder {
   display: flex;
   flex-direction: column;

@@ -303,7 +303,11 @@ window.SITE_CONFIG = {
       isFree: true,
       price: 0,
       priceLabel: "Miễn phí",
-      cardImage: "",
+      cardImage: "assets/tool-in-qlcl-logo.png",
+      cardImageFit: "contain",
+      /** File cài đặt Windows — đặt trong website/downloads/ */
+      downloadUrl: "downloads/Print-Control-PRO.exe",
+      downloadFileName: "Print-Control-PRO.exe",
       cardSummary:
         "In hàng loạt hồ sơ QLCL theo điều kiện — 1 lệnh in, tự sắp xếp biên bản & phụ lục.",
       seo: {
