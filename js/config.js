@@ -380,7 +380,7 @@ window.SITE_CONFIG = {
         title: "Video giới thiệu tool In QLCL hàng loạt",
         description:
           "Quy trình lọc điều kiện, chọn hồ sơ và in toàn bộ biên bản — phụ lục tự động sắp xếp.",
-        youtubeId: "VIDEO_ID_IN_QLCL",
+        youtubeId: "vHxkeXIkFQU",
       },
     },
   ],
