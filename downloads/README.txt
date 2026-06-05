@@ -13,3 +13,8 @@ Sau do: git add website/downloads/Print-Control-PRO.exe && git push
 
 Kiem tra: https://quanlysuco-road.vercel.app/downloads/Print-Control-PRO.exe
 (phai tai duoc, khong 404)
+
+Icon may in cho file .exe:
+  - Print-Control-PRO.ico / Print-Control-PRO-icon.png
+  - Chay: apply-exe-icon.bat (gan icon vao exe)
+  - Tao lai icon: python generate-printer-icon.py
