@@ -302,6 +302,7 @@ window.SITE_CONFIG = {
       cardBadge: "Tool Windows",
       isFree: false,
       price: 299000,
+      priceOriginal: null,
       priceUnit: "/năm",
       cardImage: "assets/tool-in-qlcl-logo.png",
       cardImageFit: "contain",
