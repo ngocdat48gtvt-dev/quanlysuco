@@ -256,6 +256,9 @@
     var media = document.getElementById("product-shop-media");
     if (media) {
       var imgSrc = productCardImage(product);
+      if (!imgSrc && product.cardUseIcon && cfg.icon) {
+        imgSrc = assetPath(cfg.icon);
+      }
       media.className = "product-shop-media" + productCardImageFitClass(product);
       if (imgSrc) {
         media.innerHTML =
