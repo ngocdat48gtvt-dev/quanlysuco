@@ -1,20 +1,23 @@
-File cai dat tool In QLCL — dat tai day truoc khi push len Vercel:
+Tool In QLCL — file tai & build
+================================
 
-  Print-Control-PRO.exe   (~57 MB)
+ICON (hinh 3 - may in xanh):
+  printer-icon.png
+  Print-Control-PRO.ico
 
-Cach copy tu may build:
+BUILD EXE (output: dist\Print-Control-PRO.exe):
+  1. Copy vao THU MUC GOC project tool:
+     - build-print-control-pro.bat
+     - Print-Control-PRO.ico
+  2. Chay: build-print-control-pro.bat
+     (hoac: build-print-control-pro.bat ten_file.py)
+  3. Ket qua: dist\Print-Control-PRO.exe
+
+QUAN TRONG:
+  - KHONG chay apply-exe-icon.bat / rcedit — se hong file PyInstaller!
+  - Icon phai gan luc build (--icon), khong sua sau.
+
+DUA LEN WEB:
   1. Chay: website\copy-in-qlcl-exe.bat
-     (sua duong dan SOURCE trong file .bat neu can)
-  2. Hoac copy tay tu:
-     Tool in hang loat theo DK\dist\Print Control PRO.exe
-     -> website\downloads\Print-Control-PRO.exe
-
-Sau do: git add website/downloads/Print-Control-PRO.exe && git push
-
-Kiem tra: https://quanlysuco-road.vercel.app/downloads/Print-Control-PRO.exe
-(phai tai duoc, khong 404)
-
-Icon may in cho file .exe:
-  - Print-Control-PRO.ico / Print-Control-PRO-icon.png
-  - Chay: apply-exe-icon.bat (gan icon vao exe)
-  - Tao lai icon: python generate-printer-icon.py
+  2. Push: website\downloads\Print-Control-PRO.exe
+  3. Kiem tra: .../downloads/Print-QLCL.exe

@@ -166,14 +166,15 @@
     return Number(amount).toLocaleString("vi-VN") + " vnđ";
   }
 
-  function getPriceUnit() {
+  function getPriceUnit(p) {
+    if (p && p.priceUnit != null && p.priceUnit !== "") return p.priceUnit;
     var u = (cfg.productPricing || {}).priceUnit;
     return u != null && u !== "" ? u : "/năm";
   }
 
-  function formatProductPrice(amount) {
+  function formatProductPrice(amount, p) {
     if (amount == null || amount === "" || isNaN(Number(amount))) return "Liên hệ";
-    return formatVnd(amount) + getPriceUnit();
+    return formatVnd(amount) + getPriceUnit(p);
   }
 
   function getProductPricing(p) {
@@ -186,6 +187,7 @@
       priceOriginal: p.priceOriginal != null ? p.priceOriginal : base.priceOriginal,
       isFree: false,
       label: null,
+      priceUnit: getPriceUnit(p),
     };
   }
 
@@ -208,12 +210,12 @@
     if (pricing.priceOriginal && pricing.priceOriginal > pricing.price) {
       html +=
         '<span class="product-price-old">' +
-        escapeHtml(formatProductPrice(pricing.priceOriginal)) +
+        escapeHtml(formatProductPrice(pricing.priceOriginal, product)) +
         "</span> ";
     }
     html +=
       '<span class="product-price-current">' +
-      escapeHtml(formatProductPrice(pricing.price)) +
+      escapeHtml(formatProductPrice(pricing.price, product)) +
       "</span>";
     pricingEl.innerHTML = html;
   }

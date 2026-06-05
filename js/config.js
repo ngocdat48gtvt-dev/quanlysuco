@@ -299,15 +299,15 @@ window.SITE_CONFIG = {
       page: "in-an-qlcl.html",
       registerLabel: "Tool in ấn hồ sơ QLCL hàng loạt",
       accent: "purple",
-      cardBadge: "Miễn phí",
-      isFree: true,
-      price: 0,
-      priceLabel: "Miễn phí",
+      cardBadge: "Tool Windows",
+      isFree: false,
+      price: 299000,
+      priceUnit: "/năm",
       cardImage: "assets/tool-in-qlcl-logo.png",
       cardImageFit: "contain",
       /** File cài đặt Windows — đặt trong website/downloads/ */
-      downloadUrl: "downloads/Print-Control-PRO.exe",
-      downloadFileName: "Print-Control-PRO.exe",
+      downloadUrl: "downloads/Print-QLCL.exe",
+      downloadFileName: "Print QLCL.exe",
       cardSummary:
         "In hàng loạt hồ sơ QLCL theo điều kiện — 1 lệnh in, tự sắp xếp biên bản & phụ lục.",
       seo: {
