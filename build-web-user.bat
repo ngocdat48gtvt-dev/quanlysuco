@@ -26,10 +26,7 @@ if exist "%TARGET%" rmdir /s /q "%TARGET%"
 mkdir "%TARGET%"
 xcopy /e /i /y "%DIST%\*" "%TARGET%\" >nul
 
-powershell -NoProfile -Command ^
-  "$p='%TARGET%\index.html'; $h=[IO.File]::ReadAllText($p); " ^
-  "$h=$h.Replace('href=\"./manifest.webmanifest\"','href=\"/user/manifest.webmanifest\"'); " ^
-  "[IO.File]::WriteAllText($p,$h)"
+REM Vite (VITE_DEPLOY_BASE=/user/) da ghi duong dan /user/... trong index.html
 
 echo.
 echo Da copy vao website/user/
