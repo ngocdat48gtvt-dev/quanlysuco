@@ -27,7 +27,7 @@ window.SITE_CONFIG = {
   /** Web hiện trường USER (PWA — iPhone / trình duyệt, build vào /user/) */
   userPortal: {
     path: "/user/",
-    navLabel: "Web hiện trường",
+    navLabel: "App hiện trường",
     loginLabel: "Dùng trên iPhone / trình duyệt",
   },
 

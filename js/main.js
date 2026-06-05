@@ -308,20 +308,6 @@
       }
     });
 
-    var userPath =
-      (cfg.userPortal && cfg.userPortal.path) || "/user/";
-    document.querySelectorAll("[data-user-href]").forEach(function (a) {
-      var showUser =
-        product.id === "app-quan-ly-su-co" || product.hasDispatchPortal;
-      a.hidden = !showUser;
-      if (showUser) {
-        a.href = userPath;
-        var userLabel =
-          (cfg.userPortal && cfg.userPortal.loginLabel) || "App hiện trường";
-        a.textContent = userLabel;
-      }
-    });
-
     var trustList = document.getElementById("product-trust-list");
     if (trustList && Array.isArray(cfg.productTrust)) {
       trustList.innerHTML = cfg.productTrust

@@ -66,9 +66,19 @@
     return portal.path || portal.altPath || "/dashboard/";
   }
 
+  function userPortalPath() {
+    var portal = cfg.userPortal || {};
+    return portal.path || "/user/";
+  }
+
   function isDispatchPortalPage() {
     var path = window.location.pathname || "";
     return path.indexOf("/dashboard") !== -1 || path.indexOf("/dieu-hanh") !== -1;
+  }
+
+  function isUserPortalPage() {
+    var path = window.location.pathname || "";
+    return path.indexOf("/user") !== -1;
   }
 
   function isProductPage() {
@@ -99,6 +109,12 @@
         href: dispatchPortalPath(),
         label: (cfg.dispatchPortal && cfg.dispatchPortal.navLabel) || "Điều hành",
         match: isDispatchPortalPage(),
+        external: false,
+      },
+      {
+        href: userPortalPath(),
+        label: (cfg.userPortal && cfg.userPortal.navLabel) || "App hiện trường",
+        match: isUserPortalPage(),
         external: false,
       },
       {
