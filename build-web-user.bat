@@ -13,10 +13,11 @@ if not exist "%APP_DIR%\package.json" (
   exit /b 1
 )
 
-echo Building web-user...
+echo Building web-user (base /user/)...
 pushd "%APP_DIR%"
 call npm install
 if errorlevel 1 goto :fail
+set "VITE_DEPLOY_BASE=/user/"
 call npm run build
 if errorlevel 1 goto :fail
 popd
@@ -26,10 +27,8 @@ mkdir "%TARGET%"
 xcopy /e /i /y "%DIST%\*" "%TARGET%\" >nul
 
 powershell -NoProfile -Command ^
-  "$p='%TARGET%\index.html'; $b='/user'; $h=[IO.File]::ReadAllText($p); " ^
-  "$h=$h.Replace('./firebase-config.js',$b+'/firebase-config.js'); " ^
-  "$h=$h.Replace('./pwa-192.png',$b+'/pwa-192.png'); " ^
-  "$h=$h.Replace('./assets/',$b+'/assets/'); " ^
+  "$p='%TARGET%\index.html'; $h=[IO.File]::ReadAllText($p); " ^
+  "$h=$h.Replace('href=\"./manifest.webmanifest\"','href=\"/user/manifest.webmanifest\"'); " ^
   "[IO.File]::WriteAllText($p,$h)"
 
 echo.
