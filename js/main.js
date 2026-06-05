@@ -182,12 +182,10 @@
     if (p && (p.isFree || p.price === 0)) {
       return { price: 0, priceOriginal: null, isFree: true, label: p.priceLabel || "Miễn phí" };
     }
-    var priceOriginal = base.priceOriginal;
-    if (p && Object.prototype.hasOwnProperty.call(p, "priceOriginal")) {
-      priceOriginal = p.priceOriginal;
-    } else if (p && p.price != null) {
-      priceOriginal = null;
-    }
+    var priceOriginal =
+      p && Object.prototype.hasOwnProperty.call(p, "priceOriginal")
+        ? p.priceOriginal
+        : null;
     return {
       price: p.price != null ? p.price : base.price,
       priceOriginal: priceOriginal,
