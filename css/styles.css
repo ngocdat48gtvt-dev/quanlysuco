@@ -2476,6 +2476,16 @@ a:hover {
   filter: brightness(1.06);
 }
 
+.btn-shop-user {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+  border-color: transparent;
+}
+
+.btn-shop-user:hover {
+  filter: brightness(1.06);
+}
+
 .btn-shop-trial {
   background: #fff;
   color: var(--navy);

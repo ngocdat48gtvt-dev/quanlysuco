@@ -24,6 +24,13 @@ window.SITE_CONFIG = {
     loginLabel: "Đăng nhập điều hành",
   },
 
+  /** Web hiện trường USER (PWA — iPhone / trình duyệt, build vào /user/) */
+  userPortal: {
+    path: "/user/",
+    navLabel: "Web hiện trường",
+    loginLabel: "Dùng trên iPhone / trình duyệt",
+  },
+
   /** Trang mặc định — danh mục 4 sản phẩm */
   homePage: "san-pham.html",
   catalogPage: "san-pham.html",
