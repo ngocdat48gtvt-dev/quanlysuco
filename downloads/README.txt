@@ -21,3 +21,15 @@ DUA LEN WEB:
   1. Chay: website\copy-in-qlcl-exe.bat
   2. Push: website\downloads\Print-Control-PRO.exe
   3. Kiem tra: .../downloads/Print-QLCL.exe
+
+VeBinhDo — Bình đồ điểm sự cố bão lũ
+=====================================
+BUILD:
+  1. Dong AutoCAD
+  2. Chay: VeBinhDo\BoCai\TAO_BO_CAI.bat
+  3. Output: VeBinhDo\BoCai\output\VeBinhDo_Setup.exe
+
+DUA LEN WEB:
+  1. Chay: website\copy-vebinhdo-setup.bat
+  2. Push: website\downloads\VeBinhDo-Setup.exe
+  3. Kiem tra nut "Tai xuong" tai trang binh-do-bao-lu

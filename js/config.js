@@ -214,6 +214,9 @@ window.SITE_CONFIG = {
       cardImage: "assets/tool-binh-do-bao-lu-icon.png?v=32",
       cardImageFit: "contain",
       cardSummary: "Vẽ bình đồ điểm sự cố bão lũ tự động từ Excel sang AutoCAD.",
+      /** File cài đặt Windows — đặt trong website/downloads/ */
+      downloadUrl: "downloads/VeBinhDo-Setup.exe",
+      downloadFileName: "VeBinhDo Setup.exe",
       seo: {
         title: "Tool Vẽ Bình Đồ Sự Cố Bão Lũ | Excel sang AutoCAD",
         description:
