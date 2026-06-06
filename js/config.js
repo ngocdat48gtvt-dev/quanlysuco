@@ -86,6 +86,7 @@ window.SITE_CONFIG = {
       accent: "blue",
       cardBadge: "Hot",
       cardImage: "ic_launcher_play_store_512.png",
+      cardImageFit: "contain",
       cardSummary:
         "Ghi nhận hiện trường, GPS, ảnh minh chứng, theo dõi xử lý và báo cáo Word/Excel trên Android.",
       seo: {
