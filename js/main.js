@@ -442,24 +442,10 @@
 
       var mediaHtml = productCatalogMediaHtml(p);
 
-      var badgeVariant = p.isFree
-        ? "free"
-        : String(p.cardBadge || "")
-            .toLowerCase()
-            .replace(/\s+/g, "-");
-      var badgeHtml = p.cardBadge
-        ? '<span class="product-catalog-badge product-catalog-badge--' +
-          escapeHtml(badgeVariant) +
-          '">' +
-          escapeHtml(p.cardBadge) +
-          "</span>"
-        : "";
-
       card.innerHTML =
         '<div class="product-catalog-media' +
         productCardImageFitClass(p) +
         '">' +
-        badgeHtml +
         mediaHtml +
         "</div>" +
         '<div class="product-catalog-body">' +

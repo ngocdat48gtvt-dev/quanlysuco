@@ -2126,6 +2126,24 @@ a:hover {
   gap: 1.25rem;
 }
 
+/* Trang danh mục: thẻ to ~150%, giữ nguyên cỡ chữ */
+body[data-page="catalog"] .catalog-section .container {
+  width: min(1320px, 95vw);
+}
+
+body[data-page="catalog"] .products-catalog-grid {
+  gap: 1.5rem;
+}
+
+body[data-page="catalog"] .product-catalog-media {
+  aspect-ratio: 16 / 15;
+}
+
+body[data-page="catalog"] .product-catalog-app-icon {
+  width: 132px;
+  height: 132px;
+}
+
 @media (min-width: 1100px) {
   .products-catalog-grid {
     grid-template-columns: repeat(4, 1fr);
