@@ -290,7 +290,7 @@ window.SITE_CONFIG = {
         title: "Video giới thiệu tool Bình đồ bão lũ",
         description:
           "Quy trình import Excel và vẽ bình đồ các điểm sự cố bão lũ trên AutoCAD.",
-        youtubeId: "VIDEO_ID_BAO_LU",
+        youtubeId: "YNzcJ2AOTUw",
       },
     },
     {

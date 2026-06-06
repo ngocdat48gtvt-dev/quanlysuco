@@ -29,6 +29,11 @@ BUILD:
   2. Chay: VeBinhDo\BoCai\TAO_BO_CAI.bat
   3. Output: VeBinhDo\BoCai\output\VeBinhDo_Setup.exe
 
+ICON:
+  - Nguon: VeBinhDo\BoCai\VeBinhDo-icon.png
+  - Tao .ico: python VeBinhDo\BoCai\make-icon-from-png.py
+  - TAO_BO_CAI.bat tu dong tao icon truoc khi dong goi
+
 DUA LEN WEB:
   1. Chay: website\copy-vebinhdo-setup.bat
   2. Push: website\downloads\VeBinhDo-Setup.exe
