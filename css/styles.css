@@ -2126,22 +2126,45 @@ a:hover {
   gap: 1.25rem;
 }
 
-/* Trang danh mục: thẻ to ~150%, giữ nguyên cỡ chữ */
+/* Trang danh mục: thẻ lớn (~225% gốc), giữ nguyên cỡ chữ */
 body[data-page="catalog"] .catalog-section .container {
-  width: min(1320px, 95vw);
+  width: min(1980px, 98vw);
 }
 
 body[data-page="catalog"] .products-catalog-grid {
-  gap: 1.5rem;
+  gap: 2.25rem;
 }
 
 body[data-page="catalog"] .product-catalog-media {
-  aspect-ratio: 16 / 15;
+  aspect-ratio: 32 / 45;
 }
 
 body[data-page="catalog"] .product-catalog-app-icon {
-  width: 132px;
-  height: 132px;
+  width: 198px;
+  height: 198px;
+}
+
+/* Trang chi tiết sản phẩm: ảnh & layout ~200%, giữ nguyên cỡ chữ */
+body[data-page="product"] .product-shop-hero .container {
+  width: min(1680px, 96vw);
+}
+
+body[data-page="product"] .product-shop-grid {
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+body[data-page="product"] .product-shop-media img {
+  aspect-ratio: 1 / 1;
+  min-height: 400px;
+}
+
+body[data-page="product"] .product-shop-media.product-media--contain img {
+  padding: 0.85rem;
+}
+
+body[data-page="product"] .product-shop-placeholder {
+  min-height: 440px;
 }
 
 @media (min-width: 1100px) {
@@ -2990,8 +3013,12 @@ body[data-page="catalog"] .product-catalog-app-icon {
   }
 
   .product-shop-media {
-    max-width: min(280px, 100%);
+    max-width: min(560px, 100%);
     margin: 0 auto;
+  }
+
+  body[data-page="product"] .product-shop-media img {
+    min-height: 280px;
   }
 
   .product-shop-info {
@@ -3148,6 +3175,10 @@ body[data-page="catalog"] .product-catalog-app-icon {
     max-width: 320px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  body[data-page="catalog"] .products-catalog-grid {
+    max-width: min(480px, 92vw);
   }
 
   .product-catalog-media {
