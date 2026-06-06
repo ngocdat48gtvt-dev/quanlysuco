@@ -303,7 +303,7 @@ window.SITE_CONFIG = {
       price: 299000,
       priceOriginal: null,
       priceUnit: "/năm",
-      cardImage: "assets/tool-in-qlcl-icon.png",
+      cardImage: "assets/tool-in-qlcl-icon.png?v=28",
       cardImageFit: "contain",
       /** File cài đặt Windows — đặt trong website/downloads/ */
       downloadUrl: "downloads/Print-QLCL.exe",
