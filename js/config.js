@@ -120,7 +120,8 @@ window.SITE_CONFIG = {
       registerLabel: "Tool Excel→AutoCAD — Hồ sơ HTGT",
       accent: "teal",
       cardBadge: "New",
-      cardImage: "",
+      cardImage: "assets/tool-ho-so-htgt-icon.png",
+      cardImageFit: "contain",
       cardSummary: "Vẽ hồ sơ quản lý kết cấu HTGT tự động từ Excel sang AutoCAD.",
       seo: {
         title: "Tool Hồ Sơ Quản Lý HTGT | Excel sang AutoCAD Tự Động",
