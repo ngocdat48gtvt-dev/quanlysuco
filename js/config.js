@@ -85,7 +85,7 @@ window.SITE_CONFIG = {
       registerLabel: "App Quản lý sự cố đường bộ (Android)",
       accent: "blue",
       cardBadge: "Hot",
-      cardImage: "ic_launcher_play_store_512.png",
+      cardImage: "assets/app-quan-ly-su-co-icon.png?v=34",
       cardImageFit: "contain",
       cardSummary:
         "Ghi nhận hiện trường, GPS, ảnh minh chứng, theo dõi xử lý và báo cáo Word/Excel trên Android.",
