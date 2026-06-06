@@ -211,7 +211,8 @@ window.SITE_CONFIG = {
       registerLabel: "Tool Excel→AutoCAD — Bình đồ bão lũ",
       accent: "orange",
       cardBadge: "New",
-      cardImage: "",
+      cardImage: "assets/tool-binh-do-bao-lu-icon.png?v=32",
+      cardImageFit: "contain",
       cardSummary: "Vẽ bình đồ điểm sự cố bão lũ tự động từ Excel sang AutoCAD.",
       seo: {
         title: "Tool Vẽ Bình Đồ Sự Cố Bão Lũ | Excel sang AutoCAD",
