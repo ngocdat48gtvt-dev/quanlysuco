@@ -39,7 +39,6 @@ powershell -NoProfile -Command ^
   "$p='%TARGET%\index.html'; $b='%BASE%'; $h=[IO.File]::ReadAllText($p); " ^
   "$h=$h.Replace('./firebase-config.js',$b+'/firebase-config.js'); " ^
   "$h=$h.Replace('./assets/',$b+'/assets/'); " ^
-  "$h=$h -replace '(?s)<script>\\s*\\(function \\(\\)[^<]*</script>\\s*',''; " ^
   "[IO.File]::WriteAllText($p,$h)"
 exit /b 0
 
