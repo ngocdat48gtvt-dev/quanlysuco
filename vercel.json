@@ -46,6 +46,14 @@
     {
       "source": "/user/",
       "destination": "/user/index.html"
+    },
+    {
+      "source": "/nhat-ky",
+      "destination": "/nhat-ky/index.html"
+    },
+    {
+      "source": "/nhat-ky/",
+      "destination": "/nhat-ky/index.html"
     }
   ]
 }

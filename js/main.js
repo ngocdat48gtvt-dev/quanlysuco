@@ -339,6 +339,18 @@
       }
     });
 
+    var nhatKyPath =
+      (cfg.nhatKyPortal && cfg.nhatKyPortal.path) || "/nhat-ky/";
+    document.querySelectorAll("[data-nhat-ky-href]").forEach(function (a) {
+      a.hidden = !product.hasNhatKyPortal;
+      if (product.hasNhatKyPortal) {
+        a.href = nhatKyPath;
+        var nkLabel =
+          (cfg.nhatKyPortal && cfg.nhatKyPortal.loginLabel) || "Nhật ký tuần đường";
+        a.textContent = nkLabel;
+      }
+    });
+
     var trustList = document.getElementById("product-trust-list");
     if (trustList && Array.isArray(cfg.productTrust)) {
       trustList.innerHTML = cfg.productTrust

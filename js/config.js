@@ -31,6 +31,13 @@ window.SITE_CONFIG = {
     loginLabel: "Dùng trên iPhone / trình duyệt",
   },
 
+  /** Nhật ký tuần đường (React, build vào /nhat-ky/) */
+  nhatKyPortal: {
+    path: "/nhat-ky/",
+    navLabel: "Nhật ký tuần đường",
+    loginLabel: "Nhật ký tuần đường",
+  },
+
   /** Trang mặc định — danh mục 4 sản phẩm */
   homePage: "san-pham.html",
   catalogPage: "san-pham.html",
@@ -107,6 +114,7 @@ window.SITE_CONFIG = {
         "Web điều hành cho lãnh đạo",
       ],
       hasDispatchPortal: true,
+      hasNhatKyPortal: true,
     },
     {
       id: "tool-ho-so-htgt",
