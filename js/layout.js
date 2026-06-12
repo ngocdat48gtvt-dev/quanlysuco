@@ -122,12 +122,6 @@
         external: false,
       },
       {
-        href: userPortalPath(),
-        label: (cfg.userPortal && cfg.userPortal.navLabel) || "App hiện trường",
-        match: isUserPortalPage(),
-        external: false,
-      },
-      {
         href: nhatKyPortalPath(),
         label: (cfg.nhatKyPortal && cfg.nhatKyPortal.navLabel) || "Nhật ký tuần đường",
         match: isNhatKyPortalPage(),
