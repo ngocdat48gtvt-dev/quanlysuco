@@ -11,9 +11,9 @@ window.SITE_CONFIG = {
   tagline:
     "Ghi sự cố trên điện thoại, đồng bộ cloud an toàn, xuất Excel thống kê và Word ghép ảnh trước/sau thi công.",
   playStoreUrl:
-    "https://play.google.com/store/apps/details?id=com.tuanduong.quanlysuco",
-  supportEmail: "[EMAIL_HỖ_TRỢ]",
-  supportPhone: "",
+    "https://play.google.com/store/apps/details?id=com.tuanduong.quanlysuco&pcampaignid=web_share",
+  supportEmail: "ngocdat48gtvt@gmail.com",
+  supportPhone: "0968549116",
 
   /** Web điều hành sự cố (React, build vào thư mục /dieu-hanh/) */
   dispatchPortal: {
@@ -87,7 +87,7 @@ window.SITE_CONFIG = {
       platform: "Android · CH Play",
       badge: "App di động",
       tagline:
-        "Ghi nhận sự cố hiện trường, ảnh minh chứng, báo cáo Word/Excel và đồng bộ cloud — offline 24 giờ.",
+        "Ghi nhận sự cố hiện trường, ảnh minh chứng, báo cáo Word/Excel và đồng bộ cloud — dùng offline khi vùng không sóng.",
       page: "app-quan-ly-su-co.html",
       registerLabel: "App Quản lý sự cố đường bộ (Android)",
       accent: "blue",

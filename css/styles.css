@@ -2126,7 +2126,7 @@ a:hover {
   gap: 1.25rem;
 }
 
-/* Trang danh mục: thẻ lớn (~225% gốc), giữ nguyên cỡ chữ */
+/* Trang danh mục: thẻ sản phẩm, giữ nguyên cỡ chữ */
 body[data-page="catalog"] .catalog-section .container {
   width: min(1980px, 98vw);
 }
@@ -2137,14 +2137,27 @@ body[data-page="catalog"] .products-catalog-grid {
 
 body[data-page="catalog"] .product-catalog-media {
   aspect-ratio: 32 / 45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-page="catalog"] .product-catalog-media img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+body[data-page="catalog"] .product-catalog-media.product-media--contain img {
+  padding: 0;
 }
 
 body[data-page="catalog"] .product-catalog-app-icon {
-  width: 198px;
-  height: 198px;
+  width: 148.5px;
+  height: 148.5px;
 }
 
-/* Trang chi tiết sản phẩm: ảnh & layout ~200%, giữ nguyên cỡ chữ */
+/* Trang chi tiết sản phẩm: ảnh hero 75%, giữ nguyên cỡ chữ */
 body[data-page="product"] .product-shop-hero .container {
   width: min(1680px, 96vw);
 }
@@ -2154,13 +2167,24 @@ body[data-page="product"] .product-shop-grid {
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-body[data-page="product"] .product-shop-media img {
+body[data-page="product"] .product-shop-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   aspect-ratio: 1 / 1;
   min-height: 400px;
 }
 
+body[data-page="product"] .product-shop-media img {
+  width: 75%;
+  height: 75%;
+  min-height: 0;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
 body[data-page="product"] .product-shop-media.product-media--contain img {
-  padding: 0.85rem;
+  padding: 0;
 }
 
 body[data-page="product"] .product-shop-placeholder {
@@ -2436,6 +2460,21 @@ body[data-page="product"] .product-shop-placeholder {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
+}
+
+.product-shop-play-note {
+  flex: 1 1 100%;
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+}
+
+.product-shop-play-note a {
+  color: var(--accent, #1565c0);
+  text-decoration: none;
+}
+
+.product-shop-play-note a:hover {
+  text-decoration: underline;
 }
 
 .site-footer--compact {
@@ -2971,6 +3010,10 @@ body[data-page="product"] .product-shop-placeholder {
     gap: 0.75rem;
   }
 
+  body[data-page="catalog"] .product-catalog-media {
+    aspect-ratio: 1 / 1;
+  }
+
   .product-catalog-media {
     aspect-ratio: 1 / 1;
   }
@@ -3003,6 +3046,11 @@ body[data-page="product"] .product-shop-placeholder {
     height: 64px;
   }
 
+  body[data-page="catalog"] .product-catalog-app-icon {
+    width: 48px;
+    height: 48px;
+  }
+
   .product-shop-hero {
     padding: 1rem 0 1.75rem;
   }
@@ -3017,8 +3065,12 @@ body[data-page="product"] .product-shop-placeholder {
     margin: 0 auto;
   }
 
-  body[data-page="product"] .product-shop-media img {
+  body[data-page="product"] .product-shop-media {
     min-height: 280px;
+  }
+
+  body[data-page="product"] .product-shop-media img {
+    min-height: 0;
   }
 
   .product-shop-info {
