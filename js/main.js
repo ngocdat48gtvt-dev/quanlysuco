@@ -438,6 +438,16 @@
     );
   }
 
+  function catalogBadgeClass(cardBadge) {
+    var b = String(cardBadge || "").toLowerCase();
+    if (b === "hot") return "product-catalog-badge--hot";
+    if (b === "new") return "product-catalog-badge--new";
+    if (b.indexOf("free") !== -1 || b.indexOf("miễn phí") !== -1) {
+      return "product-catalog-badge--free";
+    }
+    return "product-catalog-badge--tag";
+  }
+
   function renderProductCatalogGrid(container, compact) {
     if (!container) return;
     var products = getProducts();
@@ -453,14 +463,25 @@
       card.setAttribute("aria-label", "Xem chi tiết: " + p.name);
 
       var mediaHtml = productCatalogMediaHtml(p);
+      var badgeHtml = p.cardBadge
+        ? '<span class="product-catalog-badge ' +
+          catalogBadgeClass(p.cardBadge) +
+          '">' +
+          escapeHtml(p.cardBadge) +
+          "</span>"
+        : "";
 
       card.innerHTML =
         '<div class="product-catalog-media' +
         productCardImageFitClass(p) +
         '">' +
+        badgeHtml +
         mediaHtml +
         "</div>" +
         '<div class="product-catalog-body">' +
+        (p.platform
+          ? '<p class="product-catalog-platform">' + escapeHtml(p.platform) + "</p>"
+          : "") +
         "<h3>" +
         escapeHtml(p.name) +
         "</h3>" +
@@ -474,6 +495,7 @@
               : escapeHtml(formatVnd(getProductPricing(p).price))) +
             "</p>"
           : "") +
+        '<span class="product-catalog-more">Xem chi tiết <span aria-hidden="true">→</span></span>' +
         "</div>";
 
       container.appendChild(card);
@@ -616,6 +638,11 @@
     var select = document.getElementById("product");
 
     renderProductCatalogGrid(catalogGrid, false);
+
+    var catalogCount = document.getElementById("catalog-product-count");
+    if (catalogCount && products.length) {
+      catalogCount.textContent = products.length + " giải pháp";
+    }
 
     if (pills) {
       pills.innerHTML = "";
