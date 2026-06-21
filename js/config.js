@@ -424,7 +424,7 @@ window.SITE_CONFIG = {
   /** Logo header — false = chỉ hiện chữ thương hiệu */
   showSiteLogo: false,
   /** Favicon trình duyệt (vẫn dùng khi showSiteLogo: false) */
-  siteLogo: "assets/logo-qld.png",
+  siteLogo: "assets/logo-qlsc.svg",
   /** Icon app CH Play — dùng trang chi tiết app nếu cần */
   icon: "ic_launcher_play_store_512.png",
 
