@@ -422,9 +422,9 @@ window.SITE_CONFIG = {
   banner: "banner2.png",
   bannerFeatureGraphic: "921d2d07-8356-43ca-94cc-602a4c63dbe1.png",
   /** Logo header — false = chỉ hiện chữ thương hiệu */
-  showSiteLogo: false,
+  showSiteLogo: true,
   /** Favicon trình duyệt (vẫn dùng khi showSiteLogo: false) */
-  siteLogo: "assets/logo-qlsc.svg",
+  siteLogo: "assets/favicon-qlsc.png?v=2",
   /** Icon app CH Play — dùng trang chi tiết app nếu cần */
   icon: "ic_launcher_play_store_512.png",
 
