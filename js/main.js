@@ -628,13 +628,17 @@
 
     var id = String(v.youtubeId || "").trim();
     var valid = id && !id.startsWith("VIDEO_ID");
+    var start = v.youtubeStart != null && !isNaN(Number(v.youtubeStart)) ? Math.max(0, Number(v.youtubeStart)) : 0;
+    var embedParams = "rel=0&modestbranding=1" + (start > 0 ? "&start=" + start : "");
 
     var embedHtml = '<div class="video-embed video-embed--landscape">';
     if (valid) {
       embedHtml +=
         '<iframe src="https://www.youtube.com/embed/' +
         encodeURIComponent(id) +
-        '?rel=0&modestbranding=1" title="' +
+        "?" +
+        embedParams +
+        '" title="' +
         escapeHtml(v.title || "Video giới thiệu") +
         '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     } else {
@@ -1059,13 +1063,19 @@
 
       const id = (video.youtubeId || "").trim();
       const valid = id && !id.startsWith("VIDEO_ID");
+      const start =
+        video.youtubeStart != null && !isNaN(Number(video.youtubeStart))
+          ? Math.max(0, Number(video.youtubeStart))
+          : 0;
+      const embedParams = "rel=0&modestbranding=1" + (start > 0 ? "&start=" + start : "");
 
       if (valid) {
         const iframe = document.createElement("iframe");
         iframe.src =
           "https://www.youtube.com/embed/" +
           encodeURIComponent(id) +
-          "?rel=0&modestbranding=1";
+          "?" +
+          embedParams;
         iframe.title = video.title;
         iframe.allow =
           "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";

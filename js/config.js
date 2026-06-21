@@ -117,6 +117,13 @@ window.SITE_CONFIG = {
       ],
       hasDispatchPortal: false,
       hasNhatKyPortal: false,
+      introVideo: {
+        title: "Video hướng dẫn cài đặt & giới thiệu",
+        description:
+          "Tải app trên CH Play, cài đặt, đăng nhập tài khoản và làm quen các chức năng chính của Quản lý sự cố đường bộ.",
+        youtubeId: "4AbKTVIoRLc",
+        youtubeStart: 4,
+      },
     },
     {
       id: "tool-ho-so-htgt",
@@ -436,31 +443,15 @@ window.SITE_CONFIG = {
    */
   showVideos: true,
 
-  /** 4 video hướng dẫn (quay dọc điện thoại) — thay VIDEO_ID bằng ID YouTube / Shorts */
+  /** Video hướng dẫn app (trang landing cũ — trang app dùng introVideo trong products) */
   videos: [
     {
       id: 1,
-      title: "Giới thiệu & đăng nhập",
-      description: "Cài app, đăng nhập tài khoản được cấp và làm quen màn hình chính.",
-      youtubeId: "VIDEO_ID_1",
-    },
-    {
-      id: 2,
-      title: "Thêm sự cố & chụp ảnh",
-      description: "Nhập tuyến, lý trình, loại sự cố và ảnh trước / sau xử lý.",
-      youtubeId: "VIDEO_ID_2",
-    },
-    {
-      id: 3,
-      title: "Danh sách, lọc & tìm kiếm",
-      description: "Tra cứu sự cố theo ngày, tuyến và xem chi tiết trên hiện trường.",
-      youtubeId: "VIDEO_ID_3",
-    },
-    {
-      id: 4,
-      title: "Báo cáo & xuất Word/Excel",
-      description: "Thống kê, xuất file báo cáo và đồng bộ dữ liệu lên cloud.",
-      youtubeId: "VIDEO_ID_4",
+      title: "Hướng dẫn cài đặt & giới thiệu",
+      description:
+        "Tải app trên CH Play, cài đặt, đăng nhập và làm quen giao diện Quản lý sự cố đường bộ.",
+      youtubeId: "4AbKTVIoRLc",
+      youtubeStart: 4,
     },
   ],
 
