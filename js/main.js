@@ -199,6 +199,23 @@
     var pricingEl = document.getElementById("product-shop-pricing");
     if (!pricingEl || !product) return;
 
+    var trialEl = document.getElementById("product-trial-badge");
+    if (trialEl) {
+      if (product.hidePrice && product.trialBadge) {
+        trialEl.hidden = false;
+        trialEl.textContent = product.trialBadge;
+      } else {
+        trialEl.hidden = true;
+        trialEl.textContent = "";
+      }
+    }
+
+    if (product.hidePrice) {
+      pricingEl.hidden = true;
+      pricingEl.innerHTML = "";
+      return;
+    }
+
     pricingEl.hidden = false;
     var pricing = getProductPricing(product);
 
@@ -285,7 +302,7 @@
         downloadBtn.rel = "noopener noreferrer";
         downloadBtn.removeAttribute("download");
         downloadBtn.innerHTML =
-          '<span class="btn-shop-icon" aria-hidden="true">▶</span> CH Play';
+          '<span class="btn-shop-icon" aria-hidden="true">▶</span> Tải trên CH Play';
         downloadBtn.setAttribute("aria-label", "Tải app trên CH Play");
       } else if (product.downloadUrl) {
         downloadBtn.removeAttribute("target");

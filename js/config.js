@@ -106,6 +106,8 @@ window.SITE_CONFIG = {
         slug: "app-quan-ly-su-co",
       },
       hasPlayStore: true,
+      hidePrice: true,
+      trialBadge: "Đang dùng thử miễn phí",
       perks: [
         "Không mạng vẫn ghi được",
         "Đồng bộ cloud an toàn",
@@ -113,8 +115,8 @@ window.SITE_CONFIG = {
         "Ảnh trước / sau thi công",
         "Web điều hành cho lãnh đạo",
       ],
-      hasDispatchPortal: true,
-      hasNhatKyPortal: true,
+      hasDispatchPortal: false,
+      hasNhatKyPortal: false,
     },
     {
       id: "tool-ho-so-htgt",

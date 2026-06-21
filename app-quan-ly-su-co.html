@@ -14,7 +14,7 @@
     <link rel="icon" href="assets/favicon-32.png?v=3" type="image/png" sizes="32x32" />
     <link rel="icon" href="assets/favicon.svg?v=3" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/favicon-qlsc.png?v=3" />
-    <link rel="stylesheet" href="css/styles.css?v=35" />
+    <link rel="stylesheet" href="css/styles.css?v=36" />
   </head>
   <body data-page="product" data-product-id="app-quan-ly-su-co">
     <header class="site-header">
@@ -42,18 +42,21 @@
             <span class="product-band-badge" id="product-detail-badge"></span>
             <h1 id="product-page-title">Quản lý sự cố đường bộ</h1>
             <p id="product-page-tagline" class="product-shop-desc"></p>
-            <div class="product-shop-pricing" id="product-shop-pricing"></div>
+            <p class="product-shop-trial-badge" id="product-trial-badge" hidden></p>
+            <div class="product-shop-pricing" id="product-shop-pricing" hidden></div>
             <div class="product-shop-cta">
-              <a class="btn btn-shop btn-shop-download" id="product-btn-download" href="https://play.google.com/store/apps/details?id=com.tuanduong.quanlysuco&amp;pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
-                <span class="btn-shop-icon" aria-hidden="true">▶</span> CH Play
-              </a>
-              <p class="product-shop-play-note">
-                <a href="https://play.google.com/store/apps/details?id=com.tuanduong.quanlysuco&amp;pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Tải miễn phí trên Google Play</a>
-              </p>
-              <a class="btn btn-shop btn-shop-trial" href="dang-ky.html" data-register-href>Đăng ký dùng thử</a>
-              <a class="btn btn-shop btn-shop-dispatch" href="/dashboard/" data-dispatch-href>Điều hành web</a>
-              <a class="btn btn-shop btn-shop-dispatch" href="/nhat-ky/" data-nhat-ky-href>Nhật ký tuần đường</a>
-              <a class="btn btn-shop btn-shop-buy" id="product-btn-buy" href="mua.html">Mua ngay</a>
+              <div class="product-shop-cta-download">
+                <a class="btn btn-shop btn-shop-download" id="product-btn-download" href="https://play.google.com/store/apps/details?id=com.tuanduong.quanlysuco&amp;pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
+                  <span class="btn-shop-icon" aria-hidden="true">▶</span> Tải trên CH Play
+                </a>
+                <p class="product-shop-play-note">
+                  <a href="https://play.google.com/store/apps/details?id=com.tuanduong.quanlysuco&amp;pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Miễn phí trên Google Play · đăng ký dùng thử không cần thanh toán</a>
+                </p>
+              </div>
+              <div class="product-shop-cta-row">
+                <a class="btn btn-shop btn-shop-trial" href="dang-ky.html" data-register-href>Đăng ký dùng thử</a>
+                <a class="btn btn-shop btn-shop-buy" id="product-btn-buy" href="mua.html">Mua ngay</a>
+              </div>
             </div>
           </div>
           <ul class="product-trust-list" id="product-trust-list"></ul>
@@ -169,8 +172,8 @@
     </footer>
 
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-    <script src="js/config.js?v=35"></script>
+    <script src="js/config.js?v=36"></script>
     <script src="js/layout.js?v=19"></script>
-    <script src="js/main.js?v=35"></script>
+    <script src="js/main.js?v=36"></script>
   </body>
 </html>
