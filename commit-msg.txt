@@ -1,1 +1,0 @@
-Nền đường: thêm cột Cao + Khối lượng m3, sổ tuần ghi "Phát sinh ... kích thước (DxRxC) m = xx m3"
