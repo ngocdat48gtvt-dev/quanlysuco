@@ -31,11 +31,11 @@ window.SITE_CONFIG = {
     loginLabel: "Dùng trên iPhone / trình duyệt",
   },
 
-  /** Nhật ký tuần đường (React, build vào /nhat-ky/) */
+  /** Hạt trưởng (React, build vào /nhat-ky/) */
   nhatKyPortal: {
     path: "/nhat-ky/",
-    navLabel: "Nhật ký tuần đường",
-    loginLabel: "Nhật ký tuần đường",
+    navLabel: "Hạt trưởng",
+    loginLabel: "Hạt trưởng",
   },
 
   /** Trang mặc định — danh mục 4 sản phẩm */
