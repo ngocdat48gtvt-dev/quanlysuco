@@ -31,11 +31,11 @@ window.SITE_CONFIG = {
     loginLabel: "Dùng trên iPhone / trình duyệt",
   },
 
-  /** Sổ nội nghiệp (React, build vào /nhat-ky/) */
+  /** Hạt trưởng → cổng Sổ nội nghiệp (React, build vào /nhat-ky/) */
   nhatKyPortal: {
     path: "/nhat-ky/",
-    navLabel: "Sổ nội nghiệp",
-    loginLabel: "Sổ nội nghiệp",
+    navLabel: "Hạt trưởng",
+    loginLabel: "Hạt trưởng",
   },
 
   /** Trang mặc định — danh mục 4 sản phẩm */
