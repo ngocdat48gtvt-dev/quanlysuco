@@ -123,7 +123,7 @@
       },
       {
         href: nhatKyPortalPath(),
-        label: (cfg.nhatKyPortal && cfg.nhatKyPortal.navLabel) || "Hạt trưởng",
+        label: (cfg.nhatKyPortal && cfg.nhatKyPortal.navLabel) || "Sổ nội nghiệp",
         match: isNhatKyPortalPage(),
         external: false,
       },

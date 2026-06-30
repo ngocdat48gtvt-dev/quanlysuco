@@ -363,7 +363,7 @@
       if (product.hasNhatKyPortal) {
         a.href = nhatKyPath;
         var nkLabel =
-          (cfg.nhatKyPortal && cfg.nhatKyPortal.loginLabel) || "Hạt trưởng";
+          (cfg.nhatKyPortal && cfg.nhatKyPortal.loginLabel) || "Sổ nội nghiệp";
         a.textContent = nkLabel;
       }
     });
