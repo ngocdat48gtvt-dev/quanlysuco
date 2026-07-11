@@ -347,9 +347,10 @@ ${BA.map((e,t)=>`.baoduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key
   text-align: left;
 }
 .baoduong-sign {
-  margin-top: 18px;
+  margin-top: 8px;
   display: flex;
   justify-content: flex-end;
+  padding-right: 4%;
 }
 .baoduong-sign-box {
   width: 45%;
