@@ -323,7 +323,7 @@ window.SITE_CONFIG = {
       accent: "purple",
       cardBadge: "Tool Windows",
       isFree: false,
-      price: 299000,
+      price: 499000,
       priceOriginal: null,
       priceUnit: "/năm",
       cardImage: "assets/tool-in-qlcl-icon.png?v=28",
