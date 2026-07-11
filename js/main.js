@@ -614,6 +614,29 @@
     root.innerHTML = html;
   }
 
+  function isValidYoutubeId(id) {
+    var s = String(id || "").trim();
+    return s && !s.startsWith("VIDEO_ID");
+  }
+
+  function youtubeEmbedSrc(id, start) {
+    var params = "rel=0&modestbranding=1";
+    if (start > 0) params += "&start=" + start;
+    return "https://www.youtube.com/embed/" + encodeURIComponent(id) + "?" + params;
+  }
+
+  function youtubeWatchUrl(id) {
+    return "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
+  }
+
+  function applyYoutubeIframeAttrs(iframe, title) {
+    iframe.title = title || "Video giới thiệu";
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allowFullscreen = true;
+  }
+
   function initProductIntroVideo(product) {
     var section = document.getElementById("product-intro-video-section");
     var root = document.getElementById("product-intro-video");
@@ -627,25 +650,28 @@
     setText("product-video-sub", v.description || "");
 
     var id = String(v.youtubeId || "").trim();
-    var valid = id && !id.startsWith("VIDEO_ID");
+    var valid = isValidYoutubeId(id);
     var start = v.youtubeStart != null && !isNaN(Number(v.youtubeStart)) ? Math.max(0, Number(v.youtubeStart)) : 0;
-    var embedParams = "rel=0&modestbranding=1" + (start > 0 ? "&start=" + start : "");
 
     var embedHtml = '<div class="video-embed video-embed--landscape">';
     if (valid) {
       embedHtml +=
-        '<iframe src="https://www.youtube.com/embed/' +
-        encodeURIComponent(id) +
-        "?" +
-        embedParams +
+        '<iframe src="' +
+        escapeHtml(youtubeEmbedSrc(id, start)) +
         '" title="' +
         escapeHtml(v.title || "Video giới thiệu") +
-        '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
     } else {
       embedHtml +=
         '<div class="video-placeholder"><p><strong>Video giới thiệu</strong></p><p>Thêm <code>introVideo.youtubeId</code> trong <code>js/config.js</code></p></div>';
     }
     embedHtml += "</div>";
+    if (valid) {
+      embedHtml +=
+        '<p class="product-video-fallback"><a href="' +
+        escapeHtml(youtubeWatchUrl(id)) +
+        '" target="_blank" rel="noopener noreferrer">Không xem được? Mở trên YouTube</a></p>';
+    }
 
     root.innerHTML = embedHtml;
     if (section) section.hidden = false;
@@ -1062,24 +1088,16 @@
       embed.className = "video-embed";
 
       const id = (video.youtubeId || "").trim();
-      const valid = id && !id.startsWith("VIDEO_ID");
+      const valid = isValidYoutubeId(id);
       const start =
         video.youtubeStart != null && !isNaN(Number(video.youtubeStart))
           ? Math.max(0, Number(video.youtubeStart))
           : 0;
-      const embedParams = "rel=0&modestbranding=1" + (start > 0 ? "&start=" + start : "");
 
       if (valid) {
         const iframe = document.createElement("iframe");
-        iframe.src =
-          "https://www.youtube.com/embed/" +
-          encodeURIComponent(id) +
-          "?" +
-          embedParams;
-        iframe.title = video.title;
-        iframe.allow =
-          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-        iframe.allowFullscreen = true;
+        iframe.src = youtubeEmbedSrc(id, start);
+        applyYoutubeIframeAttrs(iframe, video.title);
         embed.appendChild(iframe);
       } else {
         const ph = document.createElement("div");
