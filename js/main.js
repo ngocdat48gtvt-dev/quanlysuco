@@ -651,24 +651,21 @@
     return "https://i.ytimg.com/vi/" + encodeURIComponent(id) + "/hqdefault.jpg";
   }
 
-  function mountYoutubeIframe(container, id, start, title) {
-    container.innerHTML = "";
-    var wrap = document.createElement("div");
-    wrap.className = "video-embed video-embed--landscape";
-
-    var iframe = document.createElement("iframe");
-    iframe.src = youtubeEmbedSrc(id, start);
-    applyYoutubeIframeAttrs(iframe, title);
-    wrap.appendChild(iframe);
-    container.appendChild(wrap);
-  }
-
-  function bindYoutubePoster(root, id, start, title) {
-    var btn = root.querySelector(".video-poster-btn");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      mountYoutubeIframe(root, id, start, title);
-    });
+  function buildYoutubePosterLink(id, label) {
+    return (
+      '<a class="video-poster-btn video-poster-link" href="' +
+      escapeHtml(youtubeWatchUrl(id)) +
+      '" target="_blank" rel="noopener noreferrer" aria-label="' +
+      escapeHtml(label || "Xem video hướng dẫn trên YouTube") +
+      '">' +
+      '<img src="' +
+      escapeHtml(youtubePosterUrl(id)) +
+      '" alt="" loading="lazy" width="480" height="360" />' +
+      '<span class="video-poster-play" aria-hidden="true">▶</span>' +
+      '<span class="video-poster-label">' +
+      escapeHtml(label || "Xem video hướng dẫn") +
+      "</span></a>"
+    );
   }
 
   function applyYoutubeIframeAttrs(iframe, title) {
@@ -697,30 +694,17 @@
 
     var embedHtml = "";
     if (valid) {
+      embedHtml += buildYoutubePosterLink(id, "Xem video hướng dẫn");
       embedHtml +=
-        '<button type="button" class="video-poster-btn" aria-label="Phát video hướng dẫn">' +
-        '<img src="' +
-        escapeHtml(youtubePosterUrl(id)) +
-        '" alt="" loading="lazy" width="480" height="360" />' +
-        '<span class="video-poster-play" aria-hidden="true">▶</span>' +
-        "</button>";
+        '<p class="product-video-fallback">Video mở trên YouTube — phù hợp khi trình duyệt chặn nhúng (lỗi 153).</p>';
     } else {
       embedHtml +=
         '<div class="video-embed video-embed--landscape">' +
         '<div class="video-placeholder"><p><strong>Video giới thiệu</strong></p><p>Thêm <code>introVideo.youtubeId</code> trong <code>js/config.js</code></p></div>' +
         "</div>";
     }
-    if (valid) {
-      embedHtml +=
-        '<p class="product-video-fallback"><a href="' +
-        escapeHtml(youtubeWatchUrl(id)) +
-        '" target="_blank" rel="noopener noreferrer">Không xem được? Mở trên YouTube</a></p>';
-    }
 
     root.innerHTML = embedHtml;
-    if (valid) {
-      bindYoutubePoster(root, id, start, v.title || "Video giới thiệu");
-    }
     if (section) section.hidden = false;
   }
 
@@ -1142,10 +1126,28 @@
           : 0;
 
       if (valid) {
-        const iframe = document.createElement("iframe");
-        iframe.src = youtubeEmbedSrc(id, start);
-        applyYoutubeIframeAttrs(iframe, video.title);
-        embed.appendChild(iframe);
+        const link = document.createElement("a");
+        link.className = "video-poster-link video-poster-link--card";
+        link.href = youtubeWatchUrl(id);
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.setAttribute("aria-label", video.title || "Xem video trên YouTube");
+
+        const img = document.createElement("img");
+        img.src = youtubePosterUrl(id);
+        img.alt = "";
+        img.loading = "lazy";
+        img.width = 480;
+        img.height = 360;
+        link.appendChild(img);
+
+        const play = document.createElement("span");
+        play.className = "video-poster-play";
+        play.setAttribute("aria-hidden", "true");
+        play.textContent = "▶";
+        link.appendChild(play);
+
+        embed.appendChild(link);
       } else {
         const ph = document.createElement("div");
         ph.className = "video-placeholder";
