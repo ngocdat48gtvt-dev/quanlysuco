@@ -614,19 +614,61 @@
     root.innerHTML = html;
   }
 
+  function siteOrigin() {
+    if (typeof window !== "undefined" && window.location && window.location.origin) {
+      return window.location.origin;
+    }
+    return "https://quanlysuco-road.vercel.app";
+  }
+
   function isValidYoutubeId(id) {
     var s = String(id || "").trim();
     return s && !s.startsWith("VIDEO_ID");
   }
 
   function youtubeEmbedSrc(id, start) {
-    var params = "rel=0&modestbranding=1";
-    if (start > 0) params += "&start=" + start;
-    return "https://www.youtube.com/embed/" + encodeURIComponent(id) + "?" + params;
+    var origin = siteOrigin();
+    var pageUrl =
+      typeof window !== "undefined" && window.location && window.location.href
+        ? window.location.href
+        : origin + "/";
+    var params = [
+      "rel=0",
+      "modestbranding=1",
+      "playsinline=1",
+      "origin=" + encodeURIComponent(origin),
+      "widget_referrer=" + encodeURIComponent(pageUrl),
+    ];
+    if (start > 0) params.push("start=" + String(start));
+    return "https://www.youtube-nocookie.com/embed/" + id + "?" + params.join("&");
   }
 
   function youtubeWatchUrl(id) {
     return "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
+  }
+
+  function youtubePosterUrl(id) {
+    return "https://i.ytimg.com/vi/" + encodeURIComponent(id) + "/hqdefault.jpg";
+  }
+
+  function mountYoutubeIframe(container, id, start, title) {
+    container.innerHTML = "";
+    var wrap = document.createElement("div");
+    wrap.className = "video-embed video-embed--landscape";
+
+    var iframe = document.createElement("iframe");
+    iframe.src = youtubeEmbedSrc(id, start);
+    applyYoutubeIframeAttrs(iframe, title);
+    wrap.appendChild(iframe);
+    container.appendChild(wrap);
+  }
+
+  function bindYoutubePoster(root, id, start, title) {
+    var btn = root.querySelector(".video-poster-btn");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      mountYoutubeIframe(root, id, start, title);
+    });
   }
 
   function applyYoutubeIframeAttrs(iframe, title) {
@@ -653,19 +695,21 @@
     var valid = isValidYoutubeId(id);
     var start = v.youtubeStart != null && !isNaN(Number(v.youtubeStart)) ? Math.max(0, Number(v.youtubeStart)) : 0;
 
-    var embedHtml = '<div class="video-embed video-embed--landscape">';
+    var embedHtml = "";
     if (valid) {
       embedHtml +=
-        '<iframe src="' +
-        escapeHtml(youtubeEmbedSrc(id, start)) +
-        '" title="' +
-        escapeHtml(v.title || "Video giới thiệu") +
-        '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+        '<button type="button" class="video-poster-btn" aria-label="Phát video hướng dẫn">' +
+        '<img src="' +
+        escapeHtml(youtubePosterUrl(id)) +
+        '" alt="" loading="lazy" width="480" height="360" />' +
+        '<span class="video-poster-play" aria-hidden="true">▶</span>' +
+        "</button>";
     } else {
       embedHtml +=
-        '<div class="video-placeholder"><p><strong>Video giới thiệu</strong></p><p>Thêm <code>introVideo.youtubeId</code> trong <code>js/config.js</code></p></div>';
+        '<div class="video-embed video-embed--landscape">' +
+        '<div class="video-placeholder"><p><strong>Video giới thiệu</strong></p><p>Thêm <code>introVideo.youtubeId</code> trong <code>js/config.js</code></p></div>' +
+        "</div>";
     }
-    embedHtml += "</div>";
     if (valid) {
       embedHtml +=
         '<p class="product-video-fallback"><a href="' +
@@ -674,6 +718,9 @@
     }
 
     root.innerHTML = embedHtml;
+    if (valid) {
+      bindYoutubePoster(root, id, start, v.title || "Video giới thiệu");
+    }
     if (section) section.hidden = false;
   }
 
