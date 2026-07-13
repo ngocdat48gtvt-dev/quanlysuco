@@ -193,7 +193,7 @@ html, body {
 .matduong-head-line { margin: 0 0 1px; }
 .matduong-motto {
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 5px;
 }
 .matduong-title {
   text-align: center;
