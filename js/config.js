@@ -315,7 +315,7 @@ window.SITE_CONFIG = {
       name: "In ấn hồ sơ QLCL hàng loạt",
       shortName: "In QLCL hàng loạt",
       platform: "Windows · Tool in ấn",
-      badge: "In hàng loạt · QLCL",
+      badge: "In hàng loạt · QLCL · v1.1",
       tagline:
         "In toàn bộ hồ sơ quản lý chất lượng theo điều kiện lọc — một lệnh in, tự động sắp xếp biên bản, phụ lục và các loại tài liệu khác nhau.",
       page: "in-an-qlcl.html",
@@ -329,7 +329,8 @@ window.SITE_CONFIG = {
       cardImage: "assets/tool-in-qlcl-icon.png?v=28",
       cardImageFit: "contain",
       /** File cài đặt Windows — đặt trong website/downloads/ */
-      downloadUrl: "downloads/Print-QLCL.exe",
+      version: "1.1",
+      downloadUrl: "downloads/Print-QLCL.exe?v=1.1",
       downloadFileName: "Print QLCL.exe",
       cardSummary:
         "In hàng loạt hồ sơ QLCL theo điều kiện — 1 lệnh in, tự sắp xếp biên bản & phụ lục.",

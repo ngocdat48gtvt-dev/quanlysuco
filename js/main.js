@@ -312,10 +312,12 @@
           product.downloadFileName || product.downloadUrl.split("/").pop() || "",
         );
         downloadBtn.innerHTML =
-          '<span class="btn-shop-icon" aria-hidden="true">⬇</span> Tải xuống';
+          '<span class="btn-shop-icon" aria-hidden="true">⬇</span> Tải xuống' +
+          (product.version ? " v" + escapeHtml(product.version) : "");
         downloadBtn.setAttribute(
           "aria-label",
-          "Tải " + (product.downloadFileName || "phần mềm"),
+          "Tải " + (product.downloadFileName || "phần mềm") +
+            (product.version ? " phiên bản " + product.version : ""),
         );
       } else {
         downloadBtn.removeAttribute("download");
