@@ -345,7 +345,7 @@ html, body {
 }
 .no-print { display: none !important; }
 .col-resize-handle { display: none !important; }
-`}function gN(e){return`
+`}function gN(e,t=`#000`){let n=t||`#000`;return`
 ${e} {
   border-collapse: separate !important;
   border-spacing: 0 !important;
@@ -353,19 +353,20 @@ ${e} {
 }
 ${e} th,
 ${e} td {
-  border-top: 0.5pt solid #808080 !important;
-  border-left: 0.5pt solid #808080 !important;
+  border-top: 0.5pt solid ${n} !important;
+  border-left: 0.5pt solid ${n} !important;
   border-right: none !important;
   border-bottom: none !important;
   background: #fff !important;
 }
 ${e} th:last-child,
 ${e} td:last-child {
-  border-right: 0.5pt solid #808080 !important;
+  border-right: 0.5pt solid ${n} !important;
 }
 ${e} thead tr:last-child th,
+${e} thead th[rowspan],
 ${e} tbody tr:last-child td {
-  border-bottom: 0.5pt solid #808080 !important;
+  border-bottom: 0.5pt solid ${n} !important;
 }
 `}function _N(e,t){let n=t||YM(),r=XM(n)||1,i=GM.map((e,t)=>`.traffic-duty-table colgroup col:nth-child(${t+1}){width:${(n[e.key]/r*100).toFixed(3)}%}`).join(`
 `);return`
