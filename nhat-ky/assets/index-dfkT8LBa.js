@@ -685,7 +685,8 @@ ${hN(e)}
   flex: 1 1 auto;
   min-width: 0;
   font-weight: 700;
-  border-bottom: 0.5pt solid #808080;
+  border-bottom: none !important;
+  text-decoration: none !important;
 }
 .phieu-cau-table-wrap {
   flex: 1 1 auto;
@@ -699,15 +700,32 @@ ${hN(e)}
   table-layout: fixed;
   font-size: 10.5px;
   line-height: 1.2;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: none !important;
 }
 ${i}
-${gN(`.phieu-cau-table`)}
+/* Nét mảnh đen kiểu Excel — chỉ kẻ trên/trái để tránh đúp nét */
 .phieu-cau-table th,
 .phieu-cau-table td {
+  border-top: 0.5pt solid #000 !important;
+  border-left: 0.5pt solid #000 !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  background: #fff !important;
   padding: 1px 2px;
   vertical-align: middle;
   word-wrap: break-word;
   overflow-wrap: anywhere;
+}
+.phieu-cau-table th:last-child,
+.phieu-cau-table td:last-child {
+  border-right: 0.5pt solid #000 !important;
+}
+.phieu-cau-table thead tr:last-child th,
+.phieu-cau-table thead th[rowspan],
+.phieu-cau-table tbody tr:last-child td {
+  border-bottom: 0.5pt solid #000 !important;
 }
 .phieu-cau-table th {
   font-weight: 700;
