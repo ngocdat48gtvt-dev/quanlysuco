@@ -133,8 +133,10 @@ html, body {
   font-size: inherit;
 }
 .nhatky-print-empty {
-  color: #64748b;
-  font-style: italic;
+  color: #111827;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
+  font-style: normal;
 }
 .nhatky-print-row--part .nhatky-print-td--3 {
   font-weight: 800;
