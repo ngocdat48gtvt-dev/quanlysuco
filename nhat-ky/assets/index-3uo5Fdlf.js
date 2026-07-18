@@ -58,6 +58,8 @@ html, body {
   color: #0f172a;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
 }
 .sheet {
   width: 210mm;
@@ -166,7 +168,8 @@ html, body {
   color: #111827;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-  font-family: "Times New Roman", "Segoe UI", serif;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
 }
 .sheet {
   page: matDuongPrintPage;
@@ -203,7 +206,8 @@ html, body {
 .matduong-head-right {
   text-align: center;
   font-weight: 700;
-  font-size: 14px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
   line-height: 1.45;
 }
 .matduong-head-line { margin: 0 0 1px; }
@@ -213,7 +217,8 @@ html, body {
 }
 .matduong-title {
   text-align: center;
-  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
   font-weight: 700;
   margin: 4px 0 2px;
   letter-spacing: 0.02em;
@@ -221,7 +226,8 @@ html, body {
 .matduong-km-range {
   text-align: center;
   margin: 0 0 4px;
-  font-size: 14px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
 }
 .matduong-table-area {
   flex: 0 0 auto;
@@ -307,7 +313,8 @@ html, body {
   color: #111827;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-  font-family: "Times New Roman", "Segoe UI", serif;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
 }
 .sheet {
   page: landscapePrintPage;
@@ -362,14 +369,16 @@ ${e} tbody tr:last-child td {
 ${hN(e)}
 .traffic-duty-title {
   text-align: center;
-  font-size: 15px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
   font-weight: 700;
   margin: 2px 0 2px;
 }
 .traffic-duty-km-range {
   text-align: center;
   margin: 0 0 4px;
-  font-size: 12.5px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
 }
 .traffic-duty-table {
   width: 100%;
@@ -402,14 +411,16 @@ ${gN(`.traffic-duty-table`)}
 ${hN(e)}
 .tngt-title {
   text-align: center;
-  font-size: 16px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
   font-weight: 700;
   margin: 2px 0 2px;
 }
 .tngt-km-range {
   text-align: center;
   margin: 0 0 4px;
-  font-size: 13px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
 }
 .tngt-table {
   width: 100%;
@@ -445,7 +456,8 @@ ${hN(e)}
 .hanh-lang-head-right {
   text-align: center;
   font-weight: 700;
-  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
   line-height: 1.4;
 }
 .hanh-lang-head-line { margin: 0 0 1px; }
@@ -455,14 +467,16 @@ ${hN(e)}
 }
 .hanh-lang-title {
   text-align: center;
-  font-size: 15px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
   font-weight: 700;
   margin: 4px 0 2px;
 }
 .hanh-lang-km-range {
   text-align: center;
   margin: 0 0 4px;
-  font-size: 12.5px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
 }
 .hanh-lang-table-area { flex: 0 0 auto; }
 .hanh-lang-table {
@@ -556,16 +570,30 @@ html, body {
 .demxe-summary-title,
 .demxe-form-title {
   text-align: center;
-  font-size: 15px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
   font-weight: 700;
   margin: 0 0 4px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
-.demxe-form-title { font-size: 16px; margin: 8px 0 6px; text-transform: none; }
+.demxe-form-title {
+  font-size: 13pt;
+  margin: 8px 0 6px;
+  text-transform: none;
+}
 .demxe-summary-subtitle,
-.demxe-form-subline { text-align: center; margin: 0 0 4px; font-size: 13px; }
-.demxe-form-ref { margin: 0; font-size: 12px; }
+.demxe-form-subline {
+  text-align: center;
+  margin: 0 0 4px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
+}
+.demxe-form-ref {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
+}
 .demxe-form-subline--center { text-align: center; }
 .demxe-official-table {
   width: 100%;
@@ -677,9 +705,26 @@ Cầu Km 440	440+000`}),(0,Y.jsxs)(`div`,{className:`hosocong-actions`,children:
 `);return`
 ${hN(e)}
 .phieu-cau-header { flex-shrink: 0; text-align: center; margin-bottom: 3px; }
-.phieu-cau-org { font-size: 11px; font-weight: 600; line-height: 1.25; }
-.phieu-cau-title { margin: 2px 0 3px; font-size: 13.5px; font-weight: 700; line-height: 1.25; }
-.phieu-cau-meta { margin: 1px 0; font-size: 11.5px; text-align: left; }
+.phieu-cau-org {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.phieu-cau-title {
+  margin: 2px 0 3px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.phieu-cau-meta {
+  margin: 1px 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13pt;
+  text-align: left;
+  line-height: 1.35;
+}
 .phieu-cau-meta--unit { display: flex; align-items: baseline; gap: 4px; width: 100%; }
 .phieu-cau-unit-value {
   flex: 1 1 auto;
