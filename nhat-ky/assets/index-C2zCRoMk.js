@@ -388,7 +388,7 @@ ${hN(e)}
   width: 100%;
   table-layout: fixed;
   font-family: "Times New Roman", Times, serif;
-  font-size: 12pt;
+  font-size: 11pt;
   line-height: 1.25;
 }
 ${i}
@@ -400,8 +400,9 @@ ${gN(`.traffic-duty-table`)}
   text-align: center;
   word-wrap: break-word;
   overflow-wrap: anywhere;
+  font-size: 11pt;
 }
-.traffic-duty-table th { font-weight: 700; font-size: 12pt; }
+.traffic-duty-table th { font-weight: 700; font-size: 11pt; }
 .traffic-duty-col-damage,
 .traffic-duty-col-editable { text-align: left; }
 .traffic-duty-pre {
