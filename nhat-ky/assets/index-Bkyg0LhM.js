@@ -59,7 +59,7 @@ html, body {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   font-family: "Times New Roman", Times, serif;
-  font-size: 13pt;
+  font-size: 12pt;
 }
 .sheet {
   width: 210mm;
@@ -88,9 +88,9 @@ html, body {
   border-spacing: 0;
   border: none;
   table-layout: fixed;
-  font-size: 11.5px;
+  font-size: 12pt;
   line-height: 1.35;
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: "Times New Roman", Times, serif;
 }
 .nhatky-print-table th,
 .nhatky-print-table td {
@@ -115,7 +115,7 @@ html, body {
 .nhatky-print-head-main th {
   background: #e8eefc;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 12pt;
   text-align: center;
   line-height: 1.25;
 }
@@ -123,7 +123,7 @@ html, body {
   background: #f1f5f9;
   font-weight: 700;
   text-align: center;
-  font-size: 11px;
+  font-size: 12pt;
   padding: 2px 4px;
 }
 .nhatky-print-pre {
@@ -169,7 +169,7 @@ html, body {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   font-family: "Times New Roman", Times, serif;
-  font-size: 13pt;
+  font-size: 12pt;
 }
 .sheet {
   page: matDuongPrintPage;
@@ -238,7 +238,8 @@ html, body {
   border-spacing: 0;
   border: none;
   table-layout: fixed;
-  font-size: 13.5px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
   line-height: 1.35;
   margin-top: 2px;
 }
@@ -268,17 +269,17 @@ ${JD.map((e,t)=>`.matduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key
 .matduong-table th {
   font-weight: 700;
   background: #fff;
-  font-size: 12.5px;
+  font-size: 12pt;
   line-height: 1.3;
 }
 .matduong-header-num th {
-  font-size: 12px;
+  font-size: 12pt;
   padding: 2px 3px;
 }
 .matduong-header-side {
   display: block;
   font-weight: 600;
-  font-size: 11.5px;
+  font-size: 12pt;
 }
 .matduong-col-damage,
 .matduong-col-note {
@@ -314,7 +315,7 @@ html, body {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   font-family: "Times New Roman", Times, serif;
-  font-size: 13pt;
+  font-size: 12pt;
 }
 .sheet {
   page: landscapePrintPage;
@@ -383,7 +384,8 @@ ${hN(e)}
 .traffic-duty-table {
   width: 100%;
   table-layout: fixed;
-  font-size: 10.5px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
   line-height: 1.25;
 }
 ${i}
@@ -396,7 +398,7 @@ ${gN(`.traffic-duty-table`)}
   word-wrap: break-word;
   overflow-wrap: anywhere;
 }
-.traffic-duty-table th { font-weight: 700; font-size: 9.5px; }
+.traffic-duty-table th { font-weight: 700; font-size: 12pt; }
 .traffic-duty-col-damage,
 .traffic-duty-col-editable { text-align: left; }
 .traffic-duty-pre {
@@ -425,7 +427,8 @@ ${hN(e)}
 .tngt-table {
   width: 100%;
   table-layout: fixed;
-  font-size: 11.5px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
   line-height: 1.3;
 }
 ${i}
@@ -438,8 +441,8 @@ ${gN(`.tngt-table`)}
   word-wrap: break-word;
   overflow-wrap: anywhere;
 }
-.tngt-table th { font-weight: 700; font-size: 10.5px; }
-.tngt-col-num { display: block; font-weight: 600; font-size: 10px; }
+.tngt-table th { font-weight: 700; font-size: 12pt; }
+.tngt-col-num { display: block; font-weight: 600; font-size: 12pt; }
 .tngt-col-note { text-align: left; white-space: pre-wrap; }
 .tngt-col-mark { font-weight: 700; }
 `}function PN(e,t){let n=mN(`.tngt-print-stack--preview`,`.tngt-print-page`,`.tngt-print-inner`);if(!n){window.alert(`Chưa có tờ xem trước để in. Bấm «In sổ TNGT» để mở xem trước trước.`);return}pN({title:`Sổ TNGT`,css:NN(e,t||QT()),sheetsHtml:n})}var FN=280,IN=`tngt-print-margins-v1`,LN={top:8,right:10,bottom:8,left:10};function RN(e,t){let n=Number(e);return Number.isFinite(n)?Math.min(40,Math.max(0,Math.round(n*10)/10)):t}function zN(){try{let e=JSON.parse(localStorage.getItem(IN));return!e||typeof e!=`object`?{...LN}:{top:RN(e.top,LN.top),right:RN(e.right,LN.right),bottom:RN(e.bottom,LN.bottom),left:RN(e.left,LN.left)}}catch{return{...LN}}}function BN({onGoEdit:e,storageTick:t=0}){let{storageKey:n}=zw(),r=new Date,[i,a]=(0,u.useState)(`${r.getFullYear()}-${String(r.getMonth()+1).padStart(2,`0`)}`),[o,s]=(0,u.useState)(!1),[c,l]=(0,u.useState)(zN),[d,f]=(0,u.useState)(QT),{entries:p,reportMeta:m}=(0,u.useMemo)(()=>JC(n),[n,t]),h={...aw,...m},g=IS(p,i),_=(0,u.useMemo)(()=>QS(g,c).length,[g,c]);(0,u.useEffect)(()=>{localStorage.setItem(IN,JSON.stringify(c))},[c]),(0,u.useEffect)(()=>{o&&f(QT())},[o]);function v(e){let[t,n]=i.split(`-`).map(Number),r=new Date(t,n-1+e,1);a(`${r.getFullYear()}-${String(r.getMonth()+1).padStart(2,`0`)}`)}return(0,Y.jsxs)(`div`,{className:`nhaplieu-workspace sonhatky-workspace${o?` sotngt-workspace--print`:``}`,children:[(0,Y.jsxs)(`aside`,{className:`nhaplieu-sidebar sonhatky-sidebar no-print`,style:{width:FN,minWidth:FN,maxWidth:FN},children:[(0,Y.jsxs)(`div`,{className:`sidebar-sticky-head`,children:[(0,Y.jsx)(`h2`,{className:`sidebar-title`,children:`Sổ TNGT`}),(0,Y.jsxs)(`div`,{className:`sonhatky-date-toolbar`,children:[(0,Y.jsxs)(`div`,{className:`sonhatky-day-buttons`,children:[(0,Y.jsx)(`button`,{type:`button`,onClick:()=>v(-1),className:`btn-primary btn-primary--compact sonhatky-nav-btn`,title:`Tháng trước`,children:`◀`}),(0,Y.jsx)(`button`,{type:`button`,onClick:()=>v(1),className:`btn-primary btn-primary--compact sonhatky-nav-btn`,title:`Tháng sau`,children:`▶`})]}),(0,Y.jsx)(PE,{value:i,onChange:a,className:`sidebar-input sidebar-input--date`,"aria-label":`Chọn tháng`})]}),(0,Y.jsxs)(`p`,{className:`sonhatky-day-summary`,children:[NC(i),g.length>0?` · ${g.length} vụ TNGT`:` · Chưa có ghi chép`]}),(0,Y.jsx)(`button`,{type:`button`,className:`btn-primary sonhatky-edit-btn`,onClick:e,children:`Thêm / sửa dữ liệu`}),(0,Y.jsx)(`button`,{type:`button`,className:`btn-secondary sonhatky-edit-btn sonhatky-edit-btn--sub${o?` active`:``}`,onClick:()=>s(e=>!e),children:o?`Đóng xem trước in`:`In sổ TNGT`})]}),o&&(0,Y.jsx)(`div`,{className:`sidebar-scroll`,children:(0,Y.jsxs)(`div`,{className:`print-form-panel`,children:[(0,Y.jsx)(`div`,{className:`print-form-label`,children:`In sổ TNGT`}),(0,Y.jsxs)(`ul`,{className:`print-form-tips`,children:[(0,Y.jsx)(`li`,{children:`Khổ A4 ngang (297 × 210 mm)`}),(0,Y.jsx)(`li`,{children:`Kéo lề xanh trên tờ đầu bằng chuột`}),(0,Y.jsx)(`li`,{children:`Bề rộng cột theo chỉnh trên sổ`}),(0,Y.jsx)(`li`,{children:`Mỗi tờ preview = đúng 1 trang in`})]})]})})]}),(0,Y.jsx)(`main`,{className:`nhaplieu-review-pane`,children:o?(0,Y.jsxs)(`div`,{className:`sonhatky-print-preview-pane landscape-print-preview-pane`,children:[(0,Y.jsxs)(`div`,{className:`sonhatky-print-toolbar print-toolbar no-print`,children:[(0,Y.jsxs)(`div`,{className:`print-toolbar-main`,children:[(0,Y.jsx)(`div`,{className:`print-toolbar-kicker`,children:`Xem trước in · A4 ngang`}),(0,Y.jsxs)(`div`,{className:`print-toolbar-chips`,children:[(0,Y.jsx)(`span`,{className:`print-chip`,children:NC(i)}),(0,Y.jsxs)(`span`,{className:`print-chip`,children:[g.length,` dòng`]}),(0,Y.jsxs)(`span`,{className:`print-chip`,children:[_,` tờ`]}),(0,Y.jsxs)(`span`,{className:`print-chip print-chip--muted`,children:[`Lề `,c.top,`/`,c.right,`/`,c.bottom,`/`,c.left,` mm`]})]})]}),(0,Y.jsx)(`button`,{type:`button`,className:`btn-primary btn-primary--compact print-toolbar-action`,onClick:()=>PN(c,d),children:`In tháng này`})]}),(0,Y.jsx)(MN,{yearMonth:i,reportMeta:h,entries:g,margins:c,onMarginsChange:l,widths:d})]}):(0,Y.jsx)(`div`,{className:`sonhatky-screen-preview`,children:(0,Y.jsx)(`div`,{className:`nhatky-review`,children:(0,Y.jsx)(`div`,{className:`nhatky-review-canvas nhatky-review-canvas--tngt`,children:(0,Y.jsx)(ON,{yearMonth:i,reportMeta:h,entries:g})})})})})]})}var VN=[{key:`hl1`,label:`TT`,defaultWidth:26,min:22,max:40},{key:`hl2`,label:`Người lập BB`,defaultWidth:82,min:64,max:140},{key:`hl3`,label:`Vi phạm`,defaultWidth:96,min:72,max:150},{key:`hl4`,label:`Địa chỉ`,defaultWidth:96,min:72,max:160},{key:`hl5`,label:`Lý trình`,defaultWidth:68,min:56,max:120},{key:`hl6`,label:`Ngày lập BB`,defaultWidth:68,min:56,max:90},{key:`hl7`,label:`Nội dung`,defaultWidth:175,min:120,max:280},{key:`hl8`,label:`Diện tích`,defaultWidth:78,min:56,max:120},{key:`hl9`,label:`Theo dõi xử lý`,defaultWidth:165,min:110,max:220},{key:`hl10`,label:`Ghi chú`,defaultWidth:82,min:64,max:140}],HN=`hanh-lang-col-widths-v1`;function UN(){return Object.fromEntries(VN.map(e=>[e.key,e.defaultWidth]))}function WN(){try{let e=JSON.parse(localStorage.getItem(HN));if(!e||typeof e!=`object`)return UN();let t=UN();for(let n of VN){let r=Number(e[n.key]);r>=n.min&&r<=n.max&&(t[n.key]=r)}return t}catch{return UN()}}function GN(){return WN()}function KN(e){return VN.reduce((t,n)=>t+(e[n.key]||0),0)}function qN(){let[e,t]=(0,u.useState)(WN);function n(n,r){let i=VN.find(e=>e.key===n);if(!i)return;let a=e[n];function o(e){let o=Math.min(i.max,Math.max(i.min,Math.round(a+(e.clientX-r))));t(e=>{let t={...e,[n]:o};return localStorage.setItem(HN,JSON.stringify(t)),t})}function s(){window.removeEventListener(`mousemove`,o),window.removeEventListener(`mouseup`,s),document.body.classList.remove(`is-resizing-col`)}document.body.classList.add(`is-resizing-col`),window.addEventListener(`mousemove`,o),window.addEventListener(`mouseup`,s)}return{widths:e,startColumnResize:n}}var JN=[{key:`hl1`,num:1,label:`TT`},{key:`hl2`,num:2,label:`Người lập biên bản`},{key:`hl3`,num:3,label:`Tổ chức (Cá nhân) vi phạm`},{key:`hl4`,num:4,label:`Địa chỉ`},{key:`hl5`,num:5,label:`Lý trình`},{key:`hl6`,num:6,label:`Ngày lập biên bản`},{key:`hl7`,num:7,label:`Nội dung vi phạm`},{key:`hl8`,num:8,label:`Diện tích vi phạm (dài*rộng)`},{key:`hl9`,num:9,label:`Theo dõi nội dung xử lý vi phạm`},{key:`hl10`,num:10,label:`Ghi chú`}];function YN({colKey:e,children:t,onResizeStart:n,className:r}){return(0,Y.jsxs)(`th`,{className:r,children:[t,(0,Y.jsx)(`div`,{className:`col-resize-handle`,onMouseDown:t=>{t.preventDefault(),t.stopPropagation(),n(e,t.clientX)},title:`Kéo để đổi độ rộng cột`})]})}function XN({colKey:e,resizable:t,onResizeStart:n,className:r,children:i}){return t&&e&&n?(0,Y.jsx)(YN,{colKey:e,onResizeStart:n,className:r,children:i}):(0,Y.jsx)(`th`,{className:r,children:i})}function ZN({resizable:e=!1,onResizeStart:t}){return(0,Y.jsxs)(Y.Fragment,{children:[(0,Y.jsx)(`tr`,{className:`hanh-lang-header-row`,children:JN.map(n=>(0,Y.jsx)(XN,{colKey:n.key,resizable:e,onResizeStart:t,children:n.label},n.key))}),(0,Y.jsx)(`tr`,{className:`hanh-lang-header-num`,children:JN.map(e=>(0,Y.jsxs)(`th`,{children:[`(`,e.num,`)`]},`${e.key}-num`))})]})}function QN(e,t){return Array.from({length:e},(e,n)=>(0,Y.jsx)(`tr`,{className:`hanh-lang-data-row hanh-lang-data-row--empty`,children:VN.map(e=>(0,Y.jsx)(`td`,{style:{height:`${t}mm`}},e.key))},`empty-${n}`))}function $N({yearMonth:e,reportMeta:t,entries:n}){let{widths:r,startColumnResize:i}=qN(),a=rC(t),o=iC(e),{count:s,rowHeightMm:c}=uC(n),l=n.map((e,t)=>{let n=fC(e,t);return(0,Y.jsxs)(`tr`,{className:`hanh-lang-data-row`,children:[(0,Y.jsx)(`td`,{className:`hanh-lang-col-tt`,children:n.tt}),(0,Y.jsx)(`td`,{children:n.recorder}),(0,Y.jsx)(`td`,{children:n.violator}),(0,Y.jsx)(`td`,{children:n.address}),(0,Y.jsx)(`td`,{children:n.location}),(0,Y.jsx)(`td`,{className:`hanh-lang-col-date`,children:n.recordDate}),(0,Y.jsx)(`td`,{className:`hanh-lang-col-content`,children:n.content}),(0,Y.jsx)(`td`,{children:n.area}),(0,Y.jsx)(`td`,{className:`hanh-lang-col-process`,children:n.process}),(0,Y.jsx)(`td`,{children:n.note})]},`${e.date}-${e.kmFrom}-${t}`)});return(0,Y.jsx)(`div`,{className:`hanh-lang-sheet-wrap`,children:(0,Y.jsxs)(`div`,{className:`hanh-lang-sheet hanh-lang-sheet--a4-landscape`,children:[(0,Y.jsxs)(`div`,{className:`hanh-lang-sheet-top`,children:[(0,Y.jsxs)(`div`,{className:`hanh-lang-sheet-head`,children:[(0,Y.jsxs)(`div`,{className:`hanh-lang-head-left`,children:[(0,Y.jsx)(`div`,{className:`hanh-lang-head-line`,children:t.company}),(0,Y.jsxs)(`div`,{className:`hanh-lang-head-line`,children:[`Tên Hạt: `,t.hat]}),(0,Y.jsxs)(`div`,{className:`hanh-lang-head-line`,children:[`Tên đường: `,t.roadName]})]}),(0,Y.jsxs)(`div`,{className:`hanh-lang-head-right`,children:[(0,Y.jsx)(`div`,{className:`hanh-lang-head-line`,children:`CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM`}),(0,Y.jsx)(`div`,{className:`hanh-lang-head-line hanh-lang-motto`,children:`Độc lập - Tự do - Hạnh phúc`})]})]}),(0,Y.jsxs)(`h1`,{className:`hanh-lang-title`,children:[`TỔNG HỢP VI PHẠM HÀNH LANG AN TOÀN GIAO THÔNG `,o]}),(0,Y.jsx)(`p`,{className:`hanh-lang-km-range`,children:a||`Lý trình: … Đến …/tuyến …`})]}),(0,Y.jsx)(`div`,{className:`hanh-lang-table-area`,children:(0,Y.jsxs)(`table`,{className:`hanh-lang-table hanh-lang-table--fill`,children:[(0,Y.jsx)(`colgroup`,{children:VN.map(e=>(0,Y.jsx)(`col`,{style:{width:`${r[e.key]}px`}},e.key))}),(0,Y.jsx)(`thead`,{children:(0,Y.jsx)(ZN,{resizable:!0,onResizeStart:i})}),(0,Y.jsxs)(`tbody`,{children:[l,QN(s,c),(0,Y.jsxs)(`tr`,{className:`hanh-lang-footer-row`,children:[(0,Y.jsx)(`td`,{colSpan:2,className:`hanh-lang-footer-label`,children:`TỔNG CỘNG`}),(0,Y.jsx)(`td`,{colSpan:8})]})]})]})})]})})}function eP(e,t){return e<=0?null:Array.from({length:e},(e,n)=>(0,Y.jsx)(`tr`,{className:`hanh-lang-data-row hanh-lang-data-row--empty`,children:VN.map(e=>(0,Y.jsx)(`td`,{style:{height:`${t}mm`,minHeight:`${t}mm`}},e.key))},`empty-${n}`))}function tP({entries:e,sttOffset:t}){return e.map((e,n)=>{let r=fC(e,t+n);return(0,Y.jsxs)(`tr`,{className:`hanh-lang-data-row`,style:{height:`${lC(e)}mm`},children:[(0,Y.jsx)(`td`,{className:`hanh-lang-col-tt`,children:r.tt}),(0,Y.jsx)(`td`,{children:r.recorder}),(0,Y.jsx)(`td`,{children:r.violator}),(0,Y.jsx)(`td`,{children:r.address}),(0,Y.jsx)(`td`,{children:r.location}),(0,Y.jsx)(`td`,{className:`hanh-lang-col-date`,children:r.recordDate}),(0,Y.jsx)(`td`,{className:`hanh-lang-col-content`,children:r.content}),(0,Y.jsx)(`td`,{children:r.area}),(0,Y.jsx)(`td`,{className:`hanh-lang-col-process`,children:r.process}),(0,Y.jsx)(`td`,{children:r.note})]},`${e.date}-${e.kmFrom}-${t+n}`)})}function nP({reportMeta:e,yearMonth:t}){let n=rC(e),r=iC(t);return(0,Y.jsxs)(`div`,{className:`hanh-lang-sheet-top`,children:[(0,Y.jsxs)(`div`,{className:`hanh-lang-sheet-head`,children:[(0,Y.jsxs)(`div`,{className:`hanh-lang-head-left`,children:[(0,Y.jsx)(`div`,{className:`hanh-lang-head-line`,children:e.company}),(0,Y.jsxs)(`div`,{className:`hanh-lang-head-line`,children:[`Tên Hạt: `,e.hat]}),(0,Y.jsxs)(`div`,{className:`hanh-lang-head-line`,children:[`Tên đường: `,e.roadName]})]}),(0,Y.jsxs)(`div`,{className:`hanh-lang-head-right`,children:[(0,Y.jsx)(`div`,{className:`hanh-lang-head-line`,children:`CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM`}),(0,Y.jsx)(`div`,{className:`hanh-lang-head-line hanh-lang-motto`,children:`Độc lập - Tự do - Hạnh phúc`})]})]}),(0,Y.jsxs)(`h1`,{className:`hanh-lang-title`,children:[`TỔNG HỢP VI PHẠM HÀNH LANG AN TOÀN GIAO THÔNG `,r]}),(0,Y.jsx)(`p`,{className:`hanh-lang-km-range`,children:n||`Lý trình: … Đến …/tuyến …`})]})}function rP({yearMonth:e,reportMeta:t,entries:n,sttOffset:r,margins:i,widths:a,showGuides:o,onMarginsChange:s,showFooter:c,pageIndex:l,pageCount:u}){let d=KN(a)||1,{count:f,rowHeightMm:p}=uC(n,i);return(0,Y.jsxs)(`section`,{className:`hanh-lang-print-page landscape-print-page`,style:{paddingTop:`${i.top}mm`,paddingRight:`${i.right}mm`,paddingBottom:`${i.bottom}mm`,paddingLeft:`${i.left}mm`},"data-print-page":l+1,children:[o&&s?(0,Y.jsx)(Lj,{margins:i,onChange:s,pageWMm:297,pageHMm:210,minContentMm:100}):null,u>1?(0,Y.jsxs)(`p`,{className:`landscape-print-page-num no-print`,children:[`Tờ `,l+1,`/`,u]}):null,(0,Y.jsxs)(`div`,{className:`hanh-lang-print-inner`,children:[(0,Y.jsx)(nP,{reportMeta:t,yearMonth:e}),(0,Y.jsx)(`div`,{className:`hanh-lang-table-area`,children:(0,Y.jsxs)(`table`,{className:`hanh-lang-table hanh-lang-table--print`,children:[(0,Y.jsx)(`colgroup`,{children:VN.map(e=>(0,Y.jsx)(`col`,{style:{width:`${a[e.key]/d*100}%`}},e.key))}),(0,Y.jsx)(`thead`,{children:(0,Y.jsx)(ZN,{})}),(0,Y.jsxs)(`tbody`,{children:[(0,Y.jsx)(tP,{entries:n,sttOffset:r}),eP(f,p),c?(0,Y.jsxs)(`tr`,{className:`hanh-lang-footer-row`,children:[(0,Y.jsx)(`td`,{colSpan:2,className:`hanh-lang-footer-label`,children:`TỔNG CỘNG`}),(0,Y.jsx)(`td`,{colSpan:8})]}):null]})]})})]})]})}function iP({yearMonth:e,reportMeta:t,entries:n,margins:r={top:8,right:10,bottom:8,left:10},onMarginsChange:i,widths:a}){let o=a||GN(),s=(0,u.useMemo)(()=>dC(n,r),[n,r]),c=0;return(0,Y.jsx)(`div`,{className:`hanh-lang-print-stack hanh-lang-print-stack--preview landscape-print-stack--preview`,"data-page-count":s.length,children:s.map((n,a)=>{let l=c;return c+=n.length,(0,Y.jsx)(rP,{yearMonth:e,reportMeta:t,entries:n,sttOffset:l,margins:r,widths:o,showGuides:a===0,onMarginsChange:i,showFooter:a===s.length-1,pageIndex:a,pageCount:s.length},`hl-p${a}`)})})}function aP(e,t){let n=t||GN(),r=KN(n)||1,i=VN.map((e,t)=>`.hanh-lang-table colgroup col:nth-child(${t+1}){width:${(n[e.key]/r*100).toFixed(3)}%}`).join(`
@@ -482,7 +485,8 @@ ${hN(e)}
 .hanh-lang-table {
   width: 100%;
   table-layout: fixed;
-  font-size: 11px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
   line-height: 1.3;
 }
 ${i}
@@ -495,8 +499,8 @@ ${gN(`.hanh-lang-table`)}
   word-wrap: break-word;
   overflow-wrap: anywhere;
 }
-.hanh-lang-table th { font-weight: 700; font-size: 10px; }
-.hanh-lang-header-num th { font-size: 10px; font-style: italic; }
+.hanh-lang-table th { font-weight: 700; font-size: 12pt; }
+.hanh-lang-header-num th { font-size: 12pt; font-style: italic; }
 .hanh-lang-col-content,
 .hanh-lang-col-process { text-align: left; white-space: pre-wrap; }
 .hanh-lang-footer-label { font-weight: 700; text-align: center; }
@@ -562,10 +566,11 @@ html, body {
   page-break-after: auto;
   display: flex;
   flex-direction: column;
-  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
   color: #0f172a;
 }
-.demxe-count-sheet--a4 { font-size: 13px; }
+.demxe-count-sheet--a4 { font-size: 12pt; }
 .demxe-summary-page__head { flex-shrink: 0; margin-bottom: 8px; }
 .demxe-summary-title,
 .demxe-form-title {
@@ -620,10 +625,10 @@ html, body {
 .demxe-summary-official-table th {
   font-weight: 700;
   text-align: center;
-  font-size: 11px;
+  font-size: 12pt;
 }
-.demxe-summary-direction-cell { text-align: center; font-size: 11px; }
-.demxe-summary-type-cell { text-align: left; font-size: 11px; }
+.demxe-summary-direction-cell { text-align: center; font-size: 12pt; }
+.demxe-summary-type-cell { text-align: left; font-size: 12pt; }
 .demxe-num { text-align: center; }
 .demxe-summary-sign-row,
 .demxe-sign-row {
@@ -637,7 +642,7 @@ html, body {
 .demxe-summary-sign-row p,
 .demxe-sign-row p { margin: 0; }
 .demxe-info-meta-table { margin-bottom: 0; }
-.demxe-info-cell { font-size: 12px; }
+.demxe-info-cell { font-size: 12pt; }
 .demxe-count-data-table { margin-top: 5mm; }
 .demxe-count-data-table th { font-weight: 700; text-align: center; text-transform: uppercase; }
 .demxe-col-type { text-align: left; }
@@ -655,14 +660,14 @@ ${e} th {
   background: #fff !important;
   font-weight: 700;
   text-align: center;
-  font-size: 11pt;
+  font-size: 12pt;
   padding: 2px 3px;
   vertical-align: middle;
 }
 ${e} td {
   padding: 0 !important;
   vertical-align: top;
-  font-size: 11pt;
+  font-size: 12pt;
 }
 ${e} thead th[rowspan] {
   border-bottom: 0.5pt solid #000 !important;
@@ -697,7 +702,7 @@ ${hN(e)}
   width: 100%;
   table-layout: fixed;
   font-family: "Times New Roman", Times, serif;
-  font-size: 11pt;
+  font-size: 12pt;
 }
 ${XI(`.gptc-official-table`)}
 .gptc-td-center { text-align: center; vertical-align: middle !important; }
@@ -796,7 +801,8 @@ ${hN(e)}
   width: 100%;
   height: 100%;
   table-layout: fixed;
-  font-size: 10.5px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
   line-height: 1.2;
   border-collapse: separate !important;
   border-spacing: 0 !important;
@@ -827,7 +833,7 @@ ${i}
 }
 .phieu-cau-table th {
   font-weight: 700;
-  font-size: 9.5px;
+  font-size: 12pt;
   text-align: center;
 }
 .phieu-cau-table tbody td {
