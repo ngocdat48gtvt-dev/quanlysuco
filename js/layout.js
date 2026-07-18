@@ -76,6 +76,11 @@
     return portal.path || "/nhat-ky/";
   }
 
+  function baoCaoPortalPath() {
+    var portal = cfg.baoCaoPortal || {};
+    return portal.path || "/nhat-ky/?bao-cao=1";
+  }
+
   function isDispatchPortalPage() {
     var path = window.location.pathname || "";
     return path.indexOf("/dashboard") !== -1 || path.indexOf("/dieu-hanh") !== -1;
@@ -86,9 +91,15 @@
     return path.indexOf("/user") !== -1;
   }
 
+  function isBaoCaoPortalPage() {
+    var path = window.location.pathname || "";
+    var search = window.location.search || "";
+    return path.indexOf("/nhat-ky") !== -1 && search.indexOf("bao-cao") !== -1;
+  }
+
   function isNhatKyPortalPage() {
     var path = window.location.pathname || "";
-    return path.indexOf("/nhat-ky") !== -1;
+    return path.indexOf("/nhat-ky") !== -1 && !isBaoCaoPortalPage();
   }
 
   function isProductPage() {
@@ -119,6 +130,12 @@
         href: dispatchPortalPath(),
         label: (cfg.dispatchPortal && cfg.dispatchPortal.navLabel) || "Điều hành",
         match: isDispatchPortalPage(),
+        external: false,
+      },
+      {
+        href: baoCaoPortalPath(),
+        label: (cfg.baoCaoPortal && cfg.baoCaoPortal.navLabel) || "Báo cáo",
+        match: isBaoCaoPortalPage(),
         external: false,
       },
       {

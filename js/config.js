@@ -38,6 +38,13 @@ window.SITE_CONFIG = {
     loginLabel: "Hạt trưởng",
   },
 
+  /** ADMIN → báo cáo KL chung (cùng app nhat-ky, mode bao-cao) */
+  baoCaoPortal: {
+    path: "/nhat-ky/?bao-cao=1",
+    navLabel: "Báo cáo",
+    loginLabel: "Đăng nhập báo cáo",
+  },
+
   /** Trang mặc định — danh mục 4 sản phẩm */
   homePage: "san-pham.html",
   catalogPage: "san-pham.html",
