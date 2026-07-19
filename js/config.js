@@ -38,6 +38,12 @@ window.SITE_CONFIG = {
     loginLabel: "Hạt trưởng",
   },
 
+  /** Hướng dẫn Admin / Hạt trưởng (trang tĩnh) */
+  guidePage: {
+    path: "huong-dan",
+    navLabel: "Hướng dẫn",
+  },
+
   /** ADMIN → báo cáo KL chung (cùng app nhat-ky, mode bao-cao) */
   baoCaoPortal: {
     path: "/nhat-ky/?bao-cao=1",

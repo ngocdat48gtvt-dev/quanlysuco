@@ -81,6 +81,11 @@
     return portal.path || "/nhat-ky/?bao-cao=1";
   }
 
+  function guidePagePath() {
+    var guide = cfg.guidePage || {};
+    return guide.path || "huong-dan.html";
+  }
+
   function isDispatchPortalPage() {
     var path = window.location.pathname || "";
     return path.indexOf("/dashboard") !== -1 || path.indexOf("/dieu-hanh") !== -1;
@@ -100,6 +105,10 @@
   function isNhatKyPortalPage() {
     var path = window.location.pathname || "";
     return path.indexOf("/nhat-ky") !== -1 && !isBaoCaoPortalPage();
+  }
+
+  function isGuidePage() {
+    return normalizePage(currentPageFile()) === normalizePage(guidePagePath());
   }
 
   function isProductPage() {
@@ -143,6 +152,11 @@
         label: (cfg.nhatKyPortal && cfg.nhatKyPortal.navLabel) || "Hạt trưởng",
         match: isNhatKyPortalPage(),
         external: false,
+      },
+      {
+        href: guidePagePath(),
+        label: (cfg.guidePage && cfg.guidePage.navLabel) || "Hướng dẫn",
+        match: isGuidePage(),
       },
       {
         href: registerHref(),
