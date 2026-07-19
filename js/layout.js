@@ -154,14 +154,14 @@
         external: false,
       },
       {
-        href: guidePagePath(),
-        label: (cfg.guidePage && cfg.guidePage.navLabel) || "Hướng dẫn",
-        match: isGuidePage(),
-      },
-      {
         href: registerHref(),
         label: "Đăng ký",
         match: isRegisterPage(),
+      },
+      {
+        href: guidePagePath(),
+        label: (cfg.guidePage && cfg.guidePage.navLabel) || "Hướng dẫn",
+        match: isGuidePage(),
       },
     ];
 

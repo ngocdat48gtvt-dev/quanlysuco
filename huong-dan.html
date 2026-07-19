@@ -17,92 +17,198 @@
     <link rel="icon" href="assets/favicon-32.png?v=3" type="image/png" sizes="32x32" />
     <link rel="icon" href="assets/favicon.svg?v=3" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/favicon-qlsc.png?v=3" />
-    <link rel="stylesheet" href="css/styles.css?v=36" />
+    <link rel="stylesheet" href="css/styles.css?v=37" />
     <style>
       .guide-page {
-        padding: 28px 0 56px;
-        background: linear-gradient(180deg, #f1f5f9 0%, #e8eef5 55%, #fff 100%);
+        --guide-ink: #0f172a;
+        --guide-muted: #64748b;
+        --guide-line: #e2e8f0;
+        --guide-accent: #1565c0;
+        --guide-accent-soft: rgba(21, 101, 192, 0.1);
+        padding: 0 0 64px;
+        background:
+          radial-gradient(900px 420px at 8% 0%, rgba(21, 101, 192, 0.1), transparent 55%),
+          radial-gradient(700px 360px at 100% 12%, rgba(249, 115, 22, 0.08), transparent 50%),
+          linear-gradient(180deg, #f8fafc 0%, #eef2f7 45%, #fff 100%);
       }
       .guide-hero {
-        margin-bottom: 18px;
+        padding: clamp(1.75rem, 4vw, 2.75rem) 0 1.25rem;
+      }
+      .guide-hero-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        padding: clamp(1.35rem, 3vw, 2rem);
+        background:
+          linear-gradient(135deg, #0b3d91 0%, #1565c0 55%, #1e88e5 100%);
+        color: #fff;
+        box-shadow: 0 18px 40px rgba(15, 76, 160, 0.22);
+      }
+      .guide-hero-card::after {
+        content: "";
+        position: absolute;
+        right: -40px;
+        top: -40px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        pointer-events: none;
+      }
+      .guide-kicker {
+        display: inline-block;
+        margin: 0 0 0.65rem;
+        padding: 0.28rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.16);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
       .guide-hero h1 {
-        margin: 0 0 8px;
-        font-size: clamp(1.45rem, 3vw, 1.85rem);
-        color: #0f172a;
+        position: relative;
+        z-index: 1;
+        margin: 0 0 0.55rem;
+        font-size: clamp(1.55rem, 3.2vw, 2.05rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
       }
       .guide-hero p {
+        position: relative;
+        z-index: 1;
         margin: 0;
-        color: #475569;
-        max-width: 46rem;
+        max-width: 42rem;
+        color: rgba(255, 255, 255, 0.92);
         line-height: 1.55;
+        font-size: 0.98rem;
+      }
+      .guide-tabs-wrap {
+        position: sticky;
+        top: 64px;
+        z-index: 20;
+        margin: 0 0 1rem;
+        padding: 0.55rem 0;
+        background: linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(248, 250, 252, 0.88));
+        backdrop-filter: blur(8px);
       }
       .guide-tabs {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin: 0 0 16px;
+        gap: 0.5rem;
+        padding: 0.35rem;
+        border-radius: 14px;
+        background: #fff;
+        border: 1px solid var(--guide-line);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
       }
       .guide-tab {
-        border: 1px solid #94a3b8;
-        background: #fff;
-        color: #334155;
-        padding: 8px 14px;
-        border-radius: 6px;
+        border: 0;
+        background: transparent;
+        color: #475569;
+        padding: 0.65rem 1rem;
+        border-radius: 10px;
         font: inherit;
-        font-size: 0.92rem;
-        font-weight: 600;
+        font-size: 0.9rem;
+        font-weight: 700;
         cursor: pointer;
+        transition: background 0.15s ease, color 0.15s ease;
       }
       .guide-tab:hover {
-        border-color: #1e40af;
-        color: #1e40af;
+        background: var(--guide-accent-soft);
+        color: var(--guide-accent);
       }
       .guide-tab.is-active {
-        background: #1e3a8a;
-        border-color: #1e3a8a;
+        background: var(--guide-accent);
         color: #fff;
+        box-shadow: 0 6px 14px rgba(21, 101, 192, 0.28);
       }
       .guide-panel {
         background: #fff;
-        border: 1px solid #cbd5e1;
-        border-radius: 10px;
-        padding: 20px 22px 28px;
-        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+        border: 1px solid var(--guide-line);
+        border-radius: 16px;
+        padding: clamp(1.15rem, 2.5vw, 1.65rem) clamp(1.1rem, 2.5vw, 1.75rem) 1.75rem;
+        box-shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
       }
       .guide-panel[hidden] {
         display: none;
       }
       .guide-section + .guide-section {
-        margin-top: 22px;
-        padding-top: 18px;
-        border-top: 1px solid #e2e8f0;
+        margin-top: 1.35rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--guide-line);
       }
       .guide-section h2 {
-        margin: 0 0 10px;
+        margin: 0 0 0.7rem;
         font-size: 1.12rem;
-        color: #0f172a;
+        color: var(--guide-ink);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .guide-section h2::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--guide-accent);
+        box-shadow: 0 0 0 4px var(--guide-accent-soft);
+        flex-shrink: 0;
       }
       .guide-section p,
       .guide-section li {
         color: #334155;
-        line-height: 1.55;
+        line-height: 1.58;
         font-size: 0.95rem;
       }
       .guide-section ol,
       .guide-section ul {
-        margin: 0 0 10px;
-        padding-left: 1.25rem;
+        margin: 0 0 0.4rem;
+        padding-left: 1.2rem;
       }
       .guide-section li + li {
-        margin-top: 6px;
+        margin-top: 0.4rem;
+      }
+      .guide-steps {
+        list-style: none;
+        padding: 0 !important;
+        counter-reset: gstep;
+      }
+      .guide-steps li {
+        counter-increment: gstep;
+        position: relative;
+        padding: 0.7rem 0.85rem 0.7rem 2.85rem;
+        border-radius: 12px;
+        background: #f8fafc;
+        border: 1px solid var(--guide-line);
+      }
+      .guide-steps li + li {
+        margin-top: 0.5rem;
+      }
+      .guide-steps li::before {
+        content: counter(gstep);
+        position: absolute;
+        left: 0.7rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.55rem;
+        height: 1.55rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--guide-accent);
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 800;
       }
       .guide-badge {
         display: inline-block;
-        padding: 1px 7px;
-        border-radius: 3px;
-        font-size: 0.78rem;
-        font-weight: 700;
+        padding: 0.1rem 0.5rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
         vertical-align: middle;
       }
       .guide-badge--user {
@@ -110,44 +216,91 @@
         color: #1e40af;
       }
       .guide-badge--admin {
-        background: #fef3c7;
-        color: #92400e;
+        background: #ffedd5;
+        color: #9a3412;
+      }
+      .guide-jump {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin: 0.85rem 0 1.1rem;
+      }
+      .guide-jump a {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid #bfdbfe;
+        background: #eff6ff;
+        color: #1d4ed8;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .guide-jump a:hover {
+        background: #dbeafe;
+        border-color: #93c5fd;
+      }
+      .guide-module-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 0.85rem;
       }
       .guide-module {
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        padding: 14px 14px 16px;
-        background: #f8fafc;
-        margin-bottom: 12px;
+        scroll-margin-top: 140px;
+        border: 1px solid var(--guide-line);
+        border-radius: 14px;
+        padding: 1rem 1rem 1.1rem;
+        background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
       }
-      .guide-module:last-child {
-        margin-bottom: 0;
+      .guide-module:target,
+      .guide-module:hover {
+        border-color: #93c5fd;
+        box-shadow: 0 10px 24px rgba(21, 101, 192, 0.1);
+        transform: translateY(-1px);
       }
       .guide-module h3 {
-        margin: 0 0 4px;
+        margin: 0 0 0.3rem;
         font-size: 0.95rem;
-        color: #0f172a;
+        color: var(--guide-ink);
+        letter-spacing: 0.01em;
       }
       .guide-module .who {
-        margin: 0 0 8px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #64748b;
+        margin: 0 0 0.55rem;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--guide-muted);
       }
       .guide-module .desc {
-        margin: 0 0 8px;
-        font-size: 0.9rem;
+        margin: 0 0 0.6rem;
+        font-size: 0.88rem;
         color: #475569;
+        line-height: 1.45;
       }
       .guide-module ol {
         margin: 0;
-        font-size: 0.88rem;
+        padding-left: 1.15rem;
+        font-size: 0.86rem;
+        color: #334155;
+      }
+      .guide-module ol li + li {
+        margin-top: 0.3rem;
       }
       .guide-cta {
-        margin-top: 18px;
+        margin-top: 1.25rem;
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 0.65rem;
+      }
+      @media (max-width: 720px) {
+        .guide-tabs-wrap {
+          top: 56px;
+        }
+        .guide-module {
+          scroll-margin-top: 170px;
+        }
       }
     </style>
   </head>
@@ -178,23 +331,28 @@
     <main class="guide-page">
       <div class="container">
         <header class="guide-hero">
-          <h1>Hướng dẫn sử dụng sổ nội nghiệp</h1>
-          <p>
-            Dành cho <strong>Admin</strong> và <strong>Hạt trưởng</strong>. Chọn tab phù hợp vai
-            trò — sau đó vào cổng Hạt trưởng để đăng nhập làm việc.
-          </p>
+          <div class="guide-hero-card">
+            <span class="guide-kicker">Sổ nội nghiệp</span>
+            <h1>Hướng dẫn sử dụng cho Admin &amp; Hạt trưởng</h1>
+            <p>
+              Chọn tab theo vai trò của bạn. Trong tab «Các sổ / module», bấm tên mục để nhảy
+              tới phần hướng dẫn tương ứng.
+            </p>
+          </div>
         </header>
 
-        <div class="guide-tabs" role="tablist" aria-label="Phần hướng dẫn">
-          <button type="button" class="guide-tab is-active" role="tab" aria-selected="true" data-tab="hatruong">
-            Hạt trưởng (USER)
-          </button>
-          <button type="button" class="guide-tab" role="tab" aria-selected="false" data-tab="admin">
-            Admin
-          </button>
-          <button type="button" class="guide-tab" role="tab" aria-selected="false" data-tab="modules">
-            Các sổ / module
-          </button>
+        <div class="guide-tabs-wrap">
+          <div class="guide-tabs" role="tablist" aria-label="Phần hướng dẫn">
+            <button type="button" class="guide-tab is-active" role="tab" aria-selected="true" data-tab="hatruong">
+              Hạt trưởng (USER)
+            </button>
+            <button type="button" class="guide-tab" role="tab" aria-selected="false" data-tab="admin">
+              Admin
+            </button>
+            <button type="button" class="guide-tab" role="tab" aria-selected="false" data-tab="modules">
+              Các sổ / module
+            </button>
+          </div>
         </div>
 
         <div id="panel-hatruong" class="guide-panel" role="tabpanel">
@@ -202,14 +360,14 @@
             <h2>Vai trò của bạn</h2>
             <p>
               Tài khoản <span class="guide-badge guide-badge--user">USER</span> (hạt trưởng /
-              người trực sổ) được <strong>nhập, sửa, in</strong> dữ liệu sổ nội nghiệp của các
-              hạt được giao. Dữ liệu tự đồng bộ lên Firebase khi có mạng.
+              người trực sổ) được <strong>nhập, sửa, in</strong> dữ liệu sổ nội nghiệp. Dữ liệu
+              tự đồng bộ Firebase khi có mạng.
             </p>
             <ul>
               <li>Được dùng <strong>NHẬP LIỆU</strong>, mọi sổ, phiếu KT cầu, thống kê KL.</li>
               <li>Được dùng <strong>APP HIỆN TRƯỜNG</strong> để đồng bộ sự cố vào sổ.</li>
               <li>
-                Không tạo / xóa danh mục hạt trên cloud — việc đó do
+                Không tạo / xóa danh mục hạt trên cloud — do
                 <span class="guide-badge guide-badge--admin">ADMIN</span> làm.
               </li>
               <li><strong>MASTER DATA</strong>: chỉ xem; Admin mới sửa.</li>
@@ -217,20 +375,18 @@
           </section>
           <section class="guide-section">
             <h2>Quy trình làm việc hàng ngày</h2>
-            <ol>
+            <ol class="guide-steps">
               <li>Đăng nhập cổng <strong>Hạt trưởng</strong> → chọn đường / hạt.</li>
               <li>
-                Vào <strong>NHẬP LIỆU</strong>, chọn đúng <strong>ngày</strong> và phần mục, ghi
+                Vào <strong>NHẬP LIỆU</strong>, chọn đúng <strong>ngày</strong> và phần mục → ghi
                 sự cố / khối lượng → Lưu.
               </li>
               <li>Kiểm tra lại trên <strong>SỔ NHẬT KÝ</strong> (2 tờ trái–phải).</li>
               <li>
-                Cập nhật các sổ chuyên môn khi cần: Mặt đường, Bảo dưỡng, Trực ĐBGT, TNGT, Hành
-                lang, Đếm xe, Cấp phép TC, Phiếu KT cầu.
+                Cập nhật các sổ chuyên môn khi cần (Mặt đường, Bảo dưỡng, Trực ĐBGT, TNGT, Hành
+                lang, Đếm xe, Cấp phép TC, Phiếu KT cầu).
               </li>
-              <li>
-                <strong>Xem trước in</strong> → chỉnh lề xanh nếu cần → In / lưu PDF.
-              </li>
+              <li><strong>Xem trước in</strong> → chỉnh lề xanh nếu cần → In / PDF.</li>
               <li>Đổi hạt: bấm <strong>Đổi hạt</strong> trên thanh trên cùng.</li>
             </ol>
           </section>
@@ -238,15 +394,15 @@
             <h2>Mẹo nhanh</h2>
             <ul>
               <li>
-                Phiếu KT cầu: ô «Đơn vị nhận quản lý duy tu…» dùng chung cả sổ (mọi cầu, mọi
-                tháng).
+                Phiếu KT cầu: «Đơn vị nhận quản lý duy tu…» dùng chung cả sổ (mọi cầu / tháng).
               </li>
-              <li>Khai báo cầu / cống trước ở menu danh sách rồi mới chọn trên phiếu.</li>
-              <li>Nên kiểm tra mạng trước khi tắt máy để dữ liệu kịp đồng bộ cloud.</li>
+              <li>Khai báo cầu / cống trước ở danh sách rồi mới chọn trên phiếu.</li>
+              <li>Kiểm tra mạng trước khi tắt máy để dữ liệu kịp đồng bộ.</li>
             </ul>
           </section>
           <div class="guide-cta">
-            <a class="btn btn-primary" href="/nhat-ky/">Vào cổng Hạt trưởng</a>
+            <a class="btn btn-primary" data-guide-nhatky href="/nhat-ky/">Vào cổng Hạt trưởng</a>
+            <a class="btn btn-secondary" href="#modules" data-open-tab="modules">Xem các sổ / module</a>
           </div>
         </div>
 
@@ -254,131 +410,132 @@
           <section class="guide-section">
             <h2>Vai trò của bạn</h2>
             <p>
-              Tài khoản <span class="guide-badge guide-badge--admin">ADMIN</span> quản lý danh
-              mục sổ theo từng USER và <strong>chỉ xem / in</strong> sổ (không nhập liệu nhật
-              ký). Riêng <strong>MASTER DATA</strong> Admin được sửa.
+              Tài khoản <span class="guide-badge guide-badge--admin">ADMIN</span> quản lý danh mục
+              sổ theo USER và <strong>chỉ xem / in</strong> sổ. Riêng <strong>MASTER DATA</strong>
+              Admin được sửa.
             </p>
             <ul>
-              <li>Chọn nhân viên (USER) → thêm / sửa / xóa đường–hạt trên Firebase.</li>
-              <li>
-                Điền <strong>Tên công ty</strong> khi tạo/sửa hạt — các sổ lấy tên này lên đầu tờ
-                in.
-              </li>
-              <li>Mở hạt để xem, in sổ (chế độ chỉ xem).</li>
+              <li>Chọn nhân viên (USER) → thêm / sửa / xóa đường–hạt.</li>
+              <li>Điền <strong>Tên công ty</strong> khi tạo/sửa hạt (hiện trên đầu tờ in).</li>
+              <li>Mở hạt để xem, in sổ (không nhập liệu nhật ký).</li>
               <li>Không dùng App hiện trường trên tài khoản Admin.</li>
             </ul>
           </section>
           <section class="guide-section">
             <h2>Quy trình Admin</h2>
-            <ol>
+            <ol class="guide-steps">
               <li>Đăng nhập cổng <strong>Hạt trưởng</strong> → chọn nhân viên (USER).</li>
               <li>Thêm / sửa đường–hạt (km đầu–cuối, tên công ty) → Lưu.</li>
-              <li>Bấm hạt để mở sổ chỉ xem → duyệt menu sổ / phiếu / thống kê → In khi cần.</li>
+              <li>Bấm hạt để mở sổ chỉ xem → duyệt menu → In khi cần.</li>
               <li><strong>Đổi người / hạt</strong> để quay lại danh mục.</li>
               <li>Cập nhật danh mục bảo dưỡng tại <strong>MASTER DATA</strong>.</li>
             </ol>
           </section>
-          <section class="guide-section">
-            <h2>Lưu ý phân quyền</h2>
-            <ul>
-              <li>Chỉ USER mới ghi được dữ liệu sổ — đúng thiết kế.</li>
-              <li>Khi USER chưa có hạt: Admin tạo sổ trước, USER đăng nhập sẽ thấy hạt đó.</li>
-            </ul>
-          </section>
           <div class="guide-cta">
-            <a class="btn btn-primary" href="/nhat-ky/">Vào cổng quản lý sổ</a>
-            <a class="btn btn-secondary" href="/nhat-ky/?bao-cao=1">Báo cáo KL</a>
+            <a class="btn btn-primary" data-guide-nhatky href="/nhat-ky/">Vào cổng quản lý sổ</a>
+            <a class="btn btn-secondary" data-guide-baocao href="/nhat-ky/?bao-cao=1">Báo cáo KL</a>
           </div>
         </div>
 
         <div id="panel-modules" class="guide-panel" role="tabpanel" hidden>
           <section class="guide-section">
-            <h2>Chi tiết từng menu / sổ</h2>
+            <h2>Các sổ / module</h2>
             <p>
-              Sau khi chọn hạt, dùng thanh menu phụ trong cổng Hạt trưởng. Các bước dưới đây chủ
-              yếu cho USER; Admin làm tương tự ở chế độ chỉ xem / in (trừ MASTER DATA).
+              Bấm tên mục bên dưới để nhảy tới phần hướng dẫn. Sau khi chọn hạt trong cổng Hạt
+              trưởng, mở menu tương ứng để thao tác.
             </p>
+            <nav class="guide-jump" aria-label="Nhảy tới mục">
+              <a href="#m-nhaplieu">NHẬP LIỆU</a>
+              <a href="#m-nhatky">SỔ NHẬT KÝ</a>
+              <a href="#m-chuyenmon">Sổ chuyên môn</a>
+              <a href="#m-demxe-gptc">Đếm xe · Cấp phép</a>
+              <a href="#m-phieucau">PHIẾU KT CẦU</a>
+              <a href="#m-khac">Thống kê · Danh mục</a>
+              <a href="#m-hientruong">APP HIỆN TRƯỜNG</a>
+            </nav>
 
-            <article class="guide-module">
-              <h3>NHẬP LIỆU</h3>
-              <p class="who">Chỉ USER</p>
-              <p class="desc">Form chính ghi sự cố / khối lượng theo ngày.</p>
-              <ol>
-                <li>Chọn đúng ngày.</li>
-                <li>Chọn phần mục (mặt đường, nền đường, cầu…).</li>
-                <li>Nhập lý trình, kích thước / khối lượng, hiện trạng.</li>
-                <li>Bấm Lưu → kiểm tra SỔ NHẬT KÝ.</li>
-              </ol>
-            </article>
+            <div class="guide-module-grid">
+              <article class="guide-module" id="m-nhaplieu">
+                <h3>NHẬP LIỆU</h3>
+                <p class="who">Chỉ USER</p>
+                <p class="desc">Form chính ghi sự cố / khối lượng theo ngày.</p>
+                <ol>
+                  <li>Chọn đúng ngày trên sidebar.</li>
+                  <li>Chọn phần mục (mặt đường, nền đường, cầu…).</li>
+                  <li>Nhập lý trình, kích thước / khối lượng, hiện trạng.</li>
+                  <li>Bấm Lưu → kiểm tra lại ở SỔ NHẬT KÝ.</li>
+                </ol>
+              </article>
 
-            <article class="guide-module">
-              <h3>SỔ NHẬT KÝ</h3>
-              <p class="who">USER ghi · Admin xem/in</p>
-              <p class="desc">Sổ tuần đường 2 trang (cột 1–3 trái, 4–6 phải).</p>
-              <ol>
-                <li>Chọn ngày.</li>
-                <li>USER: bấm hàng để mở form sửa.</li>
-                <li>Xem trước in → chỉnh lề → In.</li>
-              </ol>
-            </article>
+              <article class="guide-module" id="m-nhatky">
+                <h3>SỔ NHẬT KÝ</h3>
+                <p class="who">USER ghi · Admin xem/in</p>
+                <p class="desc">Sổ tuần đường 2 trang (cột 1–3 trái, 4–6 phải).</p>
+                <ol>
+                  <li>Chọn ngày cần xem.</li>
+                  <li>USER: bấm hàng để mở form sửa.</li>
+                  <li>Bật «Xem trước in» → chỉnh lề → In / PDF.</li>
+                </ol>
+              </article>
 
-            <article class="guide-module">
-              <h3>SỔ MẶT ĐƯỜNG · BẢO DƯỠNG · TRỰC ĐBGT · TNGT · HÀNH LANG</h3>
-              <p class="who">USER ghi · Admin xem/in</p>
-              <p class="desc">Các sổ chuyên môn theo tuyến / ngày.</p>
-              <ol>
-                <li>Mở sổ tương ứng trên menu.</li>
-                <li>USER: nhập hoặc sửa nội dung.</li>
-                <li>Xem trước in → In (một số sổ in ngang A4).</li>
-              </ol>
-            </article>
+              <article class="guide-module" id="m-chuyenmon">
+                <h3>Mặt đường · Bảo dưỡng · Trực ĐBGT · TNGT · Hành lang</h3>
+                <p class="who">USER ghi · Admin xem/in</p>
+                <p class="desc">Các sổ chuyên môn theo tuyến / ngày.</p>
+                <ol>
+                  <li>Mở sổ trên menu phụ sau khi đã chọn hạt.</li>
+                  <li>USER: nhập hoặc sửa nội dung.</li>
+                  <li>Xem trước in → In (một số sổ in ngang A4).</li>
+                </ol>
+              </article>
 
-            <article class="guide-module">
-              <h3>SỔ ĐẾM XE · SỔ CẤP PHÉP TC</h3>
-              <p class="who">USER ghi · Admin xem/in</p>
-              <p class="desc">Phiếu đếm xe / giấy phép thi công và biểu tổng hợp.</p>
-              <ol>
-                <li>Nhập số liệu theo ngày / giấy phép.</li>
-                <li>Kiểm tra biểu tổng hợp.</li>
-                <li>In từng tờ khi cần.</li>
-              </ol>
-            </article>
+              <article class="guide-module" id="m-demxe-gptc">
+                <h3>SỔ ĐẾM XE · SỔ CẤP PHÉP TC</h3>
+                <p class="who">USER ghi · Admin xem/in</p>
+                <p class="desc">Phiếu đếm xe / giấy phép thi công và biểu tổng hợp.</p>
+                <ol>
+                  <li>Nhập số liệu theo ngày hoặc giấy phép.</li>
+                  <li>Kiểm tra biểu tổng hợp.</li>
+                  <li>In từng tờ khi cần nộp / lưu hồ sơ.</li>
+                </ol>
+              </article>
 
-            <article class="guide-module">
-              <h3>PHIẾU KT CẦU</h3>
-              <p class="who">USER ghi · Admin xem/in</p>
-              <p class="desc">Kiểm tra thường xuyên cầu theo tháng (2 tờ nửa tháng).</p>
-              <ol>
-                <li>Khai báo cầu ở DANH SÁCH CẦU.</li>
-                <li>Chọn tháng → chọn cầu.</li>
-                <li>Nhập đơn vị QL (dùng chung cả sổ) → điền tờ → Lưu.</li>
-                <li>Xem trước in → In ngang A4.</li>
-              </ol>
-            </article>
+              <article class="guide-module" id="m-phieucau">
+                <h3>PHIẾU KT CẦU</h3>
+                <p class="who">USER ghi · Admin xem/in</p>
+                <p class="desc">Kiểm tra thường xuyên cầu theo tháng (2 tờ nửa tháng).</p>
+                <ol>
+                  <li>Khai báo cầu ở DANH SÁCH CẦU trước.</li>
+                  <li>Chọn tháng → chọn cầu.</li>
+                  <li>Nhập đơn vị QL (dùng chung cả sổ) → điền tờ → Lưu.</li>
+                  <li>Xem trước in → In ngang A4.</li>
+                </ol>
+              </article>
 
-            <article class="guide-module">
-              <h3>THỐNG KÊ KL · MASTER DATA · DANH SÁCH CỐNG / CẦU</h3>
-              <p class="who">Theo quyền từng mục</p>
-              <ol>
-                <li>THỐNG KÊ KL: chọn khoảng ngày / loại sổ trong hạt đang mở.</li>
-                <li>MASTER DATA: Admin sửa danh mục bảo dưỡng.</li>
-                <li>Danh sách cống / cầu: USER quản lý trong hạt của mình.</li>
-              </ol>
-            </article>
+              <article class="guide-module" id="m-khac">
+                <h3>THỐNG KÊ KL · MASTER DATA · Danh sách cống / cầu</h3>
+                <p class="who">Theo quyền từng mục</p>
+                <ol>
+                  <li>THỐNG KÊ KL: chọn khoảng ngày / loại sổ trong hạt đang mở.</li>
+                  <li>MASTER DATA: Admin sửa danh mục bảo dưỡng.</li>
+                  <li>Danh sách cống / cầu: USER quản lý trong hạt của mình.</li>
+                </ol>
+              </article>
 
-            <article class="guide-module">
-              <h3>APP HIỆN TRƯỜNG</h3>
-              <p class="who">Chỉ USER</p>
-              <p class="desc">Đồng bộ sự cố từ hiện trường vào sổ nội nghiệp.</p>
-              <ol>
-                <li>Chọn hạt trong Sổ nội nghiệp trước.</li>
-                <li>Mở portal App hiện trường → đồng bộ bản ghi.</li>
-                <li>Quay lại NHẬP LIỆU / SỔ NHẬT KÝ để kiểm tra.</li>
-              </ol>
-            </article>
+              <article class="guide-module" id="m-hientruong">
+                <h3>APP HIỆN TRƯỜNG</h3>
+                <p class="who">Chỉ USER</p>
+                <p class="desc">Đồng bộ sự cố từ hiện trường vào sổ nội nghiệp.</p>
+                <ol>
+                  <li>Chọn hạt trong Sổ nội nghiệp trước.</li>
+                  <li>Mở portal App hiện trường trên thanh menu app → đồng bộ.</li>
+                  <li>Quay lại NHẬP LIỆU / SỔ NHẬT KÝ để kiểm tra.</li>
+                </ol>
+              </article>
+            </div>
           </section>
           <div class="guide-cta">
-            <a class="btn btn-primary" href="/nhat-ky/">Bắt đầu làm việc</a>
+            <a class="btn btn-primary" data-guide-nhatky href="/nhat-ky/">Bắt đầu làm việc</a>
           </div>
         </div>
       </div>
@@ -408,23 +565,73 @@
           admin: document.getElementById("panel-admin"),
           modules: document.getElementById("panel-modules")
         };
+
+        function activateTab(id, scrollToHash) {
+          if (!panels[id]) return;
+          tabs.forEach(function (t) {
+            var on = t.getAttribute("data-tab") === id;
+            t.classList.toggle("is-active", on);
+            t.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          Object.keys(panels).forEach(function (key) {
+            panels[key].hidden = key !== id;
+          });
+          if (scrollToHash && location.hash) {
+            var el = document.querySelector(location.hash);
+            if (el) {
+              setTimeout(function () {
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+              }, 40);
+            }
+          }
+        }
+
         tabs.forEach(function (btn) {
           btn.addEventListener("click", function () {
-            var id = btn.getAttribute("data-tab");
-            tabs.forEach(function (t) {
-              var on = t === btn;
-              t.classList.toggle("is-active", on);
-              t.setAttribute("aria-selected", on ? "true" : "false");
-            });
-            Object.keys(panels).forEach(function (key) {
-              panels[key].hidden = key !== id;
-            });
+            activateTab(btn.getAttribute("data-tab"), false);
+            if (history.replaceState) {
+              history.replaceState(null, "", location.pathname + location.search);
+            }
           });
+        });
+
+        document.querySelectorAll("[data-open-tab]").forEach(function (a) {
+          a.addEventListener("click", function (e) {
+            e.preventDefault();
+            activateTab(a.getAttribute("data-open-tab"), false);
+            if (a.getAttribute("data-open-tab") === "modules") {
+              panels.modules.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+
+        document.querySelectorAll(".guide-jump a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            activateTab("modules", false);
+          });
+        });
+
+        // Deep link: /huong-dan#m-phieucau mở tab modules + cuộn
+        if (location.hash && location.hash.indexOf("#m-") === 0) {
+          activateTab("modules", true);
+        }
+      })();
+    </script>
+    <script src="js/config.js?v=39"></script>
+    <script src="js/layout.js?v=21"></script>
+    <script src="js/main.js?v=35"></script>
+    <script>
+      (function () {
+        var cfg = window.SITE_CONFIG || {};
+        var nk = (cfg.nhatKyPortal && cfg.nhatKyPortal.path) || "/nhat-ky/";
+        var bc = (cfg.baoCaoPortal && cfg.baoCaoPortal.path) || "/nhat-ky/?bao-cao=1";
+        document.querySelectorAll("[data-guide-nhatky]").forEach(function (a) {
+          a.href = nk;
+        });
+        document.querySelectorAll("[data-guide-baocao]").forEach(function (a) {
+          a.href = bc;
         });
       })();
     </script>
-    <script src="js/config.js?v=38"></script>
-    <script src="js/layout.js?v=20"></script>
-    <script src="js/main.js?v=35"></script>
   </body>
 </html>

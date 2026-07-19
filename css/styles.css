@@ -2152,8 +2152,9 @@ a:hover {
 .catalog-page-header {
   padding: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(1.25rem, 3vw, 1.75rem);
   background:
-    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(21, 101, 192, 0.08), transparent 70%),
-    linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    radial-gradient(ellipse 90% 70% at 50% -30%, rgba(21, 101, 192, 0.14), transparent 68%),
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(249, 115, 22, 0.08), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
   border-bottom: 1px solid var(--border);
 }
 
@@ -2166,6 +2167,14 @@ a:hover {
 .catalog-page-eyebrow {
   display: inline-block;
   margin-bottom: 0.65rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(21, 101, 192, 0.08);
+  border: 1px solid rgba(21, 101, 192, 0.14);
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .catalog-page-title {
@@ -2196,14 +2205,20 @@ a:hover {
 }
 
 .catalog-page-chips li {
-  padding: 0.35rem 0.75rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 999px;
-  background: #fff;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.35);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-secondary);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.catalog-page-chips li:hover {
+  border-color: rgba(21, 101, 192, 0.35);
+  color: var(--blue);
 }
 
 .catalog-page-chips li:last-child {
@@ -2277,9 +2292,12 @@ body[data-page="catalog"] .products-catalog-grid {
 
 body[data-page="catalog"] .product-catalog-card {
   height: 100%;
-  border-radius: var(--radius-lg);
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
   border-top: 3px solid transparent;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 body[data-page="catalog"] .product-catalog-card--blue {
@@ -2299,8 +2317,9 @@ body[data-page="catalog"] .product-catalog-card--purple {
 }
 
 body[data-page="catalog"] .product-catalog-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12);
+  border-color: rgba(21, 101, 192, 0.22);
 }
 
 body[data-page="catalog"] .product-catalog-media {
