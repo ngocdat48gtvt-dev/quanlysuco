@@ -87,6 +87,7 @@ html, body {
   border-collapse: separate;
   border-spacing: 0;
   border: none;
+  border-right: 0.5pt solid #000;
   table-layout: fixed;
   font-size: 12pt;
   line-height: 1.35;
@@ -106,7 +107,7 @@ html, body {
 }
 .nhatky-print-table th:last-child,
 .nhatky-print-table td:last-child {
-  border-right: 0.5pt solid #000;
+  border-right: none;
 }
 .nhatky-print-table thead th {
   border-bottom: none;
@@ -352,6 +353,7 @@ ${e} {
   border-collapse: separate !important;
   border-spacing: 0 !important;
   border: none !important;
+  border-right: 0.5pt solid ${n} !important;
 }
 ${e} th,
 ${e} td {
@@ -363,10 +365,11 @@ ${e} td {
 }
 ${e} th:last-child,
 ${e} td:last-child {
-  border-right: 0.5pt solid ${n} !important;
+  border-right: none !important;
 }
-${e} thead tr:last-child th,
-${e} thead th[rowspan],
+${e} thead th {
+  border-bottom: none !important;
+}
 ${e} tbody tr:last-child td {
   border-bottom: 0.5pt solid ${n} !important;
 }
@@ -611,6 +614,7 @@ html, body {
   border-collapse: separate;
   border-spacing: 0;
   border: none;
+  border-right: 0.5pt solid #808080;
   table-layout: fixed;
 }
 .demxe-official-table th,
@@ -624,8 +628,8 @@ html, body {
   background: #fff;
 }
 .demxe-official-table th:last-child,
-.demxe-official-table td:last-child { border-right: 0.5pt solid #808080; }
-.demxe-official-table thead tr:last-child th,
+.demxe-official-table td:last-child { border-right: none; }
+.demxe-official-table thead th { border-bottom: none; }
 .demxe-official-table tbody tr:last-child td { border-bottom: 0.5pt solid #808080; }
 .demxe-summary-official-table + .demxe-summary-official-table { margin-top: 5mm; }
 .demxe-summary-official-table th {
@@ -665,6 +669,7 @@ ${e} {
   border-collapse: separate !important;
   border-spacing: 0 !important;
   border: none !important;
+  border-right: 0.5pt solid #000 !important;
 }
 ${e} th,
 ${e} td {
@@ -676,7 +681,7 @@ ${e} td {
 }
 ${e} th:last-child,
 ${e} td:last-child {
-  border-right: 0.5pt solid #000 !important;
+  border-right: none !important;
 }
 ${e} thead tr:last-child th,
 ${e} thead th[rowspan] {
@@ -903,9 +908,10 @@ ${uP(e)}
   border-collapse: separate !important;
   border-spacing: 0 !important;
   border: none !important;
+  border-right: 0.5pt solid #000 !important;
 }
 ${i}
-/* 1 nét mảnh Excel: chỉ top+left; cạnh dưới chỉ ở hàng cuối tbody (không kẻ thead → tránh nét đôi) */
+/* 1 nét mảnh Excel: chỉ top+left; mép phải = border bảng (tránh đúp với rowspan Ghi chú) */
 .phieu-cau-table th,
 .phieu-cau-table td {
   border-top: 0.5pt solid #000 !important;
@@ -920,7 +926,7 @@ ${i}
 }
 .phieu-cau-table th:last-child,
 .phieu-cau-table td:last-child {
-  border-right: 0.5pt solid #000 !important;
+  border-right: none !important;
 }
 .phieu-cau-table thead th {
   border-bottom: none !important;
