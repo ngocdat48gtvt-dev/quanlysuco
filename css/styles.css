@@ -28,7 +28,7 @@
   --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
 
   --font: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
-  --header-h: 76px;
+  --header-h: 80px;
   --section-y: clamp(3.5rem, 8vw, 5.5rem);
   --container: min(1140px, 92vw);
 }
@@ -92,7 +92,7 @@ a:hover {
 
 .header-inner {
   display: grid;
-  grid-template-columns: minmax(0, 240px) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(200px, 1.15fr) minmax(0, 1.6fr) auto;
   align-items: center;
   gap: 0.65rem 1rem;
   height: 100%;
@@ -105,7 +105,7 @@ a:hover {
   color: var(--text);
   font-weight: 700;
   font-size: 0.92rem;
-  line-height: 1.2;
+  line-height: 1.25;
   min-width: 0;
   max-width: 100%;
 }
@@ -113,10 +113,10 @@ a:hover {
 .brand span {
   display: block;
   min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 0.88rem;
+  white-space: normal;
+  overflow: visible;
+  font-size: 0.86rem;
+  line-height: 1.28;
 }
 
 .brand:hover {
@@ -1545,11 +1545,11 @@ a:hover {
 
 @media (max-width: 1100px) {
   .header-inner {
-    grid-template-columns: minmax(0, 180px) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(160px, 0.95fr) minmax(0, 1.5fr) auto;
   }
 
   .brand span {
-    max-width: none;
+    font-size: 0.8rem;
   }
 
   .nav a {
