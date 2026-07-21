@@ -3,16 +3,16 @@ chcp 65001 >nul
 setlocal
 
 set "WEBSITE_DIR=%~dp0"
-set "APP_DIR=%WEBSITE_DIR%..\dieu-hanh-web"
+set "APP_DIR=%WEBSITE_DIR%..\dieu-hanh"
 set "DIST=%APP_DIR%\dist"
 
 if not exist "%APP_DIR%\package.json" (
-  echo [LOI] Khong tim thay dieu-hanh-web
+  echo [LOI] Khong tim thay apps\dieu-hanh
   pause
   exit /b 1
 )
 
-echo Building dieu-hanh-web...
+echo Building dieu-hanh...
 pushd "%APP_DIR%"
 call npm install
 if errorlevel 1 goto :fail
