@@ -678,8 +678,8 @@ html, body {
 .demxe-col-sum { text-align: center; width: 10%; }
 .demxe-col-count--tally { height: auto !important; padding: 2px 3px !important; }
 .demxe-count-cell { position: relative; min-height: 18px; }
-.demxe-tally { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.demxe-tally-row { display: flex; flex-wrap: nowrap; gap: 1.5px; justify-content: center; }
+.demxe-tally { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.demxe-tally-row { display: flex; flex-wrap: nowrap; gap: 1.5px; justify-content: flex-start; }
 .demxe-tally-box { stroke: #000; stroke-width: 1.5; fill: none; }
 .demxe-count-num-input { display: none !important; }
 .demxe-quarter-print-kicker { display: none !important; }
