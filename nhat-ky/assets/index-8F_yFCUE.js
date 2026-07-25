@@ -562,6 +562,22 @@ html, body {
   text-align: inherit;
   padding: 0;
 }
+.demxe-info-meta-table td.demxe-info-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+.demxe-info-cell__label { flex: 0 0 auto; white-space: nowrap; }
+.demxe-info-cell__edit { flex: 1 1 auto; min-width: 4em; }
+.demxe-info-meta-table .demxe-xcell-input--inline {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
 .demxe-summary-page,
 .demxe-count-sheet--a4 {
   width: 100%;
