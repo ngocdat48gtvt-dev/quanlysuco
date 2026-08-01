@@ -440,12 +440,14 @@ html, body {
   border-collapse: separate !important;
   border-spacing: 0 !important;
   border: none !important;
-  border-right: 0.5pt solid #000 !important;
+  border-right: none !important;
   table-layout: fixed;
   font-family: "Times New Roman", Times, serif;
   font-size: 12pt;
   line-height: 1.35;
   flex: 1 1 auto;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 ${jN.map((e,t)=>`.baoduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key]/s*100).toFixed(3)}%}`).join(`
 `)}
@@ -461,12 +463,12 @@ ${jN.map((e,t)=>`.baoduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key
   overflow-wrap: anywhere;
   background: #fff !important;
   position: static !important;
+  box-sizing: border-box !important;
 }
 .baoduong-table th:last-child,
 .baoduong-table td:last-child {
-  border-right: none !important;
+  border-right: 0.5pt solid #000 !important;
 }
-.baoduong-table thead tr:last-child th,
 .baoduong-table tbody tr:last-child td {
   border-bottom: 0.5pt solid #000 !important;
 }
@@ -476,7 +478,13 @@ ${jN.map((e,t)=>`.baoduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key
   font-size: 12pt;
   vertical-align: middle;
 }
-.baoduong-header-num th { font-size: 12pt; padding: 2px 3px; }
+.baoduong-header-num th {
+  font-size: 12pt;
+  padding: 2px 3px;
+  font-weight: 400 !important;
+  font-style: normal;
+  border-bottom: none !important;
+}
 .baoduong-col-stt { text-align: center; vertical-align: middle; }
 .baoduong-pre {
   margin: 0;
