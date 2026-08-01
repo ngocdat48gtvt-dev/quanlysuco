@@ -472,6 +472,9 @@ ${jN.map((e,t)=>`.baoduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key
 .baoduong-table tbody tr:last-child td {
   border-bottom: 0.5pt solid #000 !important;
 }
+.baoduong-table thead th {
+  border-bottom: none !important;
+}
 .baoduong-table th {
   font-weight: 700;
   text-align: center;
