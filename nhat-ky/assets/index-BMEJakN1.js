@@ -678,8 +678,12 @@ html, body {
   overflow: visible;
 }
 .nt-nation { text-align: center; font-weight: 700; text-transform: uppercase; font-size: 12pt; }
-.nt-motto { text-align: center; font-weight: 700; font-style: italic; margin-bottom: 2px; font-size: 12pt; }
-.nt-place-date { text-align: right; margin: 8px 0 10px; font-size: 12pt; }
+.nt-motto {
+  text-align: center; font-weight: 700; font-style: normal;
+  text-decoration: underline; text-underline-offset: 3px;
+  margin-bottom: 2px; font-size: 12pt;
+}
+.nt-place-date { text-align: right; font-style: italic; margin: 8px 0 10px; font-size: 12pt; }
 .nt-title {
   text-align: center; font-weight: 700; text-transform: uppercase;
   margin: 0; font-size: 14pt;
