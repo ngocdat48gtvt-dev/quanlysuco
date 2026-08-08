@@ -68,6 +68,34 @@ function parseBody(req) {
   return body;
 }
 
+const RATE_WINDOW_MS = 60 * 1000;
+const RATE_MAX = 8;
+const rateBuckets = new Map();
+
+function clientIp(req) {
+  return String(req.headers?.["x-forwarded-for"] || req.socket?.remoteAddress || "unknown")
+    .split(",")[0]
+    .trim();
+}
+
+function isRateLimited(req) {
+  const now = Date.now();
+  const key = clientIp(req);
+  const recent = (rateBuckets.get(key) || []).filter((t) => now - t < RATE_WINDOW_MS);
+  recent.push(now);
+  rateBuckets.set(key, recent);
+  if (rateBuckets.size > 5000) {
+    for (const [ip, times] of rateBuckets) {
+      if (!times.some((t) => now - t < RATE_WINDOW_MS)) rateBuckets.delete(ip);
+    }
+  }
+  return recent.length > RATE_MAX;
+}
+
+function tooLong(value, max) {
+  return String(value || "").length > max;
+}
+
 module.exports = async function handler(req, res) {
   if (req.method === "GET") {
     const ok = !!(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
@@ -81,6 +109,11 @@ module.exports = async function handler(req, res) {
 
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  if (isRateLimited(req)) {
+    res.setHeader("Retry-After", "60");
+    return res.status(429).json({ error: "Bạn gửi quá nhanh. Vui lòng thử lại sau." });
   }
 
   const token = String(process.env.TELEGRAM_BOT_TOKEN || "").trim();
@@ -98,6 +131,19 @@ module.exports = async function handler(req, res) {
   const email = String(body.email || "").trim();
   const province = String(body.province || body.company || "").trim();
   const leadType = String(body.leadType || "trial").trim();
+
+  if (
+    tooLong(name, 120) ||
+    tooLong(phone, 20) ||
+    tooLong(email, 120) ||
+    tooLong(province, 300) ||
+    tooLong(body.company || body.product, 120) ||
+    tooLong(body.note, 500) ||
+    tooLong(body.transferNote, 200) ||
+    !["trial", "consultation", "purchase"].includes(leadType)
+  ) {
+    return res.status(400).json({ error: "Dữ liệu vượt giới hạn cho phép" });
+  }
 
   if (name.length < 2 || phone.length < 9) {
     return res.status(400).json({
