@@ -3828,3 +3828,57 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-console-toast[hidden] { display:none; }
 @media (max-width:1100px) { .road-console-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:760px) { .road-console { display:block; } .road-console-sidebar { position:static; width:auto; height:auto; padding:14px; } .road-console-brand { padding-bottom:14px; } .road-console-nav { display:flex; overflow-x:auto; } .road-console-nav a { flex:0 0 auto; } .road-console-sidebar-foot,.road-console-user--sidebar { display:none; } .road-console-topbar { height:auto; min-height:68px; padding:10px 16px; } .road-console-company small,.road-console-user--top span:last-child { display:none; } .road-console-content { padding:15px; } .road-console-banner { height:220px; } .road-console-banner-copy { left:22px; width:80%; } .road-console-cards { grid-template-columns:1fr; } .road-console-card { min-height:290px; } .road-console-card-art { height:125px; } }
+
+/* Dashboard sáng — bố cục thương mại */
+.road-console-body { background:#f4f7fb; }
+.road-console { grid-template-columns:230px minmax(0,1fr); width:min(1540px,100%); background:#f8fafc; box-shadow:0 12px 50px rgba(26,49,82,.11); }
+.road-console-sidebar { padding:20px 14px 16px; border-right:1px solid #e1e8f1; background:#fff; color:#10213f; }
+.road-console-brand { padding:0 12px 25px; color:#10213f; }
+.road-console-brand img { box-shadow:0 7px 18px rgba(12,91,180,.18); }
+.road-console-brand strong { color:#10213f; font-size:14px; }
+.road-console-brand small { color:#3777c4; }
+.road-console-nav { gap:4px; }
+.road-console-nav-label { margin:12px 12px 4px; color:#94a3b8; font-size:8px; font-weight:800; letter-spacing:.13em; }
+.road-console-nav a { gap:11px; padding:10px 12px; color:#53647b; font-size:11px; border:1px solid transparent; }
+.road-console-nav a span { width:19px; color:#65809f; font-size:16px; }
+.road-console-nav a:hover { color:#125fbd; background:#f2f7fd; border-color:#e3edf8; box-shadow:none; }
+.road-console-nav a.is-active { color:#0d5dbf; background:linear-gradient(100deg,#eaf3ff,#dfeafe); border-color:#d7e7fb; box-shadow:none; }
+.road-console-nav a.is-active span { color:#176bd0; }
+.road-console-user--sidebar { border-color:#dce6f1; background:#f8fafc; box-shadow:0 5px 15px rgba(37,61,91,.06); }
+.road-console-user--sidebar strong { color:#10213f; }
+.road-console-user--sidebar small { color:#718198; }
+.road-console-sidebar-foot { border-color:#e4ebf3; background:#f8fafc; color:#718198; }
+.road-console-topbar { height:68px; padding:0 26px; box-shadow:0 2px 10px rgba(20,43,74,.035); }
+.road-console-topbar strong { color:#17233a; font-size:13px; }
+.road-console-topbar .road-console-account-actions { display:flex; }
+.road-console-content { padding:20px 24px 34px; }
+.road-console-page-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; margin:0 2px 16px; }
+.road-console-page-heading h1 { margin:0; color:#10213f; font-size:20px; letter-spacing:-.02em; }
+.road-console-page-heading p { margin:3px 0 0; color:#8190a5; font-size:10px; }
+.road-console-page-heading>span { display:inline-flex; align-items:center; gap:7px; padding:7px 10px; border:1px solid #dfe8f2; border-radius:8px; background:#fff; color:#5f7086; font-size:9px; font-weight:600; }
+.road-console-page-heading i { width:7px; height:7px; border-radius:50%; background:#22c98a; box-shadow:0 0 0 4px rgba(34,201,138,.1); }
+.road-console-banner { height:205px; border-radius:13px; box-shadow:0 12px 30px rgba(16,55,101,.15); }
+.road-console-banner-copy { left:30px; }
+.road-console-banner-copy h1 { font-size:clamp(26px,3vw,38px); }
+.road-console-banner-copy p { font-size:12px; }
+.road-console-section-title { margin:22px 2px 12px; }
+.road-console-section-title h2 { font-size:15px; }
+.road-console-cards { gap:12px; }
+.road-console-card { min-height:280px; padding:17px; border-radius:12px; box-shadow:0 6px 18px rgba(33,62,101,.055); }
+.road-console-card:hover { transform:translateY(-3px); box-shadow:0 14px 28px rgba(33,62,101,.1); }
+.road-console-card-icon { width:38px; height:38px; border-radius:10px; }
+.road-console-card-icon svg { width:20px; height:20px; }
+.road-console-card-art { height:100px; margin:2px 0; }
+.road-console-card h3 { font-size:15px; }
+.road-console-card p { font-size:10px; }
+.road-console-card small { font-size:8px; }
+.road-console-card b { font-size:10px; }
+.road-console-login-btn { background:#1265c4; box-shadow:0 5px 14px rgba(17,103,202,.2); }
+
+@media (max-width:760px) {
+  .road-console-sidebar { border-right:0; border-bottom:1px solid #e1e8f1; }
+  .road-console-nav-label { display:none; }
+  .road-console-page-heading { margin-top:4px; }
+  .road-console-page-heading>span { display:none; }
+  .road-console-banner { height:205px; }
+}
