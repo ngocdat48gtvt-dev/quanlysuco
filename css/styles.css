@@ -3762,7 +3762,7 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-console-status { width:8px; height:8px; border-radius:50%; background:#34d399; box-shadow:0 0 0 4px rgba(52,211,153,.12); }
 .road-console-main { min-width:0; }
 .road-console-topbar { height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 30px; border-bottom:1px solid #e1e8f1; background:#fff; }
-.road-console-topbar div { display:grid; gap:3px; }
+.road-console-company { display:grid; gap:3px; min-width:0; }
 .road-console-topbar strong { font-size:14px; }
 .road-console-topbar small { color:#7a899e; font-size:10px; }
 .road-console-topbar>a,.road-console-back-btn { padding:9px 14px; border:1px solid #d9e4f1; border-radius:8px; color:#315274; font-size:11px; font-weight:700; text-decoration:none; white-space:nowrap; }
@@ -3792,8 +3792,7 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-console-card p { margin:0; color:#6b7c93; font-size:12px; line-height:1.55; }
 .road-console-card small { display:block; margin-top:13px; color:#7b899c; font-size:9px; font-weight:600; line-height:1.5; }
 .road-console-card b { margin-top:auto; padding-top:18px; color:var(--accent); font-size:11px; }
-.road-console-account-actions { display:flex; align-items:center; gap:10px; }
-.road-console-company { min-width:0; }
+.road-console-account-actions { display:flex; flex-direction:row; flex-wrap:nowrap; align-items:center; gap:10px; flex-shrink:0; }
 .road-console-user { display:flex; align-items:center; gap:9px; min-width:0; }
 .road-console-user[hidden],.road-console-login-btn[hidden],.road-console-logout-btn[hidden] { display:none; }
 .road-console-user > span:last-child { display:flex; min-width:0; flex-direction:column; }
