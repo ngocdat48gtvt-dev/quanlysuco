@@ -3744,3 +3744,50 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-hub-link { padding-top:20px; }
 .road-hub-role { display:inline-flex; align-items:center; align-self:flex-start; margin-top:14px; padding:6px 9px; border:1px solid color-mix(in srgb,var(--accent) 18%,#dce5ef); border-radius:7px; background:color-mix(in srgb,var(--accent) 5%,white); color:#53647c; font-size:11px; font-weight:700; line-height:1.35; }
 @media (max-width:760px) { .road-hub-hero { padding:48px 0 94px; } .road-hub-section { margin-top:-58px; } .road-hub-card { min-height:196px; } }
+
+/* Dashboard Quản lý đường bộ */
+.road-console-body { margin:0; min-width:320px; background:#eef3f9; color:#10213f; font-family:"Be Vietnam Pro",sans-serif; }
+.road-console { display:grid; grid-template-columns:240px minmax(0,1fr); width:min(1440px,100%); min-height:100vh; margin:0 auto; background:#f7f9fc; box-shadow:0 0 60px rgba(16,42,79,.12); }
+.road-console-sidebar { position:sticky; top:0; height:100vh; display:flex; flex-direction:column; padding:24px 18px; background:linear-gradient(180deg,#071a3a 0%,#082955 100%); color:#fff; }
+.road-console-brand { display:flex; align-items:center; gap:11px; padding:0 8px 25px; color:#fff; text-decoration:none; }
+.road-console-brand img { border-radius:11px; box-shadow:0 8px 20px rgba(0,0,0,.22); }
+.road-console-brand span { display:grid; gap:2px; }
+.road-console-brand strong { font-size:14px; letter-spacing:.02em; }
+.road-console-brand small { color:#75b9ff; font-size:8px; font-weight:700; letter-spacing:.12em; }
+.road-console-nav { display:grid; gap:7px; }
+.road-console-nav a { display:flex; align-items:center; gap:12px; padding:12px 13px; border-radius:10px; color:#c7d5e9; font-size:13px; font-weight:600; text-decoration:none; transition:.2s ease; }
+.road-console-nav a span { display:grid; place-items:center; width:20px; color:#92b5de; font-size:18px; }
+.road-console-nav a:hover,.road-console-nav a.is-active { color:#fff; background:linear-gradient(105deg,#0871df,#1553b8); box-shadow:0 8px 20px rgba(0,107,224,.35); }
+.road-console-sidebar-foot { display:flex; align-items:center; gap:8px; margin-top:auto; padding:13px; border:1px solid rgba(255,255,255,.08); border-radius:10px; background:rgba(255,255,255,.05); color:#a9bdd7; font-size:11px; }
+.road-console-status { width:8px; height:8px; border-radius:50%; background:#34d399; box-shadow:0 0 0 4px rgba(52,211,153,.12); }
+.road-console-main { min-width:0; }
+.road-console-topbar { height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 30px; border-bottom:1px solid #e1e8f1; background:#fff; }
+.road-console-topbar div { display:grid; gap:3px; }
+.road-console-topbar strong { font-size:14px; }
+.road-console-topbar small { color:#7a899e; font-size:10px; }
+.road-console-topbar>a { padding:9px 14px; border:1px solid #d9e4f1; border-radius:8px; color:#315274; font-size:11px; font-weight:700; text-decoration:none; }
+.road-console-content { padding:24px 28px 40px; }
+.road-console-banner { position:relative; height:245px; overflow:hidden; border-radius:16px; background:#0a3870; box-shadow:0 16px 38px rgba(16,55,101,.2); }
+.road-console-banner>img { width:100%; height:100%; object-fit:cover; object-position:center; }
+.road-console-banner-overlay { position:absolute; inset:0; background:linear-gradient(90deg,rgba(3,35,80,.94) 0%,rgba(8,56,120,.72) 38%,rgba(8,56,120,.1) 75%); }
+.road-console-banner-copy { position:absolute; left:34px; top:50%; width:min(520px,65%); transform:translateY(-50%); color:#fff; }
+.road-console-banner-copy>span { font-size:10px; font-weight:800; letter-spacing:.12em; color:#a9d7ff; }
+.road-console-banner-copy h1 { margin:10px 0 9px; color:#fff; font-size:clamp(27px,3.4vw,43px); line-height:1.12; letter-spacing:-.035em; }
+.road-console-banner-copy p { margin:0; color:#d7e8fb; font-size:14px; line-height:1.65; }
+.road-console-section-title { display:flex; align-items:end; justify-content:space-between; margin:26px 2px 14px; }
+.road-console-section-title h2 { margin:0; color:#10213f; font-size:17px; }
+.road-console-section-title p { margin:4px 0 0; color:#718097; font-size:11px; }
+.road-console-cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+.road-console-card { --accent:#1473e6; display:flex; min-height:255px; flex-direction:column; padding:20px; border:1px solid #e0e8f2; border-radius:14px; background:#fff; color:inherit; text-decoration:none; box-shadow:0 10px 25px rgba(33,62,101,.07); transition:.2s ease; }
+.road-console-card:hover { transform:translateY(-4px); border-color:color-mix(in srgb,var(--accent) 32%,#e0e8f2); box-shadow:0 18px 34px rgba(33,62,101,.13); }
+.road-console-card--report { --accent:#7559e8; }
+.road-console-card--office { --accent:#0ba76e; }
+.road-console-card--backup { --accent:#f97316; }
+.road-console-card-icon { display:grid; place-items:center; width:44px; height:44px; border-radius:12px; background:color-mix(in srgb,var(--accent) 11%,white); color:var(--accent); }
+.road-console-card-icon svg { width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.road-console-card h3 { margin:18px 0 7px; color:#10213f; font-size:17px; }
+.road-console-card p { margin:0; color:#6b7c93; font-size:12px; line-height:1.55; }
+.road-console-card small { display:block; margin-top:13px; color:#7b899c; font-size:9px; font-weight:600; line-height:1.5; }
+.road-console-card b { margin-top:auto; padding-top:18px; color:var(--accent); font-size:11px; }
+@media (max-width:1100px) { .road-console-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:760px) { .road-console { display:block; } .road-console-sidebar { position:static; width:auto; height:auto; padding:14px; } .road-console-brand { padding-bottom:14px; } .road-console-nav { display:flex; overflow-x:auto; } .road-console-nav a { flex:0 0 auto; } .road-console-sidebar-foot { display:none; } .road-console-topbar { height:62px; padding:0 16px; } .road-console-content { padding:15px; } .road-console-banner { height:220px; } .road-console-banner-copy { left:22px; width:80%; } .road-console-cards { grid-template-columns:1fr; } .road-console-card { min-height:210px; } }
