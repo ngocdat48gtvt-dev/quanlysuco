@@ -672,7 +672,7 @@ html, body {
 .nt-nation { text-align: center; font-weight: 700; text-transform: uppercase; font-size: 12pt; }
 .nt-motto {
   text-align: center; font-weight: 700; font-style: normal;
-  text-decoration: underline; text-underline-offset: calc(3px + 2mm);
+  text-decoration: underline; text-underline-offset: calc(3px + 1mm);
   margin-bottom: 2px; font-size: 12pt;
 }
 .nt-place-date { text-align: right; font-style: italic; margin: 8px 0 10px; font-size: 12pt; }
