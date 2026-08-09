@@ -3727,3 +3727,19 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-hub-security { display:flex; align-items:center; justify-content:center; gap:8px; margin:25px auto 0; color:#64748b; font-size:13px; }
 .road-hub-security svg { width:17px; height:17px; fill:none; stroke:#07856f; stroke-width:2; }
 @media (max-width: 760px) { .road-hub-hero { padding:48px 0 34px; } .road-hub-grid { grid-template-columns:1fr; } .road-hub-card { min-height:220px; padding:23px; } }
+
+/* Phiên bản thương mại: hero cô đọng, thẻ chức năng là trọng tâm. */
+.road-hub-page { background:#f4f7fb; }
+.road-hub-hero { padding:64px 0 112px; border:0; background:linear-gradient(125deg,#071b3d 0%,#0b376b 62%,#075b93 100%); }
+.road-hub-hero::before { width:620px; height:620px; right:-170px; top:-380px; background:radial-gradient(circle,rgba(86,186,255,.28),transparent 67%); }
+.road-hub-hero::after { content:""; position:absolute; width:380px; height:380px; left:-220px; bottom:-270px; border-radius:50%; background:rgba(255,255,255,.06); }
+.road-hub-kicker { border-color:rgba(255,255,255,.24); background:rgba(255,255,255,.1); color:#cfe9ff; }
+.road-hub-title { margin-top:20px; color:#fff; font-size:clamp(36px,5vw,56px); }
+.road-hub-lead { color:#c6d6ea; }
+.road-hub-section { position:relative; margin-top:-72px; padding:0 0 76px; }
+.road-hub-grid { gap:18px; }
+.road-hub-card { min-height:214px; padding:26px 28px; border-top-width:3px; border-radius:16px; box-shadow:0 18px 46px rgba(9,32,65,.12); }
+.road-hub-card h2 { margin:20px 0 6px; font-size:22px; }
+.road-hub-card p { font-size:14px; }
+.road-hub-link { padding-top:20px; }
+@media (max-width:760px) { .road-hub-hero { padding:48px 0 94px; } .road-hub-section { margin-top:-58px; } .road-hub-card { min-height:196px; } }
