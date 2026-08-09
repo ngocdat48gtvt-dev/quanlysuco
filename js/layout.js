@@ -154,6 +154,12 @@
         external: false,
       },
       {
+        href: "/nhat-ky/?backup=1",
+        label: "Đọc file backup",
+        match: false,
+        external: false,
+      },
+      {
         href: registerHref(),
         label: "Đăng ký",
         match: isRegisterPage(),
