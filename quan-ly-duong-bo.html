@@ -9,29 +9,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="icon" href="assets/favicon-32.png?v=3" type="image/png" sizes="32x32" />
-    <link rel="stylesheet" href="css/styles.css?v=43" />
+    <link rel="stylesheet" href="css/styles.css?v=45" />
   </head>
   <body class="road-console-body">
     <div class="road-console">
       <aside class="road-console-sidebar">
-        <a class="road-console-brand" href="san-pham.html">
+        <a class="road-console-brand" href="quan-ly-duong-bo.html">
           <img src="assets/favicon-qlsc.png?v=3" alt="" width="42" height="42" />
           <span><strong>QL ĐƯỜNG BỘ</strong><small>TRUNG TÂM NGHIỆP VỤ</small></span>
         </a>
         <nav class="road-console-nav" aria-label="Quản lý đường bộ">
           <a class="is-active" href="quan-ly-duong-bo.html"><span>⌂</span>Tổng quan</a>
-          <a href="/dieu-hanh/"><span>⌁</span>Điều hành</a>
-          <a href="/nhat-ky/?bao-cao=1"><span>▥</span>Báo cáo</a>
-          <a href="/nhat-ky/"><span>▤</span>Sổ nội nghiệp</a>
+          <a href="/dieu-hanh/" data-portal="dispatch"><span>⌁</span>Điều hành</a>
+          <a href="/nhat-ky/?bao-cao=1" data-portal="report"><span>▥</span>Báo cáo</a>
+          <a href="/nhat-ky/" data-portal="office"><span>▤</span>Sổ nội nghiệp</a>
           <a href="/nhat-ky/?backup=1"><span>▣</span>Dữ liệu backup</a>
         </nav>
+        <div class="road-console-user road-console-user--sidebar" data-account-panel hidden>
+          <span class="road-console-avatar" data-user-initial>U</span>
+          <span><strong data-user-name>Người dùng</strong><small data-user-role>USER</small></span>
+        </div>
         <div class="road-console-sidebar-foot"><span class="road-console-status"></span>Hệ thống sẵn sàng</div>
       </aside>
 
       <main class="road-console-main">
         <header class="road-console-topbar">
-          <div><strong>Trung tâm nghiệp vụ đường bộ</strong><small>Quản lý tập trung các cổng vận hành</small></div>
-          <a href="san-pham.html">Về trang sản phẩm</a>
+          <div class="road-console-company"><strong data-company-name>Trung tâm nghiệp vụ đường bộ</strong><small data-company-subtitle>Đăng nhập để sử dụng các cổng được cấp quyền</small></div>
+          <div class="road-console-account-actions">
+            <div class="road-console-user road-console-user--top" data-account-panel hidden>
+              <span class="road-console-avatar" data-user-initial>U</span>
+              <span><strong data-user-name>Người dùng</strong><small data-user-role>USER</small></span>
+            </div>
+            <button class="road-console-login-btn" type="button" data-login-open>Đăng nhập</button>
+            <button class="road-console-logout-btn" type="button" data-logout hidden>Đăng xuất</button>
+          </div>
         </header>
 
         <div class="road-console-content">
@@ -47,25 +58,52 @@
 
           <div class="road-console-section-title"><div><h2>Truy cập nhanh</h2><p>Chọn cổng phù hợp với nghiệp vụ cần thực hiện.</p></div></div>
           <section class="road-console-cards" aria-label="Các cổng chức năng">
-            <a class="road-console-card road-console-card--dispatch" href="/dieu-hanh/">
+            <a class="road-console-card road-console-card--dispatch" href="/dieu-hanh/" data-portal="dispatch">
               <span class="road-console-card-icon"><svg viewBox="0 0 24 24"><path d="M4 19V9m8 10V5m8 14v-7M2 19h20"/></svg></span>
+              <img class="road-console-card-art" src="assets/portal-dieu-hanh.png" alt="" loading="lazy" />
               <h3>Điều hành</h3><p>Giám sát và phân công xử lý.</p><small>Dành cho Quản trị công ty</small><b>Truy cập ngay →</b>
             </a>
-            <a class="road-console-card road-console-card--report" href="/nhat-ky/?bao-cao=1">
+            <a class="road-console-card road-console-card--report" href="/nhat-ky/?bao-cao=1" data-portal="report">
               <span class="road-console-card-icon"><svg viewBox="0 0 24 24"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg></span>
+              <img class="road-console-card-art" src="assets/portal-bao-cao.png" alt="" loading="lazy" />
               <h3>Báo cáo</h3><p>Tổng hợp dữ liệu toàn hệ thống.</p><small>Dành cho Quản trị công ty</small><b>Truy cập ngay →</b>
             </a>
-            <a class="road-console-card road-console-card--office" href="/nhat-ky/">
+            <a class="road-console-card road-console-card--office" href="/nhat-ky/" data-portal="office">
               <span class="road-console-card-icon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span>
+              <img class="road-console-card-art" src="assets/portal-so-noi-nghiep.png" alt="" loading="lazy" />
               <h3>Sổ nội nghiệp</h3><p>Quản lý hồ sơ và các đầu sổ.</p><small>Hạt trưởng thao tác · Quản trị xem</small><b>Truy cập ngay →</b>
             </a>
             <a class="road-console-card road-console-card--backup" href="/nhat-ky/?backup=1">
               <span class="road-console-card-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 4h8v3M8 12h8M8 16h5"/></svg></span>
+              <img class="road-console-card-art" src="assets/portal-du-lieu-backup.png" alt="" loading="lazy" />
               <h3>Dữ liệu backup</h3><p>Mở và làm việc với bản sao offline.</p><small>Không yêu cầu đăng nhập tài khoản</small><b>Mở file backup →</b>
             </a>
           </section>
         </div>
       </main>
     </div>
+    <div class="road-console-auth-modal" data-auth-modal hidden>
+      <div class="road-console-auth-backdrop" data-login-close></div>
+      <section class="road-console-auth-card" role="dialog" aria-modal="true" aria-labelledby="road-login-title">
+        <button class="road-console-auth-close" type="button" aria-label="Đóng" data-login-close>×</button>
+        <span class="road-console-auth-mark">QL</span>
+        <h2 id="road-login-title">Đăng nhập hệ thống</h2>
+        <p>Dùng một tài khoản cho toàn bộ cổng quản lý đường bộ.</p>
+        <form data-login-form>
+          <label for="road-login-email">Email</label>
+          <input id="road-login-email" name="email" type="email" autocomplete="username" required />
+          <label for="road-login-password">Mật khẩu</label>
+          <input id="road-login-password" name="password" type="password" autocomplete="current-password" required />
+          <p class="road-console-auth-error" data-auth-error hidden></p>
+          <button type="submit" data-login-submit>Đăng nhập</button>
+        </form>
+      </section>
+    </div>
+    <div class="road-console-toast" data-portal-toast hidden></div>
+    <script src="js/config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+    <script src="js/road-console-auth.js?v=1"></script>
   </body>
 </html>

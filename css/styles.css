@@ -3778,16 +3778,52 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-console-section-title h2 { margin:0; color:#10213f; font-size:17px; }
 .road-console-section-title p { margin:4px 0 0; color:#718097; font-size:11px; }
 .road-console-cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
-.road-console-card { --accent:#1473e6; display:flex; min-height:255px; flex-direction:column; padding:20px; border:1px solid #e0e8f2; border-radius:14px; background:#fff; color:inherit; text-decoration:none; box-shadow:0 10px 25px rgba(33,62,101,.07); transition:.2s ease; }
+.road-console-card { --accent:#1473e6; position:relative; display:flex; min-height:305px; flex-direction:column; padding:20px; overflow:hidden; border:1px solid #e0e8f2; border-radius:14px; background:#fff; color:inherit; text-decoration:none; box-shadow:0 10px 25px rgba(33,62,101,.07); transition:.2s ease; }
 .road-console-card:hover { transform:translateY(-4px); border-color:color-mix(in srgb,var(--accent) 32%,#e0e8f2); box-shadow:0 18px 34px rgba(33,62,101,.13); }
 .road-console-card--report { --accent:#7559e8; }
 .road-console-card--office { --accent:#0ba76e; }
 .road-console-card--backup { --accent:#f97316; }
 .road-console-card-icon { display:grid; place-items:center; width:44px; height:44px; border-radius:12px; background:color-mix(in srgb,var(--accent) 11%,white); color:var(--accent); }
 .road-console-card-icon svg { width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
-.road-console-card h3 { margin:18px 0 7px; color:#10213f; font-size:17px; }
+.road-console-card-art { display:block; width:100%; height:112px; margin:5px 0 4px; object-fit:contain; mix-blend-mode:multiply; transition:transform .25s ease; }
+.road-console-card:hover .road-console-card-art { transform:scale(1.035); }
+.road-console-card h3 { margin:7px 0; color:#10213f; font-size:17px; }
 .road-console-card p { margin:0; color:#6b7c93; font-size:12px; line-height:1.55; }
 .road-console-card small { display:block; margin-top:13px; color:#7b899c; font-size:9px; font-weight:600; line-height:1.5; }
 .road-console-card b { margin-top:auto; padding-top:18px; color:var(--accent); font-size:11px; }
+.road-console-account-actions { display:flex; align-items:center; gap:10px; }
+.road-console-company { min-width:0; }
+.road-console-user { display:flex; align-items:center; gap:9px; min-width:0; }
+.road-console-user[hidden],.road-console-login-btn[hidden],.road-console-logout-btn[hidden] { display:none; }
+.road-console-user > span:last-child { display:flex; min-width:0; flex-direction:column; }
+.road-console-user strong { overflow:hidden; color:#10213f; font-size:12px; text-overflow:ellipsis; white-space:nowrap; }
+.road-console-user small { color:#718198; font-size:9px; font-weight:600; }
+.road-console-avatar { display:grid; width:34px; height:34px; flex:0 0 auto; place-items:center; border-radius:50%; background:linear-gradient(145deg,#1473e6,#0754b8); color:#fff; font-size:12px; font-weight:800; box-shadow:0 6px 16px rgba(20,115,230,.22); }
+.road-console-user--sidebar { margin-top:auto; padding:12px; border:1px solid rgba(255,255,255,.1); border-radius:12px; background:rgba(255,255,255,.07); }
+.road-console-user--sidebar strong { color:#fff; }
+.road-console-user--sidebar small { color:#9db4d1; }
+.road-console-login-btn,.road-console-logout-btn { min-height:36px; padding:0 15px; border:0; border-radius:9px; font:700 11px 'Be Vietnam Pro',sans-serif; cursor:pointer; }
+.road-console-login-btn { background:#1167ca; color:#fff; box-shadow:0 7px 18px rgba(17,103,202,.24); }
+.road-console-logout-btn { border:1px solid #dbe4ef; background:#fff; color:#42536a; }
+.road-console-card.is-locked,.road-console-nav a.is-locked { opacity:.56; }
+.road-console-card.is-locked::after { content:'Cần đăng nhập'; position:absolute; top:18px; right:17px; padding:5px 8px; border-radius:999px; background:#f0f4f9; color:#64748b; font-size:8px; font-weight:700; }
+.road-console-card.is-denied::after { content:'Không có quyền'; background:#fff1f2; color:#be123c; }
+.road-console-auth-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:20px; }
+.road-console-auth-modal[hidden] { display:none; }
+.road-console-auth-backdrop { position:absolute; inset:0; background:rgba(4,18,39,.62); backdrop-filter:blur(5px); }
+.road-console-auth-card { position:relative; z-index:1; width:min(420px,100%); padding:30px; border:1px solid #dbe5f1; border-radius:18px; background:#fff; box-shadow:0 28px 80px rgba(2,18,42,.28); }
+.road-console-auth-close { position:absolute; top:12px; right:14px; width:34px; height:34px; border:0; border-radius:50%; background:#f2f5f9; color:#41526a; font-size:22px; cursor:pointer; }
+.road-console-auth-mark { display:grid; width:48px; height:48px; place-items:center; border-radius:14px; background:linear-gradient(145deg,#1686e8,#074caa); color:#fff; font-size:14px; font-weight:800; }
+.road-console-auth-card h2 { margin:18px 0 5px; color:#10213f; font-size:22px; }
+.road-console-auth-card > p { margin:0 0 22px; color:#6b7c93; font-size:12px; }
+.road-console-auth-card form { display:grid; gap:9px; }
+.road-console-auth-card label { color:#334155; font-size:11px; font-weight:700; }
+.road-console-auth-card input { height:44px; padding:0 13px; border:1px solid #ccd8e7; border-radius:9px; outline:none; font:500 13px 'Be Vietnam Pro',sans-serif; }
+.road-console-auth-card input:focus { border-color:#1473e6; box-shadow:0 0 0 3px rgba(20,115,230,.12); }
+.road-console-auth-card form button { height:44px; margin-top:8px; border:0; border-radius:9px; background:#1167ca; color:#fff; font:700 12px 'Be Vietnam Pro',sans-serif; cursor:pointer; }
+.road-console-auth-card form button:disabled { cursor:wait; opacity:.65; }
+.road-console-auth-error { margin:3px 0 0; padding:9px 11px; border-radius:8px; background:#fff1f2; color:#be123c; font-size:10px; }
+.road-console-toast { position:fixed; z-index:1100; right:22px; bottom:22px; max-width:360px; padding:12px 15px; border-radius:10px; background:#10213f; color:#fff; font-size:11px; box-shadow:0 14px 38px rgba(2,18,42,.25); }
+.road-console-toast[hidden] { display:none; }
 @media (max-width:1100px) { .road-console-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media (max-width:760px) { .road-console { display:block; } .road-console-sidebar { position:static; width:auto; height:auto; padding:14px; } .road-console-brand { padding-bottom:14px; } .road-console-nav { display:flex; overflow-x:auto; } .road-console-nav a { flex:0 0 auto; } .road-console-sidebar-foot { display:none; } .road-console-topbar { height:62px; padding:0 16px; } .road-console-content { padding:15px; } .road-console-banner { height:220px; } .road-console-banner-copy { left:22px; width:80%; } .road-console-cards { grid-template-columns:1fr; } .road-console-card { min-height:210px; } }
+@media (max-width:760px) { .road-console { display:block; } .road-console-sidebar { position:static; width:auto; height:auto; padding:14px; } .road-console-brand { padding-bottom:14px; } .road-console-nav { display:flex; overflow-x:auto; } .road-console-nav a { flex:0 0 auto; } .road-console-sidebar-foot,.road-console-user--sidebar { display:none; } .road-console-topbar { height:auto; min-height:68px; padding:10px 16px; } .road-console-company small,.road-console-user--top span:last-child { display:none; } .road-console-content { padding:15px; } .road-console-banner { height:220px; } .road-console-banner-copy { left:22px; width:80%; } .road-console-cards { grid-template-columns:1fr; } .road-console-card { min-height:290px; } .road-console-card-art { height:125px; } }
