@@ -136,27 +136,9 @@
         match: isCatalogPage() || isProductPage(),
       },
       {
-        href: dispatchPortalPath(),
-        label: (cfg.dispatchPortal && cfg.dispatchPortal.navLabel) || "Điều hành",
-        match: isDispatchPortalPage(),
-        external: false,
-      },
-      {
-        href: baoCaoPortalPath(),
-        label: (cfg.baoCaoPortal && cfg.baoCaoPortal.navLabel) || "Báo cáo",
-        match: isBaoCaoPortalPage(),
-        external: false,
-      },
-      {
-        href: nhatKyPortalPath(),
-        label: (cfg.nhatKyPortal && cfg.nhatKyPortal.navLabel) || "Hạt trưởng",
-        match: isNhatKyPortalPage(),
-        external: false,
-      },
-      {
-        href: "/nhat-ky/?backup=1",
-        label: "Đọc file backup",
-        match: false,
+        href: "quan-ly-duong-bo.html",
+        label: "Quản lý đường bộ",
+        match: normalizePage(currentPageFile()) === "quan-ly-duong-bo",
         external: false,
       },
       {
