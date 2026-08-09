@@ -3807,7 +3807,8 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-console-logout-btn { border:1px solid #dbe4ef; background:#fff; color:#42536a; }
 .road-console-card.is-locked,.road-console-nav a.is-locked { opacity:.56; }
 .road-console-card.is-locked::after { content:'Cần đăng nhập'; position:absolute; top:18px; right:17px; padding:5px 8px; border-radius:999px; background:#f0f4f9; color:#64748b; font-size:8px; font-weight:700; }
-.road-console-card.is-denied::after { content:'Không có quyền'; background:#fff1f2; color:#be123c; }
+.road-console-card.is-denied,.road-console-nav a.is-denied { opacity:.42; filter:grayscale(.25); cursor:not-allowed; pointer-events:none; }
+.road-console-card.is-denied::after { display:none; content:none; }
 .road-console-auth-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:20px; }
 .road-console-auth-modal[hidden] { display:none; }
 .road-console-auth-backdrop { position:absolute; inset:0; background:rgba(4,18,39,.62); backdrop-filter:blur(5px); }
