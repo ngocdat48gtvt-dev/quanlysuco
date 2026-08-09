@@ -3758,7 +3758,7 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-console-nav a { display:flex; align-items:center; gap:12px; padding:12px 13px; border-radius:10px; color:#c7d5e9; font-size:13px; font-weight:600; text-decoration:none; transition:.2s ease; }
 .road-console-nav a span { display:grid; place-items:center; width:20px; color:#92b5de; font-size:18px; }
 .road-console-nav a:hover,.road-console-nav a.is-active { color:#fff; background:linear-gradient(105deg,#0871df,#1553b8); box-shadow:0 8px 20px rgba(0,107,224,.35); }
-.road-console-sidebar-foot { display:flex; align-items:center; gap:8px; margin-top:auto; padding:13px; border:1px solid rgba(255,255,255,.08); border-radius:10px; background:rgba(255,255,255,.05); color:#a9bdd7; font-size:11px; }
+.road-console-sidebar-foot { display:flex; align-items:center; gap:8px; margin-top:10px; padding:13px; border:1px solid rgba(255,255,255,.08); border-radius:10px; background:rgba(255,255,255,.05); color:#a9bdd7; font-size:11px; }
 .road-console-status { width:8px; height:8px; border-radius:50%; background:#34d399; box-shadow:0 0 0 4px rgba(52,211,153,.12); }
 .road-console-main { min-width:0; }
 .road-console-topbar { height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 30px; border-bottom:1px solid #e1e8f1; background:#fff; }
