@@ -378,6 +378,11 @@ ${gj.map((e,t)=>`.matduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key
 .matduong-col-side {
   white-space: nowrap;
 }
+.matduong-resolved-co,
+.matduong-resolved-chua {
+  font-weight: 400;
+  font-size: 0.8em;
+}
 .no-print { display: none !important; }
 .col-resize-handle { display: none !important; }
 `}function JL(e,t){let n=Array.from(document.querySelectorAll(`.matduong-print-stack--preview .matduong-print-page`));if(!n.length){window.alert(`Chưa có tờ xem trước để in. Bấm «In sổ mặt đường» để mở xem trước trước.`);return}let r=t||Cj(),i=n.map(e=>{let t=e.querySelector(`.matduong-print-inner`);return`<div class="sheet"><div class="sheet-inner">${t?t.innerHTML:e.innerHTML}</div></div>`}).join(`
