@@ -327,7 +327,7 @@ html, body {
   border: none;
   table-layout: fixed;
   font-family: "Times New Roman", Times, serif;
-  font-size: 12pt;
+  font-size: 11.4pt; /* 12pt × 0.95 — chữ trong khung bảng */
   line-height: 1.35;
   margin-top: 2px;
 }
@@ -357,17 +357,17 @@ ${gj.map((e,t)=>`.matduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key
 .matduong-table th {
   font-weight: 700;
   background: #fff;
-  font-size: 12pt;
+  font-size: 11.4pt;
   line-height: 1.3;
 }
 .matduong-header-num th {
-  font-size: 12pt;
+  font-size: 11.4pt;
   padding: 2px 3px;
 }
 .matduong-header-side {
   display: block;
   font-weight: 600;
-  font-size: 12pt;
+  font-size: 11.4pt;
 }
 .matduong-col-damage,
 .matduong-col-note {
