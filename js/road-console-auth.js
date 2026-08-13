@@ -17,12 +17,13 @@
 
   function normalizeRole(value) {
     var role = String(value || "USER").toUpperCase();
-    return role === "ADMIN" || role === "VIEWER" ? role : "USER";
+    return role === "ADMIN" || role === "VIEWER" || role === "SO_XD" ? role : "USER";
   }
 
   function roleLabel(role) {
     if (role === "ADMIN") return "Quản trị · ADMIN";
     if (role === "VIEWER") return "Chỉ xem · VIEWER";
+    if (role === "SO_XD") return "Sở Xây dựng · SO_XD";
     return "Nghiệp vụ · USER";
   }
 
@@ -44,7 +45,7 @@
     if (portal === "backup") return true;
     if (!state.user || !p) return false;
     if (portal === "dispatch") return p.role === "ADMIN" && hasApp(p, ["quan_ly_su_co"]);
-    if (portal === "report") return p.role === "ADMIN" && hasApp(p, ["nhat_ky_tuan_duong", "quan_ly_su_co"]);
+    if (portal === "report") return (p.role === "ADMIN" || p.role === "SO_XD") && hasApp(p, ["nhat_ky_tuan_duong", "quan_ly_su_co"]);
     if (portal === "office") return hasApp(p, ["nhat_ky_tuan_duong", "quan_ly_su_co"]);
     return false;
   }
@@ -108,7 +109,7 @@
       uid: user.uid,
       role: normalizeRole(data.role),
       companyId: String(data.companyId || ""),
-      companyName: String(data.companyName || data.company || data.companyId || ""),
+      companyName: String(data.companyName || data.company || data.companyId || "") || (normalizeRole(data.role) === "SO_XD" ? "Sở Xây dựng" : ""),
       displayName: String(data.name || data.displayName || data.email || user.email || "Người dùng"),
       allowedApps: data.allowedApps,
       expireDate: data.expireDate
