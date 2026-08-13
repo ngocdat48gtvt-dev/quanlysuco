@@ -3803,7 +3803,7 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-console-user--sidebar { display:flex; flex-direction:column; align-items:stretch; gap:10px; margin-top:auto; padding:12px; border:1px solid rgba(255,255,255,.1); border-radius:12px; background:rgba(255,255,255,.07); }
 .road-console-user--sidebar strong { color:#fff; }
 .road-console-user--sidebar small { color:#9db4d1; }
-.road-console-user-actions { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.road-console-user-actions { display:grid; grid-template-columns:1fr; gap:6px; }
 .road-console-user-actions button { min-height:30px; padding:0 8px; border:1px solid rgba(255,255,255,.18); border-radius:8px; background:rgba(255,255,255,.08); color:#e8f1ff; font:600 10px 'Be Vietnam Pro',sans-serif; cursor:pointer; }
 .road-console-user-actions button:hover { background:rgba(255,255,255,.16); }
 .road-console-auth-link { margin-top:2px !important; height:auto !important; padding:0 !important; border:0 !important; background:none !important; color:#1167ca !important; font:600 11px 'Be Vietnam Pro',sans-serif !important; text-align:center; cursor:pointer; }
@@ -3814,6 +3814,7 @@ body[data-product-id="app-quan-ly-su-co"] .feature-icon {
 .road-console-card.is-locked,.road-console-nav a.is-locked { opacity:.56; }
 .road-console-card.is-locked::after { content:'Cần đăng nhập'; position:absolute; top:18px; right:17px; padding:5px 8px; border-radius:999px; background:#f0f4f9; color:#64748b; font-size:8px; font-weight:700; }
 .road-console-card.is-denied,.road-console-nav a.is-denied { opacity:.42; filter:grayscale(.25); cursor:not-allowed; pointer-events:none; }
+.road-console-card[hidden],.road-console-nav a[hidden] { display:none !important; }
 .road-console-card.is-denied::after { display:none; content:none; }
 .road-console-auth-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:20px; }
 .road-console-auth-modal[hidden] { display:none; }

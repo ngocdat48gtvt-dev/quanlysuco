@@ -153,12 +153,15 @@
       document.querySelector("[data-company-subtitle]").textContent = "Đăng nhập để sử dụng các cổng được cấp quyền";
     }
 
+    var hideDispatch = signedIn && state.profile && state.profile.role === "SO_XD";
     document.querySelectorAll("[data-portal]").forEach(function (el) {
       var portal = el.getAttribute("data-portal");
       var allowed = canOpen(portal);
-      el.classList.toggle("is-locked", !signedIn);
-      el.classList.toggle("is-denied", signedIn && !allowed);
-      el.setAttribute("aria-disabled", allowed ? "false" : "true");
+      var hide = hideDispatch && portal === "dispatch";
+      el.hidden = hide;
+      el.classList.toggle("is-locked", !signedIn && !hide);
+      el.classList.toggle("is-denied", signedIn && !allowed && !hide);
+      el.setAttribute("aria-disabled", hide || !allowed ? "true" : "false");
     });
   }
 
