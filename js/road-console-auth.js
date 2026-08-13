@@ -13,6 +13,14 @@
   var errorBox = document.querySelector("[data-auth-error]");
   var submitButton = document.querySelector("[data-login-submit]");
   var toast = document.querySelector("[data-portal-toast]");
+  var changeModal = document.querySelector("[data-change-modal]");
+  var changeForm = document.querySelector("[data-change-form]");
+  var changeError = document.querySelector("[data-change-error]");
+  var changeSubmit = document.querySelector("[data-change-submit]");
+  var forgotModal = document.querySelector("[data-forgot-modal]");
+  var forgotForm = document.querySelector("[data-forgot-form]");
+  var forgotError = document.querySelector("[data-forgot-error]");
+  var forgotSubmit = document.querySelector("[data-forgot-submit]");
   var nextUrl = new URLSearchParams(location.search).get("next") || "";
 
   function normalizeRole(value) {
@@ -73,6 +81,60 @@
     errorBox.hidden = true;
   }
 
+  function authErrorMessage(error, fallback) {
+    var code = String((error && error.code) || "");
+    if (code === "auth/wrong-password" || code === "auth/invalid-credential") return "Mật khẩu hiện tại không đúng.";
+    if (code === "auth/weak-password") return "Mật khẩu mới tối thiểu 6 ký tự.";
+    if (code === "auth/requires-recent-login") return "Phiên đăng nhập hết hạn. Đăng nhập lại rồi đổi mật khẩu.";
+    if (code === "auth/invalid-email") return "Email không hợp lệ.";
+    if (code === "auth/user-not-found") return "Email không tồn tại trên hệ thống.";
+    if (code === "auth/too-many-requests") return "Thử quá nhiều lần. Vui lòng đợi rồi thử lại.";
+    if (code === "auth/network-request-failed") return "Lỗi mạng. Kiểm tra kết nối rồi thử lại.";
+    return fallback || "Không thực hiện được. Vui lòng thử lại.";
+  }
+
+  function openChangePassword() {
+    if (!state.user) {
+      openLogin("Vui lòng đăng nhập để đổi mật khẩu.");
+      return;
+    }
+    closeLogin();
+    closeForgot();
+    if (changeForm) changeForm.reset();
+    if (changeError) changeError.hidden = true;
+    if (changeModal) changeModal.hidden = false;
+    setTimeout(function () {
+      if (changeForm && changeForm.elements.current) changeForm.elements.current.focus();
+    }, 30);
+  }
+
+  function closeChange() {
+    if (changeModal) changeModal.hidden = true;
+    if (changeError) changeError.hidden = true;
+  }
+
+  function openForgot() {
+    closeLogin();
+    closeChange();
+    if (forgotError) forgotError.hidden = true;
+    if (forgotForm) {
+      var email =
+        (state.user && state.user.email) ||
+        (form && form.elements.email && form.elements.email.value) ||
+        "";
+      forgotForm.elements.email.value = String(email).trim();
+    }
+    if (forgotModal) forgotModal.hidden = false;
+    setTimeout(function () {
+      if (forgotForm && forgotForm.elements.email) forgotForm.elements.email.focus();
+    }, 30);
+  }
+
+  function closeForgot() {
+    if (forgotModal) forgotModal.hidden = true;
+    if (forgotError) forgotError.hidden = true;
+  }
+
   function render() {
     var signedIn = Boolean(state.user && state.profile);
     document.querySelectorAll("[data-account-panel]").forEach(function (el) { el.hidden = !signedIn; });
@@ -129,6 +191,18 @@
 
   document.querySelectorAll("[data-login-open]").forEach(function (el) { el.addEventListener("click", function () { openLogin(); }); });
   document.querySelectorAll("[data-login-close]").forEach(function (el) { el.addEventListener("click", closeLogin); });
+  document.querySelectorAll("[data-change-password]").forEach(function (el) {
+    el.addEventListener("click", function () { openChangePassword(); });
+  });
+  document.querySelectorAll("[data-change-close]").forEach(function (el) {
+    el.addEventListener("click", closeChange);
+  });
+  document.querySelectorAll("[data-forgot-password]").forEach(function (el) {
+    el.addEventListener("click", function () { openForgot(); });
+  });
+  document.querySelectorAll("[data-forgot-close]").forEach(function (el) {
+    el.addEventListener("click", closeForgot);
+  });
   document.querySelectorAll("[data-logout]").forEach(function (el) {
     el.addEventListener("click", function () { auth.signOut(); });
   });
@@ -141,6 +215,72 @@
       else showToast("Tài khoản " + state.profile.role + " không được cấp quyền mở chức năng này.");
     });
   });
+
+  if (changeForm) {
+    changeForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      if (!state.user || !state.user.email) {
+        openLogin("Vui lòng đăng nhập để đổi mật khẩu.");
+        return;
+      }
+      var current = String(changeForm.elements.current.value || "");
+      var next = String(changeForm.elements.next.value || "");
+      var confirm = String(changeForm.elements.confirm.value || "");
+      changeError.hidden = true;
+      if (next.length < 6) {
+        changeError.textContent = "Mật khẩu mới tối thiểu 6 ký tự.";
+        changeError.hidden = false;
+        return;
+      }
+      if (next !== confirm) {
+        changeError.textContent = "Mật khẩu mới nhập lại không khớp.";
+        changeError.hidden = false;
+        return;
+      }
+      changeSubmit.disabled = true;
+      changeSubmit.textContent = "Đang cập nhật...";
+      try {
+        var cred = firebase.auth.EmailAuthProvider.credential(state.user.email, current);
+        await state.user.reauthenticateWithCredential(cred);
+        await state.user.updatePassword(next);
+        changeForm.reset();
+        closeChange();
+        showToast("Đã đổi mật khẩu thành công.");
+      } catch (error) {
+        changeError.textContent = authErrorMessage(error, "Không đổi được mật khẩu.");
+        changeError.hidden = false;
+      } finally {
+        changeSubmit.disabled = false;
+        changeSubmit.textContent = "Cập nhật mật khẩu";
+      }
+    });
+  }
+
+  if (forgotForm) {
+    forgotForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      var email = String(forgotForm.elements.email.value || "").trim().toLowerCase();
+      forgotError.hidden = true;
+      if (!email) {
+        forgotError.textContent = "Nhập email tài khoản.";
+        forgotError.hidden = false;
+        return;
+      }
+      forgotSubmit.disabled = true;
+      forgotSubmit.textContent = "Đang gửi...";
+      try {
+        await auth.sendPasswordResetEmail(email);
+        closeForgot();
+        showToast("Đã gửi email đặt lại mật khẩu tới " + email + ". Kiểm tra hộp thư (kể cả spam).");
+      } catch (error) {
+        forgotError.textContent = authErrorMessage(error, "Không gửi được email đặt lại mật khẩu.");
+        forgotError.hidden = false;
+      } finally {
+        forgotSubmit.disabled = false;
+        forgotSubmit.textContent = "Gửi email đặt lại";
+      }
+    });
+  }
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
