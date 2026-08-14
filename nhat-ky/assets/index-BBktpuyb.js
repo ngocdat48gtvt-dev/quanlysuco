@@ -134,13 +134,21 @@ html, body {
 .nhatky-print-table tbody .nhatky-sign-block {
   font-size: 12.5pt;
 }
-.nhatky-print-table tbody td {
-  padding-top: 1.8px;
-  padding-bottom: 1.8px;
-}
+.nhatky-print-table th,
+.nhatky-print-table td {
+  border-top: 0.5pt solid #000;
+  border-left: 0.5pt solid #000;
+  border-right: none;
+  border-bottom: none;
+  vertical-align: middle !important;
+  padding: 2px 3px;
   word-wrap: break-word;
   overflow-wrap: anywhere;
   background: #fff;
+}
+.nhatky-print-table tbody td {
+  padding-top: 1.8px;
+  padding-bottom: 1.8px;
 }
 /* Kẻ đứng lề phải nằm trong ô cuối — tránh bị overflow:hidden cắt mất border bảng */
 .nhatky-print-table th:last-child,
