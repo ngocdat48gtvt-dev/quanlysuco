@@ -111,7 +111,7 @@ html, body {
 }
 .nhatky-print-table {
   width: 100%;
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0;
   border: none;
   table-layout: fixed;
@@ -136,10 +136,8 @@ html, body {
 }
 .nhatky-print-table th,
 .nhatky-print-table td {
-  border-top: 0.5pt solid #000;
-  border-left: 0.5pt solid #000;
-  border-right: none;
-  border-bottom: none;
+  /* 1 nét đều — collapse gộp cạnh chung, tránh góc Tuần đường / ô cuối trang 2 bị đúp */
+  border: 0.5pt solid #000;
   vertical-align: middle !important;
   padding: 2px 3px;
   word-wrap: break-word;
@@ -150,20 +148,11 @@ html, body {
   padding-top: 1.6px;
   padding-bottom: 1.6px;
 }
-/* Kẻ đứng lề phải nằm trong ô cuối — tránh bị overflow:hidden cắt mất border bảng */
-.nhatky-print-table th:last-child,
-.nhatky-print-table td:last-child {
-  border-right: 0.5pt solid #000;
-}
 .nhatky-print-table thead th {
-  border-bottom: none;
   padding: 2px 3px;
   line-height: 1.15;
   font-size: 12.5pt;
   vertical-align: middle !important;
-}
-.nhatky-print-table tbody tr:last-child td {
-  border-bottom: 0.5pt solid #000;
 }
 .nhatky-print-head-main th {
   background: #e8eefc;
