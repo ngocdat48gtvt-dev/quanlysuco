@@ -297,12 +297,11 @@ html, body {
   font-weight: 700;
   color: #1e3a8a;
 }
-.nhatky-print-row--weather .nhatky-print-td--1 {
-  font-weight: 700;
-}
+.nhatky-print-row--weather .nhatky-print-td--1,
 .nhatky-print-row--weather .nhatky-print-td--3,
 .nhatky-print-row--weather .nhatky-print-pre {
-  font-style: italic;
+  font-style: normal;
+  font-weight: 700;
 }
 .nhatky-print-row--sign td {
   vertical-align: top !important;
