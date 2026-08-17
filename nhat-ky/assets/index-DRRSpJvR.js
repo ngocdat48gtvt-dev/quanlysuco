@@ -797,11 +797,12 @@ html, body {
 .nt-p { margin: 2px 0; text-align: justify; font-size: 12.5pt; }
 .nt-p strong { font-weight: 700; }
 .nt-can-cu {
-  margin: 2px 0 6px 1.1em;
+  margin: 2px 0 6px 0;
   padding: 0;
-  list-style: disc;
+  list-style: none;
 }
-.nt-can-cu li { margin: 2px 0; text-align: justify; font-size: 12.5pt; }
+.nt-can-cu li { margin: 2px 0; padding-left: 1.15em; text-align: justify; font-size: 12.5pt; position: relative; }
+.nt-can-cu li::before { content: "-"; position: absolute; left: 0; }
 .nt-person-line {
   display: grid;
   grid-template-columns: 9.5cm 1fr;
@@ -867,11 +868,12 @@ html, body {
 .nt-p { margin: 2px 0; text-align: justify; font-size: 12.5pt; }
 .nt-p strong { font-weight: 700; }
 .nt-can-cu {
-  margin: 2px 0 6px 1.1em;
+  margin: 2px 0 6px 0;
   padding: 0;
-  list-style: disc;
+  list-style: none;
 }
-.nt-can-cu li { margin: 2px 0; text-align: justify; font-size: 12.5pt; }
+.nt-can-cu li { margin: 2px 0; padding-left: 1.15em; text-align: justify; font-size: 12.5pt; position: relative; }
+.nt-can-cu li::before { content: "-"; position: absolute; left: 0; }
 .nt-person-line {
   display: grid;
   grid-template-columns: 9.5cm 1fr;
