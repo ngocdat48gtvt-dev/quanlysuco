@@ -785,23 +785,23 @@ html, body {
   text-decoration: underline; text-underline-offset: calc(3px + 1mm);
   margin-bottom: 1px; font-size: 12.5pt;
 }
-.nt-place-date { text-align: right; font-style: italic; margin: 4px 0 6px; font-size: 12.5pt; }
+.nt-place-date { text-align: right; font-style: italic; margin: 2px 0 3px; font-size: 12.5pt; }
 .nt-title {
   text-align: center; font-weight: 700; text-transform: uppercase;
   margin: 0; font-size: 12.5pt;
 }
 .nt-subtitle {
   text-align: center; font-weight: 700; text-transform: uppercase;
-  margin: 2px 0 6px; font-size: 12.5pt;
+  margin: 1px 0 3px; font-size: 12.5pt;
 }
-.nt-p { margin: 2px 0; text-align: justify; font-size: 12.5pt; }
+.nt-p { margin: 1px 0; text-align: justify; font-size: 12.5pt; }
 .nt-p strong { font-weight: 700; }
 .nt-can-cu {
-  margin: 2px 0 6px 0;
+  margin: 1px 0 3px 0;
   padding: 0;
   list-style: none;
 }
-.nt-can-cu li { margin: 2px 0; padding-left: 1.15em; text-align: justify; font-size: 12.5pt; position: relative; }
+.nt-can-cu li { margin: 1px 0; padding-left: 1.15em; text-align: justify; font-size: 12.5pt; line-height: 1.2; position: relative; }
 .nt-can-cu li::before { content: "-"; position: absolute; left: 0; }
 .nt-person-line {
   display: grid;
@@ -814,13 +814,13 @@ html, body {
 .nt-person-role { min-width: 0; }
 .nt-table {
   width: 100%; border-collapse: collapse; table-layout: fixed;
-  margin: 4px 0 6px; font-size: 12.5pt; line-height: 1.25;
+  margin: 2px 0 3px; font-size: 12.5pt; line-height: 1.2;
 }
 .nt-table--continued {
   margin-top: 2px;
 }
 .nt-table th, .nt-table td {
-  border: 0.5pt solid #000; padding: 2px 3px; vertical-align: top;
+  border: 0.5pt solid #000; padding: 1px 3px; vertical-align: top;
   font-size: 12.5pt;
 }
 .nt-table th { text-align: center; font-weight: 700; background: #f3f4f6; }
@@ -837,7 +837,7 @@ html, body {
 .nt-sign-space { height: 25.92mm; }
 .nt-sign-name { font-weight: 700; }
 .nt-pre { margin: 0; white-space: pre-wrap; font-family: inherit; font-size: inherit; }
-`}function a1(e){return i1(e).replace(/\.sheet\s*\{[^}]+\}/g,``).replace(/\.sheet:last-child[^}]+\}/g,``)}function o1(e){let t=e.cloneNode(!0),n=e.querySelectorAll(`textarea.nt-inline-edit, textarea.nt-cell-edit`);return t.querySelectorAll(`textarea.nt-inline-edit, textarea.nt-cell-edit`).forEach((e,t)=>{let r=document.createElement(`span`);r.className=e.classList.contains(`nt-cell-edit`)?`nt-pre`:``,r.style.whiteSpace=`pre-wrap`,r.textContent=n[t]?.value||e.value||`…`,e.replaceWith(r)}),t.querySelectorAll(`.nt-page-num, .no-print, .nhatky-margin-guides`).forEach(e=>e.remove()),t}function s1(e){let t=Q$,n=e1(e),r=document.createElement(`div`);r.setAttribute(`aria-hidden`,`true`),r.style.cssText=[`position:fixed`,`left:-14000px`,`top:0`,`width:${t.wMm-n.left-n.right}mm`,`pointer-events:none`,`visibility:hidden`,`z-index:-1`].join(`;`);let i=document.createElement(`style`);i.textContent=a1(e),r.appendChild(i);let a=document.createElement(`div`);return a.className=`nt-measure-frame`,a.style.cssText=`width:100%;`,r.appendChild(a),document.body.appendChild(r),{host:r,frame:a}}function c1(e,t){e.innerHTML=``;let n=document.createElement(`div`);n.className=`sheet-body`,t.forEach(e=>n.appendChild(e.cloneNode(!0))),e.appendChild(n);let r=n.getBoundingClientRect().height;return e.innerHTML=``,r}function l1(e){return e?.tagName===`TABLE`}function u1(e,t,{continued:n=!1}={}){let r=document.createElement(`table`);r.className=e.className,n&&r.classList.add(`nt-table--continued`);let i=e.querySelector(`colgroup`),a=e.querySelector(`thead`);i&&r.appendChild(i.cloneNode(!0)),a&&r.appendChild(a.cloneNode(!0));let o=document.createElement(`tbody`);return t.forEach(e=>o.appendChild(e.cloneNode(!0))),r.appendChild(o),r}function d1(e,t){let n=Q$,r=e1(t),i=r1(n.hMm-r.top-r.bottom-t1),a=o1(e),o=Array.from(a.children).filter(e=>e.nodeType===1&&!e.classList.contains(`nt-page-num`)),{host:s,frame:c}=s1(t),l=[],u=[];function d(){u.length&&(l.push(u),u=[])}function f(e){return c1(c,[...u,...e])<=i+.5}try{o.forEach(e=>{if(l1(e)){let t=Array.from(e.querySelectorAll(`tbody > tr`));if(!t.length){u.length&&!f([e])&&d(),u.push(e);return}let n=0,r=-1;for(;n<t.length;){let a=n+1,o=t.length,s=n,l=r>=0&&u.length>0&&l1(u[u.length-1]);for(;a<=o;){let d=Math.floor((a+o)/2),p;if(l){let n=u1(e,t.slice(r,d),{continued:r>0});p=c1(c,[...u.slice(0,-1),n])<=i+.5}else p=f([u1(e,t.slice(n,d),{continued:n>0})]);p?(s=d,a=d+1):o=d-1}if(s===n){if(u.length){if(i-c1(c,u)>=r1(n1)&&l){s=n+1,u.pop(),u.push(u1(e,t.slice(r,s),{continued:r>0})),n=s;continue}d(),r=-1;continue}s=n+1}if(l){u.pop(),u.push(u1(e,t.slice(r,s),{continued:r>0})),n=s;continue}r=n,u.push(u1(e,t.slice(n,s),{continued:n>0})),n=s}return}u.length&&!f([e])&&d(),u.push(e)}),d()}finally{s.remove()}return l.length||l.push([]),l}function f1(e){return e.map(e=>`<div class="sheet"><div class="sheet-body">${e.map(e=>e.outerHTML).join(`
+`}function a1(e){return i1(e).replace(/\.sheet\s*\{[^}]+\}/g,``).replace(/\.sheet:last-child[^}]+\}/g,``)}function o1(e){let t=e.cloneNode(!0),n=e.querySelectorAll(`textarea.nt-inline-edit, textarea.nt-cell-edit`);return t.querySelectorAll(`textarea.nt-inline-edit, textarea.nt-cell-edit`).forEach((e,t)=>{let r=document.createElement(`span`);r.className=e.classList.contains(`nt-cell-edit`)?`nt-pre`:``,r.style.whiteSpace=`pre-wrap`,r.textContent=n[t]?.value||e.value||`…`,e.replaceWith(r)}),t.querySelectorAll(`.nt-page-num, .no-print, .nhatky-margin-guides`).forEach(e=>e.remove()),t}function s1(e){let t=Q$,n=e1(e),r=document.createElement(`div`);r.setAttribute(`aria-hidden`,`true`),r.style.cssText=[`position:fixed`,`left:-14000px`,`top:0`,`width:${t.wMm-n.left-n.right}mm`,`pointer-events:none`,`visibility:hidden`,`z-index:-1`].join(`;`);let i=document.createElement(`style`);i.textContent=a1(e),r.appendChild(i);let a=document.createElement(`div`);return a.className=`nt-measure-frame`,a.style.cssText=`width:100%;`,r.appendChild(a),document.body.appendChild(r),{host:r,frame:a}}function c1(e,t){e.innerHTML=``;let n=document.createElement(`div`);n.className=`sheet-body`,t.forEach(e=>n.appendChild(e.cloneNode(!0))),e.appendChild(n);let r=n.getBoundingClientRect().height;return e.innerHTML=``,r}function l1(e){return e?.tagName===`TABLE`}function u1(e,t,{continued:n=!1}={}){let r=document.createElement(`table`);r.className=e.className,n&&r.classList.add(`nt-table--continued`);let i=e.querySelector(`colgroup`),a=e.querySelector(`thead`);i&&r.appendChild(i.cloneNode(!0)),a&&r.appendChild(a.cloneNode(!0));let o=document.createElement(`tbody`);return t.forEach(e=>o.appendChild(e.cloneNode(!0))),r.appendChild(o),r}function d1(e,t){let n=Q$,r=e1(t),i=r1(n.hMm-r.top-r.bottom-t1),a=o1(e),o=Array.from(a.children).filter(e=>e.nodeType===1&&!e.classList.contains(`nt-page-num`)),{host:s,frame:c}=s1(t),l=[],u=[];function d(){u.length&&(l.push(u),u=[])}function f(e){return c1(c,[...u,...e])<=i+.5}try{o.forEach(e=>{if(l1(e)){let t=Array.from(e.querySelectorAll(`tbody > tr`));if(!t.length){u.length&&!f([e])&&d(),u.push(e);return}let n=0,r=-1;for(;n<t.length;){let a=n+1,o=t.length,s=n,l=r>=0&&u.length>0&&l1(u[u.length-1]);for(;a<=o;){let d=Math.floor((a+o)/2),p;if(l){let n=u1(e,t.slice(r,d),{continued:r>0});p=c1(c,[...u.slice(0,-1),n])<=i+.5}else p=f([u1(e,t.slice(n,d),{continued:n>0})]);p?(s=d,a=d+1):o=d-1}if(s===n){if(u.length){if(i-c1(c,u)>=r1(n1)&&l){let a=u1(e,t.slice(r,n+1),{continued:r>0});if(c1(c,[...u.slice(0,-1),a])<=i+.5){s=n+1,u.pop(),u.push(a),n=s;continue}}d(),r=-1;continue}s=n+1}if(l){u.pop(),u.push(u1(e,t.slice(r,s),{continued:r>0})),n=s;continue}r=n,u.push(u1(e,t.slice(n,s),{continued:n>0})),n=s}return}u.length&&!f([e])&&d(),u.push(e)}),d()}finally{s.remove()}return l.length||l.push([]),l}function f1(e){return e.map(e=>`<div class="sheet"><div class="sheet-body">${e.map(e=>e.outerHTML).join(`
 `)}</div></div>`).join(`
 `)}function p1(e){let t=document.querySelector(`.nghiemthu-print-stack`);if(!t){window.alert(`Chưa có bản xem trước để in.`);return}let n=[...t.querySelectorAll(`.nghiemthu-sheet`)];if(!n.length){window.alert(`Chưa có tờ biên bản để in.`);return}let r=[];n.forEach(t=>{let n=d1(t,e);n.length?r.push(...n):r.push([])});let i=f1(r);QR({title:``,blankDocumentTitle:!0,css:i1(e),sheetsHtml:i,pageWMm:Q$.wMm,pageHMm:Q$.hMm})}function m1(e){return String(e??``).replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`)}function h1(e){return m1(e).replace(/\n/g,`<br/>`)}function g1(e){let t=e1(e);return`
 @page { size: A4 portrait; margin: ${t.top}mm ${t.right}mm ${t.bottom}mm ${t.left}mm; }
@@ -856,23 +856,23 @@ html, body {
   text-decoration: underline; text-underline-offset: calc(3px + 1mm);
   margin-bottom: 1px; font-size: 12.5pt;
 }
-.nt-place-date { text-align: right; font-style: italic; margin: 4px 0 6px; font-size: 12.5pt; }
+.nt-place-date { text-align: right; font-style: italic; margin: 2px 0 3px; font-size: 12.5pt; }
 .nt-title {
   text-align: center; font-weight: 700; text-transform: uppercase;
   margin: 0; font-size: 12.5pt;
 }
 .nt-subtitle {
   text-align: center; font-weight: 700; text-transform: uppercase;
-  margin: 2px 0 6px; font-size: 12.5pt;
+  margin: 1px 0 3px; font-size: 12.5pt;
 }
-.nt-p { margin: 2px 0; text-align: justify; font-size: 12.5pt; }
+.nt-p { margin: 1px 0; text-align: justify; font-size: 12.5pt; }
 .nt-p strong { font-weight: 700; }
 .nt-can-cu {
-  margin: 2px 0 6px 0;
+  margin: 1px 0 3px 0;
   padding: 0;
   list-style: none;
 }
-.nt-can-cu li { margin: 2px 0; padding-left: 1.15em; text-align: justify; font-size: 12.5pt; position: relative; }
+.nt-can-cu li { margin: 1px 0; padding-left: 1.15em; text-align: justify; font-size: 12.5pt; line-height: 1.2; position: relative; }
 .nt-can-cu li::before { content: "-"; position: absolute; left: 0; }
 .nt-person-line {
   display: grid;
@@ -885,10 +885,10 @@ html, body {
 .nt-person-role { min-width: 0; }
 .nt-table {
   width: 100%; border-collapse: collapse; table-layout: fixed;
-  margin: 4px 0 6px; font-size: 12.5pt; line-height: 1.25;
+  margin: 2px 0 3px; font-size: 12.5pt; line-height: 1.2;
 }
 .nt-table th, .nt-table td {
-  border: 0.5pt solid #000; padding: 2px 3px; vertical-align: top;
+  border: 0.5pt solid #000; padding: 1px 3px; vertical-align: top;
   font-size: 12.5pt;
 }
 .nt-table th { text-align: center; font-weight: 700; background: #f3f4f6; }
