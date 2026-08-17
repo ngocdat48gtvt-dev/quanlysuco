@@ -199,9 +199,10 @@ html, body {
 .nhatky-print-table {
   width: 100% !important;
   margin: 0 !important;
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
   border: none;
+  border-right: 0.5pt solid #000;
   table-layout: fixed;
   font-size: 12.5pt;
   line-height: 1.0;
@@ -225,12 +226,18 @@ html, body {
 }
 .nhatky-print-table th,
 .nhatky-print-table td {
-  border: 0.5pt solid #000;
+  border-top: 0.5pt solid #000;
+  border-left: 0.5pt solid #000;
+  border-right: none;
+  border-bottom: none;
   vertical-align: middle !important;
   padding: 2px 3px;
   word-wrap: break-word;
   overflow-wrap: anywhere;
   background: #fff;
+}
+.nhatky-print-table tbody tr:last-child td {
+  border-bottom: 0.5pt solid #000;
 }
 .nhatky-print-table tbody td {
   padding-top: calc(1.6px * var(--nk-row-scale, 1));
