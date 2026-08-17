@@ -199,16 +199,18 @@ html, body {
 .nhatky-print-table {
   width: 100% !important;
   margin: 0 !important;
-  border-collapse: separate;
-  border-spacing: 0;
-  border: none;
-  border-right: 0.5pt solid #000;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: none !important;
+  border-right: 0.1mm solid #000 !important;
   table-layout: fixed;
   font-size: 12.5pt;
   line-height: 1.0;
   font-family: "Times New Roman", Times, serif;
   transform: none !important;
   zoom: 1 !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 .nhatky-print-table thead {
   font-size: 12.5pt;
@@ -226,18 +228,20 @@ html, body {
 }
 .nhatky-print-table th,
 .nhatky-print-table td {
-  border-top: 0.5pt solid #000;
-  border-left: 0.5pt solid #000;
-  border-right: none;
-  border-bottom: none;
+  border-top: 0.1mm solid #000 !important;
+  border-left: 0.1mm solid #000 !important;
+  border-right: none !important;
+  border-bottom: none !important;
   vertical-align: middle !important;
   padding: 2px 3px;
   word-wrap: break-word;
   overflow-wrap: anywhere;
   background: #fff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 .nhatky-print-table tbody tr:last-child td {
-  border-bottom: 0.5pt solid #000;
+  border-bottom: 0.1mm solid #000 !important;
 }
 .nhatky-print-table tbody td {
   padding-top: calc(1.6px * var(--nk-row-scale, 1));
