@@ -301,12 +301,12 @@ html, body {
 }
 .nhatky-print-row--part .nhatky-print-td--3 {
   font-weight: 800;
-  color: #1e3a8a;
+  color: #000;
   background: #f8fafc;
 }
 .nhatky-print-row--section .nhatky-print-td--3 {
   font-weight: 700;
-  color: #1e3a8a;
+  color: #000;
 }
 .nhatky-print-row--weather .nhatky-print-td--1,
 .nhatky-print-row--weather .nhatky-print-td--3,
