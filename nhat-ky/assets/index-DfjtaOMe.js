@@ -161,7 +161,7 @@ body { counter-reset: nk-folio ${t-1}; }
   color: #000;
   pointer-events: none;
 }
-.nk-print-folio::after { content: "- " counter(nk-folio) " -"; }
+.nk-print-folio::after { content: counter(nk-folio); }
 `}function rz(e,t=0){let n=Number(e);return Number.isFinite(n)?n:t}function iz(e){return`
 @page {
   size: A4 portrait;
