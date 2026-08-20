@@ -138,10 +138,14 @@ ${e} th:last-child,
 ${e} td:last-child {
   border-right: none !important;
 }
-${e} thead th {
-  border-bottom: none !important;
+/* Đáy khối thead: ô rowspan + hàng phụ cuối (tránh mất nét dưới tiêu đề). */
+${e} thead th[rowspan],
+${e} thead tr:last-child th {
+  border-bottom: 0.5pt solid ${n} !important;
 }
-${e} tbody tr:last-child td {
+/* Mỗi hàng thân có nét đáy — không chỉ :last-child. */
+${e} tbody td {
+  border-top: none !important;
   border-bottom: 0.5pt solid ${n} !important;
 }
 `}function KR(e){if(e==null||e===``)return null;if(typeof e==`number`)return!Number.isFinite(e)||e<1||e>99999?null:Math.floor(e);let t=String(e).trim();if(!t)return null;let n=Number.parseInt(t,10);return!Number.isFinite(n)||n<1||n>99999?null:n}function qR(e){return KR(e)==null?``:`<div class="nk-print-folio" aria-hidden="true"></div>`}function JR(e){let t=KR(e);return t==null?`.nk-print-folio{display:none!important}`:`
@@ -552,6 +556,7 @@ ${rM.map((e,t)=>`.matduong-table colgroup col:nth-child(${t+1}){width:${(o[e.key
 .matduong-table td:last-child {
   border-right: 0.5pt solid #808080;
 }
+.matduong-table thead th[rowspan],
 .matduong-table thead tr:last-child th {
   border-bottom: 0.5pt solid #808080;
 }
