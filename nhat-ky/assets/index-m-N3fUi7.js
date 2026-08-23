@@ -934,7 +934,7 @@ html, body {
 .nt-sign-space { height: 25.92mm; }
 .nt-sign-name { font-weight: 700; }
 `}function d1(e){let t=e?.meta||{},n=e?.road,r=G$(e?.date),i=t.doiTuong||JQ(n),a=t.diaDiem||XQ(n),o=i$(t,n),s=Array.isArray(e?.qlRows)?e.qlRows:[],c=Array.isArray(e?.volumeSections)?e.volumeSections:[],l=s.map(e=>`<tr>
-      <td class="num" style="text-align:center">-</td>
+      <td class="num" style="text-align:center">${c1(e.stt)}</td>
       <td style="text-align:left">${c1(e.hangMuc)}</td>
       <td style="text-align:left">${c1(e.noiDung)}</td>
       <td style="text-align:left">${l1(e.mucDo)}</td>
